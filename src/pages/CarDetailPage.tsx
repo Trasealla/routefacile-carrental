@@ -50,8 +50,12 @@ export default function CarDetailPage() {
       setError('Please fill in all required fields.');
       return;
     }
-    if (!form.email.includes('@')) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       setError('Please enter a valid email address.');
+      return;
+    }
+    if (form.dropoffDate < form.pickupDate) {
+      setError('Return date must be on or after the pick-up date.');
       return;
     }
     const booking: Booking = {

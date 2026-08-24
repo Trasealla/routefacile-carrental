@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import CarCard from '../components/CarCard';
 import { cars } from '../data/cars';
@@ -46,7 +47,7 @@ export default function HomePage() {
             {featured.map((car) => <CarCard key={car.id} car={car} />)}
           </div>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <a href="/cars" className="btn btn-secondary btn-lg">View All Cars →</a>
+            <Link to="/cars" className="btn btn-secondary btn-lg">View All Cars →</Link>
           </div>
         </div>
       </section>
