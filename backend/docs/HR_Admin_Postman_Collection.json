@@ -1,0 +1,828 @@
+{
+	"info": {
+		"_postman_id": "hr-admin-portal-collection",
+		"name": "HR Admin Portal - Staging",
+		"description": "Complete HR Admin Portal API Collection for Autostrad Staging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.staging.autostrad.com/api/v1"
+		},
+		{
+			"key": "admin_token",
+			"value": ""
+		},
+		{
+			"key": "api_key",
+			"value": "J%P9&g4aIbZn7D3"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{admin_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.access_token) {",
+									"    pm.collectionVariables.set('admin_token', jsonData.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"osamah.kenawy@mawasalat.ae\",\n    \"password\": \"Osamah@2024\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "login"]
+						}
+					}
+				},
+				{
+					"name": "Change Admin Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"OldPassword123!\",\n    \"new_password\": \"NewPassword123!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/change-password",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "change-password"]
+						}
+					}
+				},
+				{
+					"name": "Admin JWT Test",
+					"request": {
+						"method": "GET",
+						"header": [
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/test",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "test"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "HR Admin Management",
+			"item": [
+				{
+					"name": "Create HR Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Group\",\n    \"last_name\": \"HRM\",\n    \"email\": \"hr@autostrad.com\",\n    \"password\": \"HrAdmin@2024\",\n    \"type\": \"hr_manager\",\n    \"country_code\": \"+971\",\n    \"phone_number\": \"522200730\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/hr",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "hr"]
+						}
+					}
+				},
+				{
+					"name": "Send Welcome Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"hr@autostrad.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/hr/send-welcome-email",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "hr", "send-welcome-email"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Career Jobs",
+			"item": [
+				{
+					"name": "List Jobs",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/job?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "job"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Job Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/job/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "job", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title_en\": \"Software Developer\",\n    \"title_ae\": \"مطور برمجيات\",\n    \"description_en\": \"Full stack developer position\",\n    \"description_ae\": \"وظيفة مطور متكامل\",\n    \"expiry_date\": \"2026-12-31\",\n    \"location_en\": \"Dubai\",\n    \"location_ae\": \"دبي\",\n    \"experience_years\": 3,\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/career/job",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "job"]
+						}
+					}
+				},
+				{
+					"name": "Update Job",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title_en\": \"Senior Software Developer\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/career/job/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "job", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"method": "DELETE",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/job/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "job", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Career Applications",
+			"item": [
+				{
+					"name": "List Applications",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"},
+								{"key": "career_job_id", "value": "", "disabled": true},
+								{"key": "status", "value": "", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Pending Applications Count",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/pending-count",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "pending-count"]
+						}
+					}
+				},
+				{
+					"name": "Get Application Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Application Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"reviewed\",\n    \"admin_notes\": \"Good candidate, proceed to interview\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "1"]
+						}
+					}
+				},
+				{
+					"name": "Download CV",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/1/cv",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "1", "cv"]
+						}
+					}
+				},
+				{
+					"name": "Download Attachment",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/1/attachment/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "1", "attachment", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Application",
+					"request": {
+						"method": "DELETE",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/career/application/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "career", "application", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Recruiting Departments",
+			"item": [
+				{
+					"name": "List Departments",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"}
+							]
+						}
+					}
+				},
+				{
+					"name": "Active Departments",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department/active",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department", "active"]
+						}
+					}
+				},
+				{
+					"name": "Get Department Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name_en\": \"Engineering\",\n    \"name_ae\": \"الهندسة\",\n    \"description_en\": \"Engineering Department\",\n    \"description_ae\": \"قسم الهندسة\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department"]
+						}
+					}
+				},
+				{
+					"name": "Update Department",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name_en\": \"Engineering Updated\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Department",
+					"request": {
+						"method": "DELETE",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/department/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "department", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Recruiting Interviews",
+			"item": [
+				{
+					"name": "List Interviews",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"},
+								{"key": "application_id", "value": "", "disabled": true},
+								{"key": "interviewer_id", "value": "", "disabled": true},
+								{"key": "status", "value": "", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Upcoming Interviews",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview/upcoming",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview", "upcoming"]
+						}
+					}
+				},
+				{
+					"name": "Get Interview Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview", "1"]
+						}
+					}
+				},
+				{
+					"name": "Schedule Interview",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_id\": 1,\n    \"interview_date\": \"2026-05-01T10:00:00.000Z\",\n    \"location\": \"Dubai Office - Meeting Room A\",\n    \"interview_type\": \"in-person\",\n    \"notes\": \"Technical interview round 1\",\n    \"interviewer_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview"]
+						}
+					}
+				},
+				{
+					"name": "Update Interview",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"interview_date\": \"2026-05-02T14:00:00.000Z\",\n    \"location\": \"Dubai Office - Meeting Room B\",\n    \"interview_type\": \"video\",\n    \"notes\": \"Rescheduled\",\n    \"status\": 1,\n    \"feedback\": \"Strong technical skills\",\n    \"rating\": 4,\n    \"interviewer_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview", "1"]
+						}
+					}
+				},
+				{
+					"name": "Cancel Interview",
+					"request": {
+						"method": "DELETE",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/interview/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "interview", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Recruiting Ratings",
+			"item": [
+				{
+					"name": "List Ratings",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating?application_id=1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating"],
+							"query": [
+								{"key": "application_id", "value": "1", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Average Rating",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating/average/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating", "average", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Rating Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating", "1"]
+						}
+					}
+				},
+				{
+					"name": "Add Rating",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_id\": 1,\n    \"rating\": 4,\n    \"comments\": \"Good candidate with strong experience\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating"]
+						}
+					}
+				},
+				{
+					"name": "Update Rating",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 5,\n    \"comments\": \"Updated: Excellent candidate\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Rating",
+					"request": {
+						"method": "DELETE",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/rating/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "rating", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Recruiting Status History",
+			"item": [
+				{
+					"name": "List Status History",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/status-history?application_id=1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "status-history"],
+							"query": [
+								{"key": "application_id", "value": "1", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Status History Detail",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/status-history/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "status-history", "1"]
+						}
+					}
+				},
+				{
+					"name": "Record Status Change",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"},
+							{"key": "x-api-key", "value": "{{api_key}}"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_id\": 1,\n    \"from_status\": \"pending\",\n    \"to_status\": \"reviewed\",\n    \"notes\": \"Application reviewed by HR manager\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/status-history",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "status-history"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Manager Dashboard",
+			"item": [
+				{
+					"name": "Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/stats",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Recent Applications",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/recent-applications",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "recent-applications"]
+						}
+					}
+				},
+				{
+					"name": "Upcoming Interviews",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/upcoming-interviews",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "upcoming-interviews"]
+						}
+					}
+				},
+				{
+					"name": "Hiring Pipeline",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/hiring-pipeline",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "hiring-pipeline"]
+						}
+					}
+				},
+				{
+					"name": "Application Trends",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/application-trends",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "application-trends"]
+						}
+					}
+				},
+				{
+					"name": "Interview Stats",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/interview-stats",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "interview-stats"]
+						}
+					}
+				},
+				{
+					"name": "Top Rated Applications",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/manager/top-rated-applications",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "manager", "top-rated-applications"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Staff Dashboard",
+			"item": [
+				{
+					"name": "Staff Stats",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/staff/stats",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "staff", "stats"]
+						}
+					}
+				},
+				{
+					"name": "My Interviews",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/staff/my-interviews",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "staff", "my-interviews"]
+						}
+					}
+				},
+				{
+					"name": "My Recent Interviews",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/staff/my-recent-interviews",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "staff", "my-recent-interviews"]
+						}
+					}
+				},
+				{
+					"name": "Open Positions",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/staff/open-positions",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "staff", "open-positions"]
+						}
+					}
+				},
+				{
+					"name": "My Ratings",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "x-api-key", "value": "{{api_key}}"}],
+						"url": {
+							"raw": "{{base_url}}/admin/recruiting/dashboard/staff/my-ratings",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "recruiting", "dashboard", "staff", "my-ratings"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

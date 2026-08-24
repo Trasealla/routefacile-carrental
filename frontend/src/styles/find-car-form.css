@@ -1,0 +1,905 @@
+.subscription_tabs .subscription_tab {
+  background-color: #0D1B2A;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* New Tab Bar Design - Clean horizontal tabs */
+.subscription__tabs.form-tabs {
+  margin-bottom: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0 !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  background: #0D1B2A;
+  list-style: none !important;
+}
+
+.subscription__tabs.form-tabs .nav-item {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 1 !important;
+  width: 50% !important;
+  display: block !important;
+  float: none !important;
+}
+
+.subscription__tabs.form-tabs .nav-item + .nav-item {
+  margin-left: 0 !important;
+}
+
+.subscription__tabs.form-tabs .nav-link,
+.subscription__tabs.form-tabs .nav-link.form-tab,
+.subscription__tabs.form-tabs .subscription__tab,
+.subscription__tabs.form-tabs .subscription__tab-- {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 16px 20px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease;
+  border: none !important;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.3px;
+  text-align: center;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box !important;
+  float: none !important;
+}
+
+.subscription__tabs.form-tabs .nav-item:first-child .nav-link {
+  border-radius: 12px 0 0 0 !important;
+}
+
+.subscription__tabs.form-tabs .nav-item:last-child .nav-link {
+  border-radius: 0 12px 0 0 !important;
+}
+
+/* Override Bootstrap nav-pills defaults */
+.subscription__tabs.form-tabs.nav-pills .nav-link {
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+.subscription__tabs.form-tabs.nav {
+  --bs-nav-link-padding-x: 0 !important;
+  --bs-nav-link-padding-y: 0 !important;
+  gap: 0 !important;
+}
+
+.subscription__tabs .nav-link:not(.active) {
+  background-color: #0D1B2A !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.subscription__tabs .nav-link:not(.active):hover {
+  background-color: #245b8e !important;
+  color: #fff !important;
+}
+
+.subscription__tabs .nav-link.active {
+  background-color: #fff !important;
+  color: #0D1B2A !important;
+  border: none !important;
+  box-shadow: inset 0 3px 0 #f9a826;
+  z-index: 2;
+}
+
+.subscription__tabs .nav-link.active::before {
+  display: none;
+}
+
+.subscription__tabs .nav-link.active:hover {
+  background-color: #fff !important;
+  color: #0D1B2A !important;
+}
+
+.subscription_tabs .nav-link.active .subscription_tabs .nav-link:hover {
+  background: #fff !important;
+  color: #0D1B2A !important;
+  border: none;
+}
+#booking-form-container {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Form wrapper for wider layout */
+.p-1-- {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.form {
+  background: #fff;
+  padding: 16px 20px 20px 20px;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 15px;
+  margin-top: 0 !important;
+  padding-top: 16px !important;
+  box-shadow: 0 15px 50px rgba(12, 33, 61, 0.2);
+  transition: box-shadow 0.3s ease;
+  max-width: 100%;
+  width: 100%;
+  border-top: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form:hover {
+  box-shadow: 0 18px 55px rgba(12, 33, 61, 0.25);
+}
+
+/* Increase form container width */
+.p-1-- {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.p-1-- > .subscription__tabs {
+  margin-bottom: 0 !important;
+  flex-shrink: 0;
+}
+
+.p-1-- > .form {
+  margin-top: 0 !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-1-- > .form > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.booking-form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Ensure form section takes full width */
+.form-section {
+  width: 100%;
+}
+
+.form .nav-tabs .nav-link {
+  background: linear-gradient(0deg, #fcfdff, #fcfdff);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  margin: 6px;
+  color: #0D1B2A;
+  font-weight: 600;
+  width: 180px;
+  margin-bottom: 28px;
+}
+.form .nav-tabs .nav-link.active {
+  background: linear-gradient(0deg, #335d87, #335d87);
+  border-radius: 50px;
+  color: #fff;
+  width: 180px;
+}
+
+.form .btn-primary {
+  background: linear-gradient(0deg, #ffffff, #ffffff);
+  border-color: rgba(101, 102, 119, 1);
+  color: #656677;
+}
+.form .btn-check + .btn:hover {
+  /* background: linear-gradient(0deg, #ffffff, #ffffff) !important;
+  border-color: rgba(101, 102, 119, 1); */
+  background: rgba(101, 102, 119, 1);
+  border-color: rgba(101, 102, 119, 1);
+  color: #fff !important;
+}
+
+/* Override for Age Above 21 buttons - ensure black text on hover */
+.age-find-car-flex-box .form .btn-check + .btn:hover,
+.age-find-car-flex-box .btn-check + .btn:hover,
+.age-find-car-flex-box .btn-group .btn:hover,
+.age-find-car-flex-box .btn-group button:hover {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+  border-color: #0D1B2A !important;
+}
+
+/* Only white text when button is checked/active */
+.age-find-car-flex-box .btn-check:checked + .btn:hover,
+.age-find-car-flex-box .btn-group .btn:checked:hover,
+.age-find-car-flex-box .btn-group .btn.active:hover,
+.age-find-car-flex-box .btn-group .btn[aria-pressed="true"]:hover {
+  color: #fff !important;
+  background-color: #0D1B2A !important;
+}
+
+/* Specific styles for age toggle buttons - black text on hover for unchecked */
+.age-toggle-button-group .age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]),
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]),
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]) * {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+  border-color: #0D1B2A !important;
+}
+
+/* Prominent border when selected */
+.age-toggle-button-group .age-toggle-btn:checked,
+.age-toggle-button-group .age-toggle-btn.active,
+.age-toggle-button-group .age-toggle-btn[aria-pressed="true"],
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:checked,
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn.active,
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn[aria-pressed="true"] {
+  border: 3px solid #0D1B2A !important;
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 2px rgba(27, 61, 107, 0.2), 0 2px 8px rgba(27, 61, 107, 0.3) !important;
+}
+.form .btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  background: rgba(101, 102, 119, 1);
+  border-color: rgba(101, 102, 119, 1);
+}
+.find-my-card-btn{
+  width: 100%;
+}
+.form .findBtn {
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f2421b 0%, #d63a17 100%);
+  color: #fff;
+  min-width: 150px;
+  padding: 14px 32px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(255, 138, 0, 0.4);
+  border: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+.form .findBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+.form .findBtn:hover {
+  background: linear-gradient(135deg, #d63a17 0%, #b83010 100%);
+  box-shadow: 0 6px 20px rgba(255, 138, 0, 0.55);
+  transform: translateY(-2px);
+}
+.form .findBtn:hover::before {
+  left: 100%;
+}
+.form .findBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(239, 103, 33, 0.35);
+}
+.form .findBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  pointer-events: none;
+}
+
+.form .findBtn:disabled:hover {
+  background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%) !important;
+  transform: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.form .form-label {
+  font-size: 16px;
+  font-weight: 400;
+  text-wrap: nowrap;
+}
+.form .label-name {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  font-family: "Source Sans Pro", sans-serif !important;
+  color: #1a1a1a !important;
+  text-wrap: nowrap;
+  margin-bottom: 8px !important;
+  letter-spacing: 0.2px;
+  display: block;
+}
+.form .form-control {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: 42px;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  padding: 8px 14px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+.form .form-control:focus {
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 3px rgba(27, 61, 107, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  outline: none;
+}
+.form .form-control:hover {
+  border-color: #b0b0b0;
+}
+.form .form-control::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+/* .form .find-my-car-select {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25) !important;
+  height: 45px !important;
+} */
+
+.form-section {
+  background: linear-gradient(
+    160deg,
+    #0D1B2A 0%,
+    #122436 60%,
+    #0D1B2A 100%
+  );
+  width: 100%;
+  max-width: 100%;
+  border-bottom: 3px solid #F2421B;
+  position: relative;
+}
+
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F2421B, #ff6b47, #F2421B);
+  background-size: 200% auto;
+  animation: rf-shimmer 3s linear infinite;
+}
+
+@keyframes rf-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Increase form container width */
+.p-1-- {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0 auto;
+}
+
+/* Ensure form takes more width */
+.form {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Increase container width if inside a container */
+.form-section .container,
+.form-section .container-fluid {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media only screen and (max-width: 992px) {
+  .find__cars-left {
+    padding: 65px 22px;
+  }
+
+  .find__cars-left h2 {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    padding: 30px 10px;
+  }
+
+  .form__group input,
+  .select__group select {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .hero__form {
+    bottom: -100px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .form {
+    padding: 20px 10px;
+    border-radius: 0 0 7px 7px;
+  }
+  
+  .subscription__tabs {
+    flex-direction: row !important;
+    border-radius: 7px 7px 0 0;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  
+  .subscription__tabs .nav-link:first-child {
+    border-radius: 7px 0 0 0 !important;
+  }
+  
+  .subscription__tabs .nav-link:last-child {
+    border-radius: 0 7px 0 0 !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .form__group {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+
+  .form__group input {
+    font-size: 0.7rem !important;
+  }
+
+  .select__group {
+    width: 100%;
+    padding-right: 10px;
+    font-size: 0.7rem;
+  }
+
+  .find__car-btn {
+    font-size: 0.8rem;
+  }
+
+  .find__cars-left h2 {
+    font-size: 1rem;
+  }
+
+  .hero__form {
+    bottom: -250px;
+  }
+}
+
+@media only screen and (min-device-width: 310px) and (max-device-width: 440px) {
+  .form .find-my-card-btn {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+.checkbox-wrapper-35 .switch {
+  display: none;
+}
+
+.checkbox-wrapper-35 .switch + label {
+  align-items: center;
+  color: #78768d;
+  cursor: pointer;
+  display: flex;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-wrapper-35 .switch + label::before,
+.checkbox-wrapper-35 .switch + label::after {
+  content: "";
+  display: block;
+}
+
+.checkbox-wrapper-35 .switch + label::before {
+  background-color: #05012c;
+  border-radius: 500px;
+  height: 15px;
+  margin-right: 8px;
+  transition: background-color 0.125s ease-out;
+  width: 25px;
+}
+
+.checkbox-wrapper-35 .switch + label::after {
+  background-color: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05),
+    0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+  height: 13px;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  transition: transform 0.125s ease-out;
+  width: 13px;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-text {
+  display: block;
+  margin-right: 0.3em;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #000000;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+  display: block;
+  font-weight: bold;
+  height: 15px;
+  overflow: hidden;
+  position: relative;
+  width: 60px;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+.checkbox-wrapper-35 .switch + label .switch-x-checked {
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.125s ease-out, transform 0.125s ease-out;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #000000;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+  opacity: 1;
+  transform: none;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-checked {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+  position: absolute;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-35 .switch:checked + label::before {
+  background-color: #335d87;
+}
+
+.checkbox-wrapper-35 .switch:checked + label::after {
+  transform: translate3d(10px, 0, 0);
+}
+
+.checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+  opacity: 0;
+  transform: translate3d(0, -100%, 0);
+}
+
+.checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+  opacity: 1;
+  transform: none;
+}
+.css-1jqq78o-placeholder{
+ font-size: 14px;
+}
+
+/* ===== Responsive Booking Form Styles ===== */
+@media screen and (max-width: 1199px) {
+  .p-1-- {
+    padding: 0 15px !important;
+  }
+  
+  .form {
+    padding: 25px 20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .form-section {
+    padding: 20px 0;
+  }
+  
+  .p-1-- {
+    padding: 0 15px !important;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+  }
+  
+  .form {
+    padding: 25px 20px;
+    border-radius: 0 0 12px 12px;
+  }
+  
+  .form .form-control {
+    height: 45px;
+    font-size: 14px;
+  }
+  
+  .form .findBtn {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+  
+  .age-find-car-flex-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .age-find-car-flex-box .btn-group {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-section {
+    padding: 15px 0;
+  }
+  
+  .p-1-- {
+    padding: 0 10px !important;
+  }
+  
+  .form {
+    padding: 20px 15px;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .subscription__tabs {
+    flex-direction: row !important;
+  }
+  
+  .subscription__tabs .nav-item {
+    flex: 1;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+    border-radius: 0 !important;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .subscription__tabs .nav-link:first-child {
+    border-radius: 6px 0 0 0 !important;
+  }
+  
+  .subscription__tabs .nav-link:last-child {
+    border-radius: 0 6px 0 0 !important;
+  }
+  
+  .form .findBtn {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+  
+  .form .label-name {
+    font-size: 14px !important;
+  }
+  
+  .form .form-control {
+    height: 42px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  .booking-form-field-wrapper .row {
+    margin-bottom: 15px;
+  }
+  
+  .booking-form-field-wrapper .row > [class*="col-"] {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .booking-form-field-wrapper .row > [class*="col-"]:last-child {
+    margin-bottom: 0;
+  }
+  
+  .age-find-car-flex-box .btn-group .btn {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .form-section {
+    padding: 10px 0;
+  }
+  
+  .p-1-- {
+    padding: 0 5px !important;
+  }
+  
+  .form {
+    padding: 15px 12px;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 10px 15px !important;
+    font-size: 13px !important;
+  }
+  
+  .form .form-control {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .form .label-name {
+    font-size: 13px !important;
+    margin-bottom: 5px !important;
+  }
+  
+  .form .findBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    min-width: 100%;
+  }
+  
+  .age-find-car-flex-box {
+    gap: 8px;
+  }
+  
+  .age-find-car-flex-box .btn-group .btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+  
+  .delivery-collect-text {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .p-1-- {
+    padding: 0 10px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .form {
+    padding: 12px 10px;
+    border-radius: 0 0 6px 6px;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+  
+  .form .form-control {
+    height: 38px;
+    font-size: 12px;
+  }
+  
+  .form .label-name {
+    font-size: 12px !important;
+  }
+  
+  .form .findBtn {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .age-find-car-flex-box .btn-group {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .age-find-car-flex-box .btn-group .btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+/* Mobile centering for booking form */
+@media screen and (max-width: 767px) {
+  .p-1-- {
+    padding: 0 15px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .form {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .subscription__tabs {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ===== RTL (Arabic) overrides ===== */
+html[dir="rtl"] .label-name {
+  text-align: right;
+}
+
+html[dir="rtl"] .form .form-control {
+  text-align: right;
+}
+
+html[dir="rtl"] .form .form-label {
+  text-align: right;
+}
+
+html[dir="rtl"] .form-check-inline {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+html[dir="rtl"] .findBtn {
+  direction: rtl;
+}
+
+html[dir="rtl"] .delivery-collect-text {
+  text-align: right;
+}
+
+html[dir="rtl"] .booking-form-field-wrapper .label-name::after {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .age-find-car-flex-box {
+  flex-direction: row-reverse;
+}
+/* Guest checkout: dialling code beside the number, not inside it. The select is
+   sized to its content so the number field keeps the room it needs on a phone. */
+.lm-phone-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.lm-phone-row .lm-phone-code {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 108px;
+  padding-inline: 10px;
+}
+.lm-phone-row .lm-phone-number {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+[dir="rtl"] .lm-phone-row {
+  flex-direction: row-reverse;
+}

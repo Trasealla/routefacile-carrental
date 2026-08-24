@@ -1,0 +1,777 @@
+/* ============================================================================
+   RouteFacile — full-bleed lifestyle hero (2026-08)
+   Layout: a wide banner photo (Range Rover on a Moroccan mountain road) with the
+   headline overlaid top-left, and the white booking card overlapping the bottom
+   of the banner. A 3-item feature strip lives inside the card.
+   Own class names (`hero-rf`) so none of the old dark .hero-section CSS applies.
+   The booking form's field styling (FindCarForm.css) still applies globally.
+   ============================================================================ */
+
+.hero-rf {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;      /* neutralize the carbook theme's section padding */
+  background: #f2f4f7;
+  overflow: hidden;
+}
+
+/* --- Banner photo --- */
+.hero-rf-media {
+  position: relative;
+  z-index: 0;                 /* keep the photo below the floating card */
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+.hero-rf-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-rf-img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;      /* beat the global img{height:auto} */
+  object-fit: cover;
+  object-position: center 40%;
+}
+/* Soft light wash on the left so the dark headline stays readable over the photo */
+.hero-rf-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 34%, rgba(255,255,255,0) 55%);
+  pointer-events: none;
+}
+
+/* --- Headline overlay (top-left) --- */
+.hero-rf-headline-wrap {
+  position: absolute !important;   /* beat the global .container{position:relative} */
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding-top: 70px;
+}
+.hero-rf-headline { max-width: 560px; }
+.hero-rf-title {
+  font-family: "Poppins", var(--common-found), sans-serif;
+  font-weight: 800;
+  color: #0D1B2A;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px;
+  text-transform: none;
+}
+.hero-rf-title .text-orange { color: #f2421b; }
+.hero-rf-subtitle {
+  font-family: var(--theme-found), sans-serif;
+  color: #1a2433;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 38ch;
+  margin: 0 0 18px;
+}
+.hero-rf-divider {
+  display: block;
+  width: 72px;
+  height: 4px;
+  border-radius: 4px;
+  background: #f2421b;
+}
+
+/* --- Booking card: floats over the bottom of the banner (card paints ABOVE the
+   photo, so the Daily/Monthly tabs stay visible on top of the image) --- */
+.hero-rf .hero-rf-card-wrap { position: relative; z-index: 10; }
+/* A global `.container{overflow-x:hidden}` rule was clipping the card's top when
+   pulled up by the negative margin — force it visible so the card can overlap. */
+.hero-rf > .container { overflow: visible !important; }
+.hero-rf-card {
+  position: relative;
+  z-index: 10;
+  /* Float the card up over the bottom of the banner photo (card is z-index:10,
+     photo is z-index:0, so the card paints on top). */
+  margin-top: -90px;
+  margin-bottom: 40px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(13, 27, 42, 0.18);
+  padding: 28px 30px 24px;
+}
+
+/* Flatten the booking form — the card is the surface */
+.hero-rf-card .form {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+/* Daily / Monthly tab bar → clean underline tabs (matches mockup) */
+.hero-rf-card .subscription__tabs.form-tabs,
+.hero-rf-card .subscription__tabs.form-tabs.nav.nav-pills {
+  background: #f7f8fa !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+/* The booking tabs carry id="daily-rentals" and a source rule `#daily-rentals`
+   colours them white (for dark heroes) — invisible on our white card. Only an
+   ID-level selector can beat it, so scope through that id. */
+.hero-rf-card #daily-rentals.nav-link,
+.hero-rf-card .subscription__tabs #daily-rentals {
+  color: #55606e !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+.hero-rf-card #daily-rentals.subscription__tab--.form-tab.nav-link.active,
+.hero-rf-card .subscription__tabs #daily-rentals.nav-link.active {
+  color: #f2421b !important;
+  background: #ffffff !important;
+  border-bottom: 3px solid #f2421b !important;
+}
+
+/* Labels + field text dark on the white card */
+.hero-rf-card .form .label-name,
+.hero-rf-card .form .pick-up span,
+.hero-rf-card .form .datatime span,
+.hero-rf-card .form label { color: #1a2433 !important; }
+
+/* SEARCH CARS button → solid flat orange (matches mockup) */
+.hero-rf-card .form .findBtn,
+.hero-rf-card .form .find-my-card-btn button {
+  border-radius: 10px !important;
+  background: #f2421b !important;
+  box-shadow: 0 8px 20px rgba(242, 66, 27, 0.28) !important;
+}
+
+/* --- Feature strip inside the card --- */
+.hero-rf-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eef1f5;
+}
+.hero-rf-feature {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 4px 14px;
+  text-align: left;
+}
+.hero-rf-feature + .hero-rf-feature { border-left: 1px solid #eef1f5; }
+.hero-rf-feature i {
+  font-size: 26px;
+  color: #f2421b;
+  flex: 0 0 auto;
+}
+.hero-rf-feature svg {
+  width: 28px;
+  height: 28px;
+  color: #f2421b;
+  flex: 0 0 auto;
+}
+
+/* The banner card is now clean (no in-card features) — show the standalone
+   feature strip that immediately follows on the homepage. */
+.hero-rf + .rf-features-strip { display: block; }
+.hero-rf-feature span {
+  font-family: var(--common-found), sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #0D1B2A;
+  line-height: 1.2;
+}
+
+/* --- Google rating badge over the car (bottom-right of banner) --- */
+/* Google rating over the image — no pill: "G  Rated 4.9 by 80+ Customers"
+   on top, gold stars underneath (matches design). */
+.hero-rf-rating {
+  position: absolute;
+  z-index: 4;
+  bottom: 120px;
+  right: max(24px, calc(50% - 566px));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 6px;
+  max-width: 240px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--common-found), sans-serif;
+}
+.hero-rf-rating-g { display: inline-flex; }
+.hero-rf-rating-score { display: none; }
+.hero-rf-rating-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #17202e;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.6);
+}
+.hero-rf-rating-stars {
+  flex-basis: 100%;
+  display: inline-flex;
+  gap: 3px;
+  color: #f6a723;
+  font-size: 16px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Mobile-only lifestyle tagline overlaid on the car (hidden on desktop) --- */
+.hero-rf-tagline { display: none; }
+
+/* --- Responsive --- */
+@media (max-width: 1199px) {
+  .hero-rf-media { height: 540px; }
+  .hero-rf-card { margin-top: -18px; }
+  .hero-rf-rating { right: 24px; bottom: 104px; }
+}
+
+@media (max-width: 991px) {
+  .hero-rf-media { height: 480px; }
+  .hero-rf-headline-wrap { padding-top: 60px; }
+  .hero-rf-card { margin-top: -16px; padding: 24px 22px 20px; }
+  .hero-rf-feature span { font-size: 14px; }
+  .hero-rf-feature i { font-size: 23px; }
+}
+
+@media (max-width: 767px) {
+  /* Portrait banner — compact: tall enough to show the car, short enough that
+     the booking card / rest of the page sit high on the screen. */
+  .hero-rf-media {
+    height: 60vh;
+    min-height: 460px;
+    max-height: 600px;
+  }
+  .hero-rf-img { object-position: center 62%; }
+  .hero-rf-media::after {
+    background: linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 24%);
+  }
+  .hero-rf-headline-wrap { padding-top: 30px; padding-left: 20px; padding-right: 20px; }
+  .hero-rf-headline { max-width: 100%; }
+  .hero-rf-title { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.05; margin-bottom: 12px; }
+  .hero-rf-subtitle { font-size: 15px; line-height: 1.32; max-width: 100%; margin-bottom: 12px; }
+  .hero-rf-divider { width: 54px; height: 3px; }
+
+  /* French promo card — left ~half width, sits just under the divider */
+  .hero-rf-tagline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 3;
+    left: 20px;
+    top: 172px;
+    max-width: 62%;
+  }
+  .hero-rf-tagline-fr {
+    background: rgba(18, 26, 38, 0.55);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 9px 13px;
+    border-radius: 6px;
+  }
+  .hero-rf-tagline-fr strong { color: #ffd9cd; font-weight: 700; }
+
+  /* Google rating → sits directly ABOVE the booking card (auto-anchored to the
+     media bottom, since the card overlaps it by ~12px), left-aligned. Placed on
+     the darker cobblestones so the dark text stays readable. */
+  .hero-rf-rating {
+    right: auto;
+    left: 20px;
+    bottom: 24px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .hero-rf-rating-label {
+    color: #10192a;
+    text-shadow: 0 1px 6px rgba(255,255,255,0.85), 0 0 14px rgba(255,255,255,0.7);
+  }
+  .hero-rf-rating-stars { text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+
+  /* Search Cars button — scaled for phone width (design 60px is for the wide card) */
+  .hero-rf-card .form.simple-mode .findBtn {
+    height: 52px;
+    font-size: 18px;
+    gap: 10px;
+    padding: 0 !important;
+  }
+  .hero-rf-card .form.simple-mode .findBtn .findBtn-icon { width: 22px; height: 22px; }
+
+  /* kill the empty trailing column that added ~65px of dead space under the button */
+  .hero-rf-card .form.simple-mode .align-items-end > [class*="col-"]:last-child:empty { display: none !important; }
+  .hero-rf-card .form.simple-mode .align-items-end { margin-top: 14px !important; }
+  .hero-rf-card .form.simple-mode .align-items-end > [class*="col-"] { margin-bottom: 0 !important; }
+  .hero-rf-rating-stars { font-size: 14px; }
+  .hero-rf-rating-label { font-size: 13px; }
+
+  .hero-rf-card {
+    margin-top: -12px;
+    margin-bottom: 28px;
+    border-radius: 16px;
+    padding: 16px 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-rf-title { font-size: 32px; }
+  .hero-rf-card { margin-top: -10px; }
+  .hero-rf-tagline-fr { font-size: 14px; }
+}
+
+/* ============================================================================
+   Desktop (≥992px): the booking card is a COMPACT box floating over the
+   banner's lower-LEFT (matches mockup) rather than a full-width bar below it.
+   Kept OUTSIDE the overflow:hidden media so select/date-picker menus aren't
+   clipped; floated up with a negative margin instead of absolute positioning.
+   ============================================================================ */
+@media (min-width: 992px) {
+  /* Show the FULL banner (no zoom/crop): match the image's own aspect ratio so
+     the whole scene — sky, minaret, archway, car, cobblestones — is visible,
+     exactly like the design. Capped so it can't get too tall on ultrawide. */
+  .hero-rf-media {
+    height: auto;
+    aspect-ratio: 1535 / 1024;
+    /* Cap against the VIEWPORT, not just a fixed pixel value.
+       At the image's own 1535:1024 ratio a 1440px-wide window produced an
+       880px-tall hero, which on a 900px laptop screen pushed the car — the
+       whole point of the photograph — below the fold. Subtracting the header
+       and promo bar keeps the full composition, card and car included, above
+       the fold on a standard laptop, while 820px still caps it on tall or
+       ultrawide displays.
+
+       Note the booking card is deliberately NOT moved up to achieve this: the
+       French headline already ends flush against it (0px clearance), so raising
+       the card overlaps the headline text. Shrinking the hero lifts the car
+       into view without touching the card at all. */
+    max-height: min(820px, calc(100vh - 110px));
+  }
+  .hero-rf-img { object-position: center; }
+
+  /* Float the booking card OVER the banner (absolute) so it doesn't shrink the
+     hero — the full banner stays visible and the benefits card sits below it.
+     Positioned just under the headline's orange divider line. Same selector as
+     the base `.hero-rf .hero-rf-card-wrap` rule so this overrides it. */
+  .hero-rf .hero-rf-card-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 292px;
+    z-index: 10;
+  }
+  .hero-rf-card {
+    max-width: 640px;
+    margin: 0 auto 0 0;      /* left-aligned within the container */
+    padding: 24px 26px 22px;
+  }
+
+  /* Google rating pill sits over the car (right), above the benefits card */
+  .hero-rf-rating { right: 6vw; bottom: 104px; }
+}
+
+@media (min-width: 1400px) {
+  .hero-rf .hero-rf-card-wrap { top: 320px; }
+  .hero-rf-card { max-width: 680px; }
+  .hero-rf-rating { right: 8vw; bottom: 120px; }
+}
+
+/* ============================================================================
+   Hero booking-card fields — match mockup: left icons inside each field, 56px
+   height, #d9dee7 borders, orange focus ring, gradient Search Cars button.
+   All scoped to `.hero-rf-card` so the full booking pages are untouched.
+   ============================================================================ */
+/* Labels */
+.hero-rf-card .form.simple-mode .label-name {
+  color: #111827 !important;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+/* --- Pick-up City (react-select): location pin on the LEFT, chevron stays right --- */
+.hero-rf-card .form.simple-mode [class*="-control"] {
+  position: relative;
+  min-height: 56px !important;
+  height: 56px !important;
+  border: 1px solid #d9dee7 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding-left: 32px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.hero-rf-card .form.simple-mode [class*="-control"]::before {
+  content: "";
+  position: absolute;
+  left: 12px; top: 50%;
+  width: 18px; height: 18px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background: center / contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b465a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
+.hero-rf-card .form.simple-mode [class*="-control"]:focus-within {
+  border-color: #ff4b0b !important;
+  box-shadow: 0 0 0 3px rgba(255, 75, 11, 0.15) !important;
+}
+
+/* --- Date fields (MUI): flip the calendar icon to the LEFT (row-reverse) --- */
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root {
+  height: 56px;
+  border-radius: 12px;
+  flex-direction: row-reverse;
+  background: #fff;
+}
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-notchedOutline { border-color: #d9dee7; }
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline { border-color: #b8c0cd; }
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ff4b0b;
+  border-width: 2px;
+}
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 0 0 3px rgba(255, 75, 11, 0.15);
+  border-radius: 12px;
+}
+.hero-rf-card .form.simple-mode .MuiInputAdornment-root { margin: 0 2px 0 6px; color: #3b465a; }
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root input { padding-left: 6px; }
+.hero-rf-card .form.simple-mode .MuiOutlinedInput-root input::placeholder { color: #8b93a1; opacity: 1; }
+
+/* --- Search Cars button: orange gradient + icon + title case --- */
+/* Search Cars button — exact design spec */
+.hero-rf-card .form.simple-mode .findBtn {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #e02f12 !important;
+  color: #ffffff;
+  border: none !important;
+  border-radius: 7px !important;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.hero-rf-card .form.simple-mode .findBtn:hover {
+  background: #ed2e0e !important;
+  transform: none;
+}
+.hero-rf-card .form.simple-mode .findBtn:active { transform: scale(0.99); }
+.hero-rf-card .form.simple-mode .findBtn .findBtn-icon {
+  width: 27px; height: 27px; flex: 0 0 auto;
+  stroke: currentColor; stroke-width: 2.3;
+}
+
+/* ============================================================================
+   Phone-scale overrides — appended LAST so they beat the desktop button spec
+   above (media queries add no specificity, so source order decides).
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* Search Cars: design's 60px is for the wide card; scale down on phones */
+  .hero-rf-card .form.simple-mode .findBtn {
+    height: 52px;
+    font-size: 18px;
+    gap: 10px;
+    padding: 0 !important;
+  }
+  .hero-rf-card .form.simple-mode .findBtn .findBtn-icon { width: 22px; height: 22px; }
+
+  /* trim the leftover dead space under the button */
+  .hero-rf-card .form.simple-mode .align-items-end { margin-bottom: 0 !important; }
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row:last-child { margin-bottom: 0 !important; }
+  .hero-rf-card { padding-bottom: 12px !important; }
+}
+
+/* Readability for the Google rating on mobile: a soft light wash across the
+   bottom of the banner (no pill) so the dark rating text always reads clearly,
+   whatever it happens to sit on (car body, cobblestones, shadow). */
+@media (max-width: 767px) {
+  .hero-rf-media::after {
+    background:
+      linear-gradient(180deg,
+        rgba(255,255,255,0.30) 0%,
+        rgba(255,255,255,0) 24%,
+        rgba(255,255,255,0) 72%,
+        rgba(255,255,255,0.55) 88%,
+        rgba(255,255,255,0.85) 100%);
+  }
+  .hero-rf-rating-label {
+    color: #0f1826;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+  }
+  .hero-rf-rating-stars { text-shadow: 0 1px 2px rgba(0,0,0,0.22); }
+}
+
+/* ============================================================================
+   Mobile hero refinement pass (2026-08-09) — shorter hero, tighter type,
+   compact 2-tone promo card, darker bottom gradient, card overlaps more.
+   Appended last so it wins over the earlier mobile blocks.
+   ============================================================================ */
+@media (max-width: 767px) {
+  /* shorter hero so the search form starts higher */
+  .hero-rf-media { height: 52vh; min-height: 400px; max-height: 470px; }
+  .hero-rf-img { object-position: center 58%; }
+
+  /* darker bottom gradient: lifts the car + makes the rating read clearly */
+  .hero-rf-media::after {
+    background:
+      linear-gradient(180deg,
+        rgba(255,255,255,0.20) 0%,
+        rgba(255,255,255,0) 20%,
+        rgba(10,16,26,0) 58%,
+        rgba(10,16,26,0.30) 84%,
+        rgba(10,16,26,0.52) 100%);
+  }
+
+  /* type a touch smaller so it stops dominating */
+  .hero-rf-headline-wrap { padding-top: 24px; }
+  .hero-rf-title { font-size: 28px !important; line-height: 1.06; margin-bottom: 10px; }
+  .hero-rf-subtitle { font-size: 14px; line-height: 1.3; margin-bottom: 10px; }
+  .hero-rf-divider { width: 48px; height: 3px; }
+
+  /* compact 2-tone promo card (orange Arabic strip + dark translucent French) */
+  .hero-rf-tagline { left: 20px; top: 168px; max-width: 56%; }
+  .hero-rf-tagline-ar {
+    display: block;
+    background: #f2421b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 1.25;
+    padding: 5px 9px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: none;
+  }
+  .hero-rf-tagline-fr {
+    margin-top: 0;
+    background: rgba(12, 19, 30, 0.72);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    color: #fff;
+    font-size: 12.5px;
+    line-height: 1.28;
+    padding: 7px 9px;
+    border-radius: 0 0 5px 5px;
+  }
+  .hero-rf-tagline-fr strong { color: #ffc9b8; }
+
+  /* rating: white on the darkened base, more breathing room above the card */
+  .hero-rf-rating { left: 20px; bottom: 52px; row-gap: 5px; }
+  .hero-rf-rating-label {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.55);
+  }
+  .hero-rf-rating-stars { font-size: 14px; text-shadow: 0 1px 3px rgba(0,0,0,0.45); }
+
+  /* card overlaps the hero more + tighter internal padding */
+  .hero-rf-card {
+    margin-top: -34px !important;
+    margin-bottom: 22px;
+    padding: 14px 10px 12px !important;
+  }
+
+  /* button: slightly shorter and closer to the inputs */
+  .hero-rf-card .form.simple-mode .findBtn { height: 50px; font-size: 17px; }
+  .hero-rf-card .form.simple-mode .align-items-end { margin-top: 10px !important; }
+}
+
+/* Rating sits over the white car on this crop — give it a soft dark scrim
+   (not a white pill) so it always reads, and keep it left-aligned. */
+@media (max-width: 767px) {
+  .hero-rf-rating {
+    padding: 6px 12px 7px;
+    border-radius: 10px;
+    background: rgba(10, 16, 26, 0.55);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  .hero-rf-rating-label { text-shadow: none; }
+  .hero-rf-rating-stars { text-shadow: none; }
+}
+
+/* Arabic strip removed — the French card is standalone again, fully rounded */
+@media (max-width: 767px) {
+  .hero-rf-tagline-ar { display: none !important; }
+  .hero-rf-tagline-fr { border-radius: 6px !important; }
+}
+
+/* Show more of the car: shift the crop down to reveal its lower body/wheels,
+   give the hero a little more height, and let the card cover less of it. */
+@media (max-width: 767px) {
+  .hero-rf-media { height: 58vh; min-height: 440px; max-height: 510px; }
+  .hero-rf-img { object-position: center 72%; }
+  .hero-rf-card { margin-top: -18px !important; }
+  .hero-rf-rating { bottom: 36px; }
+}
+
+/* ============================================================================
+   DESKTOP hero refinement (2026-08-09)
+   Taller hero, proper edge gutters, smaller/lower booking card so the SUV stays
+   visible, tighter heading→form relationship, balanced image treatment, and a
+   bigger rating anchored to the bottom-right gutter.
+   ============================================================================ */
+@media (min-width: 992px) {
+  /* Vertical room for nav + heading + form + car, but capped against the
+     VIEWPORT. A flat 880px overrode the earlier viewport-aware cap and pushed
+     the car below the fold on a 900px-tall laptop — this is the rule that
+     actually decides the hero height on desktop, so the cap belongs here. */
+  .hero-rf-media { max-height: min(1040px, calc(100vh - 110px)); }
+  /* Keep the left side clean for text/form; car sits centre-right.
+     The vertical anchor is 30%, not centre. The box is wider than the photo's
+     own ratio, so `cover` scales the image to the width and crops vertically —
+     anchoring nearer the top shows more sky and pushes the car DOWN in the
+     frame, which is what lifts it clear of the booking card.
+     Together with the taller cap above, the card now sits fully above the car
+     instead of overlapping its roof and bonnet. The card itself is deliberately
+     not moved: the French headline ends flush against it (0px clearance), so
+     raising the card would run it into the headline text. */
+  .hero-rf-img { object-position: 62% 30%; }
+
+  /* Balanced treatment: soft white wash behind the left text (stronger at the
+     top where the heading sits, fading before the car) + a gentle darkening of
+     the right so the architecture stops pulling focus. */
+  .hero-rf-media::after {
+    background:
+      linear-gradient(103deg,
+        rgba(255,255,255,0.78) 0%,
+        rgba(255,255,255,0.42) 26%,
+        rgba(255,255,255,0.06) 46%,
+        rgba(255,255,255,0) 56%),
+      linear-gradient(270deg,
+        rgba(10,16,26,0.26) 0%,
+        rgba(10,16,26,0.06) 26%,
+        rgba(10,16,26,0) 46%);
+  }
+
+  /* proper desktop gutters for heading + card */
+  .hero-rf-headline-wrap { padding-left: clamp(48px, 5vw, 80px) !important; padding-top: 20px; }
+  .hero-rf .hero-rf-card-wrap { padding-left: clamp(48px, 5vw, 80px) !important; }
+
+  /* controlled heading scale, tighter to the form below */
+  .hero-rf-title { font-size: clamp(40px, 3.4vw, 52px); line-height: 1.04; margin-bottom: 14px; }
+  .hero-rf-subtitle { font-size: clamp(15px, 1.15vw, 18px); margin-bottom: 14px; }
+  .hero-rf-divider { width: 64px; height: 3px; }
+
+  /* card: narrower, shorter, sits lower — the SUV stays visible */
+  .hero-rf .hero-rf-card-wrap { top: 452px; }
+  .hero-rf-card {
+    max-width: 620px;
+    padding: 20px 22px 16px;
+  }
+  /* compact fields */
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper { column-gap: 10px; }
+  .hero-rf-card .form.simple-mode .label-name { font-size: 14px !important; margin-bottom: 6px; }
+  .hero-rf-card .form.simple-mode [class*="-control"],
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root { height: 50px !important; min-height: 50px !important; }
+  .hero-rf-card .form.simple-mode .align-items-end { margin-top: 14px !important; margin-bottom: 0 !important; }
+  .hero-rf-card .form.simple-mode .findBtn { height: 52px; font-size: 19px; }
+
+  /* rating: bigger and anchored to the bottom-right gutter, near the car */
+  .hero-rf-rating {
+    right: clamp(48px, 5vw, 80px);
+    bottom: 42px;
+    max-width: 300px;
+    column-gap: 10px;
+    row-gap: 6px;
+  }
+  .hero-rf-rating-label { font-size: 17px; font-weight: 700; }
+  .hero-rf-rating-stars { font-size: 19px; gap: 4px; }
+}
+
+@media (min-width: 1400px) {
+  .hero-rf .hero-rf-card-wrap { top: 496px; }
+  .hero-rf-card { max-width: 660px; }
+  .hero-rf-rating { bottom: 48px; }
+}
+
+/* Desktop follow-ups: rating up into view beside the car, and give the date
+   fields the last few px they need so "Select Date & Time" shows in full. */
+@media (min-width: 992px) {
+  .hero-rf-rating { bottom: 150px; }
+
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row > [class*="col-"] {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root { padding-left: 8px !important; padding-right: 2px !important; }
+  .hero-rf-card .form.simple-mode .MuiInputAdornment-root { margin: 0 3px 0 0 !important; }
+  .hero-rf-card .form.simple-mode .MuiInputAdornment-root svg { width: 17px; height: 17px; }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input { font-size: 13.5px !important; }
+}
+@media (min-width: 1400px) {
+  .hero-rf-rating { bottom: 165px; }
+}
+
+/* Move the booking card up, closer to the headline (tightens the text→form
+   relationship and leaves the lower hero to the car). */
+@media (min-width: 992px) {
+  .hero-rf .hero-rf-card-wrap { top: 386px; }
+}
+@media (min-width: 1400px) {
+  .hero-rf .hero-rf-card-wrap { top: 410px; }
+}
+
+/* Card sits right under the headline so the lower hero is left to the car */
+@media (min-width: 992px) {
+  .hero-rf .hero-rf-card-wrap { top: 268px; }
+}
+@media (min-width: 1400px) {
+  .hero-rf .hero-rf-card-wrap { top: 288px; }
+}
+
+/* Pull the card up further so more of the car photo shows beneath it.
+   The subtitle above no longer wraps to a 3rd line at the widened max-width
+   (see .hero-rf-subtitle), which freed up the vertical room this needed. */
+@media (min-width: 992px) {
+  .hero-rf .hero-rf-card-wrap { top: 208px; }
+}
+@media (min-width: 1400px) {
+  .hero-rf .hero-rf-card-wrap { top: 228px; }
+}
+
+/* ============================================================================
+   Arabic (RTL): the hero text flips to the right side, where it sits over the
+   dark architecture instead of the bright sky — so the navy type becomes
+   unreadable. Switch the headline block to white with a soft dark shadow.
+   ============================================================================ */
+[dir="rtl"] .hero-rf-title {
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+[dir="rtl"] .hero-rf-subtitle {
+  color: #f4f7fb;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+/* keep "Morocco" orange but lift it off the dark stone */
+[dir="rtl"] .hero-rf-title .text-orange {
+  color: #ff7a4d;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+/* mirror the light wash to the right so the text side stays legible */
+[dir="rtl"] .hero-rf-media::after {
+  transform: scaleX(-1);
+}

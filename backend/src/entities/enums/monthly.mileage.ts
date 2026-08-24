@@ -1,0 +1,6 @@
+export enum MonthlyMileage {
+  MILEAGE_3000 = 3000,
+  MILEAGE_4000 = 4000,
+  MILEAGE_5000 = 5000,
+  MILEAGE_6000 = 6000
+}

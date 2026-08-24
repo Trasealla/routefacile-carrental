@@ -1,0 +1,580 @@
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { Col, Dropdown, Form, Row, Spinner } from "react-bootstrap";
+import {
+  FaMapMarkerAlt,
+  FaFileExcel,
+  FaDownload,
+  FaCloudUploadAlt,
+  FaCheckCircle,
+  FaTimes,
+  FaInfoCircle,
+  FaRegCalendarCheck,
+  FaBuilding,
+  FaTruck,
+} from "react-icons/fa";
+import { MdPriceChange } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import configWeb from "../../../components/config.js/ConfigWeb";
+import { multipartPostCall, simpleGetCallAuth } from "../../../components/config.js/Setup";
+import Select from "react-select";
+import * as XLSX from "xlsx";
+import { notifyError, notifySuccess } from "../../../components/notify/notify";
+import daily_range_bms_template from "../../../assets/Files/daily_range_bms_template.xlsx";
+import useFilterById from "../CustomHooks/useFilterById";
+
+const labelStyle = {
+  fontWeight: 600,
+  fontSize: "0.88rem",
+  color: "#2d3748",
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+  marginBottom: 8,
+};
+
+const controlStyle = (hasValue) => ({
+  height: 48,
+  borderRadius: 12,
+  border: "1.5px solid #e2e8f0",
+  fontSize: "0.9rem",
+  paddingLeft: 16,
+  color: hasValue ? "#1a202c" : "#a0aec0",
+  background: "#fff",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+  transition: "border-color .2s, box-shadow .2s",
+});
+
+const selectStyles = (hasError) => ({
+  control: (base, state) => ({
+    ...base,
+    minHeight: 48,
+    borderRadius: 12,
+    border: `1.5px solid ${hasError ? "#e53e3e" : state.isFocused ? "var(--rf-orange)" : "#e2e8f0"}`,
+    boxShadow: state.isFocused ? "0 0 0 3px rgba(218,40,38,.12)" : "0 1px 3px rgba(0,0,0,0.05)",
+    background: state.isDisabled ? "#f1f3f7" : "#fafbfc",
+    fontSize: "0.9rem",
+    "&:hover": { borderColor: "var(--rf-orange)" },
+  }),
+  multiValue: (base) => ({ ...base, borderRadius: 8, background: "rgba(218,40,38,0.08)", border: "1px solid rgba(218,40,38,0.2)" }),
+  multiValueLabel: (base) => ({ ...base, color: "#b81f1d", fontWeight: 600, fontSize: "0.8rem" }),
+  multiValueRemove: (base) => ({ ...base, color: "#b81f1d", "&:hover": { background: "rgba(218,40,38,0.2)", color: "#c53030", borderRadius: "0 8px 8px 0" } }),
+  option: (base, state) => ({ ...base, background: state.isSelected ? "var(--rf-orange)" : state.isFocused ? "rgba(218,40,38,0.07)" : "#fff", color: state.isSelected ? "#fff" : "#2d3748", borderRadius: 8, margin: "2px 4px", width: "calc(100% - 8px)" }),
+  menu: (base) => ({ ...base, borderRadius: 12, boxShadow: "0 8px 24px rgba(0,0,0,0.12)", border: "1px solid #e2e8f0", zIndex: 9999 }),
+  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+});
+
+const UploadRangePricing = () => {
+  const { t } = useTranslation();
+
+  const [citiesArray, setCitiesArray] = useState([]);
+  const [locationArray, setLocationArray] = useState([]);
+
+  const handleCityChange = (selectedOptions) => {
+    setCityError(!selectedOptions);
+    setCity(selectedOptions);
+  };
+  const handleLocationChange = (selectedOptions) => {
+    setLocationError(!selectedOptions);
+    setLocation(selectedOptions);
+  };
+
+  const [formData, setFormData] = useState({
+    excel_file: "",
+    citiesRate: false,
+    start_date: "",
+    end_date: "",
+  });
+  const [city, setCity] = useState([]);
+  const [location, setLocation] = useState([]);
+
+  const [cityError, setCityError] = useState(false);
+  const [locationError, setLocationError] = useState(false);
+  const [dateError, setDateError] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [validated, setValidated] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target || {};
+    if (name === "citiesRate") {
+      setFormData((prevData) => ({ ...prevData, citiesRate: !prevData.citiesRate }));
+      setLocation([]);
+      setLocationError(false);
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    const file = files[0];
+    if (file) {
+      setFormData((prevData) => ({ ...prevData, [name]: file }));
+    }
+  };
+
+  const handleSampleDownload = (type) => {
+    if (type === "simple") {
+      // Must be a real .xlsx — the upload endpoint's fileFilter only accepts Excel
+      // mime types, so a .csv template downloaded here was rejected on upload.
+      const ws = XLSX.utils.aoa_to_sheet([["CAR GROUP", "START DAY", "END DAY", "AMOUNT"]]);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+      XLSX.writeFile(wb, "daily_range_bms_simple_template.xlsx");
+    } else {
+      const file = daily_range_bms_template;
+      const link = document.createElement("a");
+      link.href = file;
+      link.download = "daily_range_bms_template.xlsx";
+      link.click();
+    }
+  };
+
+  const validateDates = () => {
+    const { start_date, end_date } = formData;
+    if (start_date && !end_date) return t("rangePricing.endDateRequired");
+    if (!start_date && end_date) return t("rangePricing.startDateRequired");
+    if (start_date && end_date && end_date < start_date) return t("rangePricing.endAfterStart");
+    return "";
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const locationValidation = formData?.citiesRate ? true : location.length > 0;
+
+    const dateValidationError = validateDates();
+    setDateError(dateValidationError);
+
+    if (
+      form.checkValidity() === false ||
+      city.length === 0 ||
+      !locationValidation ||
+      dateValidationError
+    ) {
+      e.stopPropagation();
+      setValidated(true);
+      setCityError(city.length === 0);
+      setLocationError(!formData.citiesRate && location.length === 0);
+    } else {
+      setCityError(false);
+      setLocationError(false);
+      setDateError("");
+      handleFormSubmit();
+      setValidated(false);
+    }
+  };
+
+  const citiesData = () => {
+    simpleGetCallAuth(`${configWeb.GET_CITIES}?page_size=9999`)
+      .then((res) => setCitiesArray(res?.data || []))
+      .catch((err) => console.log("cities fetch failed", err));
+  };
+
+  const locationData = () => {
+    simpleGetCallAuth(`${configWeb.GET_LOCATIONS}?page_size=9999`)
+      .then((res) => setLocationArray(res?.data || []))
+      .catch((err) => console.log("locations fetch failed", err));
+  };
+
+  useEffect(() => {
+    citiesData();
+    locationData();
+  }, []);
+
+  const [mappedCitiesArray, setMappedCitiesArray] = useState([]);
+  const [mappedLocationArray, setMappedLocationArray] = useState([]);
+
+  const selectedIds = useMemo(() => city?.map((loc) => loc.value), [city]);
+  const filteredLocationArray = useFilterById(locationArray, selectedIds);
+
+  useEffect(() => {
+    if (filteredLocationArray?.length >= 0) {
+      const activeLocations =
+        filteredLocationArray?.filter((loc) => {
+          const status = loc?.status;
+          return status === 1 || status === "1" || status === true;
+        }) || [];
+
+      const locationArrayTemp = activeLocations.map((loc) => ({
+        value: loc.id,
+        label: loc.is_virtual ? `${loc.name_en} (${t("rangePricing.virtual")})` : loc.name_en,
+        isVirtual: loc.is_virtual,
+      }));
+      setMappedLocationArray(locationArrayTemp);
+      setLocation(locationArrayTemp); // default to all locations for the chosen cities
+      setLocationError(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredLocationArray]);
+
+  useEffect(() => {
+    if (citiesArray?.length > 0) {
+      setMappedCitiesArray(citiesArray.map((c) => ({ value: c.id, label: c.name_en })));
+    }
+  }, [citiesArray]);
+
+  const handleFormSubmit = () => {
+    return new Promise((resolve) => {
+      const appendFormData = new FormData();
+      appendFormData.append("file", formData?.excel_file);
+      appendFormData.append("city_ids", city?.map((item) => item.value));
+
+      if (!formData.citiesRate) {
+        appendFormData.append("location_ids", location?.map((item) => item.value));
+      }
+      if (formData.start_date) appendFormData.append("start_date", formData.start_date);
+      if (formData.end_date) appendFormData.append("end_date", formData.end_date);
+
+      setLoading(true);
+      multipartPostCall(configWeb.POST_RANGE_PRICE, appendFormData)
+        .then((res) => {
+          if (res?.status === true) {
+            notifySuccess(t("rangePricing.uploadSuccess"));
+            resolve(true);
+            setFormData({ excel_file: "", citiesRate: false, start_date: "", end_date: "" });
+            setCity([]);
+            setLocation([]);
+            setDateError("");
+            if (fileInputRef.current) fileInputRef.current.value = "";
+          } else {
+            notifyError(Array.isArray(res?.message) ? res.message[0] : res?.message);
+            resolve(false);
+          }
+        })
+        .catch((error) => {
+          console.error("Range pricing upload failed:", error);
+          notifyError(t("common.somethingWentWrong"));
+          resolve(false);
+        })
+        .finally(() => setLoading(false));
+    });
+  };
+
+  return (
+    <div className="rf-list-page">
+      {/* ── Page Header ───────────────────────────────────────────────── */}
+      <div className="rf-page-header">
+        <div>
+          <h2 className="rf-page-title">
+            <span className="rf-title-bar" />
+            <MdPriceChange size={26} style={{ color: "var(--rf-orange)", marginRight: 8 }} />
+            {t("rangePricing.title")}
+          </h2>
+          <p style={{ margin: "4px 0 0 14px", color: "#8492a6", fontSize: "0.85rem", fontWeight: 500 }}>
+            {t("rangePricing.subtitle")}
+          </p>
+        </div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb mb-0" style={{ fontSize: "0.82rem" }}>
+            <li className="breadcrumb-item">
+              <Link to="/dashboard" style={{ color: "var(--rf-orange)", textDecoration: "none" }}>{t("nav.Dashboard")}</Link>
+            </li>
+            <li className="breadcrumb-item"><span style={{ color: "#8492a6" }}>{t("nav.Pricing")}</span></li>
+            <li className="breadcrumb-item active" style={{ color: "#1a202c" }}>{t("rangePricing.title")}</li>
+          </ol>
+        </nav>
+      </div>
+
+      {/* ── Info Banner ───────────────────────────────────────────────── */}
+      <div style={{
+        display: "flex", alignItems: "flex-start", gap: 12,
+        background: "linear-gradient(135deg, rgba(218,40,38,0.06) 0%, rgba(13,27,42,0.04) 100%)",
+        border: "1px solid rgba(218,40,38,0.18)",
+        borderRadius: 14, padding: "14px 20px", marginBottom: 24,
+      }}>
+        <FaInfoCircle size={18} style={{ color: "var(--rf-orange)", flexShrink: 0, marginTop: 2 }} />
+        <div>
+          <p style={{ margin: 0, fontSize: "0.85rem", color: "#2d3748", fontWeight: 600 }}>{t("rangePricing.howToTitle")}</p>
+          <p style={{ margin: "4px 0 0", fontSize: "0.82rem", color: "#718096", lineHeight: 1.6 }}>
+            {t("rangePricing.howToBody")}
+          </p>
+        </div>
+      </div>
+
+      {/* ── Form Card ─────────────────────────────────────────────────── */}
+      <div style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 24px rgba(13,27,42,0.07)" }}>
+        <div style={{ height: 4, background: "linear-gradient(90deg, var(--rf-orange) 0%, #da2826 100%)", borderRadius: "18px 18px 0 0" }} />
+
+        <div style={{ padding: "clamp(20px, 4vw, 36px)" }}>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+            {/* ── City ────────────────────────────────────────────── */}
+            <Row className="mb-4">
+              <Col xs={12} md={10} lg={7} xl={6}>
+                <Form.Group controlId="city">
+                  <Form.Label style={labelStyle}>
+                    <FaMapMarkerAlt size={14} style={{ color: "var(--rf-orange)" }} />
+                    {t("rangePricing.city")} <span style={{ color: "#e53e3e", marginLeft: 2 }}>*</span>
+                    <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "#a0aec0", fontWeight: 400 }}>{t("rangePricing.multiSelect")}</span>
+                  </Form.Label>
+                  <Select
+                    value={city}
+                    isMulti
+                    name="city"
+                    options={mappedCitiesArray}
+                    isSearchable
+                    className="basic-multi-select"
+                    placeholder={t("rangePricing.selectCities")}
+                    onChange={handleCityChange}
+                    menuPortalTarget={document.body}
+                    menuPosition="fixed"
+                    styles={selectStyles(cityError)}
+                  />
+                  {cityError && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 5, color: "#e53e3e", fontSize: "0.8rem", marginTop: 5 }}>
+                      <FaTimes size={11} /> {t("rangePricing.cityRequired")}
+                    </div>
+                  )}
+                </Form.Group>
+              </Col>
+            </Row>
+
+            {/* ── Delivery Rates toggle ───────────────────────────── */}
+            <Row className="mb-4">
+              <Col xs={12} md={10} lg={7} xl={6}>
+                <div style={{
+                  display: "flex", alignItems: "flex-start", gap: 12,
+                  padding: "14px 16px", borderRadius: 12,
+                  border: `1.5px solid ${formData.citiesRate ? "rgba(218,40,38,0.35)" : "#e2e8f0"}`,
+                  background: formData.citiesRate ? "rgba(218,40,38,0.04)" : "#fafbfc",
+                  transition: "all .2s",
+                }}>
+                  <FaTruck size={16} style={{ color: formData.citiesRate ? "var(--rf-orange)" : "#a0aec0", marginTop: 3, flexShrink: 0 }} />
+                  <div style={{ flex: 1 }}>
+                    <Form.Check
+                      type="switch"
+                      id="citiesRate"
+                      name="citiesRate"
+                      label={t("rangePricing.deliveryRates")}
+                      checked={formData.citiesRate}
+                      onChange={handleChange}
+                      style={{ fontWeight: 600, color: "#2d3748", fontSize: "0.88rem" }}
+                    />
+                    <p style={{ margin: "2px 0 0 2.4rem", fontSize: "0.78rem", color: "#a0aec0", lineHeight: 1.5 }}>
+                      {t("rangePricing.deliveryRatesHint")}
+                    </p>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+            {/* ── Locations ───────────────────────────────────────── */}
+            <Row className="mb-4">
+              <Col xs={12} md={10} lg={7} xl={6}>
+                <Form.Group controlId="location">
+                  <Form.Label style={{ ...labelStyle, opacity: formData.citiesRate ? 0.5 : 1 }}>
+                    <FaBuilding size={14} style={{ color: "var(--rf-orange)" }} />
+                    {t("rangePricing.locations")}
+                    {!formData.citiesRate && <span style={{ color: "#e53e3e", marginLeft: 2 }}>*</span>}
+                    {formData.citiesRate && (
+                      <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "#a0aec0", fontWeight: 400 }}>
+                        {t("rangePricing.notNeededForDelivery")}
+                      </span>
+                    )}
+                  </Form.Label>
+                  <Select
+                    value={location}
+                    isMulti
+                    name="location"
+                    options={mappedLocationArray?.length > 0 ? mappedLocationArray : []}
+                    isSearchable
+                    className="basic-multi-select"
+                    placeholder={mappedLocationArray?.length > 0 ? t("rangePricing.selectLocations") : t("rangePricing.selectCityFirst")}
+                    noOptionsMessage={() => t("rangePricing.selectCityFirst")}
+                    isDisabled={formData.citiesRate}
+                    onChange={handleLocationChange}
+                    menuPortalTarget={document.body}
+                    menuPosition="fixed"
+                    styles={selectStyles(locationError && !formData.citiesRate)}
+                  />
+                  {locationError && !formData.citiesRate && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 5, color: "#e53e3e", fontSize: "0.8rem", marginTop: 5 }}>
+                      <FaTimes size={11} /> {t("rangePricing.locationRequired")}
+                    </div>
+                  )}
+                  {!formData.citiesRate && mappedLocationArray?.length > 0 && (
+                    <p style={{ margin: "6px 0 0 2px", fontSize: "0.78rem", color: "#718096" }}>
+                      {t("rangePricing.virtualHint")}
+                    </p>
+                  )}
+                </Form.Group>
+              </Col>
+            </Row>
+
+            {/* ── Validity Period ─────────────────────────────────── */}
+            <Row className="mb-4">
+              <Col xs={12} md={10} lg={7} xl={6}>
+                <Form.Label style={labelStyle}>
+                  <FaRegCalendarCheck size={14} style={{ color: "var(--rf-orange)" }} />
+                  {t("rangePricing.validityPeriod")}
+                  <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "#a0aec0", fontWeight: 400 }}>{t("rangePricing.optional")}</span>
+                </Form.Label>
+
+                <div style={{
+                  border: `1.5px solid ${dateError ? "#e53e3e" : "#e2e8f0"}`,
+                  borderRadius: 12, padding: 16, background: "#fafbfc",
+                }}>
+                  <Row>
+                    <Col xs={12} sm={6} className="mb-3 mb-sm-0">
+                      <Form.Group controlId="start_date">
+                        <Form.Label style={{ fontSize: "0.78rem", fontWeight: 600, color: "#718096", marginBottom: 6 }}>
+                          {t("rangePricing.startDate")}
+                        </Form.Label>
+                        <Form.Control
+                          type="date"
+                          name="start_date"
+                          value={formData.start_date}
+                          onChange={handleChange}
+                          onMouseDown={(e) => e.target.showPicker?.()}
+                          style={controlStyle(formData.start_date)}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col xs={12} sm={6}>
+                      <Form.Group controlId="end_date">
+                        <Form.Label style={{ fontSize: "0.78rem", fontWeight: 600, color: "#718096", marginBottom: 6 }}>
+                          {t("rangePricing.endDate")}
+                        </Form.Label>
+                        <Form.Control
+                          type="date"
+                          name="end_date"
+                          value={formData.end_date}
+                          onChange={handleChange}
+                          onMouseDown={(e) => e.target.showPicker?.()}
+                          min={formData.start_date || undefined}
+                          style={controlStyle(formData.end_date)}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <p style={{ margin: "12px 0 0", fontSize: "0.78rem", color: "#718096", lineHeight: 1.6 }}>
+                    {t("rangePricing.datesHint")}
+                  </p>
+                </div>
+
+                {dateError && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 5, color: "#e53e3e", fontSize: "0.8rem", marginTop: 6 }}>
+                    <FaTimes size={11} /> {dateError}
+                  </div>
+                )}
+              </Col>
+            </Row>
+
+            {/* ── File Upload ─────────────────────────────────────── */}
+            <Row className="mb-4">
+              <Col xs={12} lg={11} xl={9}>
+                <Form.Label style={labelStyle}>
+                  <FaFileExcel size={14} style={{ color: "#16a34a" }} />
+                  {t("rangePricing.uploadExcel")} <span style={{ color: "#e53e3e", marginLeft: 2 }}>*</span>
+                </Form.Label>
+                <div style={{ display: "flex", gap: 12, alignItems: "stretch", flexWrap: "wrap" }}>
+                  <div style={{ flex: 1, minWidth: 220, position: "relative" }}>
+                    <label htmlFor="range_excel_file_input" style={{
+                      display: "flex", alignItems: "center", gap: 12,
+                      border: `2px dashed ${formData.excel_file ? "#16a34a" : "#e2e8f0"}`,
+                      borderRadius: 12, padding: "12px 16px", cursor: "pointer",
+                      background: formData.excel_file ? "rgba(22,163,74,0.04)" : "#fafbfc",
+                      transition: "all .2s", minHeight: 52,
+                    }}>
+                      {formData.excel_file ? (
+                        <>
+                          <FaCheckCircle size={20} style={{ color: "#16a34a", flexShrink: 0 }} />
+                          <span style={{ fontSize: "0.85rem", color: "#16a34a", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {formData.excel_file?.name || t("rangePricing.fileSelected")}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <FaCloudUploadAlt size={22} style={{ color: "#a0aec0", flexShrink: 0 }} />
+                          <span style={{ fontSize: "0.85rem", color: "#a0aec0" }}>{t("rangePricing.chooseFile")}</span>
+                        </>
+                      )}
+                    </label>
+                    <Form.Control
+                      id="range_excel_file_input"
+                      ref={fileInputRef}
+                      type="file"
+                      name="excel_file"
+                      onChange={handleFileChange}
+                      required
+                      accept=".xlsx,.xls"
+                      style={{ position: "absolute", inset: 0, opacity: 0, cursor: "pointer", width: "100%", height: "100%" }}
+                    />
+                    <Form.Control.Feedback type="invalid">{t("rangePricing.fileRequired")}</Form.Control.Feedback>
+                  </div>
+
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      as="button"
+                      type="button"
+                      style={{
+                        display: "inline-flex", alignItems: "center", gap: 8,
+                        padding: "0 22px", borderRadius: 12, border: "1.5px solid #e2e8f0",
+                        background: "#fff", color: "#2d3748", fontWeight: 600, fontSize: "0.875rem",
+                        cursor: "pointer", whiteSpace: "nowrap", height: 52,
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                      }}
+                    >
+                      <FaDownload size={14} style={{ color: "#16a34a" }} />
+                      {t("rangePricing.sampleDownload")}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu style={{ borderRadius: 12, border: "1px solid #e2e8f0", boxShadow: "0 8px 24px rgba(0,0,0,0.12)", padding: 6, minWidth: 270 }}>
+                      <Dropdown.Item onClick={() => handleSampleDownload("simple")} style={{ borderRadius: 8, padding: "10px 12px", fontSize: "0.85rem" }}>
+                        <strong style={{ display: "block", color: "#2d3748" }}>{t("rangePricing.simpleTemplate")}</strong>
+                        <span style={{ fontSize: "0.76rem", color: "#a0aec0" }}>{t("rangePricing.simpleTemplateHint")}</span>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleSampleDownload("full")} style={{ borderRadius: 8, padding: "10px 12px", fontSize: "0.85rem" }}>
+                        <strong style={{ display: "block", color: "#2d3748" }}>{t("rangePricing.fullTemplate")}</strong>
+                        <span style={{ fontSize: "0.76rem", color: "#a0aec0" }}>{t("rangePricing.fullTemplateHint")}</span>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                {formData.excel_file && (
+                  <p style={{ margin: "6px 0 0 4px", fontSize: "0.78rem", color: "#718096" }}>
+                    {t("rangePricing.acceptedFormats")}
+                  </p>
+                )}
+              </Col>
+            </Row>
+
+            <div style={{ height: 1, background: "#f0f2f5", margin: "4px 0 28px" }} />
+
+            {/* ── Submit ──────────────────────────────────────────── */}
+            <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 10,
+                  padding: "0 32px", height: 50, borderRadius: 12, border: "none",
+                  background: loading ? "#e2e8f0" : "linear-gradient(135deg, var(--rf-orange) 0%, #b81f1d 100%)",
+                  color: loading ? "#a0aec0" : "#fff", fontWeight: 700, fontSize: "0.95rem",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  boxShadow: loading ? "none" : "0 6px 18px rgba(218,40,38,0.35)",
+                  transition: "all .2s",
+                }}
+              >
+                {loading ? (
+                  <><Spinner size="sm" animation="border" /> {t("rangePricing.uploading")}</>
+                ) : (
+                  <><FaCloudUploadAlt size={16} /> {t("rangePricing.uploadPricing")}</>
+                )}
+              </button>
+              <span style={{ fontSize: "0.8rem", color: "#a0aec0" }}>
+                {t("rangePricing.requiredNote")} <span style={{ color: "#e53e3e" }}>*</span>
+              </span>
+            </div>
+
+          </Form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UploadRangePricing;

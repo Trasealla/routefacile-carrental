@@ -1,0 +1,106 @@
+/* ── Lang Switcher ─────────────────────────────────────────────────── */
+.rf-lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-inline-end: 12px;
+}
+
+.rf-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 36px;
+  padding: 0 12px;
+  background: #f8f9fa;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a202c;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.rf-lang-btn:hover {
+  border-color: #da2826;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(218,40,38,.08);
+}
+
+.rf-lang-flag { font-size: 16px; line-height: 1; }
+.rf-lang-label { letter-spacing: .3px; }
+
+.rf-lang-chevron {
+  width: 14px;
+  height: 14px;
+  color: #718096;
+  transition: transform .2s;
+}
+
+/* dropdown */
+.rf-lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(13,27,42,.14);
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+  z-index: 9999;
+  animation: rf-lang-fade .15s ease;
+}
+
+@keyframes rf-lang-fade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rf-lang-switcher:hover .rf-lang-dropdown,
+.rf-lang-switcher:focus-within .rf-lang-dropdown {
+  display: block;
+}
+
+.rf-lang-switcher:hover .rf-lang-chevron {
+  transform: rotate(180deg);
+}
+
+.rf-lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2d3748;
+  transition: background .15s;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.rf-lang-option:hover { background: #f8f9fa; }
+
+.rf-lang-option.active {
+  background: rgba(218,40,38,.07);
+  color: #da2826;
+  font-weight: 600;
+}
+
+.rf-lang-full { flex: 1; }
+
+.rf-lang-check {
+  width: 14px;
+  height: 14px;
+  color: #da2826;
+  flex-shrink: 0;
+}
+
+/* RTL flip */
+[dir="rtl"] .rf-lang-dropdown { right: auto; left: 0; }

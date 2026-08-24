@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- MUST stay directly after <meta charset> and BEFORE any media-gated
+         preload below. The preload scanner evaluates a preload's `media`
+         against the viewport it knows about at that moment; until this tag is
+         parsed that is Chrome's 980px fallback, not the device width. With the
+         viewport declared later, phones matched "(min-width: 768px)" and
+         preloaded the 161 KB desktop hero they never display. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ── Google Tag Manager ───────────────────────────────────────────
+         Container GTM-MVTPG3QM. Placed after <meta charset> and viewport so
+         the preload scanner still evaluates the media-gated hero preloads
+         against the real device width, and marked async by the snippet itself
+         so it never blocks the first render.
+
+         Note: GA4 (G-W3Q4FEM68C) is loaded directly by the app, NOT through
+         this container. Do not add a GA4 Configuration tag in GTM as well or
+         every page view and booking event is counted twice. Use GTM for the
+         tags the app does not fire itself — Google Ads, Meta Pixel, etc. -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+        var loaded = false;
+        function loadGtm() {
+          if (loaded) return;
+          loaded = true;
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        }
+
+        // GTM is 110 KiB of script, and it pulls its own copy of gtag on top of
+        // that. Loading it in the <head> put ~478 KiB of analytics in front of
+        // the first paint on a phone. Nothing in the container affects what the
+        // customer sees, so it waits for the browser to go idle — or for the
+        // first real interaction, whichever comes first, so a visitor who taps
+        // straight into the booking form is still measured.
+        var EVENTS = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+        function onFirstInteraction() {
+          EVENTS.forEach(function (e) { w.removeEventListener(e, onFirstInteraction, true); });
+          loadGtm();
+        }
+        EVENTS.forEach(function (e) {
+          w.addEventListener(e, onFirstInteraction, { capture: true, passive: true, once: true });
+        });
+
+        if ('requestIdleCallback' in w) {
+          w.requestIdleCallback(loadGtm, { timeout: 5000 });
+        } else {
+          w.addEventListener('load', function () { setTimeout(loadGtm, 2500); });
+        }
+      })(window, document, 'script', 'dataLayer', 'GTM-MVTPG3QM');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- ── SearchAtlas OTTO SEO pixel ─────────────────────────────────
+         Project 634b871d-3bc4-488f-9035-b875de5e90ca. This is how OTTO
+         actually applies the fixes staff approve in the SearchAtlas dashboard
+         (or via the /deploy/ API) — it rewrites the relevant parts of the
+         live page client-side. Nothing changes on the site just from this
+         script being present; it only acts on fixes that have been deployed
+         for this project, same review gate as the article webhook. -->
+    <script nowprocket nitro-exclude type="text/javascript" id="sa-dynamic-optimization" data-uuid="634b871d-3bc4-488f-9035-b875de5e90ca" src="https://dashboard.searchatlas.com/scripts/dynamic_optimization.js"></script>
+
+    <!-- Small PNG favicon only. (The 814 KB favicon.svg was removed — it loaded on every page.) -->
+    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
+    <!-- Hero preloads are split by viewport to match the <picture> in
+         HeroSection.jsx. Previously only the desktop crop was preloaded, with no
+         media query, so phones downloaded a 160 KB image they never displayed
+         on top of the mobile crop they actually needed. -->
+    <!-- Mobile hero preload mirrors the <picture> in HeroSection.jsx exactly:
+         same type, same srcset, same sizes. If they drift the browser preloads
+         one file and then downloads a different one — two hero downloads on the
+         critical path instead of none. AVIF only: every browser that lacks AVIF
+         support also ignores this preload and falls back to the WebP source. -->
+    <link rel="preload" as="image" media="(max-width: 767px)" type="image/avif" fetchpriority="high"
+          imagesrcset="/images/banners/rf-hero-m-414.avif 414w, /images/banners/rf-hero-m-640.avif 640w, /images/banners/rf-hero-m-828.avif 828w"
+          imagesizes="100vw" />
+    <!-- Desktop, split at the same 1600px breakpoint the <picture> uses. A single
+         preload of the 1280 crop meant wide screens fetched it and then fetched
+         the 1535 crop the <picture> actually selected — the hero downloaded
+         twice, both times on the critical path. AVIF for the same reason as
+         mobile: half the bytes of the WebP at the same quality, and browsers
+         without AVIF skip the preload and take the WebP source below. -->
+    <link rel="preload" as="image" media="(min-width: 768px) and (max-width: 1599px)" href="/images/banners/rf-hero-desktop-1280-v3.avif" type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" media="(min-width: 1600px)" href="/images/banners/rf-hero-desktop-v3.avif" type="image/avif" fetchpriority="high" />
+
+    <!-- The header logo is the LCP element on phones. It is rendered by React,
+         so without this the browser cannot discover it until the bundle has
+         booted. Split the same way as the <picture> in HeaderNew.jsx: the colour
+         mark below 992px, the white mark above. -->
+    <link rel="preload" as="image" media="(max-width: 991px)" href="/images/logo-header-v4.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" media="(min-width: 992px)" href="/images/logo-footer-white-v3.webp" type="image/webp" fetchpriority="high" />
+
+    <!-- Start fetching the active language file immediately instead of waiting
+         for the JS bundle to boot and ask for it. The language is the first path
+         segment (/en, /fr, /ar), so it can only be resolved at runtime. -->
+    <script>
+      (function () {
+        var seg = (location.pathname.split("/")[1] || "").toLowerCase();
+        var lng = ["en", "fr", "ar"].indexOf(seg) > -1 ? seg : "en";
+        var l = document.createElement("link");
+        l.rel = "preload";
+        l.as = "fetch";
+        l.href = "/locales/" + lng + "/translation.json";
+        l.type = "application/json";
+        l.crossOrigin = "anonymous";
+        document.head.appendChild(l);
+      })();
+    </script>
+
+    <meta name="theme-color" content="#0D1B2A" />
+    <!-- No static robots meta. It is the default behaviour anyway, and having
+         it here produced two conflicting <meta name="robots"> tags on pages
+         that set their own (404, login, account): the static "all" plus
+         react-helmet's "noindex, nofollow". Google resolves conflicts to the
+         most restrictive, so noindex still won, but leaving one source of
+         truth removes the ambiguity. -->
+
+    <!-- ── Default meta description (overridden per-page by react-helmet) ── -->
+    <meta
+      name="description"
+      content="Route Facile — location de voitures au Maroc. Véhicules récents, kilométrage illimité. Réservation instantanée par WhatsApp à Marrakech, Casablanca, Rabat, Agadir, Tanger et Fès."
+    />
+    <meta
+      name="keywords"
+      content="location voiture Maroc, location voiture Marrakech, location voiture Casablanca, location voiture Rabat, location voiture Agadir, location voiture Tanger, location voiture Fès, rent a car Morocco, car rental Marrakech, car rental Casablanca, car hire Morocco, louer voiture Maroc, Route Facile"
+    />
+    <meta name="author" content="Route Facile" />
+
+    <!-- ── Geo targeting (Morocco) ────────────────────────────────────── -->
+    <meta name="geo.region" content="MA" />
+    <meta name="geo.placename" content="Marrakech, Casablanca, Rabat, Agadir, Tanger, Fès" />
+    <meta name="ICBM" content="31.629472, -7.981084" />
+    <meta name="DC.coverage" content="Morocco" />
+
+    <!-- ── Open Graph defaults ─────────────────────────────────────────── -->
+    <meta property="og:site_name" content="Route Facile" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta property="og:locale:alternate" content="ar_MA" />
+    <meta property="og:locale:alternate" content="en_MA" />
+
+    <!-- ── Prerender.io SPA bot compatibility ─────────────────────────
+         When a prerender service (prerender.io / Rendertron / Cloudflare)
+         detects a bot, it serves the pre-rendered HTML instead of the SPA.
+         The meta fragment tag below signals AJAX-crawlable content to bots.
+    ──────────────────────────────────────────────────────────────────── -->
+    <meta name="fragment" content="!" />
+
+    <!-- ── Hreflang is emitted per URL, not here ────────────────────────
+         This file is the shell for every route, so any hreflang set in it is
+         correct for at most one URL and wrong for the rest — it used to claim
+         every page was the home page of a host we no longer run. The
+         prerenderer writes a correct self-referencing set into each page, and
+         react-helmet emits one for routes it renders client-side. -->
+
+    <!-- ── Performance: preconnect to critical third parties ─────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+
+    <!-- Google Fonts — non-blocking. Only Source Sans Pro is actually used
+         (the global `* { font-family: ... !important }` rule overrides every
+         other font). display=optional avoids the font-swap reflow (CLS), and
+         loading it here instead of via CSS @import keeps it OFF the critical
+         request chain so it downloads in parallel with the stylesheet. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=optional" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=optional" /></noscript>
+
+    <!-- Playfair Display — elegant serif used only for the hero headline (Blacklane-style). -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" /></noscript>
+
+    <!-- Font Awesome — self-hosted SUBSET: only the ~66 icons this site uses.
+         ~10 KB fonts + 5 KB CSS, vs ~294 KB from the full CDN. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fa/fa-solid-900.subset.woff2" crossorigin="anonymous" />
+    <!-- Loaded async (not render-blocking): icons are not needed for first paint,
+         so they swap in a few ms later instead of delaying FCP/LCP. -->
+    <link rel="preload" as="style" href="/fa/fa-subset.css?v=3" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/fa/fa-subset.css?v=3" /></noscript>
+
+    <!-- Remixicon subset, loaded the same way. The full package was imported
+         through the JS bundle (110 KB of CSS for 2271 icons + a 125 KB woff2)
+         which put all of it into the render-blocking main.css; this site uses 44
+         of those icons. Rebuild with scripts/build-remixicon-subset.py. -->
+    <link rel="preload" as="style" href="/remixicon/remixicon.subset.css?v=1" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/remixicon/remixicon.subset.css?v=1" /></noscript>
+
+    <!-- Bootstrap Icons + Iconify CDNs removed: bi-x replaced with remixicon (already
+         loaded); Iconify is only used on the blog and is loaded there when needed. -->
+
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Route Facile — Location de Voitures au Maroc | Car Rental Morocco</title>
+
+    <!-- Static Organization + CarRental JSON-LD (crawled before JS hydration) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["CarRental", "LocalBusiness"],
+          "@id": "https://routefacilecarrental.com/#organization",
+          "name": "Route Facile",
+          "url": "https://routefacilecarrental.com",
+          "logo": "https://routefacilecarrental.com/images/logo-header.png",
+          "image": "https://routefacilecarrental.com/images/hero-banner.webp",
+          "description": "Route Facile est une société marocaine de location de voitures — véhicules récents, kilométrage illimité, réservation instantanée par WhatsApp.",
+          "telephone": "+212655585859",
+          "email": "info@routefacilecarrental.com",
+          "priceRange": "$$",
+          "currenciesAccepted": "MAD",
+          "paymentAccepted": "Cash, Credit Card",
+          "openingHours": "Mo-Su 00:00-23:59",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Marrakech",
+            "addressRegion": "Marrakech-Safi",
+            "addressCountry": "MA"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "31.629472",
+            "longitude": "-7.981084"
+          },
+          "areaServed": [
+            {"@type": "City", "name": "Marrakech"},
+            {"@type": "City", "name": "Casablanca"},
+            {"@type": "City", "name": "Rabat"},
+            {"@type": "City", "name": "Agadir"},
+            {"@type": "City", "name": "Tanger"},
+            {"@type": "City", "name": "Fès"}
+          ]
+        }
+      ]
+    }
+    </script>
+    <!-- Marketing / analytics scripts removed per request. -->
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVTPG3QM"
+      height="0" width="0" style="display:none;visibility:hidden"
+      title="Google Tag Manager"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!--
+      ══════════════════════════════════════════════════════════════════
+      NO-SCRIPT FALLBACK — full crawlable content for bots & no-JS users
+      This block is hidden when JS runs; shown only without JS.
+      Google indexes this content even before JS rendering completes.
+      ══════════════════════════════════════════════════════════════════
+    -->
+    <!-- What a crawler or a visitor without JavaScript sees. It used to be a
+         "Public Demo · Car Rental SaaS · UAE · Saudi Arabia · Oman · Kuwait ·
+         Qatar · Egypt" pitch, with two dozen links to pages that do not exist
+         on this site (/en/rent-a-car-dubai, /en/rent-a-car-riyadh …). Every
+         link below is a real route. -->
+    <noscript>
+      <div id="noscript-seo" style="font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:20px;color:#222">
+
+        <a href="/en" style="display:inline-block;margin-bottom:20px">
+          <strong style="font-size:1.4rem;color:#0D1B2A">Route Facile &mdash; Car Rental in Morocco</strong>
+        </a>
+
+        <!-- Deliberately an h2, not an h1. This block is the same on every URL,
+             so an h1 here gave every page a second, generic h1 competing with
+             the page-specific one the prerenderer writes into #root-prerender. -->
+        <h2 style="font-size:1.8rem;color:#0D1B2A;margin-bottom:10px">
+          Rent a Car in Morocco &mdash; Marrakech, Casablanca, Rabat, Agadir, Tangier &amp; Fes
+        </h2>
+        <p style="font-size:0.95rem;margin-bottom:16px;color:#444">
+          Route Facile is a licensed Moroccan car rental company based in Marrakech.
+          Recent, fully-insured vehicles with unlimited mileage, delivered to airports,
+          city centres and hotels across Morocco. No credit card is required to book,
+          and confirmation is instant on WhatsApp.
+        </p>
+        <p style="font-size:0.95rem;margin-bottom:24px;color:#444">
+          Booking on WhatsApp: <a href="https://api.whatsapp.com/send/?phone=212655585859">+212 655 585 859</a>
+          &middot; <a href="tel:+212655585859">Call us</a>
+        </p>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Rent a Car by City</h2>
+        <ul style="columns:2;list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/en/rent-a-car-marrakech">Rent a Car in Marrakech</a></li>
+          <li><a href="/en/rent-a-car-casablanca">Rent a Car in Casablanca</a></li>
+          <li><a href="/en/rent-a-car-rabat">Rent a Car in Rabat</a></li>
+          <li><a href="/en/rent-a-car-agadir">Rent a Car in Agadir</a></li>
+          <li><a href="/en/rent-a-car-tanger">Rent a Car in Tangier</a></li>
+          <li><a href="/en/rent-a-car-fes">Rent a Car in Fes</a></li>
+          <li><a href="/en/rent-a-car-oujda">Rent a Car in Oujda</a></li>
+        </ul>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Airport Car Rental</h2>
+        <ul style="columns:2;list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/en/car-rental-marrakech-menara-airport">Marrakech Menara Airport</a></li>
+          <li><a href="/en/car-rental-casablanca-mohammed-v-airport">Casablanca Mohammed V Airport</a></li>
+          <li><a href="/en/car-rental-agadir-al-massira-airport">Agadir Al Massira Airport</a></li>
+          <li><a href="/en/car-rental-tanger-ibn-battouta-airport">Tangier Ibn Battouta Airport</a></li>
+          <li><a href="/en/airport-car-rental-morocco">Airport Car Rental in Morocco</a></li>
+        </ul>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Car Rental by Type</h2>
+        <ul style="columns:2;list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/en/suv-rental-morocco">SUV Rental in Morocco</a></li>
+          <li><a href="/en/luxury-car-rental-marrakech">Luxury Car Rental in Marrakech</a></li>
+          <li><a href="/en/cheap-car-rental-morocco">Cheap Car Rental in Morocco</a></li>
+          <li><a href="/en/7-seater-car-rental-morocco">7-Seater Car Rental</a></li>
+          <li><a href="/en/monthly-car-rental-morocco">Monthly Car Rental</a></li>
+          <li><a href="/en/long-term-car-rental-casablanca">Long-Term Rental in Casablanca</a></li>
+        </ul>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Neighbourhoods</h2>
+        <ul style="columns:2;list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/en/car-rental-marrakech-gueliz">Marrakech &mdash; Gueliz</a></li>
+          <li><a href="/en/car-rental-marrakech-hivernage">Marrakech &mdash; Hivernage</a></li>
+          <li><a href="/en/car-rental-casablanca-ain-diab">Casablanca &mdash; Ain Diab</a></li>
+        </ul>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Company</h2>
+        <ul style="columns:2;list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/en/ourfleetlist">Browse Our Fleet</a></li>
+          <li><a href="/en/location">Pick-up &amp; Delivery Locations</a></li>
+          <li><a href="/en/our-services">Our Services</a></li>
+          <li><a href="/en/offerspage">Special Offers</a></li>
+          <li><a href="/en/about">About Route Facile</a></li>
+          <li><a href="/en/contact">Contact Us</a></li>
+          <li><a href="/en/faq">Car Rental FAQ</a></li>
+          <li><a href="/en/blogs">Travel Guides</a></li>
+          <li><a href="/en/termscondition">Terms &amp; Conditions</a></li>
+          <li><a href="/en/privacypolicy">Privacy Policy</a></li>
+        </ul>
+
+        <h2 style="font-size:1.1rem;color:#0D1B2A;margin-bottom:8px">Other languages</h2>
+        <ul style="list-style:disc;padding-left:20px;margin-bottom:20px;font-size:0.9rem">
+          <li><a href="/fr">Location de voitures au Maroc (Fran&ccedil;ais)</a></li>
+          <li><a href="/ar">&#1578;&#1571;&#1580;&#1610;&#1585; &#1587;&#1610;&#1575;&#1585;&#1575;&#1578; &#1601;&#1610; &#1575;&#1604;&#1605;&#1594;&#1585;&#1576; (&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;)</a></li>
+        </ul>
+
+        <p style="font-size:0.8rem;color:#888">Please enable JavaScript to use the full Route Facile booking experience.</p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  
+  </body>
+</html>

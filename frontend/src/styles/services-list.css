@@ -1,0 +1,22 @@
+.service__section .service_heading {
+  font-weight: 700;
+}
+.service__section .servicelist_icon img {
+  width: 80px;
+}
+.service__section .servicelist_typo h3 {
+  font-weight: 600;
+}
+.service__section .servicelist_typo p {
+  width: 70%;
+}
+
+.slick-next {
+  display: none !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .service__section .service_slider .figure-img {
+    width: 50px;
+  }
+}

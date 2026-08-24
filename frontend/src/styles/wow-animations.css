@@ -1,0 +1,50 @@
+/* Scroll-reveal animation for WOW.js.
+ *
+ * This replaces the `animate.css` package (95 KB uncompressed, the third-largest
+ * stylesheet in the bundle). Two things were wrong with that import:
+ *
+ *   1. animate.css v4 only ships prefixed classes (.animate__fadeInUp). The
+ *      markup here uses the v3 names (`class="wow fadeInUp"`), so nothing
+ *      matched — the fade-ins never actually ran. We shipped 95 KB for nothing.
+ *   2. Of ~90 animations in the library, exactly one is referenced: fadeInUp.
+ *
+ * WOW.js is configured with boxClass 'wow' and animateClass 'animated' (see
+ * HomeNew.jsx), so it adds `.animated` to a `.wow` element once it scrolls into
+ * view.
+ *
+ * Deliberately NOT hiding `.wow` up front. The usual animate.css pattern starts
+ * elements at visibility:hidden and relies on WOW to reveal them, but WOW is
+ * only initialised on the home page while `.wow` markup also lives in the
+ * footer, which renders on every page — hiding by default would blank the footer
+ * everywhere else. Reveal is therefore purely additive: elements are visible
+ * normally, and simply animate in where WOW is running.
+ *
+ * If another animation is added to the markup, define its keyframe here rather
+ * than pulling the whole library back in. */
+
+.wow.animated {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+.wow.animated.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Respect the OS "reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  .wow.animated {
+    animation: none;
+  }
+}

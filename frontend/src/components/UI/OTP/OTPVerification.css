@@ -1,0 +1,92 @@
+.otp-verification-container {
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.otp-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.otp-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1D288E;
+  margin-bottom: 10px;
+}
+
+.otp-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.otp-subtitle strong {
+  color: #333;
+}
+
+.otp-error-alert {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.otp-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+.otp-close-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 30px;
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.otp-close-button:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.otp-close-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .otp-verification-container {
+    padding: 20px;
+    box-shadow: none;
+    border: 1px solid #eee;
+  }
+  
+  .otp-title {
+    font-size: 20px;
+  }
+  
+  .otp-subtitle {
+    font-size: 13px;
+  }
+}

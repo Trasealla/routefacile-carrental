@@ -1,0 +1,69 @@
+// Public layout shell for the Memo Portal. Renders Route Facile header (logo +
+// user/email + Logout) and a footer. Embedded mode skips the header/footer
+// since the admin shell already provides chrome.
+
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
+import portalApi from "./portalApi";
+import portalLogo from "./routefacile-logo.png";
+import "./memoPortal.css";
+
+const PortalLayout = ({ children, embedded = false, email }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try { await portalApi.logout(); } catch (_) { /* ignore */ }
+    portalApi.clearSession();
+    navigate("/memo-portal/login", { replace: true });
+  };
+
+  if (embedded) {
+    return <div className="mp-shell">{children}</div>;
+  }
+
+  const initials = (email || "?")
+    .split("@")[0]
+    .split(/[._-]/)
+    .map((s) => s[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  return (
+    <div className="mp-shell">
+      <header className="mp-header">
+        <Link to="/memo-portal" className="mp-header__brand">
+          <img src={portalLogo} alt="Route Facile" className="mp-header__logo" />
+          <span className="mp-header__divider" />
+          <span className="mp-header__brandText">
+            <span className="mp-header__brandTitle">{t("Memo Portal")}</span>
+            <span className="mp-header__brandSub">{t("Internal communications")}</span>
+          </span>
+        </Link>
+        {email && (
+          <div className="mp-header__user">
+            <div className="mp-header__avatar" title={email}>{initials || "U"}</div>
+            <div className="mp-header__userInfo">
+              <span className="mp-header__userLabel">{t("Signed in as")}</span>
+              <span className="mp-header__email" title={email}>{email}</span>
+            </div>
+            <button className="mp-btn mp-btn--ghost" onClick={handleLogout}>
+              <FaSignOutAlt size={12} /> {t("Logout")}
+            </button>
+          </div>
+        )}
+      </header>
+      <main className="mp-main">{children}</main>
+      <footer className="mp-footer">
+        {t("© {{year}} Route Facile. Confidential — for internal use only.", { year: new Date().getFullYear() })}
+      </footer>
+    </div>
+  );
+};
+
+export default PortalLayout;
+

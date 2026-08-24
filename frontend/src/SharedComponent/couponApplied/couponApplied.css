@@ -1,0 +1,47 @@
+.coupon-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border: 1px solid #d4edda;
+  border-radius: 8px;
+  background-color: #d4edda;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icon-container {
+  background-color: #28a745;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-checkmark {
+  color: #fff;
+  width: 16px;
+  height: 16px;
+}
+
+.coupon-message span {
+  font-size: 16px;
+  color: #155724;
+}
+
+.coupon-message strong {
+  font-weight: 700;
+}

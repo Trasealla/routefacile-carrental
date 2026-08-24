@@ -1,0 +1,62 @@
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-image img {
+  width: 100%; /* Adjust as needed */
+  /* height: auto; */
+  height: 400px;
+  /* max-height: 500px; */
+  /* border: 2px solid #ddd; */
+  object-fit: contain;
+  /* Inset so the car does not touch the edges of the studio backdrop. */
+  padding: 24px;
+}
+
+.thumbnail-images {
+  display: flex;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.thumbnail-images img {
+  width: 90px; /* Adjust as needed */
+  /* min-width: 80px; */
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  object-fit: scale-down;
+  transition: border 0.3s;
+  /* Same studio backdrop as the main image. The photos are transparent PNGs,
+     so the gradient goes straight on the <img> — no wrapper needed at this
+     size. Scaled down from the full-size version in styles/car-stage.css. */
+  background: radial-gradient(
+    ellipse 90% 72% at 91% 31%,
+    #d2dde1 0%,
+    #aab9be 25%,
+    #69787d 46%,
+    #344044 63%,
+    #151b1d 84%,
+    #111719 100%
+  );
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.thumbnail-images img:hover {
+  border: 2px solid #007bff; /* Change to desired hover color */
+}
+
+.thumbnail-images img.active {
+  border: 2px solid #007bff; /* Highlight selected thumbnail */
+}
+
+@media screen and (max-width: 576px) {
+  .main-image img {
+    width: 340px;
+    height: auto;
+  }
+}

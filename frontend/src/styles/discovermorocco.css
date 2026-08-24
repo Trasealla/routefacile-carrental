@@ -1,0 +1,600 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Route Facile — Discover Morocco Page
+   Brand: Orange #F2421B · Navy #0D1B2A · Terracotta #C0503A
+   Font: Poppins
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Tokens ───────────────────────────────────────────────────────────────── */
+.dm-page {
+  --dm-orange:      #F2421B;
+  --dm-navy:        #0D1B2A;
+  --dm-terracotta:  #C0503A;
+  --dm-sand:        #F7F0E6;
+  --dm-green:       #1A5E3A;
+  --dm-grey:        #F2F4F7;
+  --dm-border:      #E5E7EB;
+  --dm-muted:       #6B7280;
+  --dm-r-card:      20px;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.dm-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: var(--dm-navy);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 520px;
+}
+
+@media (max-width: 768px) {
+  .dm-hero {
+    background-attachment: scroll;
+    min-height: 460px;
+  }
+}
+
+/* Light-image scrim: subtle dark vignette at edges only, centre stays bright */
+.dm-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,27,42,.30) 0%, rgba(13,27,42,.10) 45%, rgba(13,27,42,.35) 100%);
+  pointer-events: none;
+}
+
+/* Geometric star overlay */
+.dm-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpolygon points='40,5 47,27 70,27 52,41 59,63 40,50 21,63 28,41 10,27 33,27' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.dm-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 44px 40px;
+  background: rgba(13, 27, 42, 0.78);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-radius: 20px;
+  border: 1px solid rgba(242, 66, 27, 0.45);
+  max-width: 620px;
+  width: 90%;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.dm-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(242,66,27,.15);
+  border: 1px solid rgba(242,66,27,.4);
+  border-radius: 50px;
+  padding: 6px 18px;
+  color: var(--dm-orange);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.dm-hero h1 {
+  color: #fff;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.dm-hero h1 span {
+  color: var(--dm-orange);
+}
+
+.dm-hero p {
+  color: rgba(255,255,255,.75);
+  font-size: clamp(15px, 2vw, 19px);
+  max-width: 600px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.dm-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.dm-stat {
+  text-align: center;
+}
+
+.dm-stat-num {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--dm-orange);
+  line-height: 1;
+}
+
+.dm-stat-label {
+  display: block;
+  color: rgba(255,255,255,.65);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-top: 4px;
+}
+
+/* ── Scroll banner ────────────────────────────────────────────────────────── */
+.dm-banner {
+  background: var(--dm-orange);
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.dm-banner-track {
+  display: flex;
+  gap: 0;
+  animation: dm-scroll 28s linear infinite;
+  white-space: nowrap;
+}
+
+.dm-banner-track span {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 0 28px;
+}
+
+.dm-banner-track span::before {
+  content: "✦ ";
+}
+
+@keyframes dm-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Section wrapper ──────────────────────────────────────────────────────── */
+/* NOTE: `.dm-page ` prefix raises specificity to (0,2,0) so these win over the
+   global `section:nth-child(2n+1)` zebra-striping rule (0,1,1) that otherwise
+   greys-out random sections and hides the dark section's white text. */
+.dm-page .dm-section {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.dm-page .dm-section-alt {
+  background: var(--dm-sand);
+}
+
+.dm-page .dm-section-dark {
+  background: var(--dm-navy);
+}
+
+.dm-section-title {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.dm-section-title .dm-eyebrow {
+  display: inline-block;
+  color: var(--dm-orange);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.dm-section-title h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--dm-navy);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.dm-section-dark .dm-section-title h2 {
+  color: #fff;
+}
+
+.dm-section-title p {
+  color: var(--dm-muted);
+  font-size: 16px;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.dm-section-dark .dm-section-title p {
+  color: rgba(255,255,255,.6);
+}
+
+/* ── City cards ───────────────────────────────────────────────────────────── */
+.dm-cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.dm-city-card {
+  position: relative;
+  border-radius: var(--dm-r-card);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+  background: var(--dm-navy);
+  box-shadow: 0 8px 32px rgba(13,27,42,.18);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.dm-city-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(13,27,42,.28);
+}
+
+.dm-city-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.dm-city-card:hover img {
+  transform: scale(1.06);
+}
+
+.dm-city-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,27,42,.90) 0%, rgba(13,27,42,.20) 55%, transparent 100%);
+}
+
+.dm-city-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 20px;
+}
+
+.dm-city-card-tag {
+  display: inline-block;
+  background: var(--dm-orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.dm-city-card-body h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dm-city-card-body p {
+  color: rgba(255,255,255,.70);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Highlights / features ────────────────────────────────────────────────── */
+.dm-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.dm-highlight-card {
+  background: #fff;
+  border-radius: var(--dm-r-card);
+  padding: 32px 24px;
+  border: 1px solid var(--dm-border);
+  transition: transform .25s, box-shadow .25s;
+}
+
+.dm-highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(13,27,42,.10);
+}
+
+.dm-highlight-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.dm-highlight-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dm-navy);
+  margin-bottom: 8px;
+}
+
+.dm-highlight-card p {
+  font-size: 14px;
+  color: var(--dm-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Morocco facts strip ──────────────────────────────────────────────────── */
+.dm-facts-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--dm-orange);
+  border-radius: var(--dm-r-card);
+  overflow: hidden;
+}
+
+.dm-fact {
+  padding: 40px 28px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.2);
+}
+
+.dm-fact:last-child { border-right: none; }
+
+.dm-fact-num {
+  display: block;
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.dm-fact-label {
+  display: block;
+  color: rgba(255,255,255,.80);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .dm-facts-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dm-fact:nth-child(2) { border-right: none; }
+  .dm-fact:nth-child(1),
+  .dm-fact:nth-child(2) {
+    border-bottom: 1px solid rgba(255,255,255,.2);
+  }
+}
+
+/* ── Blog articles ────────────────────────────────────────────────────────── */
+.dm-blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.dm-blog-card {
+  background: #fff;
+  border-radius: var(--dm-r-card);
+  overflow: hidden;
+  border: 1px solid var(--dm-border);
+  transition: transform .25s, box-shadow .25s;
+  display: flex;
+  flex-direction: column;
+}
+
+.dm-blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(13,27,42,.12);
+}
+
+.dm-blog-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: var(--dm-grey);
+}
+
+.dm-blog-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dm-blog-tag {
+  display: inline-block;
+  background: rgba(242,66,27,.10);
+  color: var(--dm-orange);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+
+.dm-blog-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dm-navy);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.dm-blog-body p {
+  font-size: 14px;
+  color: var(--dm-muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.dm-blog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dm-orange);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap .2s;
+}
+
+.dm-blog-link:hover { gap: 10px; color: var(--dm-orange); }
+
+/* ── Tips section ─────────────────────────────────────────────────────────── */
+.dm-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.dm-tip {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.dm-tip-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.dm-tip h4 {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dm-tip p {
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CTA strip ────────────────────────────────────────────────────────────── */
+.dm-cta {
+  background: linear-gradient(135deg, var(--dm-orange) 0%, var(--dm-terracotta) 100%);
+  border-radius: var(--dm-r-card);
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dm-cta::before {
+  content: "";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+
+.dm-cta::after {
+  content: "";
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+}
+
+.dm-cta h2 {
+  color: #fff;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.dm-cta p {
+  color: rgba(255,255,255,.80);
+  font-size: 16px;
+  margin-bottom: 32px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.dm-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: var(--dm-orange);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+}
+
+.dm-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  color: var(--dm-orange);
+}
+
+/* ── RTL support ──────────────────────────────────────────────────────────── */
+[dir="rtl"] .dm-banner-track  { animation-direction: reverse; }
+[dir="rtl"] .dm-tip            { flex-direction: row-reverse; }
+
+/* ── Loading skeleton ─────────────────────────────────────────────────────── */
+.dm-skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: dm-shimmer 1.4s infinite;
+  border-radius: 12px;
+}
+
+@keyframes dm-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .dm-hero-stats { gap: 24px; }
+  .dm-section    { padding: 56px 0; }
+  .dm-cta        { padding: 48px 24px; }
+}

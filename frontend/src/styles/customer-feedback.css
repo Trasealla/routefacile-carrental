@@ -1,0 +1,213 @@
+/* ============================================================
+   Route Facile — Customer Feedback Page
+   Brand: Orange #F2421B · Navy #0D1B2A · Grey #F2F4F7
+   ============================================================ */
+
+.cf-page {
+  font-family: "Poppins", sans-serif;
+  background: #F2F4F7;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.cf-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  padding: 90px 0 70px;
+  background-color: #0D1B2A;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.cf-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(13,27,42,.92) 0%, rgba(13,27,42,.75) 40%, rgba(13,27,42,.28) 70%, rgba(13,27,42,.08) 100%);
+  z-index: 1;
+}
+.cf-hero::after {
+  content: "";
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #F2421B, #ff6b3d, #F2421B);
+  z-index: 2;
+}
+.cf-hero-inner {
+  position: relative; z-index: 3;
+  max-width: 680px;
+  padding: 0 20px;
+}
+[dir="ltr"] .cf-hero { padding-left: 60px; }
+[dir="rtl"] .cf-hero { padding-right: 60px; padding-left: 0; align-items: flex-end; }
+[dir="rtl"] .cf-hero::before {
+  background: linear-gradient(to left, rgba(13,27,42,.92) 0%, rgba(13,27,42,.80) 35%, rgba(13,27,42,.40) 65%, rgba(13,27,42,.08) 100%);
+}
+[dir="rtl"] .cf-hero-inner { text-align: right; }
+
+.cf-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(242,66,27,.18); border: 1px solid rgba(242,66,27,.45);
+  color: #ff8060; font-size: .72rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+}
+.cf-hero h1 {
+  color: #fff; font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800; line-height: 1.1; margin-bottom: 12px;
+}
+.cf-hero h1 span { color: #F2421B; }
+.cf-hero p {
+  color: rgba(255,255,255,.72); font-size: 1rem;
+  line-height: 1.6; max-width: 520px; margin: 0;
+}
+
+/* ── Progress steps ── */
+.cf-steps {
+  background: #fff;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0;
+  position: sticky; top: 0; z-index: 10;
+}
+.cf-steps-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: stretch;
+}
+.cf-step {
+  flex: 1; display: flex; align-items: center; gap: 10px;
+  padding: 16px 20px; font-size: .8rem; font-weight: 500;
+  color: #9CA3AF; border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s;
+  cursor: default;
+}
+.cf-step.active {
+  color: #0D1B2A; border-bottom-color: #F2421B;
+}
+.cf-step.done { color: #22C55E; border-bottom-color: #22C55E; }
+.cf-step-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #F2F4F7; display: flex; align-items: center;
+  justify-content: center; font-size: .75rem; font-weight: 700;
+  flex-shrink: 0; transition: background .2s, color .2s;
+}
+.cf-step.active .cf-step-num { background: #F2421B; color: #fff; }
+.cf-step.done .cf-step-num { background: #22C55E; color: #fff; }
+
+/* ── Body ── */
+.cf-body { padding: 48px 0 72px; }
+
+/* ── Section card ── */
+.cf-card {
+  background: #fff; border-radius: 20px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 2px 16px rgba(13,27,42,.06);
+  padding: 32px; margin-bottom: 24px;
+}
+.cf-card-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+}
+.cf-card-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: rgba(242,66,27,.1); color: #F2421B;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.cf-card-title { font-size: 1.05rem; font-weight: 700; color: #0D1B2A; margin: 0; }
+.cf-card-subtitle { font-size: .82rem; color: #6B7280; margin: 0; }
+
+/* ── Section label ── */
+.cf-section-label {
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: #F2421B;
+  margin-bottom: 18px; padding-bottom: 8px;
+  border-bottom: 1px solid #F2F4F7;
+}
+
+/* ── Form fields ── */
+.cf-label {
+  font-size: .82rem; font-weight: 600; color: #374151;
+  display: block; margin-bottom: 6px;
+}
+.cf-req { color: #F2421B; margin-left: 2px; }
+.cf-input, .cf-select, .cf-textarea {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid #E5E7EB; border-radius: 14px;
+  font-size: .88rem; color: #0D1B2A;
+  background: #fff; transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.cf-input:focus, .cf-select:focus, .cf-textarea:focus {
+  border-color: #F2421B; box-shadow: 0 0 0 3px rgba(242,66,27,.1);
+}
+.cf-textarea { resize: vertical; min-height: 100px; }
+.cf-field { margin-bottom: 20px; }
+.cf-invalid { font-size: .78rem; color: #EF4444; margin-top: 4px; display: block; }
+
+/* ── City chips ── */
+.cf-city-grid {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.cf-city-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 999px;
+  border: 1.5px solid #E5E7EB; background: #fff;
+  font-size: .82rem; font-weight: 500; color: #374151;
+  cursor: pointer; transition: all .18s; user-select: none;
+}
+.cf-city-chip input { display: none; }
+.cf-city-chip:hover { border-color: #F2421B; color: #F2421B; }
+.cf-city-chip.selected {
+  background: #F2421B; border-color: #F2421B; color: #fff;
+}
+
+/* ── Rating group ── */
+.cf-rating-group { margin-bottom: 24px; }
+.cf-rating-label {
+  font-size: .85rem; font-weight: 600; color: #0D1B2A;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+.cf-rating-label i { color: #F2421B; font-size: .9rem; }
+.cf-rating-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cf-rating-chip {
+  padding: 7px 14px; border-radius: 10px;
+  border: 1.5px solid #E5E7EB; background: #fff;
+  font-size: .78rem; font-weight: 500; color: #6B7280;
+  cursor: pointer; transition: all .18s; user-select: none;
+}
+.cf-rating-chip input { display: none; }
+.cf-rating-chip:hover { border-color: #F2421B; color: #F2421B; }
+.cf-rating-chip.selected-excellent { background: #22C55E; border-color: #22C55E; color: #fff; }
+.cf-rating-chip.selected-good      { background: #84CC16; border-color: #84CC16; color: #fff; }
+.cf-rating-chip.selected-average   { background: #F59E0B; border-color: #F59E0B; color: #fff; }
+.cf-rating-chip.selected-fair      { background: #F97316; border-color: #F97316; color: #fff; }
+.cf-rating-chip.selected-poor      { background: #EF4444; border-color: #EF4444; color: #fff; }
+.cf-rating-chip.selected           { background: #F2421B; border-color: #F2421B; color: #fff; }
+
+/* ── Submit ── */
+.cf-submit-btn {
+  width: 100%; padding: 16px; border: none;
+  background: #F2421B; color: #fff;
+  font-size: .95rem; font-weight: 700; border-radius: 14px;
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  box-shadow: 0 8px 24px rgba(242,66,27,.3);
+  transition: background .2s, transform .2s;
+}
+.cf-submit-btn:hover:not(:disabled) { background: #D93A16; transform: translateY(-2px); }
+.cf-submit-btn:disabled { opacity: .65; cursor: not-allowed; }
+
+/* ── Phone row ── */
+.cf-phone-row { display: flex; gap: 10px; }
+.cf-phone-row .cf-select { max-width: 140px; flex-shrink: 0; }
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  [dir="ltr"] .cf-hero { padding-left: 24px; }
+  [dir="rtl"] .cf-hero { padding-right: 24px; }
+  .cf-steps-inner { overflow-x: auto; }
+  .cf-step { min-width: 120px; }
+}
+@media (max-width: 575px) {
+  .cf-card { padding: 22px 18px; }
+}

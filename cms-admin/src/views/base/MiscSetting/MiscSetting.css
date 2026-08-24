@@ -1,0 +1,152 @@
+/* ============================================================
+   Misc. Settings — Other Charges & Inter-City Charges
+   Built on top of the shared rf-admin.css design system.
+   ============================================================ */
+
+/* ---------- Other Charges: settings card grid ---------- */
+.misc-charges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.misc-charge-card {
+  position: relative;
+  padding-top: 3.75rem !important;
+}
+
+.misc-charge-icon {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.75rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--rf-orange), var(--rf-orange-dark));
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(218, 40, 38, 0.3);
+}
+
+.misc-charge-card .form-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rf-navy);
+  margin-bottom: 0.3rem;
+}
+
+.misc-charge-helper {
+  font-size: 0.82rem;
+  color: #8492a6;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.misc-charge-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.misc-charge-input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.misc-charge-input-wrap .form-control {
+  padding-right: 3.2rem;
+}
+
+.misc-charge-unit {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #94a3b8;
+  pointer-events: none;
+  letter-spacing: 0.3px;
+}
+
+.misc-charge-input-row .rf-submit-btn {
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+/* ---------- Inter-City Charges ---------- */
+.intercity-card {
+  padding: 1.5rem 1.75rem !important;
+}
+
+.intercity-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto auto;
+  gap: 0.9rem;
+  align-items: end;
+  padding: 1rem 0;
+}
+.intercity-row:not(:last-child) {
+  border-bottom: 1px dashed var(--rf-border);
+}
+.intercity-row .form-label {
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.intercity-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.5px solid var(--rf-border);
+  background: #fff;
+  color: var(--rf-navy);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.intercity-icon-btn:hover {
+  transform: translateY(-1px);
+}
+.intercity-icon-btn.remove {
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.25);
+  background: rgba(220, 38, 38, 0.06);
+}
+.intercity-icon-btn.remove:hover {
+  background: rgba(220, 38, 38, 0.12);
+  border-color: #dc2626;
+}
+.intercity-icon-btn.remove:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+.intercity-icon-btn.add {
+  color: #fff;
+  background: linear-gradient(135deg, var(--rf-orange), var(--rf-orange-dark));
+  border: none;
+  box-shadow: 0 4px 12px rgba(218, 40, 38, 0.3);
+}
+
+.intercity-add-row {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .intercity-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .intercity-row .rf-submit-btn {
+    grid-column: 1 / -1;
+  }
+}

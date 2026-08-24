@@ -1,0 +1,60 @@
+.resend-otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.resend-text {
+  color: #666;
+}
+
+.timer-text {
+  color: #1D288E;
+}
+
+.timer-text strong {
+  font-weight: 600;
+  color: #1D288E;
+}
+
+.resend-button {
+  background: none;
+  border: none;
+  color: #1D288E;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.resend-button:hover:not(:disabled) {
+  color: #0f1a5c;
+}
+
+.resend-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.resend-button .spinner-border {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .resend-otp-container {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+  }
+}

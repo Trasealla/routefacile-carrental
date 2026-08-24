@@ -1,0 +1,1064 @@
+.checkbox-wrapper-35 .switch {
+  display: none;
+}
+
+.checkbox-wrapper-35 .switch + label {
+  align-items: center;
+  color: #78768d;
+  cursor: pointer;
+  display: flex;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-wrapper-35 .switch + label::before,
+.checkbox-wrapper-35 .switch + label::after {
+  content: "";
+  display: block;
+}
+
+.checkbox-wrapper-35 .switch + label::before {
+  background-color: #05012c;
+  border-radius: 500px;
+  height: 15px;
+  margin-right: 8px;
+  transition: background-color 0.125s ease-out;
+  width: 25px;
+}
+
+.checkbox-wrapper-35 .switch + label::after {
+  background-color: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05),
+    0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+  height: 13px;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  transition: transform 0.125s ease-out;
+  width: 13px;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-text {
+  display: block;
+  margin-right: 0.3em;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+  display: block;
+  font-weight: bold;
+  height: 15px;
+  overflow: hidden;
+  position: relative;
+  width: 25px;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+.checkbox-wrapper-35 .switch + label .switch-x-checked {
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.125s ease-out, transform 0.125s ease-out;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+  opacity: 1;
+  transform: none;
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-checked {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+}
+
+.checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+  position: absolute;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-35 .switch:checked + label::before {
+  background-color: #ffb500;
+}
+
+.checkbox-wrapper-35 .switch:checked + label::after {
+  transform: translate3d(10px, 0, 0);
+}
+
+.checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+  opacity: 0;
+  transform: translate3d(0, -100%, 0);
+}
+
+.checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+  opacity: 1;
+  transform: none;
+}
+
+.modal-body {
+  position: relative;
+  padding: 0; /* Ensure no padding around the map */
+}
+
+.map-container {
+  width: 100%;
+  height: 400px; /* Adjust this height as needed */
+  @media (min-width: 576px) {
+    height: 500px;
+  }
+}
+
+.locationWrapperContent {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  box-sizing: border-box;
+  border-radius: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  display: flex;
+  gap: 0.5vw;
+  align-items: center;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0.5vh;
+  cursor: pointer;
+}
+
+.form-tabs .form_tab {
+  background-color: #0D1B2A !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: 0.8px solid #0D1B2A;
+}
+/* #root
+  > div
+  > div.overflow-x-hidden
+  > section.form-section
+  > section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(2)
+  > a {
+  color: #fff;
+} */
+/* #root
+  > div
+  > div.overflow-x-hidden
+  > section.form-section
+  > section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(2)
+  > a
+  :hover {
+  color: #0D1B2A;
+} */
+
+/* #root
+  > div
+  > div.overflow-x-hidden
+  > section.form-section
+  > section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(1)
+  > a {
+  color: #fff;
+  font-weight: 600;
+} */
+/* #root
+  > div
+  > div.overflow-x-hidden
+  > section.form-section
+  > section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(1)
+  > a
+  :hover {
+  color: #fff;
+  font-weight: 600;
+  border: 0.8px solid #0D1B2A;
+} */
+
+/* Enhanced Nav Pills Styles - Connected with Card
+ *
+ * These rules are scoped to .form-tabs / .subscription__tabs on purpose. They
+ * used to also list a bare `.nav-pills .nav-link`, which is a Bootstrap class
+ * used by several unrelated pages (FAQ categories, My Account). Because the
+ * declarations are !important and this file is loaded in a shared chunk, that
+ * bare selector painted white-on-white text on every other pills nav in the
+ * site. Both booking forms carry .form-tabs, so nothing here needs it.
+ * Don't reintroduce a bare `.nav-pills` selector in this file. */
+.form-tabs.nav-link,
+.form-tabs .nav-link,
+.subscription__tabs .nav-link {
+  border-radius: 12px 12px 0px 0px !important;
+  margin: 0px 0px 0px 0px !important;
+  padding: 16px 32px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+  border: none !important;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.3px;
+}
+
+.subscription__tabs .nav-link:first-child {
+  border-radius: 12px 0px 0px 0px !important;
+}
+
+.subscription__tabs .nav-link:last-child {
+  border-radius: 0px 12px 0px 0px !important;
+}
+
+.form-tabs.nav.nav-pills,
+.subscription__tabs.nav.nav-pills {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0 !important;
+  border-bottom: none;
+  padding: 0;
+}
+
+.form-tabs .nav-link:not(.active),
+.subscription__tabs .nav-link:not(.active) {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.form-tabs .nav-link:not(.active):hover,
+.subscription__tabs .nav-link:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-tabs .nav-link.active,
+.subscription__tabs .nav-link.active {
+  background-color: #fff !important;
+  color: #0D1B2A !important;
+  border: none !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  margin-bottom: 0 !important;
+  padding-bottom: 17px !important;
+}
+
+.form-tabs .nav-link.active::before,
+.subscription__tabs .nav-link.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0D1B2A, #245b8e);
+  border-radius: 12px 12px 0 0;
+}
+
+.form-tabs .nav-link.active:hover,
+.subscription__tabs .nav-link.active:hover {
+  background-color: #fff !important;
+  color: #0D1B2A !important;
+  transform: translateY(-1px);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+}
+
+#daily-rentals {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 600;
+}
+
+#daily-rentals:active,
+#daily-rentals:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* Ensure active state overrides */
+.subscription__tabs .nav-link.active#daily-rentals {
+  color: #0D1B2A !important;
+  background: #fff !important;
+}
+
+/* #root
+  > div
+  > div.overflow-x-hidden
+  > div.w-100
+  > section.p-0.form-section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(2)
+  > a {
+  color: #fff;
+  font-weight: 600;
+}
+#root
+  > div
+  > div.overflow-x-hidden
+  > div.w-100
+  > section.p-0.form-section
+  > div
+  > div
+  > div
+  > div.subscription__tabs--.form-tabs.nav.nav-pills
+  > div:nth-child(1)
+  > a {
+  color: #fff;
+  font-weight: 600;
+} */
+@media screen and (max-width: 412px) {
+  .subscription__tabs-- > .nav-item > a {
+    font-size: 0.8rem !important;
+  }
+}
+
+
+
+.delivery-collect-text{
+  margin-top: 6px;
+  margin-bottom: 4px;
+  color: #0D1B2A;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+.delivery-collect-text:hover {
+  color: #245b8e;
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+.age-find-car-flex-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+  .age-find-car-flex-box {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+}
+
+/* Enhanced spacing and layout */
+.p-1-- {
+  position: relative;
+}
+
+.booking-form-field-wrapper .row > [class*="col-"] {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.booking-form-field-wrapper .form-group {
+  position: relative;
+}
+
+/* Smooth transitions for all form elements */
+.booking-form-field-wrapper * {
+  transition: all 0.3s ease;
+}
+
+/* Enhanced focus states */
+.booking-form-field-wrapper input:focus,
+.booking-form-field-wrapper select:focus,
+.booking-form-field-wrapper textarea:focus {
+  outline: none;
+}
+
+/* Better visual hierarchy */
+.booking-form-field-wrapper .label-name {
+  position: relative;
+}
+
+.booking-form-field-wrapper .label-name::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0D1B2A, #245b8e);
+  transition: width 0.3s ease;
+}
+
+.booking-form-field-wrapper .form-group:focus-within .label-name::after {
+  width: 40px;
+}
+
+/* Loading spinner enhancement */
+.findBtn .spinner-border {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+/* Vehicle Type Tabs Styling */
+.vehicle-type-tabs-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.vehicle-type-tabs {
+  display: flex;
+  gap: 0;
+  border: none;
+}
+
+.vehicle-type-tabs .nav-item {
+  margin: 0;
+}
+
+.vehicle-type-tabs .nav-link {
+  background-color: #f5f5f5;
+  color: #666;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.vehicle-type-tabs .nav-link i {
+  font-size: 18px;
+}
+
+.vehicle-type-tabs .nav-link.active {
+  background-color: #0D1B2A;
+  color: #fff;
+}
+
+.vehicle-type-tabs .nav-link.active i {
+  color: #fff;
+}
+
+.vehicle-type-tabs .nav-link:not(.active):hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Form styling updates */
+.form {
+  border-radius: 0 0 12px 12px;
+}
+
+.submit-btn:hover {
+  background-color: #245b8e !important;
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Enhanced form field wrapper */
+.booking-form-field-wrapper {
+  padding: 5px 0;
+}
+
+.booking-form-field-wrapper .row {
+  margin-bottom: 20px;
+}
+
+.booking-form-field-wrapper .row:last-child {
+  margin-bottom: 0;
+}
+
+/* Enhanced Form Groups */
+.booking-form-field-wrapper .form-group {
+  margin-bottom: 0;
+}
+
+/* Enhanced Select dropdown styling */
+.booking-form-field-wrapper .react-select__control {
+  border-radius: 8px !important;
+  border: 1px solid #e0e0e0 !important;
+  min-height: 48px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.booking-form-field-wrapper .react-select__control:hover {
+  border-color: #b0b0b0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+}
+
+.booking-form-field-wrapper .react-select__control--is-focused {
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 3px rgba(27, 61, 107, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.booking-form-field-wrapper .react-select__placeholder {
+  color: #999 !important;
+  font-size: 14px !important;
+}
+
+.booking-form-field-wrapper .react-select__single-value {
+  color: #1a1a1a !important;
+  font-size: 15px !important;
+}
+
+/* Enhanced Radio Buttons - Age Above 21 */
+.booking-form-field-wrapper .btn-group .btn,
+.age-find-car-flex-box .btn-group .btn {
+  border-radius: 8px !important;
+  padding: 10px 24px !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  border: 2px solid #e0e0e0 !important;
+  transition: all 0.3s ease !important;
+  background-color: #fff !important;
+  color: #333 !important;
+}
+
+.booking-form-field-wrapper .btn-group .btn:hover,
+.age-find-car-flex-box .btn-group .btn:hover {
+  background-color: #f8f9fa !important;
+  border-color: #0D1B2A !important;
+  color: #000 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(27, 61, 107, 0.15) !important;
+}
+
+.booking-form-field-wrapper .btn-group .btn.active,
+.booking-form-field-wrapper .btn-group .btn:checked,
+.booking-form-field-wrapper .btn-group .btn[aria-pressed="true"],
+.age-find-car-flex-box .btn-group .btn.active,
+.age-find-car-flex-box .btn-group .btn:checked,
+.age-find-car-flex-box .btn-group .btn[aria-pressed="true"] {
+  background-color: #0D1B2A !important;
+  border-color: #0D1B2A !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(27, 61, 107, 0.3) !important;
+}
+
+/* Ensure text stays black on hover for unchecked buttons */
+.booking-form-field-wrapper .btn-group .btn:not(.active):not(:checked):not([aria-pressed="true"]):hover,
+.age-find-car-flex-box .btn-group .btn:not(.active):not(:checked):not([aria-pressed="true"]):hover {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+}
+
+/* Fix for outline-dark variant */
+.booking-form-field-wrapper .btn-group .btn.btn-outline-dark,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark,
+.age-find-car-flex-box .btn-group .btn[class*="outline-dark"] {
+  color: #333 !important;
+  border-color: #e0e0e0 !important;
+  background-color: #fff !important;
+}
+
+.booking-form-field-wrapper .btn-group .btn.btn-outline-dark:hover,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark:hover,
+.age-find-car-flex-box .btn-group .btn[class*="outline-dark"]:hover {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+  border-color: #0D1B2A !important;
+}
+
+.booking-form-field-wrapper .btn-group .btn.btn-outline-dark.active,
+.booking-form-field-wrapper .btn-group .btn.btn-outline-dark:checked,
+.booking-form-field-wrapper .btn-group .btn.btn-outline-dark[aria-pressed="true"],
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark.active,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark:checked,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark[aria-pressed="true"],
+.age-find-car-flex-box .btn-group .btn[class*="outline-dark"].active,
+.age-find-car-flex-box .btn-group .btn[class*="outline-dark"]:checked,
+.age-find-car-flex-box .btn-group .btn[class*="outline-dark"][aria-pressed="true"] {
+  color: #fff !important;
+  background-color: #0D1B2A !important;
+  border-color: #0D1B2A !important;
+}
+
+/* Additional specificity for ToggleButton component */
+.age-find-car-flex-box .btn-group .btn[type="radio"] {
+  color: #333 !important;
+}
+
+.age-find-car-flex-box .btn-group .btn[type="radio"]:hover:not(:checked):not(.active),
+.age-find-car-flex-box .btn-group .btn[type="radio"]:hover:not(:checked):not(.active) * {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+}
+
+.age-find-car-flex-box .btn-group .btn[type="radio"]:checked,
+.age-find-car-flex-box .btn-group .btn[type="radio"].active {
+  color: #fff !important;
+  background-color: #0D1B2A !important;
+}
+
+/* Force black text on hover - highest specificity to override Bootstrap */
+.age-find-car-flex-box .btn-group .btn:hover,
+.age-find-car-flex-box .btn-group .btn:hover *,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark:hover,
+.age-find-car-flex-box .btn-group .btn.btn-outline-dark:hover *,
+.age-find-car-flex-box .btn-group button:hover,
+.age-find-car-flex-box .btn-group button:hover *,
+.age-find-car-flex-box .form .btn-check + .btn:hover,
+.age-find-car-flex-box .form .btn-check + .btn:hover *,
+.age-find-car-flex-box .btn-check + .btn:hover,
+.age-find-car-flex-box .btn-check + .btn:hover * {
+  color: #000 !important;
+}
+
+/* Only white text when checked/active */
+.age-find-car-flex-box .btn-group .btn:checked:hover,
+.age-find-car-flex-box .btn-group .btn:checked:hover *,
+.age-find-car-flex-box .btn-group .btn.active:hover,
+.age-find-car-flex-box .btn-group .btn.active:hover *,
+.age-find-car-flex-box .btn-group .btn[aria-pressed="true"]:hover,
+.age-find-car-flex-box .btn-group .btn[aria-pressed="true"]:hover *,
+.age-find-car-flex-box .btn-check:checked + .btn:hover,
+.age-find-car-flex-box .btn-check:checked + .btn:hover * {
+  color: #fff !important;
+}
+
+/* Enhanced styles for Age Above 21 ButtonGroup - ensure black text on hover and prominent border when selected */
+.age-toggle-button-group .age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]),
+.age-toggle-button-group .age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]) *,
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]),
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]) *,
+.age-find-car-flex-box .btn-group.age-toggle-button-group .btn.age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]),
+.age-find-car-flex-box .btn-group.age-toggle-button-group .btn.age-toggle-btn:hover:not(:checked):not(.active):not([aria-pressed="true"]) * {
+  color: #000 !important;
+  background-color: #f0f4f8 !important;
+  border-color: #0D1B2A !important;
+}
+
+/* Prominent border when selected/checked */
+.age-toggle-button-group .age-toggle-btn:checked,
+.age-toggle-button-group .age-toggle-btn.active,
+.age-toggle-button-group .age-toggle-btn[aria-pressed="true"],
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:checked,
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn.active,
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn[aria-pressed="true"],
+.age-find-car-flex-box .btn-group.age-toggle-button-group .btn.age-toggle-btn:checked,
+.age-find-car-flex-box .btn-group.age-toggle-button-group .btn.age-toggle-btn.active,
+.age-find-car-flex-box .btn-group.age-toggle-button-group .btn.age-toggle-btn[aria-pressed="true"] {
+  border: 3px solid #0D1B2A !important;
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 2px rgba(27, 61, 107, 0.2), 0 2px 8px rgba(27, 61, 107, 0.3) !important;
+}
+
+/* Additional override for hover text color - highest specificity */
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]),
+.age-find-car-flex-box .age-toggle-button-group .age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]) *,
+.age-find-car-flex-box .btn-group.age-toggle-button-group button.age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]),
+.age-find-car-flex-box .btn-group.age-toggle-button-group button.age-toggle-btn:hover:not(.active):not(:checked):not([aria-pressed="true"]) * {
+  color: #000 !important;
+}
+
+/* Error message styling */
+.text-danger {
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+  color: #dc3545 !important;
+  font-weight: 500;
+}
+
+/* Coupon code input enhancement */
+.coupon-code-mobile .form-control {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 768px) {
+  .form {
+    padding: 20px 15px;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .subscription__tabs .nav-link {
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+  }
+  
+  .form .findBtn {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* App Store Section */
+.app-store-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.app-store-message {
+  font-size: 11px;
+  color: #1B365D;
+  margin: 0 0 2px 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* App Store Buttons */
+.app-store-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-store-btn {
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.app-store-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.app-store-btn img {
+  height: 38px;
+  width: auto;
+}
+
+@media screen and (max-width: 991px) {
+  .app-store-buttons {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .app-store-btn img {
+    height: 36px;
+  }
+}
+
+/* ===== RTL (Arabic) overrides ===== */
+html[dir="rtl"] .checkbox-wrapper-35 .switch + label::before {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+html[dir="rtl"] .checkbox-wrapper-35 .switch + label::after {
+  left: auto;
+  right: 1px;
+}
+
+html[dir="rtl"] .checkbox-wrapper-35 .switch:checked + label::after {
+  transform: translate3d(-10px, 0, 0);
+}
+
+html[dir="rtl"] .delivery-collect-text:hover {
+  transform: translateX(-2px);
+}
+/* ===== Mobile booking wizard (Where → When) — 2026-08 ===== */
+/* Desktop keeps the full single-view form; the step chrome is hidden.
+   !important is needed because .wizard-nav-row is a Bootstrap .row (display:flex). */
+.wizard-progress,
+.wizard-nav-row { display: none !important; }
+
+@media (max-width: 991px) {
+  .wizard-progress {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 2px 0 18px;
+  }
+  .wizard-nav-row { display: block !important; margin-top: 8px; }
+
+  /* Step toggling — hide the fields that belong to the other step */
+  .form[data-step="1"] .wiz-when { display: none !important; }
+  .form[data-step="2"] .wiz-where { display: none !important; }
+
+  .wizard-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-family: var(--common-found);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+  }
+  .wizard-step span {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 13px;
+    transition: background 0.2s ease;
+  }
+  .wizard-step.active { color: #fff; }
+  .wizard-step.active span {
+    background: linear-gradient(135deg, #FFA24D, #f2421b);
+    box-shadow: 0 4px 12px rgba(242, 66, 27, 0.4);
+  }
+  .wizard-line {
+    width: 54px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+
+  .wizard-next-btn { width: 100%; }
+  .wizard-back-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    color: #fff;
+    border-radius: 50px;
+    padding: 9px 22px;
+    font-family: var(--common-found);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .wizard-back-btn:hover { background: rgba(255, 255, 255, 0.08); }
+}
+
+/* ===== Simplified homepage booking form (City + Pick-up Date + Return Date + Search) — 2026-08 ===== */
+.form.simple-mode .simple-hide { display: none !important; }
+/* Hide the "Deliver to me?" / "Collect from me?" links on the homepage */
+.form.simple-mode .delivery-collect-text { display: none !important; }
+/* Big, full-width Search Cars button */
+.form.simple-mode .find-my-card-btn { width: 100%; }
+.form.simple-mode .findBtn {
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+/* Clear space between the last field and the Search button */
+.form.simple-mode .align-items-end { margin-top: 22px !important; }
+.form.simple-mode .align-items-end > [class*="col-"] { flex: 0 0 100%; max-width: 100%; }
+/* A touch more breathing room now that there are only 3 inputs */
+.form.simple-mode .booking-form-field-wrapper .row { margin-bottom: 14px; }
+
+/* Desktop single-row layout: the 3 fields (Pick-up City, Pick-up Date, Drop-off
+   Date) sit inline, with the Search button full-width below — matches mockup.
+   Achieved by dissolving the two bootstrap field-rows (display:contents) so their
+   visible columns become flex items of the wrapper; hidden (.simple-hide) columns
+   stay display:none and take no space. */
+/* Single-row layout at ALL widths (incl. phones): the 3 fields sit inline. */
+.form.simple-mode .booking-form-field-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 8px;
+}
+.form.simple-mode .booking-form-field-wrapper > .row.sm-6,
+.form.simple-mode .booking-form-field-wrapper > .row.align-items-start {
+  display: contents;
+}
+.form.simple-mode .booking-form-field-wrapper > .row.sm-6 > [class*="col-"],
+.form.simple-mode .booking-form-field-wrapper > .row.align-items-start > [class*="col-"] {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin-bottom: 0;
+}
+.form.simple-mode .booking-form-field-wrapper > .row.align-items-end {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+/* Phones: keep the 3 fields inline but shrink labels/inputs/gaps so they fit. */
+@media (max-width: 767px) {
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper { column-gap: 4px; }
+  /* force the 3 visible field columns to share one row (beat bootstrap col width) */
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row.sm-6 > [class*="col-"],
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row.align-items-start > [class*="col-"] {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  /* labels: single line like the design (shrunk to fit the phone-width column) */
+  .hero-rf-card .form.simple-mode .label-name {
+    font-size: 10px !important; margin-bottom: 6px; line-height: 1.2;
+    white-space: nowrap !important; overflow: visible; text-overflow: clip;
+    display: block; width: 100%; letter-spacing: -0.2px;
+  }
+  /* full placeholder text, clipped at the field edge — no ellipsis */
+  .hero-rf-card .form.simple-mode [class*="-placeholder"] {
+    white-space: nowrap; overflow: hidden; max-width: 100%;
+  }
+  .hero-rf-card .form.simple-mode [class*="-control"],
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root {
+    height: 52px !important; min-height: 52px !important;
+  }
+  .hero-rf-card .form.simple-mode [class*="-control"] { padding-left: 24px; }
+  .hero-rf-card .form.simple-mode [class*="-control"]::before { left: 6px; width: 15px; height: 15px; }
+  .hero-rf-card .form.simple-mode [class*="-placeholder"],
+  .hero-rf-card .form.simple-mode [class*="-singleValue"],
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input,
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input::placeholder { font-size: 11px !important; letter-spacing: -0.2px; }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input { padding-left: 0; }
+  /* Mobile: drop the in-field calendar icon so the FULL 'Select Date & Time'
+     placeholder fits. Clicking the input still opens the picker (textField
+     onClick in CustomDateTimePicker3), so no functionality is lost. */
+  .hero-rf-card .form.simple-mode .MuiInputAdornment-root { display: none !important; }
+  /* make the date-picker wrapper + textfield fill the column so the input widens */
+  .hero-rf-card .form.simple-mode .wiz-when > div { width: 100% !important; }
+  .hero-rf-card .form.simple-mode .MuiTextField-root,
+  .hero-rf-card .form.simple-mode .MuiFormControl-root,
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root { width: 100% !important; display: flex !important; }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root { padding-left: 10px !important; padding-right: 4px !important; }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input {
+    flex: 1 1 auto !important; min-width: 0 !important; width: 100% !important;
+  }
+  /* tighten react-select pin so the city value has room */
+  .hero-rf-card .form.simple-mode [class*="-control"] { padding-left: 18px; }
+  .hero-rf-card .form.simple-mode [class*="-control"]::before { left: 4px; width: 12px; height: 12px; }
+  .hero-rf-card .form.simple-mode [class*="-indicatorContainer"] { padding: 3px 1px !important; }
+}
+
+/* Desktop: right card matches the left card's height; center the short form
+   vertically so there's no empty gap at the bottom. */
+@media (min-width: 992px) {
+  .hero-section .hero-form-col .p-1-- { height: 100%; }
+  .hero-section .form.simple-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ============================================================================
+   Mobile field layout (2026-08-09) — FIX CLIPPING.
+   Three fields across a ~390px phone gave ~110px each, which clipped
+   "Select City" and "Select Date & Time". Now: Pick-up City spans the full
+   width on top, and the two date fields share the row beneath (~184px each),
+   so every label and placeholder shows in full at a readable size.
+   ============================================================================ */
+@media (max-width: 767px) {
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper { column-gap: 10px; row-gap: 10px; }
+
+  /* Pick-up City → full width */
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row.sm-6 > .wiz-where:not(.simple-hide) {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  /* the two date fields → share the next row */
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row.sm-6 > .wiz-when,
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row.align-items-start > .wiz-when {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+  }
+
+  /* readable labels + full-size field text now that there's room */
+  .hero-rf-card .form.simple-mode .label-name {
+    font-size: 13px !important;
+    letter-spacing: 0;
+    margin-bottom: 7px;
+  }
+  .hero-rf-card .form.simple-mode [class*="-placeholder"],
+  .hero-rf-card .form.simple-mode [class*="-singleValue"],
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input,
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root input::placeholder {
+    font-size: 13px !important;
+    letter-spacing: 0;
+  }
+  /* bring the calendar icon back — there's space for it again */
+  .hero-rf-card .form.simple-mode .MuiInputAdornment-root { display: inline-flex !important; margin: 0 2px 0 0; }
+  .hero-rf-card .form.simple-mode .MuiInputAdornment-root svg { width: 16px; height: 16px; }
+  .hero-rf-card .form.simple-mode .MuiOutlinedInput-root { padding-left: 8px !important; }
+  .hero-rf-card .form.simple-mode [class*="-control"] { padding-left: 26px; }
+  .hero-rf-card .form.simple-mode [class*="-control"]::before { left: 8px; width: 15px; height: 15px; }
+}
+
+/* final: let the date input actually fill its column (MUI caps it otherwise) */
+@media (max-width: 767px) {
+  .hero-rf-card .form.simple-mode .wiz-when .MuiTextField-root,
+  .hero-rf-card .form.simple-mode .wiz-when .MuiFormControl-root { width: 100% !important; min-width: 0 !important; }
+  .hero-rf-card .form.simple-mode .wiz-when .MuiOutlinedInput-root { width: 100% !important; }
+  .hero-rf-card .form.simple-mode .wiz-when .MuiOutlinedInput-root input {
+    width: 100% !important; min-width: 0 !important; flex: 1 1 auto !important;
+    font-size: 12.5px !important;
+  }
+}
+
+/* bootstrap col padding (~24px) was shrinking each field — trim it on phones so
+   "Select Date & Time" fits in full */
+@media (max-width: 767px) {
+  .hero-rf-card .form.simple-mode .booking-form-field-wrapper > .row > [class*="col-"] {
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+  }
+  .hero-rf-card .form.simple-mode .wiz-when .MuiInputAdornment-root svg { width: 15px; height: 15px; }
+}

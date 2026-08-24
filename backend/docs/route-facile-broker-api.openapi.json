@@ -1,0 +1,843 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Route Facile — Broker Integration API",
+    "version": "1.0.0",
+    "description": "Machine-to-machine API for car-rental brokers and OTAs integrating with Route Facile (Morocco).\n\n**Base URL:** `https://routefacilecarrental.com/api/v1`\n\n## Authentication\n\nCredentials are issued per broker from the Route Facile admin portal and can be suspended at any time (a suspended account returns `401`). They may be supplied three ways, checked in this order:\n\n1. **Request body** — `username` / `password` fields. Used by the four `POST` operations.\n2. **Request headers** — `x-broker-username` / `x-broker-password`. The recommended choice for `GET`.\n3. **Query string** — `?username=&password=`. Works, but the password lands in access logs, so prefer headers.\n\nThere is no Authorization header and no OAuth flow. Because credentials travel in the request, **TLS is mandatory**; plain HTTP is refused at the edge.\n\n## Transport\n\nRetrieving a booking is a `GET`; the other four operations are `POST`. Amend and cancel are modelled as `POST` to a sub-path (`/bookings/edit`, `/bookings/cancel`) rather than `PUT`/`DELETE`.\n\n## Reservation references — important\n\nAn amendment does **not** update the existing booking in place: it writes a new record that keeps the same `booking_number` but receives a **new** `booking_id`. Treat `booking_number` as the stable reservation reference.\n\nYou may pass either value to `GET /broker/v1/bookings/{reservation_id}` — both resolve to the reservation's **current** state, so a stored original `booking_id` never returns stale dates or prices.\n\n## Content types\n\n- `application/json` — default, request and response.\n- `application/xml` / `text/xml` — send an XML body with an XML content-type and the response is returned as XML. The element names match the JSON field names one-for-one; the response root element is `AvailabilityResponse`, `CreateBookingResponse`, `EditBookingResponse` or `CancelBookingResponse`.\n\n## Currency\n\nAll monetary values are **Moroccan dirham (MAD)**. There is no currency field in the payloads and no multi-currency support on this API.\n\n## Locations\n\n`location_id` and `city_id` are Route Facile's own numeric identifiers — IATA codes and ACRISS class codes are not accepted. Route Facile supplies the current ID list to each broker during onboarding.",
+    "contact": {
+      "name": "Route Facile",
+      "url": "https://routefacilecarrental.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://routefacilecarrental.com/api/v1",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Availability",
+      "description": "Quote available vehicles and prices for a date range."
+    },
+    {
+      "name": "Bookings",
+      "description": "Create, amend and cancel reservations."
+    }
+  ],
+  "paths": {
+    "/broker/v1/availability": {
+      "post": {
+        "tags": ["Availability"],
+        "summary": "Search available vehicles and rates",
+        "description": "Returns every vehicle bookable for the requested window, with the all-in price. Availability is live: a car returned here can still be taken by another channel before you book it, in which case `POST /broker/v1/bookings` responds `409`.",
+        "operationId": "getAvailability",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AvailabilityRequest" },
+              "examples": {
+                "dailyAirportPickup": {
+                  "summary": "Daily rental, collected at a branch",
+                  "value": {
+                    "username": "broker_demo",
+                    "password": "••••••••",
+                    "booking_type": "daily",
+                    "pickup": { "type": "self", "location_id": 1 },
+                    "dropoff": { "type": "self", "location_id": 1 },
+                    "pickup_date_time": "2026-09-01T10:00:00",
+                    "dropoff_date_time": "2026-09-05T10:00:00"
+                  }
+                },
+                "monthlyDelivery": {
+                  "summary": "Monthly rental, delivered to an address in a city",
+                  "value": {
+                    "username": "broker_demo",
+                    "password": "••••••••",
+                    "booking_type": "monthly",
+                    "booking_months": 3,
+                    "pickup": { "type": "delivery", "city_id": 3 },
+                    "dropoff": { "type": "collection", "city_id": 3 },
+                    "pickup_date_time": "2026-09-01T10:00:00",
+                    "dropoff_date_time": "2026-12-01T10:00:00"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": { "$ref": "#/components/schemas/AvailabilityRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vehicles available for the requested window.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AvailabilityResponse" },
+                "example": {
+                  "cars": [
+                    {
+                      "car_id": 75,
+                      "name": "Renault Clio",
+                      "category": "Economy",
+                      "daily_rate": 300,
+                      "total_car_rate": 1200,
+                      "vat_amount": 0,
+                      "estimated_total": 1200
+                    }
+                  ],
+                  "total_records": 1
+                }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/AvailabilityResponse" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      }
+    },
+    "/broker/v1/bookings": {
+      "post": {
+        "tags": ["Bookings"],
+        "summary": "Create a booking",
+        "description": "Books a specific `car_id` returned by the availability call. The customer is matched on e-mail: an existing Route Facile account with that address is reused, otherwise a new customer record is created.\n\nThe booking is attributed to the calling broker, and `broker_reference` is stored so it appears against the reservation in the Route Facile admin portal.",
+        "operationId": "createBooking",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateBookingRequest" },
+              "example": {
+                "username": "broker_demo",
+                "password": "••••••••",
+                "car_id": 75,
+                "booking_type": "daily",
+                "pickup": { "type": "self", "location_id": 1 },
+                "dropoff": { "type": "self", "location_id": 1 },
+                "pickup_date_time": "2026-09-01T10:00:00",
+                "dropoff_date_time": "2026-09-05T10:00:00",
+                "payment_type": "later",
+                "broker_reference": "BRK-556677",
+                "customer": {
+                  "first_name": "Amina",
+                  "last_name": "El Fassi",
+                  "email": "amina@example.com",
+                  "phone_code": "+212",
+                  "phone_number": "600000000"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": { "$ref": "#/components/schemas/CreateBookingRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Booking confirmed.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateBookingResponse" },
+                "example": {
+                  "booking_id": 4821,
+                  "booking_number": "RF-0004821",
+                  "status": "booked",
+                  "total_amount": 1200,
+                  "broker_reference": "BRK-556677"
+                }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/CreateBookingResponse" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "409": { "$ref": "#/components/responses/Conflict" }
+        }
+      }
+    },
+    "/broker/v1/bookings/{reservation_id}": {
+      "get": {
+        "tags": ["Bookings"],
+        "summary": "Retrieve a booking",
+        "description": "Returns the current state of a reservation: status, vehicle, itinerary, customer, payment breakdown and cancellation details. Intended for periodic polling.\n\nAccepts either the numeric `booking_id` or the `booking_number`, and always resolves to the newest record for that reservation — so a stored original id still returns post-amendment data. Only bookings belonging to the calling broker are visible; anything else returns `404`.",
+        "operationId": "getBooking",
+        "parameters": [
+          {
+            "name": "reservation_id",
+            "in": "path",
+            "required": true,
+            "description": "The `booking_number` (recommended, stable across amendments) or the numeric `booking_id`.",
+            "schema": { "type": "string" },
+            "example": "ARC20985"
+          },
+          {
+            "name": "x-broker-username",
+            "in": "header",
+            "required": false,
+            "description": "Broker username. Recommended for GET; alternatively pass `username` in the query string.",
+            "schema": { "type": "string" },
+            "example": "broker_demo"
+          },
+          {
+            "name": "x-broker-password",
+            "in": "header",
+            "required": false,
+            "description": "Broker password. Recommended for GET; alternatively pass `password` in the query string.",
+            "schema": { "type": "string", "format": "password" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current state of the reservation.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BookingDetailsResponse" },
+                "example": {
+                  "booking_id": 20986,
+                  "booking_number": "ARC20985",
+                  "broker_reference": "BRK-556677",
+                  "status": "confirmed",
+                  "last_action": "edit",
+                  "booking_type": "daily",
+                  "booking_date": "2026-08-11T08:59:22.803Z",
+                  "booking_days": 7,
+                  "booking_months": null,
+                  "vehicle": { "car_id": 1, "name": "Mitsubishi Attrage", "category": "Economy" },
+                  "pickup": {
+                    "type": "self",
+                    "date_time": "2026-09-01T06:00:00.000Z",
+                    "location_id": 79,
+                    "location": "Casablanca Airport",
+                    "city_id": 1,
+                    "city": "Casablanca",
+                    "address": null
+                  },
+                  "dropoff": {
+                    "type": "self",
+                    "date_time": "2026-09-08T06:00:00.000Z",
+                    "location_id": 79,
+                    "location": "Casablanca Airport",
+                    "city_id": 1,
+                    "city": "Casablanca",
+                    "address": null
+                  },
+                  "customer": {
+                    "first_name": "Amina",
+                    "last_name": "El Fassi",
+                    "email": "amina@example.com",
+                    "phone_code": "+212",
+                    "phone_number": "600000001"
+                  },
+                  "payment": {
+                    "currency": "MAD",
+                    "payment_type": "later",
+                    "payment_status": "unpaid",
+                    "car_rate_total": 560,
+                    "discount_total": 0,
+                    "vat_amount": 28.8,
+                    "total_amount": 1058.4
+                  },
+                  "cancellation": {
+                    "cancelled": false,
+                    "cancelled_at": null,
+                    "cancellation_charge": 0,
+                    "refund_amount": 0
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/BookingDetailsResponse" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/broker/v1/bookings/edit": {
+      "post": {
+        "tags": ["Bookings"],
+        "summary": "Amend a booking",
+        "description": "Re-quotes and re-books an existing reservation end-to-end. Send the **complete** desired state, not a partial patch — any field omitted is treated as absent, not as unchanged.\n\nOnly bookings that belong to the calling broker can be amended; anything else returns `404`. The customer on the booking is preserved and cannot be changed here.",
+        "operationId": "editBooking",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EditBookingRequest" },
+              "example": {
+                "username": "broker_demo",
+                "password": "••••••••",
+                "booking_id": 4821,
+                "car_id": 75,
+                "booking_type": "daily",
+                "pickup": { "type": "self", "location_id": 1 },
+                "dropoff": { "type": "self", "location_id": 1 },
+                "pickup_date_time": "2026-09-02T10:00:00",
+                "dropoff_date_time": "2026-09-07T10:00:00",
+                "payment_type": "later"
+              }
+            },
+            "application/xml": {
+              "schema": { "$ref": "#/components/schemas/EditBookingRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Booking amended. `booking_id` may differ from the one sent — an amendment supersedes the original reservation.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EditBookingResponse" },
+                "example": {
+                  "booking_id": 4822,
+                  "booking_number": "RF-0004822",
+                  "total_amount": 1500
+                }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/EditBookingResponse" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" }
+        }
+      }
+    },
+    "/broker/v1/bookings/cancel": {
+      "post": {
+        "tags": ["Bookings"],
+        "summary": "Cancel a booking",
+        "description": "Cancels a reservation and releases the vehicle back to availability immediately. Only bookings belonging to the calling broker can be cancelled. Cancelling an already-cancelled booking returns `409`.\n\nAny cancellation charge is applied according to the Route Facile cancellation policy in force and reported in the response.",
+        "operationId": "cancelBooking",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CancelBookingRequest" },
+              "example": {
+                "username": "broker_demo",
+                "password": "••••••••",
+                "booking_id": 4821,
+                "reason": "Customer cancelled"
+              }
+            },
+            "application/xml": {
+              "schema": { "$ref": "#/components/schemas/CancelBookingRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Booking cancelled.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CancelBookingResponse" },
+                "example": {
+                  "booking_id": 4821,
+                  "cancellation_charge": 0,
+                  "refund_amount": 1200,
+                  "message": "Booking cancelled successfully."
+                }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/CancelBookingResponse" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "BadRequest": {
+        "description": "Validation failed — a required field is missing, malformed, or outside the allowed values.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "message": ["pickup_date_time must be a valid ISO 8601 date string"],
+              "error": "Bad Request",
+              "statusCode": 400
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Credentials missing, wrong, or the broker account is suspended.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "message": "Invalid credentials",
+              "error": "Unauthorized",
+              "statusCode": 401
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "No booking with that id belongs to the calling broker.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "message": "Booking not found.",
+              "error": "Not Found",
+              "statusCode": 404
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "The vehicle is no longer available for the requested dates, or the booking is already cancelled. Re-run availability and retry.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "message": "Car is no longer available for the selected dates. Please re-check availability.",
+              "error": "Conflict",
+              "statusCode": 409
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Credentials": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Broker username issued by Route Facile.",
+            "example": "broker_demo"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Broker password issued by Route Facile.",
+            "example": "••••••••"
+          }
+        }
+      },
+      "Pickup": {
+        "type": "object",
+        "required": ["type"],
+        "description": "Where the customer takes the car. `location_id` is required when `type` is `self`; `city_id` is required when `type` is `delivery`.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["self", "delivery"],
+            "description": "`self` — customer collects from a Route Facile branch. `delivery` — the car is delivered to the customer.",
+            "example": "self"
+          },
+          "location_id": {
+            "type": "integer",
+            "description": "Branch identifier. Required when `type` is `self`.",
+            "example": 1
+          },
+          "city_id": {
+            "type": "integer",
+            "description": "City identifier. Required when `type` is `delivery`.",
+            "example": 3
+          },
+          "address": {
+            "type": "string",
+            "description": "Free-text delivery address. Accepted on booking and amendment only, ignored on availability.",
+            "example": "Riad Zitoun, Marrakech"
+          }
+        }
+      },
+      "Dropoff": {
+        "type": "object",
+        "required": ["type"],
+        "description": "Where the car is returned. `location_id` is required when `type` is `self`; `city_id` is required when `type` is `collection`.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["self", "collection"],
+            "description": "`self` — customer returns the car to a branch. `collection` — Route Facile collects it.",
+            "example": "self"
+          },
+          "location_id": {
+            "type": "integer",
+            "description": "Branch identifier. Required when `type` is `self`.",
+            "example": 1
+          },
+          "city_id": {
+            "type": "integer",
+            "description": "City identifier. Required when `type` is `collection`.",
+            "example": 3
+          },
+          "address": {
+            "type": "string",
+            "description": "Free-text collection address. Accepted on booking and amendment only, ignored on availability.",
+            "example": "Menara Airport, Marrakech"
+          }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "required": ["first_name", "last_name", "email", "phone_code", "phone_number"],
+        "description": "The renter. Matched on `email` — an existing Route Facile account with that address is reused rather than duplicated.",
+        "properties": {
+          "first_name": { "type": "string", "example": "Amina" },
+          "last_name": { "type": "string", "example": "El Fassi" },
+          "email": { "type": "string", "format": "email", "example": "amina@example.com" },
+          "phone_code": {
+            "type": "string",
+            "description": "International dialling code, including the leading plus.",
+            "example": "+212"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "National phone number without the dialling code.",
+            "example": "600000000"
+          },
+          "country_id": {
+            "type": "integer",
+            "description": "Optional Route Facile country identifier.",
+            "example": 143
+          }
+        }
+      },
+      "RentalWindow": {
+        "type": "object",
+        "required": ["booking_type", "pickup", "dropoff", "pickup_date_time", "dropoff_date_time"],
+        "properties": {
+          "booking_type": {
+            "type": "string",
+            "enum": ["daily", "monthly"],
+            "description": "Rate plan. `monthly` requires `booking_months`.",
+            "example": "daily"
+          },
+          "booking_months": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Contract length in months. Required when `booking_type` is `monthly`, ignored otherwise.",
+            "example": 3
+          },
+          "pickup": { "$ref": "#/components/schemas/Pickup" },
+          "dropoff": { "$ref": "#/components/schemas/Dropoff" },
+          "pickup_date_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 local date-time. Seconds are accepted but only the date and HH:mm are used. Must satisfy the branch opening hours and the minimum lead time.",
+            "example": "2026-09-01T10:00:00"
+          },
+          "dropoff_date_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 local date-time, after `pickup_date_time`.",
+            "example": "2026-09-05T10:00:00"
+          }
+        }
+      },
+      "AvailabilityRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Credentials" },
+          { "$ref": "#/components/schemas/RentalWindow" }
+        ]
+      },
+      "AvailabilityResponse": {
+        "type": "object",
+        "properties": {
+          "cars": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AvailableCar" }
+          },
+          "total_records": {
+            "type": "integer",
+            "description": "Number of vehicles matched. A maximum of 50 are returned per call.",
+            "example": 1
+          }
+        }
+      },
+      "AvailableCar": {
+        "type": "object",
+        "properties": {
+          "car_id": {
+            "type": "integer",
+            "description": "Pass this back as `car_id` when creating the booking.",
+            "example": 75
+          },
+          "name": { "type": "string", "example": "Renault Clio" },
+          "category": {
+            "type": "string",
+            "description": "Route Facile vehicle group. Not an ACRISS code.",
+            "example": "Economy"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "float",
+            "description": "Average price per day in MAD. Present for `daily` bookings only.",
+            "example": 300
+          },
+          "total_car_rate": {
+            "type": "number",
+            "format": "float",
+            "description": "Vehicle charge for the whole period, in MAD, before tax.",
+            "example": 1200
+          },
+          "vat_amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Tax component in MAD. Currently 0 — VAT is not applied.",
+            "example": 0
+          },
+          "estimated_total": {
+            "type": "number",
+            "format": "float",
+            "description": "All-in payable amount in MAD, including tax and any delivery, collection or location charges.",
+            "example": 1200
+          }
+        }
+      },
+      "CreateBookingRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Credentials" },
+          { "$ref": "#/components/schemas/RentalWindow" },
+          {
+            "type": "object",
+            "required": ["car_id", "payment_type", "customer"],
+            "properties": {
+              "car_id": {
+                "type": "integer",
+                "description": "A `car_id` returned by the availability call.",
+                "example": 75
+              },
+              "payment_type": {
+                "type": "string",
+                "enum": ["later", "now"],
+                "description": "`later` — settled at the counter, the standard broker model. `now` — prepaid; only usable once an online payment gateway is live, so brokers should send `later`.",
+                "example": "later"
+              },
+              "broker_reference": {
+                "type": "string",
+                "description": "Your own reference. Stored against the booking and shown in the Route Facile admin portal.",
+                "example": "BRK-556677"
+              },
+              "customer": { "$ref": "#/components/schemas/Customer" }
+            }
+          }
+        ]
+      },
+      "CreateBookingResponse": {
+        "type": "object",
+        "properties": {
+          "booking_id": {
+            "type": "integer",
+            "description": "Numeric identifier. Use this for amendment and cancellation.",
+            "example": 4821
+          },
+          "booking_number": {
+            "type": "string",
+            "description": "Human-readable reference shown to the customer.",
+            "example": "RF-0004821"
+          },
+          "status": { "type": "string", "example": "booked" },
+          "total_amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Total payable in MAD.",
+            "example": 1200
+          },
+          "broker_reference": {
+            "type": "string",
+            "nullable": true,
+            "description": "Echo of the reference you supplied.",
+            "example": "BRK-556677"
+          }
+        }
+      },
+      "EditBookingRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Credentials" },
+          { "$ref": "#/components/schemas/RentalWindow" },
+          {
+            "type": "object",
+            "required": ["booking_id", "car_id", "payment_type"],
+            "properties": {
+              "booking_id": {
+                "type": "integer",
+                "description": "The booking to amend. Must belong to the calling broker.",
+                "example": 4821
+              },
+              "car_id": { "type": "integer", "example": 75 },
+              "payment_type": {
+                "type": "string",
+                "enum": ["later", "now"],
+                "example": "later"
+              }
+            }
+          }
+        ]
+      },
+      "EditBookingResponse": {
+        "type": "object",
+        "properties": {
+          "booking_id": {
+            "type": "integer",
+            "description": "Identifier of the amended booking. May differ from the one sent — store this value for any later amendment or cancellation.",
+            "example": 4822
+          },
+          "booking_number": { "type": "string", "example": "RF-0004822" },
+          "total_amount": {
+            "type": "number",
+            "format": "float",
+            "description": "New total payable in MAD.",
+            "example": 1500
+          }
+        }
+      },
+      "BookingDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "booking_id": {
+            "type": "integer",
+            "description": "Id of the record that represents the reservation right now. Changes after each amendment.",
+            "example": 20986
+          },
+          "booking_number": {
+            "type": "string",
+            "description": "Stable reservation reference — unchanged across amendments.",
+            "example": "ARC20985"
+          },
+          "broker_reference": { "type": "string", "nullable": true, "example": "BRK-556677" },
+          "status": {
+            "type": "string",
+            "enum": ["confirmed", "cancelled"],
+            "description": "Overall reservation state.",
+            "example": "confirmed"
+          },
+          "last_action": {
+            "type": "string",
+            "enum": ["book", "edit", "extend", "cancel"],
+            "description": "The most recent operation applied to the reservation.",
+            "example": "edit"
+          },
+          "booking_type": { "type": "string", "enum": ["daily", "monthly"], "example": "daily" },
+          "booking_date": { "type": "string", "format": "date-time", "description": "When the reservation was made." },
+          "booking_days": { "type": "integer", "nullable": true, "example": 7 },
+          "booking_months": { "type": "integer", "nullable": true, "example": null },
+          "vehicle": {
+            "type": "object",
+            "properties": {
+              "car_id": { "type": "integer", "example": 1 },
+              "name": { "type": "string", "example": "Mitsubishi Attrage" },
+              "category": { "type": "string", "example": "Economy" }
+            }
+          },
+          "pickup": { "$ref": "#/components/schemas/ItineraryLeg" },
+          "dropoff": { "$ref": "#/components/schemas/ItineraryLeg" },
+          "customer": { "$ref": "#/components/schemas/Customer" },
+          "payment": {
+            "type": "object",
+            "properties": {
+              "currency": { "type": "string", "example": "MAD" },
+              "payment_type": { "type": "string", "enum": ["later", "now"], "example": "later" },
+              "payment_status": { "type": "string", "enum": ["paid", "unpaid"], "example": "unpaid" },
+              "car_rate_total": { "type": "number", "format": "float", "example": 560 },
+              "discount_total": { "type": "number", "format": "float", "example": 0 },
+              "vat_amount": { "type": "number", "format": "float", "example": 28.8 },
+              "total_amount": { "type": "number", "format": "float", "example": 1058.4 }
+            }
+          },
+          "cancellation": {
+            "type": "object",
+            "properties": {
+              "cancelled": { "type": "boolean", "example": false },
+              "cancelled_at": { "type": "string", "format": "date-time", "nullable": true },
+              "cancellation_charge": { "type": "number", "format": "float", "example": 0 },
+              "refund_amount": { "type": "number", "format": "float", "example": 0 }
+            }
+          }
+        }
+      },
+      "ItineraryLeg": {
+        "type": "object",
+        "description": "Resolved pickup or drop-off, with the location and city names alongside their ids.",
+        "properties": {
+          "type": { "type": "string", "example": "self" },
+          "date_time": { "type": "string", "format": "date-time" },
+          "location_id": { "type": "integer", "nullable": true, "example": 79 },
+          "location": { "type": "string", "nullable": true, "example": "Casablanca Airport" },
+          "city_id": { "type": "integer", "nullable": true, "example": 1 },
+          "city": { "type": "string", "nullable": true, "example": "Casablanca" },
+          "address": { "type": "string", "nullable": true }
+        }
+      },
+      "CancelBookingRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Credentials" },
+          {
+            "type": "object",
+            "required": ["booking_id"],
+            "properties": {
+              "booking_id": {
+                "type": "integer",
+                "description": "The booking to cancel. Must belong to the calling broker.",
+                "example": 4821
+              },
+              "reason": {
+                "type": "string",
+                "description": "Free-text cancellation reason recorded against the booking.",
+                "example": "Customer cancelled"
+              }
+            }
+          }
+        ]
+      },
+      "CancelBookingResponse": {
+        "type": "object",
+        "properties": {
+          "booking_id": { "type": "integer", "example": 4821 },
+          "cancellation_charge": {
+            "type": "number",
+            "format": "float",
+            "description": "Charge retained, in MAD.",
+            "example": 0
+          },
+          "refund_amount": {
+            "type": "number",
+            "format": "float",
+            "description": "Amount refunded, in MAD.",
+            "example": 1200
+          },
+          "message": { "type": "string", "example": "Booking cancelled successfully." }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "A single message, or a list of field-level messages for validation failures."
+          },
+          "error": { "type": "string", "example": "Bad Request" },
+          "statusCode": { "type": "integer", "example": 400 }
+        }
+      }
+    }
+  }
+}

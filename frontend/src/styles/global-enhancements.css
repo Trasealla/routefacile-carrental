@@ -1,0 +1,591 @@
+/* ============================================
+   GLOBAL ENHANCEMENTS
+   - Remove extra whitespaces
+   - Add decorative backgrounds (similar to homepage)
+   - Improve car picture display
+   - Section-wise content layout
+   ============================================ */
+
+/* ===== 1. REMOVE EXTRA WHITESPACE ===== */
+
+/* Reduce default section padding globally */
+section {
+  padding: 20px 0;
+}
+
+/* Reduce CommonSection banner padding */
+.common__section {
+  padding: 60px 0;
+}
+
+.common__section.common__section--custom-banner {
+  padding: 80px 0;
+}
+
+/* Reduce .gap section spacing */
+section.gap {
+  padding-top: 30px !important;
+  padding-bottom: 40px !important;
+}
+
+/* Reduce heading bottom margin */
+.heading {
+  margin-bottom: 30px;
+}
+
+/* Tighten spacing between form groups */
+.form-section .mb-5 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Reduce large spacing in card layouts */
+.mb-5 {
+  margin-bottom: 2rem !important;
+}
+
+/* Tighter row gaps */
+.row.gy-5 {
+  --bs-gutter-y: 1.5rem;
+}
+
+/* Reduce about page section padding */
+#my-padding {
+  padding: 30px 0;
+}
+
+#vission-mission {
+  padding: 40px 0;
+}
+
+#row-overlay {
+  padding: 40px 0;
+}
+
+/* Reduce statistics section padding */
+.count-style {
+  padding: 50px 0;
+}
+
+/* Reduce newsletter section vertical space */
+.newsletter-content h2 {
+  margin-bottom: 12px;
+}
+
+.newsletter-form {
+  margin-top: 0;
+}
+
+/* Reduce booking page gaps */
+.booking-details-container .mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+/* Awards section tighter */
+.award-container {
+  gap: 12px;
+}
+
+.certificate-section {
+  padding: 25px 0;
+}
+
+/* Contact form - reduce excessive vertical spacing */
+.contact-form-card .mb-3 {
+  margin-bottom: 18px !important;
+}
+
+.contact-form-header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+}
+
+/* Reduce padding in content cards */
+.tc-content-card {
+  padding: 40px 50px;
+}
+
+/* Mobile - additional whitespace fixes */
+@media (max-width: 768px) {
+  section {
+    padding: 10px 0;
+  }
+
+  .common__section {
+    padding: 40px 10px;
+  }
+
+  section.gap {
+    padding-top: 20px !important;
+    padding-bottom: 25px !important;
+  }
+
+  .heading {
+    margin-bottom: 20px;
+  }
+
+  #my-padding {
+    padding: 15px 0;
+  }
+
+  #vission-mission {
+    padding: 20px 0;
+  }
+
+  #row-overlay {
+    padding: 20px 0;
+  }
+
+  .count-style {
+    padding: 30px 0;
+  }
+
+  .tc-content-card {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  section.gap {
+    padding-top: 15px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .heading h2 {
+    font-size: 28px;
+  }
+
+  .contact-page-section {
+    padding: 80px 0 40px;
+  }
+}
+
+
+/* ===== 2. DECORATIVE BACKGROUNDS ===== */
+
+/* Subtle background pattern for all pages (matching homepage style) */
+.main-content-wrapper {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+/* Decorative dots pattern overlay for non-homepage sections */
+.main-content-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(27, 54, 93, 0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above the background pattern */
+.main-content-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section alternating subtle backgrounds (like homepage) */
+section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+section:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+/* Override for sections that already have custom background */
+section.common__section,
+section.common__section--custom-banner,
+section.tc-hero,
+.hero-section,
+#home,
+.contact-page-section,
+.locations-map-section,
+.count-style {
+  background-color: unset;
+}
+
+/* Decorative gradient accent for content sections */
+.content-section-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-section-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27, 54, 93, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.content-section-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 103, 33, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* About page - add subtle gradient backgrounds to sections */
+#row-overlay {
+  background-image: none;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 50%, #f0f4f8 100%);
+  position: relative;
+}
+
+#row-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(27, 54, 93, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(239, 103, 33, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Awards page background enhancement */
+.awards-page-wrapper {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+}
+
+/* Blog/listing pages - enhanced card container background */
+.blog-section,
+.car-listing-section {
+  background: #f8f9fa;
+}
+
+/* Subtle top gradient line on each section */
+section:not(.common__section):not(.tc-hero):not(.hero-section):not(.contact-page-section) {
+  border-top: 1px solid rgba(27, 54, 93, 0.05);
+}
+
+/* WhyWe section gradient (matching homepage) */
+.why-we-section {
+  background: linear-gradient(135deg, #fafbfd 0%, #f0f4f8 100%);
+}
+
+
+/* ===== 3. IMPROVED CAR PICTURE DISPLAY ===== */
+
+/* Better car image presentation in cards */
+.car-item img,
+.car-book > img:not(.car-back) {
+  transition: transform 0.4s ease, filter 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.car-item:hover img,
+.car-book:hover > img:not(.car-back) {
+  transform: scale(1.05);
+  filter: brightness(1.02);
+}
+
+/* Car listing cards - better image container */
+.car__item-img {
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+}
+
+.car__item-img img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.car__item:hover .car__item-img img {
+  transform: scale(1.08);
+}
+
+/* Car details page - better main image */
+.image-gallery-image img,
+.image-gallery-slide img {
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: #f8f9fa;
+}
+
+/* Featured cars on homepage - enhanced presentation */
+.car-book > img:not(.car-back) {
+  max-height: 180px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.car-book:hover > img:not(.car-back) {
+  transform: translateY(-5px) scale(1.04);
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+}
+
+/* Our fleet list - car cards */
+.fleet-car-card img {
+  transition: transform 0.4s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+.fleet-car-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Booking details car images */
+.booking-car-image img {
+  border-radius: 10px;
+  object-fit: contain;
+  background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+}
+
+/* Lazy loaded images - smooth fade in */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* Fix image overflow on cards */
+.car__item,
+.car-book,
+[class*="car-card"] {
+  overflow: hidden;
+}
+
+
+/* ===== 4. SECTION-WISE CONTENT LAYOUT ===== */
+
+/* Consistent section container */
+.page-section {
+  padding: 40px 0;
+  position: relative;
+}
+
+.page-section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.page-section:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+/* Section header - consistent across all pages */
+.section-header {
+  text-align: center;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1B365D;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Decorative underline for section headers (like homepage) */
+.section-header::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1B365D, #f2421b);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+/* Content cards - unified style */
+.content-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* About page sections - enhance to match homepage style */
+#vission-mission {
+  background: #ffffff;
+  border-radius: 0;
+}
+
+#box-round,
+#box-round-2 {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#box-round:hover,
+#box-round-2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Awards page - card enhancement */
+.award-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.award-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Blog cards enhancement */
+.blog__item {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Car listing page - grid enhancement */
+.car__item {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.car__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsive sections */
+@media (max-width: 768px) {
+  .page-section {
+    padding: 25px 0;
+  }
+
+  .section-header h2 {
+    font-size: 26px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  .content-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .car__item-img {
+    min-height: 140px;
+  }
+
+  .car__item-img img {
+    max-height: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-header h2 {
+    font-size: 22px;
+  }
+
+  .section-header::after {
+    width: 40px;
+  }
+}
+
+
+/* ===== 5. SMOOTH ANIMATIONS ===== */
+
+/* Subtle fade-in for sections as they appear */
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to main page sections */
+.page-section,
+.content-section-wrapper {
+  animation: sectionFadeIn 0.5s ease-out;
+}
+
+
+/* ===== 6. PRINT-FRIENDLY ===== */
+
+@media print {
+  .main-content-wrapper::before {
+    display: none;
+  }
+
+  .content-section-wrapper::before,
+  .content-section-wrapper::after {
+    display: none;
+  }
+
+  section {
+    background-color: #fff !important;
+  }
+}

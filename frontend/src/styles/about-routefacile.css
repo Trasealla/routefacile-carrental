@@ -1,0 +1,322 @@
+/* ============================================================
+   Route Facile — About Us (light redesign, brand colors only)
+   Palette: #f2421b (orange) · #0D1B2A (navy) · #F2F4F7 (grey)
+   Font: Poppins
+   ============================================================ */
+
+.rf-about {
+  --navy: #0D1B2A;
+  --orange: #f2421b;
+  --grey: #F2F4F7;
+  --white: #ffffff;
+  font-family: "Poppins", sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* ---------- HERO / INTRO (light) ---------- */
+.rf-about-hero {
+  position: relative;
+  background: var(--grey);
+  padding: 80px 0 96px;
+  text-align: center;
+  overflow: hidden;
+}
+.rf-about-hero::before {
+  content: "";
+  position: absolute;
+  width: 360px; height: 360px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0.08;
+  top: -150px; right: -120px;
+}
+.rf-about-hero::after {
+  content: "";
+  position: absolute;
+  width: 300px; height: 300px;
+  background: var(--navy);
+  border-radius: 50%;
+  opacity: 0.05;
+  bottom: -130px; left: -110px;
+}
+.rf-about-hero .rf-about-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; padding: 0 20px; }
+.rf-about-eyebrow {
+  display: inline-block;
+  background: rgba(255,138,0,0.12);
+  color: var(--orange);
+  border: 1px solid rgba(255,138,0,0.3);
+  padding: 7px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.rf-about-hero h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 20px;
+  color: var(--navy);
+}
+.rf-about-hero h1 span { color: var(--orange); }
+.rf-about-hero p {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.7;
+  color: rgba(13,27,42,0.7);
+  margin: 0;
+}
+
+/* ---------- STATS STRIP ---------- */
+.rf-about-stats {
+  max-width: 1080px;
+  margin: -56px auto 0;
+  position: relative;
+  z-index: 5;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.rf-stat-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 18px 46px rgba(13,27,42,0.08);
+  border: 1px solid #eef1f5;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.rf-stat-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(13,27,42,0.12); }
+.rf-stat-icon {
+  width: 52px; height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 22px;
+}
+.rf-stat-num {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+}
+.rf-stat-label { font-size: 13px; color: rgba(13,27,42,0.55); margin-top: 6px; font-weight: 500; }
+
+/* ---------- SECTION SHELL ---------- */
+.rf-about-section { max-width: 1160px; margin: 0 auto; padding: 80px 24px; }
+.rf-section-tag {
+  color: var(--orange);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.rf-section-title {
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+.rf-section-title span { color: var(--orange); }
+
+/* ---------- STORY (two-col) ---------- */
+.rf-story-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+  align-items: center;
+}
+.rf-story-text p { font-size: 16px; line-height: 1.8; color: rgba(13,27,42,0.72); margin: 0 0 18px; }
+.rf-story-quote {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  border-left: 4px solid var(--orange);
+  padding-left: 18px;
+  margin: 0 0 26px;
+  font-style: italic;
+}
+.rf-story-visual {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 380px;
+  background: var(--grey);
+  box-shadow: 0 26px 60px rgba(13,27,42,0.12);
+  display: grid;
+  place-items: center;
+}
+.rf-story-visual img { width: 100%; height: 100%; object-fit: cover; }
+.rf-story-badge {
+  position: absolute;
+  bottom: 20px; left: 20px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 14px 36px rgba(13,27,42,0.14);
+  display: flex; align-items: center; gap: 12px;
+}
+.rf-story-badge .rf-sb-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: var(--orange);
+  color: var(--white); display: grid; place-items: center; font-size: 18px;
+}
+.rf-story-badge strong { display: block; font-size: 16px; color: var(--navy); }
+.rf-story-badge span { font-size: 12px; color: rgba(13,27,42,0.55); }
+
+/* ---------- MISSION / VISION ---------- */
+.rf-mv-section { background: var(--grey); }
+.rf-mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.rf-mv-card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 40px 34px;
+  border: 1px solid #e8ecf1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.rf-mv-card:hover { transform: translateY(-6px); box-shadow: 0 22px 50px rgba(13,27,42,0.1); }
+.rf-mv-icon {
+  width: 60px; height: 60px; border-radius: 16px;
+  display: grid; place-items: center; font-size: 26px;
+  margin-bottom: 20px;
+}
+.rf-mv-card.mission .rf-mv-icon { background: var(--orange); color: var(--white); }
+.rf-mv-card.vision  .rf-mv-icon { background: var(--navy); color: var(--white); }
+.rf-mv-card h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin: 0 0 12px; }
+.rf-mv-card p { font-size: 15px; line-height: 1.75; color: rgba(13,27,42,0.7); margin: 0; }
+
+/* ---------- WHY CHOOSE (feature grid) ---------- */
+.rf-why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.rf-why-card {
+  background: var(--white);
+  border: 1px solid #eef1f5;
+  border-radius: 18px;
+  padding: 30px 24px;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.rf-why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(13,27,42,0.1);
+  border-color: rgba(255,138,0,0.35);
+}
+.rf-why-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: rgba(255,138,0,0.1);
+  color: var(--orange);
+  display: grid; place-items: center; font-size: 24px;
+  margin-bottom: 18px;
+}
+.rf-why-card h4 { font-size: 17px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+.rf-why-card p { font-size: 14px; line-height: 1.65; color: rgba(13,27,42,0.6); margin: 0; }
+
+/* ---------- VALUES (light) ---------- */
+.rf-values-section { background: var(--grey); }
+.rf-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.rf-value-card {
+  background: var(--white);
+  border: 1px solid #e8ecf1;
+  border-radius: 18px;
+  padding: 30px 26px;
+  border-top: 3px solid var(--orange);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.rf-value-card:hover { transform: translateY(-6px); box-shadow: 0 22px 46px rgba(13,27,42,0.1); }
+.rf-value-card .rf-vnum { font-size: 22px; font-weight: 800; color: rgba(255,138,0,0.35); margin-bottom: 8px; }
+.rf-value-card h4 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 0 0 10px; }
+.rf-value-card p { font-size: 14px; line-height: 1.7; color: rgba(13,27,42,0.65); margin: 0; }
+
+/* ---------- COMPANY / LEGAL (light) ---------- */
+.rf-company-strip {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.rf-company-card {
+  background: var(--grey);
+  border: 1px solid #e5e9ef;
+  border-radius: 24px;
+  padding: 44px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 28px;
+}
+.rf-company-item { border-left: 3px solid var(--orange); padding-left: 16px; }
+.rf-company-item .rf-ci-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); font-weight: 700; margin-bottom: 6px; }
+.rf-company-item .rf-ci-value { font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+
+/* ---------- CTA ---------- */
+.rf-about-cta {
+  max-width: 1160px;
+  margin: 0 auto 90px;
+  padding: 0 24px;
+}
+.rf-cta-inner {
+  background: var(--navy);
+  border-radius: 24px;
+  padding: 54px 40px;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.rf-cta-inner::before {
+  content: "";
+  position: absolute;
+  width: 320px; height: 320px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0.14;
+  top: -140px; right: -100px;
+}
+.rf-cta-inner h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; margin: 0 0 12px; color: #fff !important; -webkit-text-fill-color: #fff; position: relative; z-index: 2; }
+.rf-cta-inner p { font-size: 16px; margin: 0 0 26px; color: rgba(255,255,255,0.85) !important; position: relative; z-index: 2; }
+.rf-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+.rf-cta-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.rf-cta-btn.primary { background: var(--orange); color: var(--white); }
+.rf-cta-btn.secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.5); }
+.rf-cta-btn:hover { transform: translateY(-3px); }
+.rf-cta-btn.primary:hover { box-shadow: 0 12px 28px rgba(255,138,0,0.4); color: var(--white); }
+.rf-cta-btn.secondary:hover { background: rgba(255,255,255,0.1); color: var(--white); border-color: var(--white); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+  .rf-about-stats { grid-template-columns: repeat(2, 1fr); }
+  .rf-story-grid { grid-template-columns: 1fr; }
+  .rf-story-visual { min-height: 300px; }
+  .rf-mv-grid { grid-template-columns: 1fr; }
+  .rf-why-grid { grid-template-columns: repeat(2, 1fr); }
+  .rf-values-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 576px) {
+  .rf-about-hero { padding: 56px 0 84px; }
+  .rf-about-stats { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rf-why-grid { grid-template-columns: 1fr; }
+  .rf-about-section { padding: 56px 20px; }
+}

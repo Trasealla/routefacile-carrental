@@ -1,0 +1,126 @@
+/* .car__item {
+  border: 1px solid #7c8a9736;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.5s ease;
+}
+.car__item:hover {
+  border: 1px solid #293c6f;
+}
+.car__item .car__img {
+  padding: 20px;
+}
+
+.car__item .car__item-content {
+  background-color: #a5a5a5;
+  border-radius: 0px 0px 12px 12px;
+  height: 50px;
+  transition: background-color 0.5s ease;
+
+}
+.car__item:hover .car__item-content {
+  background: linear-gradient(
+    90deg,
+    #0D1B2A 1.17%,
+    #245b8e 51.38%,
+    #4078ac 90.66%
+  );
+}
+.car__item:hover .section__title {
+  color: #fff;
+}
+
+.car__item .section__title {
+  font-size: 17px !important;
+  color: #293c6f;
+  padding-top: 5%;
+
+}
+
+@media only screen and (max-width: 768px) {
+  .car__item h4 {
+    font-size: 1rem;
+  }
+
+  .car__item h6 {
+    font-size: 0.9rem;
+  }
+
+  .car__item-info span {
+    font-size: 0.7rem;
+  }
+
+  .car__item-info span i {
+    font-size: 0.9rem;
+  }
+
+  .car__item-btn {
+    font-size: 0.8rem;
+  }
+} */
+
+
+
+/* ///imptove css by F */
+
+.car__item {
+  border: 1px solid #7c8a9736;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.5s ease;
+}
+.car__item:hover {
+  border: 1px solid #293c6f;
+}
+.car__item .car__img {
+  padding: 10px;
+}
+.car__item .car__item-content {
+  background-color: #a5a5a5;
+  border-radius: 0px 0px 12px 12px;
+  height: 50px;
+  transition: background-color 0.5s ease;
+
+}
+.car__item:hover .car__item-content {
+  background: linear-gradient(
+    90deg,
+    #0D1B2A 1.17%,
+    #245b8e 51.38%,
+    #4078ac 90.66%
+  );
+}
+.car__item:hover .section__title {
+  color: #fff;
+}
+
+.car__item .section__title {
+  font-size: 17px !important;
+  color: #293c6f;
+  /* padding-top: 5%; */
+
+}
+
+@media only screen and (max-width: 768px) {
+  .car__item h4 {
+    font-size: 1rem;
+  }
+
+  .car__item h6 {
+    font-size: 0.9rem;
+  }
+
+  .car__item-info span {
+    font-size: 0.7rem;
+  }
+
+  .car__item-info span i {
+    font-size: 0.9rem;
+  }
+
+  .car__item-btn {
+    font-size: 0.8rem;
+  }
+}
+
+

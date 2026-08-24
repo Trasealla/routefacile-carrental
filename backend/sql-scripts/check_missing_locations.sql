@@ -1,0 +1,30 @@
+-- ============================================================================
+-- Diagnostic Query: Find Location IDs Used in Script vs Actual Locations
+-- ============================================================================
+
+-- Location IDs used in the Ramadan 2026 script:
+-- 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 
+-- 23, 24, 35, 36, 37, 38, 39, 40, 46, 47, 48, 49, 50, 51, 52, 53, 54, 57, 
+-- 60, 61, 63, 64, 67, 73, 76
+
+-- Check which location IDs exist in the database:
+SELECT 'Existing Locations in Database:' as info;
+SELECT id FROM locations ORDER BY id;
+
+-- Find MISSING location IDs (used in script but not in DB):
+SELECT 'Missing Location IDs (in script but not in database):' as info;
+SELECT * FROM (
+  SELECT 1 as id UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 
+  UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 
+  UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 
+  UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL SELECT 17 
+  UNION ALL SELECT 19 UNION ALL SELECT 20 UNION ALL SELECT 21 UNION ALL SELECT 22 
+  UNION ALL SELECT 23 UNION ALL SELECT 24 UNION ALL SELECT 35 UNION ALL SELECT 36 
+  UNION ALL SELECT 37 UNION ALL SELECT 38 UNION ALL SELECT 39 UNION ALL SELECT 40 
+  UNION ALL SELECT 46 UNION ALL SELECT 47 UNION ALL SELECT 48 UNION ALL SELECT 49 
+  UNION ALL SELECT 50 UNION ALL SELECT 51 UNION ALL SELECT 52 UNION ALL SELECT 53 
+  UNION ALL SELECT 54 UNION ALL SELECT 57 UNION ALL SELECT 60 UNION ALL SELECT 61 
+  UNION ALL SELECT 63 UNION ALL SELECT 64 UNION ALL SELECT 67 UNION ALL SELECT 73 
+  UNION ALL SELECT 76
+) script_ids
+WHERE id NOT IN (SELECT id FROM locations);

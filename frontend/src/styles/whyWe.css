@@ -1,0 +1,134 @@
+.whyWe__section {
+  color: #fff;
+}
+
+/* Ensure all text inside WhyWe is white */
+.whyWe__section h1,
+.whyWe__section h2,
+.whyWe__section h3,
+.whyWe__section h4,
+.whyWe__section h5,
+.whyWe__section h6,
+.whyWe__section p {
+  color: #fff;
+}
+.whyWe__section .whyWe__section1 h1 {
+  font-weight: 700;
+}
+.whyWe__section .whyWe__section1 p {
+  font-size: 0.9rem;
+}
+
+.whyWe__section .whyWe__section1 .title_underline {
+  color: rgba(255, 255, 255, 1);
+  width: 20%;
+}
+
+.whyWe__section .Whywe__mainimg {
+  background-image: url("../assets/all-images/slider-img/slider-1.jpg");
+  background-size: "cover";
+ 
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 530px;
+  border-radius: 12px;
+}
+.layer {
+  background-color: rgba(114, 99, 99, 0.7);
+  /* background: linear-gradient(90deg, rgba(2, 0, 36,0.7) 0%, rgba(9, 37, 121,0.7) 35%, rgba(0, 212, 255,0.7) 100%); */
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+.absPosition {
+  position: relative;
+}
+.Whywe__carimg {
+  position: absolute;
+  /* left: 10%; */
+  left: 15%;
+  /* top: 57%; */
+  top: 53%;
+  /* width: 23rem; */
+  width: 27rem;
+}
+
+.whyWe__section2 .Whywe__card {
+  height: 260px;
+  border-radius: 12px;
+}
+.why-we-text-color{
+  /* color: red; */
+}
+.why-we-title{
+  margin-bottom: 6rem;
+}
+@media screen and (max-width: 1450px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 70%;
+    left: 15%;
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 1330px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 77%;
+    left: 7%;
+    width: 19rem;
+  }
+}
+@media screen and (max-width: 991px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    width: 27rem;
+  }
+}
+@media screen and (max-width: 667px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 55%;
+    left: 20%;
+    width: 20rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    /* width: 20rem; */
+    width: 17rem;
+  }
+  .whyWe__section .whyWe__section2 {
+    margin-top: 60px;
+  }
+}
+@media screen and (max-width: 440px) {
+  .Whywe__mainimg {
+    height: 570px !important;
+  }
+  .Whywe__carimg {
+    position: absolute;
+    top: 77%;
+    left: 7%;
+    width: 15rem;
+  }
+}
+@media screen and (max-width: 370px) {
+  .Whywe__carimg {
+    position: absolute;
+    top: 75%;
+    left: 15%;
+    width: 14rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .whyWe__section .whyWe__section2 {
+    margin-top: 60px;
+  }
+}

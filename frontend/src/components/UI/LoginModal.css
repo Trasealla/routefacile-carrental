@@ -1,0 +1,522 @@
+/* ═══════════════════════════════════════════════
+   LOGIN MODAL — Premium redesign  (lm-*)
+═══════════════════════════════════════════════ */
+
+.lm-modal .modal-dialog {
+  max-width: 480px;
+  margin: 1.5rem auto;
+}
+
+.lm-modal .modal-content {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(13, 27, 42, 0.2);
+  max-height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.lm-modal .modal-header {
+  background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%);
+  border-bottom: none;
+  padding: 18px 24px;
+}
+
+.lm-modal .modal-header .btn-close {
+  filter: invert(1) grayscale(1);
+  opacity: 0.7;
+}
+.lm-modal .modal-header .btn-close:hover { opacity: 1; }
+
+.lm-header-brand { display: flex; align-items: center; gap: 14px; }
+
+.lm-header-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(242, 66, 27, 0.18);
+  border: 1.5px solid rgba(242, 66, 27, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #F2421B;
+  flex-shrink: 0;
+}
+
+.lm-header-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.lm-header-sub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.58);
+}
+
+/* ── Body ── */
+.lm-body {
+  padding: 24px !important;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+/* ── Booking Summary ── */
+.lm-booking-card {
+  background: #f8fafc;
+  border: 1.5px solid #e4ecf5;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.lm-booking-top {
+  background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%);
+  color: #fff;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lm-booking-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 18px;
+}
+
+.lm-booking-img {
+  width: 165px;
+  height: auto;
+  max-height: 120px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.lm-booking-info { flex: 1; min-width: 0; }
+
+.lm-booking-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0D1B2A;
+  margin: 0 0 12px;
+}
+
+.lm-booking-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.lm-booking-row > span:first-child { color: #6c757d; }
+.lm-val-green  { color: #16a34a; font-weight: 600; }
+.lm-val-blue   { color: #2563eb; font-weight: 600; }
+.lm-val-orange { color: #F2421B; font-weight: 700; }
+
+/* ── Existing Customer Toggle ── */
+.lm-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lm-toggle-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0D1B2A;
+}
+
+.lm-toggle-pills {
+  display: flex;
+  background: #e2e8f0;
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.lm-pill {
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  padding: 5px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+}
+
+.lm-pill.active {
+  background: #ffffff;
+  color: #0D1B2A;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+}
+
+.lm-pill:hover:not(.active) { color: #0D1B2A; }
+
+/* ── Form ── */
+.lm-form { display: flex; flex-direction: column; }
+
+.lm-field { margin-bottom: 16px; }
+
+.lm-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+  margin-bottom: 6px;
+}
+
+.lm-label i {
+  color: #F2421B;
+  font-size: 12px;
+  width: 14px;
+  text-align: center;
+}
+
+.lm-input {
+  border-radius: 10px !important;
+  border: 1.5px solid #d0d9e6 !important;
+  padding: 11px 14px !important;
+  font-size: 14px !important;
+  color: #1a1a2e !important;
+  background: #fafbfc !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  width: 100%;
+}
+
+.lm-input:focus {
+  border-color: #F2421B !important;
+  box-shadow: 0 0 0 3px rgba(242, 66, 27, 0.1) !important;
+  background: #fff !important;
+  outline: none !important;
+}
+
+.lm-input::placeholder { color: #aab4c0 !important; }
+
+/* ── Forgot link ── */
+.lm-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 16px;
+}
+
+.lm-forgot-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #F2421B;
+  text-decoration: none;
+}
+
+.lm-forgot-link:hover { text-decoration: underline; color: #c73410; }
+
+/* ── Terms ── */
+.lm-terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e4ecf5;
+  margin-bottom: 6px;
+}
+
+.lm-checkbox {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #F2421B;
+  flex-shrink: 0;
+}
+
+.lm-terms-label {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.55;
+  cursor: pointer;
+  margin: 0;
+}
+
+.lm-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+.lm-link:hover { text-decoration: underline; }
+
+.lm-error {
+  font-size: 12px;
+  color: #dc3545;
+  margin: 4px 0 8px 4px;
+}
+
+/* ── Submit ── */
+.lm-submit-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 18px;
+  background: linear-gradient(135deg, #F2421B 0%, #d93510 100%);
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(242, 66, 27, 0.38);
+  letter-spacing: 0.2px;
+}
+
+.lm-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d93510 0%, #b82a0a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(242, 66, 27, 0.48);
+}
+
+.lm-submit-btn:active:not(:disabled) { transform: translateY(0); }
+
+.lm-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Register row ── */
+.lm-register-row {
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+  margin: 16px 0 0;
+}
+
+.lm-register-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #F2421B;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.lm-register-link:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════════════
+   PAYMENT MODAL (preserved unchanged)
+═══════════════════════════════════════════════ */
+.payment-modal-enhanced .modal-dialog {
+  max-width: 440px;
+  width: calc(100% - 24px);
+  margin: auto;
+}
+
+.payment-modal-enhanced .modal-content {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+.payment-modal-enhanced .modal-body { padding: 0; }
+
+.payment-modal-header {
+  background: linear-gradient(135deg, #0D1B2A 0%, #0d2240 100%);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payment-modal-header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.payment-modal-close {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.payment-modal-close:hover { background: rgba(255,255,255,0.25); }
+
+.payment-modal-body { padding: 20px !important; }
+
+.payment-cards-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafd;
+  border: 1px solid #e8edf4;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.payment-cards-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7a8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payment-cards-icons { display: flex; align-items: center; gap: 8px; }
+
+.payment-cards-icons img {
+  height: 22px !important;
+  width: auto !important;
+  max-width: 50px !important;
+  object-fit: contain !important;
+}
+
+.payment-field { margin-bottom: 14px; }
+
+.payment-field .form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+  margin-bottom: 5px;
+}
+
+.payment-input {
+  border-radius: 10px !important;
+  border: 1.5px solid #d0d9e6 !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  transition: border-color 0.2s !important;
+}
+
+.payment-input:focus {
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 3px rgba(27,61,107,0.1) !important;
+}
+
+.payment-row-fields { display: flex; gap: 14px; }
+.payment-field-expiry { flex: 1.2; }
+.payment-field-cvv { flex: 0.8; }
+.payment-expiry-inputs { display: flex; align-items: center; gap: 6px; }
+.payment-expiry-inputs .form-control { flex: 1; text-align: center; }
+.payment-expiry-slash { font-size: 18px; color: #9aa5b4; font-weight: 300; }
+
+.payment-submit-btn {
+  width: 100%;
+  padding: 12px !important;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #0D1B2A 0%, #0d2240 100%) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 14px rgba(27,61,107,0.3) !important;
+}
+
+.payment-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0d2240 0%, #002080 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(27,61,107,0.4) !important;
+}
+
+.payment-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.payment-secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f2f5;
+  font-size: 11px;
+  color: #8896a6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lm-modal .modal-dialog {
+    margin: 80px 10px 10px !important;
+    max-width: calc(100% - 20px) !important;
+  }
+  .lm-body { padding: 16px !important; }
+  .lm-toggle-row { flex-direction: column; align-items: flex-start; }
+  .payment-modal-enhanced .modal-dialog { width: calc(100% - 20px); }
+}
+
+@media (max-width: 480px) {
+  .lm-modal .modal-dialog {
+    margin: 70px 6px 6px !important;
+    max-width: calc(100% - 12px) !important;
+  }
+  .lm-booking-content { flex-direction: column; align-items: center; text-align: center; }
+  .lm-booking-content .lm-booking-img { width: 190px; max-height: 140px; }
+  .lm-booking-info { width: 100%; }
+  .lm-body { padding: 14px !important; }
+}
+
+/* ── Guest checkout ─────────────────────────────────────────────────
+   The pay-later path asks for one contact detail and nothing else, so the
+   hint under the field has to carry the reassurance that a longer form
+   would otherwise imply. */
+.lm-guest-hint {
+  margin: 6px 2px 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #6b7a90;
+}
+
+.lm-modal .lm-error {
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c0281a;
+}

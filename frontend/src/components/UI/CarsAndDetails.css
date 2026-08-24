@@ -1,0 +1,103 @@
+.cardetails__img_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.glassBox__imgBox {
+  text-align: center;
+  width: 13rem;
+  height: 15vh;
+  margin-inline: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .glassBox__imgBox {
+    text-align: center;
+    width: auto;
+    height: 10.5vh;
+  }
+}
+@media screen and (max-width: 820px) {
+  .glassBox__imgBox {
+    text-align: center;
+    width: 10rem;
+    height: 10vh;
+  }
+}
+
+.saved_car_highlighter {
+  border: 4px solid #402cbd;
+  border-radius: 20px;
+}
+
+.hide-car-features {
+  filter: blur(5px);
+}
+
+/* Empty search result. Previously the grid rendered nothing when a search
+   returned no cars, leaving a blank page with no explanation or way forward. */
+.cardetails__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 56px 24px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.cardetails__empty-icon {
+  font-size: 40px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.cardetails__empty h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a365d;
+  margin: 0 0 8px;
+}
+
+.cardetails__empty p {
+  color: #64748b;
+  margin: 0 auto 24px;
+  max-width: 46ch;
+}
+
+.cardetails__empty-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardetails__empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cardetails__empty-btn--primary {
+  background: #1a365d;
+  color: #fff;
+}
+
+.cardetails__empty-btn--whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.cardetails__empty-btn:hover {
+  opacity: 0.92;
+  color: #fff;
+}

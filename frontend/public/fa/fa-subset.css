@@ -1,0 +1,85 @@
+/* Font Awesome 6.5.1 — self-hosted SUBSET (only icons used on this site). ~10KB fonts vs ~290KB full. */
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:swap;src:url(/fa/fa-solid-900.subset.woff2) format("woff2")}
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:swap;src:url(/fa/fa-regular-400.subset.woff2) format("woff2")}
+@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:swap;src:url(/fa/fa-brands-400.subset.woff2) format("woff2")}
+.fa,.fas,.fa-solid,.far,.fa-regular,.fab,.fa-brands,.fa-sharp{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+.fa,.fas,.fa-solid,.fa-sharp{font-family:"Font Awesome 6 Free"!important;font-weight:900!important}
+.far,.fa-regular{font-family:"Font Awesome 6 Free"!important;font-weight:400!important}
+.fab,.fa-brands{font-family:"Font Awesome 6 Brands"!important;font-weight:400!important}
+.fa-fw{text-align:center;width:1.25em}
+.fa-xs{font-size:.75em;line-height:.083em;vertical-align:.2em}.fa-sm{font-size:.875em;line-height:.071em;vertical-align:.1em}
+.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.041em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.031em;vertical-align:-.1875em}
+.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}
+.fa-spin{animation:fa-spin 2s linear infinite}.fa-pulse,.fa-spin-pulse{animation:fa-spin 1s steps(8) infinite}
+@keyframes fa-spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.fa-border{border:.08em solid var(--fa-border-color,#eee);border-radius:.1em;padding:.2em .25em .15em}
+.fa-pull-left{float:left;margin-right:.3em}.fa-pull-right{float:right;margin-left:.3em}
+.fa-rotate-90{transform:rotate(90deg)}.fa-rotate-180{transform:rotate(180deg)}.fa-rotate-270{transform:rotate(270deg)}
+.fa-flip-horizontal{transform:scale(-1,1)}.fa-flip-vertical{transform:scale(1,-1)}
+.fa-li{left:calc(-1 * var(--fa-li-width,2em));position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}
+@media(prefers-reduced-motion:reduce){.fa-spin,.fa-pulse,.fa-spin-pulse{animation-delay:-1ms;animation-duration:1ms;animation-iteration-count:1}}
+.fa-people-group:before{content:"\e533"}
+.fa-people-roof:before{content:"\e537"}
+.fa-x-twitter:before{content:"\e61b"}
+.fa-magnifying-glass:before,.fa-search:before{content:"\f002"}
+.fa-star:before{content:"\f005"}
+.fa-user:before{content:"\f007"}
+.fa-clock:before,.fa-clock-four:before{content:"\f017"}
+.fa-road:before{content:"\f018"}
+.fa-lock:before{content:"\f023"}
+.fa-tag:before{content:"\f02b"}
+.fa-book:before{content:"\f02d"}
+.fa-location-pin:before,.fa-map-marker:before{content:"\f041"}
+.fa-check-circle:before,.fa-circle-check:before{content:"\f058"}
+.fa-circle-info:before,.fa-info-circle:before{content:"\f05a"}
+.fa-arrow-right:before{content:"\f061"}
+.fa-mail-forward:before,.fa-share:before{content:"\f064"}
+.fa-eye:before{content:"\f06e"}
+.fa-calendar-alt:before,.fa-calendar-days:before{content:"\f073"}
+.fa-chevron-down:before{content:"\f078"}
+.fa-bar-chart:before,.fa-chart-bar:before{content:"\f080"}
+.fa-key:before{content:"\f084"}
+.fa-arrow-right-to-bracket:before,.fa-sign-in:before{content:"\f090"}
+.fa-phone:before{content:"\f095"}
+.fa-twitter:before{content:"\f099"}
+.fa-facebook:before{content:"\f09a"}
+.fa-github:before{content:"\f09b"}
+.fa-globe:before{content:"\f0ac"}
+.fa-wrench:before{content:"\f0ad"}
+.fa-briefcase:before{content:"\f0b1"}
+.fa-users:before{content:"\f0c0"}
+.fa-truck:before{content:"\f0d1"}
+.fa-envelope:before{content:"\f0e0"}
+.fa-linkedin-in:before{content:"\f0e1"}
+.fa-bolt:before,.fa-zap:before{content:"\f0e7"}
+.fa-face-smile:before,.fa-smile:before{content:"\f118"}
+.fa-bullseye:before{content:"\f140"}
+.fa-file-alt:before,.fa-file-lines:before,.fa-file-text:before{content:"\f15c"}
+.fa-instagram:before{content:"\f16d"}
+.fa-graduation-cap:before,.fa-mortar-board:before{content:"\f19d"}
+.fa-reddit:before{content:"\f1a1"}
+.fa-automobile:before,.fa-car:before{content:"\f1b9"}
+.fa-paper-plane:before{content:"\f1d8"}
+.fa-chart-line:before,.fa-line-chart:before{content:"\f201"}
+.fa-bus:before{content:"\f207"}
+.fa-whatsapp:before{content:"\f232"}
+.fa-user-plus:before{content:"\f234"}
+.fa-calendar-check:before{content:"\f274"}
+.fa-handshake:before{content:"\f2b5"}
+.fa-address-card:before,.fa-contact-card:before,.fa-vcard:before{content:"\f2bb"}
+.fa-right-from-bracket:before,.fa-sign-out-alt:before{content:"\f2f5"}
+.fa-facebook-f:before{content:"\f39e"}
+.fa-location-dot:before,.fa-map-marker-alt:before{content:"\f3c5"}
+.fa-shield-alt:before,.fa-shield-halved:before{content:"\f3ed"}
+.fa-clipboard-list:before{content:"\f46d"}
+.fa-shipping-fast:before,.fa-truck-fast:before{content:"\f48b"}
+.fa-user-tie:before{content:"\f508"}
+.fa-chalkboard-teacher:before,.fa-chalkboard-user:before{content:"\f51c"}
+.fa-receipt:before{content:"\f543"}
+.fa-file-invoice-dollar:before{content:"\f571"}
+.fa-headset:before{content:"\f590"}
+.fa-map-location-dot:before,.fa-map-marked-alt:before{content:"\f5a0"}
+.fa-plane-arrival:before{content:"\f5af"}
+.fa-car-side:before{content:"\f5e4"}
+.fa-diamond-turn-right:before,.fa-directions:before{content:"\f5eb"}
+.fa-envelope-open-text:before{content:"\f658"}

@@ -1,0 +1,318 @@
+================================================================================
+ PERFORMANCE OPTIMIZATION PLAYBOOK
+ Create React App (react-scripts 5) — Car Rental template
+ Goal: raise Lighthouse Performance toward ~98% (LCP, CLS, unused JS, caching)
+================================================================================
+
+HOW TO USE THIS FILE
+--------------------
+Each task below is self-contained: WHAT the problem was, WHY it hurt the score,
+the FILE(S) to touch, and the EXACT change. Work top to bottom. Rebuild and
+re-test after each group. Paths are relative to the frontend/ root unless noted.
+
+BUILD & PREVIEW COMMANDS
+------------------------
+  # Production build (no source maps = smaller, faster):
+  CI=false GENERATE_SOURCEMAP=false npm run build
+
+  # Serve the production build locally (this is what you must Lighthouse,
+  # NOT `npm start` — dev mode is unoptimized and misleading):
+  npx serve -s build -l 5055
+  # then open http://localhost:5055/en  in an INCOGNITO window
+  # (incognito avoids stale service-worker / cached analytics scripts)
+
+  # Handy size check of the main bundle:
+  M=$(ls build/static/js/main.*.js); echo "$(gzip -c "$M" | wc -c | awk '{printf "%.0f KB gzip",$1/1024}')"
+
+
+================================================================================
+ 1) DEFER MARKETING / ANALYTICS SCRIPTS  (KEEP them, just load them LATE)
+================================================================================
+KEEP the analytics — do NOT delete them. The goal is only to stop them from
+competing with the page load. Marketing tags (GTM/GA4 gtag.js ~170 KB, Meta
+Pixel, Clarity, Termly, Consent Mode) are NOT needed for first paint, so load
+them AFTER the page is interactive. That removes their render-blocking +
+main-thread cost from the Lighthouse measurement window while still tracking
+every real user.
+PROBLEM : These tags were loaded eagerly in public/index.html (in <head> or as
+          plain <script src>), so they downloaded and executed during the
+          critical load and showed up as "Reduce unused JavaScript" + main-thread
+          work.
+FILE    : public/index.html
+DO      : Keep the tags, but load them lazily after `window.load` (or on first
+          user interaction / after a short idle). Pattern:
+
+            <script>
+              // Load marketing/analytics AFTER the page is interactive so they
+              // don't block first paint. Fires on load, or sooner on first
+              // interaction, whichever comes first.
+              (function () {
+                var started = false;
+                function loadMarketing() {
+                  if (started) return; started = true;
+                  // --- GA4 / gtag ---
+                  var s = document.createElement('script');
+                  s.async = true;
+                  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+                  document.head.appendChild(s);
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){ dataLayer.push(arguments); }
+                  window.gtag = gtag;
+                  gtag('js', new Date());
+                  gtag('config', 'G-XXXXXXXXXX');
+                  // --- add Meta Pixel / Clarity / etc. here the same way ---
+                }
+                if (document.readyState === 'complete') setTimeout(loadMarketing, 2000);
+                else window.addEventListener('load', function () { setTimeout(loadMarketing, 2000); });
+                ['scroll','pointerdown','keydown','touchstart'].forEach(function (e) {
+                  window.addEventListener(e, loadMarketing, { once: true, passive: true });
+                });
+              })();
+            </script>
+
+          Notes:
+            - Move each eager tag (gtag, fbq/Meta Pixel, Clarity, Termly, Consent
+              Mode) into loadMarketing() so nothing runs before load.
+            - If you use Consent Mode, still set the default consent state
+              synchronously in <head> (tiny), but load the gtag.js library lazily.
+            - Keep the Meta Pixel <noscript> <img> — it's free (no JS).
+VERIFY  : # The heavy tag library must NOT be requested during initial load.
+          # In DevTools Network (or Lighthouse), gtag/js should fire AFTER load,
+          # not on the critical path. It's fine for it to appear later.
+NOTE    : App code that calls window.gtag(...) / window.fbq(...) should be guarded
+          (typeof window.gtag === 'function' or ?. ) so early calls before the
+          lazy load simply queue/no-op. Verify guards exist.
+NOTE    : Stale gtag on the critical path after this change = browser/service-
+          worker cache. Re-test in Incognito.
+
+
+================================================================================
+ 2) FONTS — KILL THE @import CHAIN, DROP UNUSED FAMILIES, USE display=optional
+================================================================================
+PROBLEM : Render-blocking main.css started with FOUR chained
+          `@import url(https://fonts.googleapis.com/...)` font requests. This
+          creates a serialized critical request chain:
+              main.css -> 4 font CSS files -> woff2 downloads
+          (this is exactly what the "Network dependency tree" / max critical
+          path latency report flags). It ALSO caused font-swap layout shift (CLS).
+
+KEY INSIGHT: A global rule `* { font-family: "<Body Font>" !important }` overrides
+          every other font. So any OTHER @import'ed families (e.g. Rubik, Funnel
+          Display, Be Vietnam Pro) NEVER actually render — they were pure waste
+          downloaded on the critical path. Find your real body font first:
+            grep -rn "font-family:[^;]*!important" src | grep "\*"
+
+DO      : (a) Remove every `@import url(...fonts.googleapis.com...)` line from
+              source CSS. Typical locations in this template:
+                 src/index.css               (body font + an unused one)
+                 src/carbook-override.css     (duplicate body font)
+                 src/carbook-assets/css/style.css  (2 unused display fonts)
+          (b) Keep ONLY the font that actually renders (the body font).
+          (c) Load that one font NON-BLOCKING from public/index.html, off the
+              critical chain, with display=optional (prevents swap CLS):
+
+              <link rel="preload" as="style"
+                href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=optional"
+                onload="this.rel='stylesheet'" />
+              <noscript><link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=optional" /></noscript>
+
+          (d) Delete any leftover unused font <link>/preload in index.html
+              (e.g. Rubik) — if nothing sets `font-family` to it, it's dead.
+VERIFY  : # main.css must have ZERO google-fonts @imports:
+          grep -oE "@import url\([^)]*googleapis[^)]*\)" build/static/css/main.*.css | wc -l   # => 0
+          # index.html should reference only the body font:
+          grep -oE "family=[A-Za-z+]+" build/index.html | sort -u
+WHY     : Removes the serialized font chain (better FCP + critical path) AND
+          removes font-swap reflow (better CLS). display=optional means text is
+          painted in the fallback and only upgraded if the font arrives fast, so
+          nothing shifts.
+
+
+================================================================================
+ 3) PRECONNECT / DNS-PREFETCH CLEANUP
+================================================================================
+PROBLEM : Preconnect hints to origins you no longer use (googletagmanager,
+          google-analytics) waste connections.
+FILE    : public/index.html  (<head>)
+DO      : Remove preconnect/dns-prefetch for removed marketing origins.
+          KEEP: fonts.googleapis.com, fonts.gstatic.com (crossorigin),
+                maps.googleapis.com (if maps used), cdnjs.cloudflare.com (icons).
+
+
+================================================================================
+ 4) LCP — PRELOAD THE HERO IMAGE (responsive, high priority)
+================================================================================
+PROBLEM : The Largest Contentful Paint element (hero background <img>) starts
+          downloading late because it's discovered only after React renders.
+FILE    : public/index.html (preload) + HeroSection component (the <img>)
+DO      : (a) Preload the hero as a responsive webp with high priority in <head>:
+              <link rel="preload" as="image" fetchpriority="high"
+                    href="/images/hero-1280.webp"
+                    imagesrcset="/images/hero-768.webp 768w, /images/hero-1280.webp 1280w, /images/hero-2560.webp 2560w"
+                    imagesizes="100vw" />
+          (b) On the hero <img> itself set:
+                fetchpriority="high" decoding="async"
+                srcSet=... sizes="100vw"  width/height (or aspect-ratio)
+NOTE    : In a client-rendered CRA app the hero can't paint until React mounts,
+          so ~500-600ms of LCP is "React boot" render delay. Total LCP under
+          ~1s is already "good" (green). To fully remove the render delay you
+          would need prerendering (react-snap) — bigger change, optional.
+
+
+================================================================================
+ 5) REDUCE UNUSED JS — LAZY-LOAD HEAVY, RARELY-USED COMPONENTS
+================================================================================
+PROBLEM : The homepage search form statically imports two map popups
+          (ChooseDeliverToMePopup, CollectFromMePopup) which pull in
+          @react-google-maps/api. These popups only open on user click, but the
+          library shipped in the homepage's initial JS = unused JS on load.
+FILES   : src/components/UI/FindCarForm2.js  (homepage search form)
+          (same pattern applies to EditFindCarForm2.js on the booking page)
+DO      : Convert the static imports to React.lazy + wrap usage in <Suspense>:
+
+            // at top: add Suspense, lazy to the React import
+            import React, { useState, useEffect, Suspense, lazy } from "react";
+
+            // IMPORTANT: put lazy() AFTER all `import` statements (eslint
+            // import/first will fail otherwise). Place near other module consts:
+            const ChooseDeliverToMePopup = lazy(() => import("./ChooseDeliverToMePopup"));
+            const CollectFromMePopup     = lazy(() => import("./CollectFromMePopup"));
+
+            // wrap each conditional render:
+            {condition && (
+              <Suspense fallback={null}>
+                <ChooseDeliverToMePopup ... />
+              </Suspense>
+            )}
+VERIFY  : # maps library must NOT be in main/home chunk anymore:
+          M=$(ls build/static/js/main.*.js); grep -c "react-google-maps" "$M"   # => 0
+          # it should now live in its own on-demand chunk:
+          for f in build/static/js/*.js; do grep -q "react-google-maps/api" "$f" && echo "$(basename $f)"; done
+GENERAL : Look for other heavy, rarely-needed deps and lazy-load their host
+          component the same way. In this template these are candidates:
+            jspdf + jspdf-autotable + html2canvas  (used only in BookingReport)
+            leaflet / react-leaflet                (used only on map pages)
+            react-select, react-datepicker, swiper (page-specific)
+          Also remove DEAD dependencies never imported anywhere, e.g.
+          `google-map-react` (grep the src; if 0 imports, delete from package.json).
+          Confirm routes are already code-split with React.lazy in
+          src/routers/Routers.js (they are in this template — keep it that way).
+
+
+================================================================================
+ 6) CLS — RESERVE SPACE FOR LAZY ROUTE CONTENT (the newsletter/footer jump)
+================================================================================
+PROBLEM : Layout renders Header + <Suspense fallback> + Newsletter + Footer.
+          While the lazy PAGE chunk loads, the fallback reserved only 60vh, so
+          the newsletter/footer sat IN VIEW near the top; when the (much taller)
+          page mounted, they were shoved below the fold => large layout shift,
+          reported against `section.newsletter-section-new`.
+FILE    : src/routers/Routers.js  (the Suspense PageLoader fallback)
+DO      : Reserve a FULL viewport so the newsletter/footer start BELOW the fold
+          (shifts of off-screen elements don't count toward CLS):
+
+            const PageLoader = () => (
+              <div style={{ minHeight: "100vh", display: "flex",
+                            alignItems: "flex-start", justifyContent: "center",
+                            paddingTop: "20vh" }}>
+                <div className="spinner" />
+              </div>
+            );
+WHY     : Keeps everything already-visible stable while the page hydrates.
+HOW TO MEASURE CLS PRECISELY (do this, don't guess):
+          Open the built page in a browser and run a PerformanceObserver for
+          'layout-shift' (buffered:true), reload, wait ~4s, and print each
+          entry's .value and .sources[].node. This tells you the EXACT element
+          and pixel delta that moved, instead of guessing.
+
+
+================================================================================
+ 7) CLS — RESERVE SPACE FOR IMAGES & ASYNC/API CONTENT
+================================================================================
+PROBLEM : Images without fixed box + content that appears after fetch (spinners
+          turning into grids, lazy images) push content and cause CLS.
+FILES / FIXES (this template):
+  a) Logo <img> in header: give it width & height attributes so its box is
+     reserved before the webp loads:
+        src/components/Header/HeaderNew.jsx
+        <img ... width="689" height="191" style={{ width:200, height:"auto" }} />
+  b) Featured-cars loading container: reserve height so spinner->grid doesn't
+     shift. src/pages/HomeNew.jsx  (the loading <Col>):
+        style={{ minHeight: 380 }} className="d-flex align-items-center justify-content-center"
+  c) Car card image box: reserve a fixed box instead of max-height.
+        src/pages/HomeNew.css
+        .car-book > img:not(.car-back){ height:160px; width:100%; object-fit:contain; }
+  d) Step / how-it-works images: fixed-height wrapper.
+        .stap .step-img-wrapper{ height:220px; }
+GENERAL : Any <img> => set width/height or aspect-ratio. Any API-driven list =>
+          reserve min-height on its container matching the loaded state.
+
+
+================================================================================
+ 8) CACHE LIFETIMES (fixes "Serve static assets with efficient cache policy")
+================================================================================
+PROBLEM : Static assets served with short/no cache. Also (prod bug) the nginx
+          cache regex did NOT include webp — and all hero/city/logo images are
+          webp, so they were uncached in production.
+
+  A) LOCAL PREVIEW (`serve`): create public/serve.json (copied into build/):
+       {
+         "headers": [
+           { "source": "static/**",        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+           { "source": "**/*.@(js|css|woff|woff2|ttf|otf|png|jpg|jpeg|gif|svg|webp|avif|ico)",
+                                            "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+           { "source": "**/*.html",         "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+           { "source": "service-worker.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+         ]
+       }
+     VERIFY: curl -sI http://localhost:5055/static/js/main.<hash>.js | grep -i cache-control  # immutable
+             curl -sI http://localhost:5055/index.html | grep -i cache-control                # no-cache
+
+  B) PRODUCTION (nginx.conf): make sure the cache location matches webp/avif/otf:
+       location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp|avif|woff|woff2|ttf|eot|otf)$ {
+           expires 1y;
+           add_header Cache-Control "public, immutable";
+       }
+       # and DON'T cache index.html:
+       location = /index.html { add_header Cache-Control "no-cache"; }
+WHY     : Hashed filenames (main.<hash>.js) are safe to cache forever; index.html
+          must stay fresh so new deploys are picked up.
+
+
+================================================================================
+ 9) MISC JS / MAIN-THREAD REDUCTIONS
+================================================================================
+  a) wow.js: set { live: false } so it doesn't run a MutationObserver watching
+     the whole DOM on every change (unnecessary main-thread work).
+  b) Carousels: cache scrollWidth instead of reading it in a loop (avoids forced
+     reflow / layout thrash).
+  c) Remove test tooling from the shipped bundle: ensure @testing-library/*,
+     jest helpers, etc. are in devDependencies only and not imported by app code.
+     (Removing a stray testing-library import dropped main.js noticeably.)
+  d) Delete large UNUSED assets from public/ (they bloat the build). Example:
+     a 16 MB public/images/1guy-smiling.svg referenced only in a commented-out
+     section. grep the src for the filename; if unused, delete it.
+
+
+================================================================================
+ VERIFICATION CHECKLIST (run after final build)
+================================================================================
+  [ ] analytics deferred:     gtag/js fires AFTER `load` (not on critical path)
+  [ ] 0 font @imports:        grep -oE "@import url\([^)]*googleapis[^)]*\)" build/static/css/main.*.css | wc -l  => 0
+  [ ] maps lib out of main:   grep -c "react-google-maps" build/static/js/main.*.js  => 0
+  [ ] cache headers correct:  curl -sI .../static/js/main.<hash>.js | grep -i cache-control  => immutable
+  [ ] Lighthouse in INCOGNITO on the `serve` build (http://localhost:5055/en)
+  [ ] CLS measured with PerformanceObserver, culprit elements confirmed fixed
+  [ ] LCP element = hero image, preloaded with fetchpriority=high
+
+================================================================================
+ ORDER OF IMPACT (do these first if short on time)
+================================================================================
+  1. Defer marketing/analytics scripts          (unused JS + main thread)
+  2. Font @import chain + display=optional      (critical path + CLS)
+  3. Cache headers (serve.json + nginx webp)    ("efficient cache policy")
+  4. Reserve space: PageLoader 100vh + images   (CLS)
+  5. Lazy-load map popups / heavy deps          (unused JS on homepage)
+  6. Preload hero image                          (LCP)
+================================================================================

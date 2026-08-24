@@ -1,0 +1,201 @@
+.MuiTextField-root {
+  width: 100%;
+}
+.MuiOutlinedInput-root {
+  height: 48px;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.MuiOutlinedInput-root:hover {
+  border-color: #b0b0b0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.MuiOutlinedInput-root.Mui-focused {
+  border-color: #0D1B2A !important;
+  box-shadow: 0 0 0 3px rgba(27, 61, 107, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.MuiOutlinedInput-root .MuiInputBase-input {
+  font-size: 15px;
+  color: #1a1a1a;
+  padding: 12px 16px;
+}
+
+.MuiOutlinedInput-root .MuiInputBase-input::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+.MuiOutlinedInput-root .MuiInputAdornment-root .MuiSvgIcon-root {
+  color: #0D1B2A;
+  transition: color 0.3s ease;
+}
+
+.MuiOutlinedInput-root:hover .MuiInputAdornment-root .MuiSvgIcon-root {
+  color: #245b8e;
+}
+/* Stable class name — MUI's generated hashed class (.css-19zab1y-...) this
+   used to target changes across builds/MUI versions and can silently stop
+   matching anything. */
+.MuiDateCalendar-root {
+  width: 200px;
+}
+.MuiStack-root {
+  overflow: visible !important;
+}
+.css-v0pjtz-MuiStack-root {
+  overflow: visible !important;
+}
+
+/* MUI Demo Container overflow fix */
+[class*="MuiStack-root"],
+[class*="DemoContainer"],
+[class*="DemoItem"] {
+  overflow: visible !important;
+}
+
+/* #booking-form-container
+  > div
+  > div
+  > div.form
+  > form
+  > div:nth-child(2)
+  > div:nth-child(3)
+  > div {
+  overflow: visible;
+} */
+/* #booking-form-container > div > div > div.form > form > div:nth-child(2) > div:nth-child(4) > div{
+    overflow: ;
+} */
+
+.scroll-bar {
+  overflow: visible;
+}
+
+.css-v0pjtz-MuiStack-root {
+  overflow: visible !important;
+  padding-top: 0 !important;
+}
+
+/* Ensure DemoContainer/DemoItem adds no extra spacing */
+.MuiStack-root > .MuiStack-root {
+  padding-top: 0 !important;
+}
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root{
+  font-size: 14px !important;
+}
+
+/* Remove overflow from inputs */
+.MuiInputBase-root,
+.MuiOutlinedInput-root,
+.MuiInputBase-input,
+.MuiOutlinedInput-input {
+  overflow: visible !important;
+}
+
+.MuiInputBase-root input,
+.MuiOutlinedInput-root input {
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* Date/Time Picker Label Styling - inherits from .form .label-name */
+
+/* Picker Dialog Styling */
+.MuiPickersLayout-root {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
+.MuiPickersDay-root.Mui-selected {
+  background-color: #0D1B2A !important;
+}
+
+.MuiPickersDay-root:hover {
+  background-color: rgba(27, 61, 107, 0.1) !important;
+}
+
+.MuiClock-pin,
+.MuiClockPointer-root,
+.MuiClockPointer-thumb {
+  background-color: #0D1B2A !important;
+}
+
+.MuiClockPointer-thumb {
+  border-color: #0D1B2A !important;
+}
+
+.MuiClock-clock {
+  background-color: #f5f7fa !important;
+}
+
+.MuiDialogActions-root .MuiButton-root {
+  color: #0D1B2A !important;
+  font-weight: 600 !important;
+}
+
+.MuiDialogActions-root .MuiButton-root:hover {
+  background-color: rgba(27, 61, 107, 0.1) !important;
+}
+
+/* Responsive Date/Time Picker */
+@media screen and (max-width: 768px) {
+  .MuiOutlinedInput-root {
+    height: 42px;
+  }
+  
+  .MuiOutlinedInput-root .MuiInputBase-input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .MuiOutlinedInput-root {
+    height: 40px;
+  }
+  
+  .MuiOutlinedInput-root .MuiInputBase-input {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+/* Popper is portalled into #rf-datepicker-portal (see Layout.jsx), a sibling
+   of the header rather than a document.body dump. Matches the JS's own
+   `sx: { zIndex: 1000001 }` — that alone doesn't win, because a bare CSS
+   !important rule always beats a non-!important sx-generated class, and this
+   file previously had exactly that rule pinned to 99999 (below the header's
+   999999), which is what let the header paint over the calendar. */
+.MuiPickersPopper-root {
+  z-index: 1000001 !important;
+}
+
+/* Responsive popup: MUI's desktop layout puts the calendar and the time
+   column side by side, which can run past the edge of a narrow phone
+   viewport since the calendar's own width (below) is fixed rather than
+   viewport-relative. Stack them instead once there isn't room side by side. */
+@media screen and (max-width: 480px) {
+  .MuiPickersPopper-root .MuiPickersLayout-root {
+    max-width: calc(100vw - 16px);
+  }
+  .MuiPickersPopper-root .MuiPickersLayout-contentWrapper {
+    flex-direction: column;
+  }
+  .MuiPickersPopper-root .MuiDigitalClock-root,
+  .MuiPickersPopper-root .MuiMultiSectionDigitalClock-root {
+    max-height: 200px;
+  }
+}

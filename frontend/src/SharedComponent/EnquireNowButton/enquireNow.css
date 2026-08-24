@@ -1,0 +1,22 @@
+.enquire-now-button{
+  display: inline-block;
+  max-width: 230px;
+  /* min-height: 60px; */
+  padding: 0.5rem 2rem;
+  background: #fff;
+  border: 0.5px solid #0D1B2A;
+  color: #0D1B2A;
+  border-radius: 3px;
+  /* margin-top: 55px; */
+  border-radius: 10px;
+  -webkit-transition: .3s linear;
+  -moz-transition: .3s linear;
+  -ms-transition: .3s linear;
+  -o-transition: .3s linear;
+  transition: all .3s linear ;
+}
+.enquire-now-button:hover{
+  /* background :var(--gradient-bg); */
+  background :#0D1B2A;
+  color: #fff;
+}

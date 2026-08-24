@@ -1,0 +1,319 @@
+#card-title-about-1 {
+  color: #201f1d !important;
+  font-size: 34px !important;
+  font-weight: 500 !important;
+}
+#card-title-about-2 {
+  color: #201f1d !important;
+  font-size: 34px !important;
+  font-weight: 500 !important;
+}
+#content-title-1 {
+  margin-top: 35px;
+  color: #201f1d !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+}
+#my-sec-1 {
+}
+
+#inner_section_main {
+  float: left;
+  width: 100%;
+}
+#my-padding {
+  padding: 50px 0 50px 0;
+  background: #fff;
+}
+#row {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+#card-title {
+  color: #000;
+  text-transform: capitalize;
+  margin-bottom: 17px;
+}
+#vission-mission {
+  padding: 80px 0 80px 0;
+  background: #fff;
+}
+#vission-mission-col-1 {
+  flex: 1;
+}
+#vission-mission-col-2 {
+  flex: 1;
+}
+
+#box-round {
+  padding: 25px 18px 25px 103px;
+  margin-left: 70px;
+  border: #1f366c solid 1px;
+  height: 100%;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  /* width: 400px; */
+}
+#padding {
+  padding: 10px;
+}
+#box-round-2 {
+  padding: 25px 18px 25px 103px;
+  margin-left: 70px;
+  border: #1f366c solid 1px;
+  height: 100%;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  /* width: 400px; */
+}
+
+#round {
+  position: absolute;
+  left: -65px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#card-title {
+  text-transform: capitalize;
+  text-align: left;
+  color: #2c3969;
+}
+
+#vission-mission-img1 {
+  width: 135px;
+  height: 135px;
+  border: 1px solid #1f366c;
+  border-radius: 50%;
+}
+
+#our-values {
+  padding: 80px 0 80px 0;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 100%;
+}
+
+#container {
+  margin: auto;
+}
+#row-mission {
+  display: flex;
+  flex-direction: row;
+}
+#row-overlay {
+  padding: 80px 0 80px 0;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 100%;
+}
+#padd {
+  padding: 15px;
+}
+#sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  #sub-col {
+    min-width: 300px;
+    color: white;
+    img {
+      margin-inline-start: 60px;
+    }
+  }
+  #sub-col:nth-child(2) {
+    margin-right: 70px;
+  }
+}
+
+#sub-col p {
+  color: black;
+}
+#vission-mission-col-1,
+#vission-mission-col-2 {
+  margin-inline: 10px;
+}
+#make-text-center {
+  text-align: center;
+  #content{
+    text-align: center;
+  }
+  #creating {
+    font-size: 1.5rem;
+  }
+  #card-title {
+    text-align: center;
+  }
+}
+#fleetrow,
+#fleetrowtwo {
+  padding-inline: 40px;
+  display: flex;
+  align-items: center;
+  /* background-color: aquamarine; */
+  /* background-color: #1f366c; */
+  h5 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    /* color: white; */
+    word-spacing: 2px;
+  }
+  p {
+    word-spacing: 2px;
+    /* color: white; */
+  }
+  #fleetcol {
+    padding: 10px;
+    /* background-color: rgb(143, 162, 235); */
+    /* background-color: #1c2947; */
+    padding: 50px;
+    img {
+      border-radius: 0px 25px 0px 25px;
+      box-shadow: 0px 1px 3px 0px #d6d6d6;
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  #row-mission {
+    display: flex;
+    flex-direction: column;
+    #vission-mission-col-1 {
+      margin-bottom: 10px;
+    }
+  }
+  #fleetrow {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+  #fleetrowtwo {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 767px) {
+  #sub-row {
+    flex-direction: column;
+  }
+  #sub-col {
+    margin-inline: auto;
+    padding-inline: 20px;
+    #text-cen {
+      text-align: center;
+    }
+  }
+  #sub-col:nth-child(2) {
+    margin-right: 0px !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  #box-round,
+  #box-round-2 {
+    padding: 15px;
+    margin-left: 0;
+    border: #1f366c solid 1px;
+    height: 100%;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  #round {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    transform: none;
+  }
+  #card-title {
+    margin-top: 30px;
+    text-align: center;
+  }
+  #fleetrow,
+  #fleetrowtwo {
+    #fleetcol {
+      padding: 15px;
+    }
+  }
+}
+
+#content {
+  color: #000;
+}
+
+
+.about-html{
+  #content{
+    color: initial;
+  }
+  #sub-col{
+   h2{
+    color: #2C3969;
+    margin-left: 4rem;
+   }
+  }
+  #my-padding{
+    padding: 0px 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-html{
+    padding: 0px 0px;
+    #content{
+      color: initial;
+      padding: 0px 10px;
+    }
+  }
+  #my-padding{
+    padding: 0px 0px;
+  }
+  #vission-mission{
+    padding: 10px 0px;
+  }
+}
+@media screen and (max-width: 517px) {
+  .about-html{
+    #fleetcol{
+      img{
+        width: 20rem;
+        height: auto;
+      }
+    }
+    #fleetrow,#fleetrowtwo{
+
+    }
+  }
+}
+@media screen and (max-width: 379px) {
+  #fleetrow,#fleetrowtwo{
+    padding-inline: 1.5rem;
+  }
+}
+
+#sub-col #text-cen {
+  color: #2C3969;
+}
+#sub-col h2 {
+  color: #2C3969 ;
+}
+
+#card-title #content{
+  color: #000 !important;
+}
+
+#our-mission-content{
+  color: #000;
+}

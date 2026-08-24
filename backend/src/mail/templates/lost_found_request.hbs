@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <title></title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700"
+        rel="stylesheet" media="screen">
+    <style>
+        .hover-underline:hover {
+            text-decoration: underline !important;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ping {
+
+            75%,
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sm-leading-32 {
+                line-height: 32px !important;
+            }
+
+            .sm-px-24 {
+                padding-left: 24px !important;
+                padding-right: 24px !important;
+            }
+
+            .sm-py-32 {
+                padding-top: 32px !important;
+                padding-bottom: 32px !important;
+            }
+
+            .sm-w-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    style="margin: 0; padding: 0; width: 100%; word-break: break-word; -webkit-font-smoothing: antialiased; --bg-opacity: 1; background-color: #eceff1; background-color: rgba(236, 239, 241, 1);">
+    <div role="article" aria-roledescription="email" aria-label="" lang="en">
+        <table style="font-family: Arial, -apple-system, 'Segoe UI', sans-serif; width: 100%;" width="100%"
+            cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td align="center"
+                    style="--bg-opacity: 1; background-color: #eceff1; background-color: rgba(236, 239, 241, 1); font-family: Arial, -apple-system, 'Segoe UI', sans-serif;"
+                    bgcolor="rgba(236, 239, 241, 1)">
+                    <table class="sm-w-full" style="font-family: Arial,sans-serif; width: 735px;" width="600"
+                        cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                            <td align="center" class="sm-px-24" style="font-family: Arial,sans-serif;"
+                                bgcolor="#ffffff">
+                                <table style="font-family: Arial,sans-serif; width: 100%;" width="100%" cellpadding="0"
+                                    cellspacing="0" role="presentation">
+                                    <tr>
+                                        <td class="sm-py-32 sm-px-24"
+                                            style="font-family: Arial, -apple-system, 'Segoe UI', sans-serif; padding: 48px; text-align: center;padding: 30px 48px;"
+                                            align="center">
+                                            <a href="/" target="_blank"><img
+                                                    src="{{file_server}}/mail/header.png"
+                                                    width="250" alt=""
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle;"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" class="sm-px-24"
+                                            style="font-family: Arial,sans-serif;padding: 0px 30px;">
+                                            <table style="font-family: Arial,sans-serif; width: 100%;" width="100%"
+                                                cellpadding="0" cellspacing="0" role="presentation">
+                                                <tr>
+                                                    <td class="sm-px-24"
+                                                        style="--bg-opacity: 1;padding-bottom: 23px;font-family: Arial, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; line-height: 15px; text-align: left; --text-opacity: 1; color: #626262; color: rgba(98, 98, 98, 1);"
+                                                        bgcolor="#ffffff" align="left">
+                                                        <p style="font-weight: 600; font-size: 14px; margin-bottom: 0;">
+                                                            Dear {{entity.first_name}} {{entity.last_name}},</p>
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            We have received your inquiry for a Lost Item(s). 
+                                                            We will respond to your inquiry within 24 hours.
+                                                        </p>
+                                                            Request # {{entity.id}}
+                                                        <p style="margin: 15px 0;text-align: left;"></p>
+                                                            Details: {{entity.detail}}
+                                                        </p>
+                                                        <p>
+                                                            Many Thanks<br>
+                                                            With Best Regards,<br>
+                                                            Route Facile Car Rental - Morocco
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <img src="{{file_server}}/mail/footer.jpg"
+                                                style="max-width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background: #e5e5e5;">
+                                        <td style="padding-top: 15px;">
+                                            <div
+                                                style="font-weight: 600; font-size: 14px; margin-bottom: 0;text-align: center;">
+                                                <a style="text-decoration: none;font-family:arial;font-size:11px;color:#999;margin:0;"
+                                                    href="{{links.terms_and_conditions}}">Terms and Conditions</a>
+                                                |
+                                                <a style="text-decoration: none;font-family:arial;font-size:11px;color:#999;margin:0;"
+                                                    href="{{links.find_a_branch}}">Find a Branch</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background: #e5e5e5; text-align: center;">
+                                        <td
+                                            style="font-family: Arial, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; --text-opacity: 1; color: #eceff1; color: rgba(236, 239, 241, 1);">
+                                            <a href="https://www.facebook.com/routefacilecarrental" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;"><img
+                                                    src="{{links.file_server}}/admin/social/facebook.png" width="18"
+                                                    alt="Facebook"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; "></a>
+                                            <a href="https://www.instagram.com/routefacilecarrental/" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;"><img
+                                                    src="{{links.file_server}}/admin/social/instagram.png" width="18"
+                                                    alt="Instragram"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; "></a>
+                                            <a href="https://twitter.com/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;"><img
+                                                    src="{{links.file_server}}/admin/social/twitter.png" width="18"
+                                                    alt="Twitter"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; "></a>
+                                            <a href="https://www.linkedin.com/company/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;"><img
+                                                    src="{{links.file_server}}/admin/social/linkedin.png" width="18"
+                                                    alt="Linkedin"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; "></a>
+                                            <a href="https://www.youtube.com/@routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;"><img
+                                                    src="{{links.file_server}}/admin/social/youtube.png" width="18"
+                                                    alt="Youtube"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; "></a>
+                                            <p style="text-decoration: none;font-family:arial;font-size:11px;color:#999;margin:0;text-align: center;margin-bottom:8px;margin-top: 8px;">
+                                                Copy rights
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="top" style="padding:10px 0">
+                                <p
+                                    style="font-family:arial;font-size:11px;color:#999;padding:5px 20px;margin:0;text-align:center">
+                                    This email cannot be replied. If you have any further queries and question please <a
+                                        href="{{links.contact_us}}" style="color:#666" rel="noreferrer" target="_blank">Contact
+                                        Us</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1784 @@
+/* Hero Section styles matching carbook demo-1 */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    height: auto; /* Allow height to grow with content */
+    overflow: visible; /* Allow content to be visible */
+    background-color: transparent; /* No fallback - show image */
+}
+
+.hero-section > .container {
+    position: relative;
+    z-index: 100 !important;
+}
+
+/* Ensure container content is visible */
+#home.hero-section .container {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+#home.hero-section .container * {
+    visibility: visible !important;
+}
+
+.hero-section-text {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    padding-top: 64px;
+    padding-bottom: 56px;
+    z-index: 100 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hero section columns - ensure visibility */
+.hero-section-text .row {
+    display: flex;
+    align-items: stretch;
+}
+
+.hero-text-col,
+.hero-form-col {
+    position: relative;
+    z-index: 15;
+    animation: fadeInUp 0.8s ease forwards;
+    display: flex;
+    align-items: stretch;
+    align-self: stretch;
+}
+
+.hero-text-col {
+    animation-delay: 0.3s;
+    padding-top: 0;
+}
+
+.hero-form-col {
+    animation-delay: 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Align hero text box with the form tabs */
+.hero-text-box {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+    flex: 1;
+}
+
+@media (max-width: 991px) {
+    .hero-text-col {
+        padding-top: 0;
+        margin-bottom: 30px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero text card - translucent glass so the banner photo stays visible behind */
+.hero-text-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 24px;
+    padding: 36px 34px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 16px 40px rgba(13, 27, 42, 0.12);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #f2421b, #f2421b 55%, #FFB347);
+}
+
+@media (max-width: 991px) {
+    .hero-text-card {
+        padding: 26px 22px;
+        border-radius: 18px;
+        justify-content: flex-start;
+    }
+}
+
+.hero-text h1 {
+    font-family: var(--common-found);
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 800;
+    color: #0D1B2A !important;
+    margin-bottom: 16px;
+    text-transform: none;
+}
+
+.hero-text h1 .text-orange {
+    color: #f2421b !important;
+}
+
+.hero-text h1 span {
+    color: #0D1B2A !important;
+}
+
+.hero-text h5 {
+    font-family: var(--common-found);
+    font-size: 32px;
+    color: #444 !important;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.hero-subtitle {
+    font-family: var(--theme-found);
+    font-size: 17px;
+    color: #555 !important;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Hero badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FFF4E8, #FFFFFF);
+    border: 1px solid #FFD9B0;
+    border-radius: 30px;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0D1B2A;
+    font-family: var(--common-found);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 138, 0, 0.12);
+}
+
+.hero-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #FF6A00; position: relative; flex: 0 0 auto;
+}
+.hero-badge-dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: #FF6A00; animation: heroBadgePulse 1.8s ease-out infinite;
+}
+@keyframes heroBadgePulse {
+    0% { transform: scale(1); opacity: .6; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+.hero-badge i {
+    color: #f2421b !important;
+    font-size: 14px;
+}
+
+/* Hero features */
+.hero-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.hero-feature-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: #fff3ee;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-feature-icon i {
+    font-size: 20px;
+    color: #f2421b !important;
+}
+
+.hero-feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hero-feature-text strong {
+    font-family: var(--common-found);
+    font-size: 16px;
+    font-weight: 700;
+    color: #0D1B2A;
+}
+
+.hero-feature-text span {
+    font-family: var(--theme-found);
+    font-size: 14px;
+    color: #666;
+}
+
+/* Shadow box behind hero text - removed for new design */
+.hero-text-box {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+/* Make hero text box match form card height */
+.hero-form-col .p-1-- {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Ensure form wrapper matches height */
+.hero-form-col .subscription__tabs.form-tabs {
+    flex-shrink: 0;
+}
+
+.hero-form-col .form {
+    flex: 1;
+}
+
+@media (max-width: 991px) {
+    .hero-text-box {
+        padding: 30px 25px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-text-box {
+        padding: 25px 20px;
+        border-radius: 10px;
+    }
+}
+
+.theme-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.theme-list li {
+    color: #0D1B2A !important;
+    font-family: var(--theme-found);
+    font-size: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.5;
+}
+
+.theme-list li:last-child {
+    margin-bottom: 0;
+}
+
+.theme-list li i,
+ul.theme-list li i,
+.hero-text .theme-list li i {
+    color: #4ade80 !important;
+    margin-right: 12px;
+    font-size: 16px;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+/* Vehicle Type Tabs - Horizontal at top of form */
+.vehicle-type-tabs-wrapper-hero {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0;
+}
+
+.vehicle-type-tabs-hero {
+    display: flex;
+    gap: 0;
+    border: none;
+    width: 100%;
+}
+
+.vehicle-type-tabs-hero .nav-item {
+    margin: 0;
+    flex: 1;
+}
+
+.vehicle-type-tabs-hero .nav-link {
+    background-color: #f5f5f5;
+    color: #666;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: var(--common-found);
+    border-radius: 0 !important;
+}
+
+.vehicle-type-tabs-hero .nav-link i {
+    font-size: 18px;
+}
+
+.vehicle-type-tabs-hero .nav-link.active {
+    background-color: #0D1B2A;
+    color: #fff;
+}
+
+.vehicle-type-tabs-hero .nav-link.active i {
+    color: #fff;
+}
+
+.vehicle-type-tabs-hero .nav-link:not(.active):hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.vehicle-type-tabs-hero .nav-link:not(.active):hover i {
+    color: #333;
+}
+
+.tab-content-hero {
+    margin-top: 0;
+}
+
+/* Tab navigation - matching carbook exactly */
+.tabtwo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.tabtwo.nav {
+    flex-direction: row !important;
+}
+
+.tabtwo .nav-item {
+    display: flex;
+}
+
+.tabtwo .nav-link,
+.tabtwo .nav-item .nav-link {
+    width: 100px;
+    height: 100px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #f0f3f5;
+    font-weight: 500;
+    border-radius: 10px !important;
+    border: 1px solid #a6a6a6;
+    color: #000;
+    font-family: var(--common-found);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tabtwo .nav-link i,
+.tabtwo .nav-item .nav-link i {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000 !important;
+    transition: color 0.3s ease;
+}
+
+/* Non-active tabs: hover state - icon becomes white like text */
+.tabtwo.nav .nav-link:hover:not(.active),
+.tabtwo .nav-item .nav-link:hover:not(.active) {
+    background-color: var(--theme-color);
+    color: #fff;
+    border-color: var(--theme-color);
+}
+
+.tabtwo.nav .nav-link:hover:not(.active) i,
+.tabtwo .nav-item .nav-link:hover:not(.active) i,
+.tabtwo .nav-link:hover:not(.active) i {
+    color: #fff !important;
+}
+
+/* Active tabs: icon is white */
+.tabtwo.nav .nav-link.active,
+.tabtwo .nav-item .nav-link.active,
+.tabtwo .nav-link.active {
+    background-color: var(--theme-color);
+    color: #fff;
+    border-color: var(--theme-color);
+}
+
+.tabtwo.nav .nav-link.active i,
+.tabtwo .nav-item .nav-link.active i,
+.tabtwo .nav-link.active i {
+    color: #fff !important;
+}
+
+/* Active tabs on hover: icon stays white */
+.tabtwo.nav .nav-link.active:hover i,
+.tabtwo .nav-item .nav-link.active:hover i,
+.tabtwo .nav-link.active:hover i {
+    color: #fff !important;
+}
+
+/* Tab content wrapper */
+.tabtwo.nav + .tab-content {
+    margin-top: 30px;
+}
+
+/* Form styles - matching carbook exactly */
+.contact-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 20;
+}
+
+/* Ensure form wrapper is always visible */
+.hero-section .p-1-- {
+    position: relative;
+    z-index: 15;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.hero-section .form {
+    position: relative;
+    z-index: 20;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: #fff;
+}
+
+.hero-section .subscription__tabs {
+    position: relative;
+    z-index: 20;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Force all hero section content to be visible */
+.hero-section .hero-section-text,
+.hero-section .hero-section-text * {
+    visibility: visible !important;
+}
+
+.hero-section .hero-text,
+.hero-section .hero-form-col > * {
+    opacity: 1 !important;
+}
+
+.contact-form .pick-up {
+    margin-bottom: 20px;
+}
+
+.contact-form .pick-up:last-of-type {
+    margin-bottom: 0;
+}
+
+.pick-up {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.pick-up span {
+    display: block;
+    font-family: var(--common-found);
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.form-label-bold {
+    font-weight: bold !important;
+    color: #333 !important;
+}
+
+.pick-up input[type="text"] {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: var(--theme-found);
+    font-size: 16px;
+    color: #333;
+}
+
+.pick-up input[type="text"]:focus {
+    outline: none;
+    border-color: var(--theme-color);
+}
+
+/* React-select styling within pick-up */
+.pick-up > div[class*="react-select"] {
+    width: 100%;
+}
+
+.pick-up div[class*="react-select__control"] {
+    border: 1px solid #ddd !important;
+    border-radius: 10px !important;
+    min-height: 45px !important;
+    height: 45px !important;
+    padding-right: 50px !important;
+}
+
+.pick-up div[class*="react-select__control"]:hover {
+    border-color: var(--theme-color) !important;
+}
+
+.pick-up div[class*="react-select__control--is-focused"] {
+    border-color: var(--theme-color) !important;
+    box-shadow: 0 0 0 1px var(--theme-color) !important;
+}
+
+.pick-up div[class*="react-select__value-container"] {
+    padding: 0 12px !important;
+}
+
+.pick-up div[class*="react-select__input-container"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.pick-up div[class*="react-select__placeholder"] {
+    color: #999 !important;
+    font-family: var(--theme-found) !important;
+    font-size: 14px !important;
+}
+
+.pick-up div[class*="react-select__single-value"] {
+    color: #333 !important;
+    font-family: var(--theme-found) !important;
+    font-size: 14px !important;
+}
+
+.pick-up i {
+    position: absolute;
+    top: 45px;
+    color: #999;
+    z-index: 10;
+}
+
+.pick-up i.flaticon-aim {
+    right: 45px;
+}
+
+.pick-up i.flaticon-search {
+    right: 15px;
+}
+
+/* Location dropdown */
+.location-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.location-dropdown .dropdown-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--theme-found);
+    color: #333;
+    transition: background 0.2s ease;
+}
+
+.location-dropdown .dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #fff;
+}
+
+/* Checkbox styling */
+.contact-form input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.contact-form label[for="location"] {
+    font-family: var(--theme-found);
+    color: #666;
+    cursor: pointer;
+    margin: 0;
+    font-size: 14px;
+}
+
+.datatime {
+    padding-top: 16px;
+    padding-bottom: 24px;
+    margin: 0;
+}
+
+.datatime span {
+    display: block;
+    font-family: var(--common-found);
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.date-from {
+    display: flex;
+    border: 1px solid #a6a6a6;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+}
+
+.date-from input[type="date"],
+.date-from input[type="time"] {
+    padding: 12px 15px;
+    font-family: var(--theme-found);
+    font-size: 14px;
+    color: #333;
+    border: 0 !important;
+    outline: none;
+}
+
+.date-from input[type="date"] {
+    width: 60% !important;
+    background: #fff;
+    padding-right: 40px;
+}
+
+.date-from input[type="time"] {
+    width: 40% !important;
+    background-color: #ededed;
+    border-left: 1px solid #a6a6a6 !important;
+    padding-right: 40px;
+}
+
+.date-from i {
+    position: absolute;
+    color: #999;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.date-from i.flaticon-calendar {
+    right: calc(40% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.date-from i.flaticon-clock {
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.date-from input:focus {
+    outline: none;
+}
+
+.date-from input[type="date"]:focus {
+    background-color: #fff;
+}
+
+.date-from input[type="time"]:focus {
+    background-color: #ededed;
+}
+
+/* Form labels */
+.contact-form > span {
+    display: block;
+    font-family: var(--common-found);
+    font-size: 16px;
+    color: #000;
+    margin: 20px 0 15px 0;
+    font-weight: 500;
+}
+
+.contact-form > span:first-of-type {
+    margin-top: 0;
+}
+
+/* Rental type */
+.rental-type {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0 0 0 9px;
+    margin: 0 0 25px;
+}
+
+.rental-type li {
+    display: flex;
+    align-items: baseline;
+    height: 44px;
+    padding-left: 15px;
+    font-size: 14px;
+    position: relative;
+}
+
+.rental-type input[type="radio"] {
+    width: 0;
+    height: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+
+.rental-type input[type="radio"]:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a6a6a6;
+    border-radius: 0;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: -23px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rental-type input[type="radio"]:checked:after {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: -23px;
+}
+
+.rental-type input[type="radio"]:checked:before {
+    content: '✓';
+    position: absolute;
+    top: 2px;
+    left: -21px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.rental-type label {
+    font-family: var(--theme-found);
+    color: #666;
+    cursor: pointer;
+    margin: 0;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.rental-type input[type="radio"]:checked + label {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Submit button */
+.contact-form .btn {
+    width: 100%;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #f2421b 0%, #da2826 100%) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--common-found);
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(239, 103, 33, 0.35);
+}
+
+.contact-form .btn:before {
+    display: none !important;
+}
+
+.contact-form .btn:hover {
+    background: linear-gradient(135deg, #da2826 0%, #c91e1e 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(239, 103, 33, 0.5);
+    transform: translateY(-2px);
+}
+
+.contact-form .btn:hover:before {
+    display: none !important;
+}
+
+.contact-form .btn span {
+    color: #fff !important;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-form .btn:hover span {
+    color: #fff !important;
+}
+
+.contact-form .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #f2421b 0%, #da2826 100%) !important;
+    color: #fff !important;
+}
+
+.submit-btn-hero span {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Background image container */
+.img-slider {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    min-height: 100vh;
+    z-index: 0 !important;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.img-slider::after {
+    display: none;
+}
+
+/* Full-height overlay for hero section - subtle vignette */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.3) 0%, transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 991px) {
+    .hero-section::before {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Background image div */
+.hero-section .img-div {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hero-section .img-div picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-section .img-div img {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Hero background image - single image that changes via React state */
+.hero-section .img-div .hero-bg-image {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    z-index: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .hero-text h1 {
+        font-size: 38px;
+        line-height: 46px;
+    }
+    
+    .hero-text h5 {
+        font-size: 22px;
+    }
+    
+    .tabtwo.nav-pills .nav-link {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .hero-section-text {
+        padding-top: 56px;
+        padding-bottom: 48px;
+    }
+    
+    .hero-text h1 {
+        font-size: 34px;
+        line-height: 42px;
+    }
+    
+    .hero-text h5 {
+        font-size: 20px;
+    }
+    
+    .contact-form {
+        padding: 25px;
+    }
+    
+    .tabtwo .nav-link,
+    .tabtwo .nav-item .nav-link {
+        width: 85px;
+        height: 85px;
+        padding: 12px;
+    }
+    
+    .tabtwo .nav-link i,
+    .tabtwo .nav-item .nav-link i {
+        font-size: 32px;
+    }
+    
+    .vehicle-type-tabs-hero .nav-link {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-section {
+        min-height: 100vh;
+        padding: 120px 0 50px;
+        height: auto;
+        position: relative;
+        overflow: visible;
+    }
+    
+    /* Ensure background image is visible on mobile */
+    .hero-section .img-slider {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        z-index: 0 !important;
+    }
+    
+    .hero-section .img-div {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+    }
+    
+    .hero-section .img-div picture,
+    .hero-section .img-div img {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+    
+    /* Hero background image on tablet */
+    .hero-section .img-div .hero-bg-image {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+    
+    .hero-section-text {
+        padding-top: 30px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-section-text .row {
+        flex-direction: column;
+    }
+    
+    .hero-section-text .col-lg-5,
+    .hero-section-text .col-lg-7 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    
+    /* Show hero text on mobile but compact */
+    .hero-text-col {
+        display: flex !important;
+        margin-bottom: 25px;
+    }
+    
+    .hero-text {
+        text-align: start;
+        margin-bottom: 30px;
+    }
+    
+    .hero-text h1 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    
+    .hero-text h5 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .theme-list {
+        display: inline-block;
+        text-align: left;
+    }
+    
+    .theme-list li {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .tabtwo.nav-pills {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .tabtwo .nav-link,
+    .tabtwo .nav-item .nav-link {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .contact-form {
+        margin-top: 20px;
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+    
+    .vehicle-type-tabs-hero .nav-link {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .vehicle-type-tabs-hero .nav-link i {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Hide hero text box on mobile */
+    .hero-text-col {
+        display: none !important;
+    }
+    
+    /* Center the form on mobile */
+    .hero-form-col {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    .hero-form-col > div {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .hero-section .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .hero-section-text .row {
+        margin: 0 !important;
+        justify-content: center !important;
+    }
+    
+    .hero-section {
+        padding: 100px 0 40px;
+        min-height: 100vh;
+        position: relative;
+        overflow: visible;
+    }
+    
+    /* Ensure background image covers full section on mobile */
+    .hero-section .img-slider {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        z-index: 0 !important;
+    }
+    
+    .hero-section .img-div {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+    }
+    
+    .hero-section .img-div picture,
+    .hero-section .img-div img {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+    }
+    
+    /* Hero background image on mobile */
+    .hero-section .img-div .hero-bg-image {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+    }
+    
+    .hero-section-text {
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+    
+    .hero-text h1 {
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 12px;
+    }
+    
+    .hero-text h5 {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .theme-list li {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .theme-list li i {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    
+    .tabtwo {
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .tabtwo .nav-link,
+    .tabtwo .nav-item .nav-link {
+        width: 70px;
+        height: 70px;
+        padding: 10px;
+    }
+    
+    .tabtwo .nav-link i,
+    .tabtwo .nav-item .nav-link i {
+        font-size: 26px;
+    }
+    
+    .tabtwo .nav-link span,
+    .tabtwo .nav-item .nav-link span {
+        font-size: 11px;
+    }
+    
+    .contact-form {
+        padding: 20px 15px;
+    }
+    
+    .contact-form .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    .rental-type {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pick-up span {
+        font-size: 14px;
+    }
+    
+    .datatime span {
+        font-size: 14px;
+    }
+    
+    .date-from {
+        flex-direction: column;
+    }
+    
+    .date-from input[type="date"],
+    .date-from input[type="time"] {
+        width: 100% !important;
+        border-radius: 0;
+    }
+    
+    .date-from input[type="time"] {
+        border-left: 0 !important;
+        border-top: 1px solid #a6a6a6 !important;
+    }
+    
+    .date-from i.flaticon-calendar {
+        right: 12px;
+    }
+    
+    .vehicle-type-tabs-hero {
+        flex-wrap: wrap;
+    }
+    
+    .vehicle-type-tabs-hero .nav-item {
+        flex: 1 1 50%;
+    }
+    
+    .vehicle-type-tabs-hero .nav-link {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    
+    .vehicle-type-tabs-hero .nav-link i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 90px 0 30px;
+        min-height: 100vh;
+        overflow: visible;
+    }
+    
+    /* Ensure background stretches on small mobile */
+    .hero-section .img-div img {
+        object-position: center center !important;
+    }
+    
+    /* Hero background image on small mobile */
+    .hero-section .img-div .hero-bg-image {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+    
+    .hero-text h1 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    
+    .hero-text h5 {
+        font-size: 14px;
+    }
+    
+    .theme-list li {
+        font-size: 13px;
+    }
+    
+    .tabtwo .nav-link,
+    .tabtwo .nav-item .nav-link {
+        width: 60px;
+        height: 60px;
+        padding: 8px;
+    }
+    
+    .tabtwo .nav-link i,
+    .tabtwo .nav-item .nav-link i {
+        font-size: 22px;
+    }
+    
+    .tabtwo .nav-link span,
+    .tabtwo .nav-item .nav-link span {
+        font-size: 10px;
+    }
+    
+    .contact-form {
+        padding: 15px 12px;
+    }
+    
+    .contact-form .btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .pick-up span,
+    .datatime span {
+        font-size: 13px;
+    }
+    
+    .rental-type label {
+        font-size: 13px;
+    }
+}
+
+/* RTL Support for Hero Section and Form */
+html[dir="rtl"] .theme-list li i {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+html[dir="rtl"] .pick-up input[type="text"] {
+    padding: 15px 20px 15px 50px;
+    text-align: right;
+}
+
+html[dir="rtl"] .pick-up i {
+    right: auto;
+    left: 15px;
+}
+
+html[dir="rtl"] .pick-up i.flaticon-aim {
+    right: auto;
+    left: 45px;
+}
+
+html[dir="rtl"] .pick-up i.flaticon-search {
+    right: auto;
+    left: 15px;
+}
+
+html[dir="rtl"] .pick-up div[class*="react-select__control"] {
+    padding-right: 12px !important;
+    padding-left: 50px !important;
+}
+
+html[dir="rtl"] .rental-type {
+    padding: 0 9px 0 0;
+}
+
+html[dir="rtl"] .rental-type li {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+html[dir="rtl"] .rental-type input[type="radio"]:after {
+    left: auto;
+    right: -23px;
+}
+
+html[dir="rtl"] .rental-type input[type="radio"]:checked:after {
+    left: auto;
+    right: -23px;
+}
+
+html[dir="rtl"] .rental-type input[type="radio"]:checked:before {
+    left: auto;
+    right: -21px;
+}
+
+html[dir="rtl"] .rental-type label {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+html[dir="rtl"] .contact-form .label-name,
+html[dir="rtl"] .pick-up span {
+    text-align: right;
+}
+
+html[dir="rtl"] .contact-form .row {
+    direction: rtl;
+}
+
+/* ===== RouteFacile hero updates (2026-07) ===== */
+.hero-title {
+  font-weight: 800; color: #0D1B2A; line-height: 1.02; letter-spacing: -0.5px;
+  font-size: clamp(38px, 5vw, 60px);
+  text-shadow: 0 2px 10px rgba(255,255,255,0.55);
+}
+.hero-title .text-orange { color: #FF7A00; }
+.hero-subtitle {
+  color: #10233a; opacity: 1; font-size: clamp(1rem, 1.4vw, 1.2rem);
+  margin-top: 14px; margin-bottom: 0; font-weight: 500; max-width: 34ch;
+  text-align: start;
+  text-shadow: 0 1px 8px rgba(255,255,255,0.6);
+}
+.hero-divider { width: 72px; height: 4px; background: #f2421b; border-radius: 4px; margin: 20px 0 24px; }
+
+.hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 6px; }
+.hero-stat {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #EEF1F5; border-radius: 14px;
+  padding: 14px 16px; box-shadow: 0 4px 14px rgba(13,27,42,.06);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  position: relative; overflow: hidden;
+}
+.hero-stat::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, #f2421b, #f2421b);
+  transform: scaleY(0); transform-origin: top; transition: transform .25s ease;
+}
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(13,27,42,.12);
+  border-color: #FFDCB5;
+}
+.hero-stat:hover::before { transform: scaleY(1); }
+.hero-stat-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex: 0 0 auto; border-radius: 12px;
+  background: linear-gradient(135deg, #FFF1E1, #FFE2C4);
+  color: #FF7A00; transition: transform .25s ease;
+}
+.hero-stat:hover .hero-stat-icon { transform: scale(1.08) rotate(-4deg); }
+.hero-stat-icon i { font-size: 17px; }
+.hero-stat-text { display: flex; flex-direction: column; line-height: 1.2; }
+.hero-stat-text strong { color: #0D1B2A; font-size: 17px; font-weight: 800; }
+.hero-stat-text span { color: #6B7280; font-size: 11.5px; }
+
+@media (max-width: 991px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 400px) {
+  .hero-stats { grid-template-columns: 1fr; }
+}
+
+/* ===== Override carbook theme's large hero top padding (2026-07) ===== */
+.hero-section .hero-section-text {
+  padding-top: 64px;
+  padding-bottom: 56px;
+}
+@media (max-width: 1199px) {
+  .hero-section .hero-section-text { padding-top: 56px; padding-bottom: 48px; }
+}
+@media (max-width: 991px) {
+  .hero-section .hero-section-text { padding-top: 40px; padding-bottom: 36px; }
+}
+
+/* ===== Mobile/tablet: show the background photo through a glass booking card
+   (Blacklane-style overlay) instead of a solid white card — 2026-07 ===== */
+@media (max-width: 991px) {
+  /* The default ::before overlay adds a white wash that mutes the photo on small
+     screens. Clear it so the banner image stays vivid, then lay a gentle dark
+     scrim for card/label contrast. */
+  .hero-section::before { background: transparent !important; }
+
+  .hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(13, 27, 42, 0.06) 0%,
+        rgba(13, 27, 42, 0.22) 45%,
+        rgba(13, 27, 42, 0.50) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Booking tab bar → translucent dark glass (was solid navy #0D1B2A) */
+  .hero-section .subscription__tabs.form-tabs,
+  .hero-section .subscription__tabs.form-tabs.nav.nav-pills {
+    background-color: rgba(13, 27, 42, 0.55) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+
+  /* Booking form body → frosted light glass. The photo tints through the card
+     while the dark field labels and white inputs stay perfectly readable. */
+  .hero-section .form {
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-top: none;
+    box-shadow: 0 22px 55px rgba(13, 27, 42, 0.30);
+  }
+
+  /* A little more of the photo visible above the card */
+  .hero-form-col .p-1-- { margin-top: 18px; }
+}
+
+/* ===== Phones: full Blacklane-style hero — headline over the photo up top,
+   the booking card pushed DOWN as a dark translucent glass panel — 2026-07 ===== */
+@media (max-width: 767px) {
+  /* Stronger scrim so the white headline + glass card read over the photo */
+  .hero-section::after {
+    background: linear-gradient(180deg,
+        rgba(13, 27, 42, 0.28) 0%,
+        rgba(13, 27, 42, 0.20) 30%,
+        rgba(13, 27, 42, 0.42) 70%,
+        rgba(13, 27, 42, 0.62) 100%);
+  }
+
+  /* Bring back a compact headline over the photo (was hidden on phones) */
+  .hero-section .hero-text-col {
+    display: flex !important;
+    margin-bottom: 6px !important;
+  }
+  .hero-section .hero-text-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    padding: 6px 6px 0 !important;
+    text-align: center !important;
+  }
+  .hero-section .hero-text-card::before { display: none !important; } /* top gradient bar */
+  .hero-section .hero-badge,
+  .hero-section .hero-divider,
+  .hero-section .hero-stats { display: none !important; }  /* keep it to just the headline */
+  .hero-section .hero-text { text-align: center !important; margin-bottom: 0 !important; }
+  .hero-section .hero-title {
+    color: #fff !important;
+    font-size: 30px !important;
+    line-height: 1.12 !important;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6) !important;
+    margin-bottom: 8px !important;
+  }
+  /* Vibrant gradient "Morocco" in the headline.
+     text-shadow/decoration cleared so the transparent fill shows no ghost line. */
+  .hero-section .hero-title .text-orange {
+    background: linear-gradient(90deg, #FFB347 0%, #FF7A00 45%, #f2421b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
+  }
+  /* Theme adds a decorative brush-underline PNG (::before) that sits too high and
+     overlaps the word on the smaller mobile headline — hide it on phones. */
+  .hero-section .hero-title .text-orange::before { display: none !important; }
+  /* Keep it minimal on phones — headline only (subtitle trimmed) */
+  .hero-section .hero-subtitle { display: none !important; }
+
+  /* Booking card → modern glassmorphism: warm dark gradient + glowing orange top edge */
+  .hero-section .form {
+    background: linear-gradient(160deg, rgba(19, 31, 49, 0.52) 0%, rgba(28, 22, 30, 0.44) 100%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    backdrop-filter: blur(24px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-top: none !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 0 34px rgba(242, 66, 27, 0.10) !important;
+    position: relative;
+  }
+  /* Glowing orange hairline where the card meets the tabs */
+  .hero-section .subscription__tabs.form-tabs {
+    border-top: 3px solid transparent !important;
+    background-image:
+      linear-gradient(rgba(13, 27, 42, 0.55), rgba(13, 27, 42, 0.55)),
+      linear-gradient(90deg, #FFB347, #FF7A00 45%, #f2421b) !important;
+    background-origin: border-box !important;
+    background-clip: padding-box, border-box !important;
+  }
+
+  /* Labels + helper text → white */
+  .hero-section .form .label-name,
+  .hero-section .form .pick-up span,
+  .hero-section .form .datatime span,
+  .hero-section .form .delivery-collect-text,
+  .hero-section .form label,
+  .hero-section .form .switch-x-text,
+  .hero-section .form .switch-x-toggletext { color: #fff !important; }
+
+  /* Fields (react-select controls + coupon) → translucent, white text */
+  .hero-section .form [class*="-control"],
+  .hero-section .form .form-control {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    box-shadow: none !important;
+    color: #fff !important;
+  }
+  .hero-section .form [class*="-singleValue"],
+  .hero-section .form [class*="-control"] { color: #ffffff !important; }
+  .hero-section .form [class*="-placeholder"],
+  .hero-section .form .form-control::placeholder { color: rgba(255, 255, 255, 0.72) !important; }
+  /* Catchy orange chevrons + focus glow */
+  .hero-section .form [class*="-indicatorContainer"] { color: #FF9A4D !important; }
+  .hero-section .form [class*="-indicatorSeparator"] { background-color: rgba(255, 255, 255, 0.2) !important; }
+  .hero-section .form [class*="-control"]:hover,
+  .hero-section .form .form-control:hover { border-color: rgba(255, 154, 77, 0.55) !important; }
+  .hero-section .form [class*="-control"][class*="--is-focused"],
+  .hero-section .form .form-control:focus,
+  .hero-section .form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #FF7A00 !important;
+    box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.18) !important;
+  }
+  /* Interactive helper links in brand orange */
+  .hero-section .form .delivery-collect-text { color: #FF9A4D !important; font-weight: 600 !important; }
+  /* Opened dropdown menu stays light for readability */
+  .hero-section .form [class*="-menu"] { background-color: #fff !important; }
+  .hero-section .form [class*="-menu"] * { color: #1a2433 !important; }
+
+  /* MUI date/time pickers → translucent, white text + icons */
+  .hero-section .form .MuiInputBase-root {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    border-radius: 10px !important;
+  }
+  .hero-section .form .MuiOutlinedInput-input { color: #fff !important; }
+  .hero-section .form .MuiOutlinedInput-input::placeholder { color: rgba(255, 255, 255, 0.72) !important; opacity: 1; }
+  .hero-section .form .MuiOutlinedInput-notchedOutline { border-color: rgba(255, 255, 255, 0.28) !important; }
+  .hero-section .form .MuiSvgIcon-root,
+  .hero-section .form .MuiInputAdornment-root svg { color: rgba(255, 255, 255, 0.85) !important; }
+}
+
+/* ===== Hero headline: elegant serif (Blacklane look & feel) — 2026-08 ===== */
+.hero-section .hero-title,
+.hero-section .hero-title span,
+.hero-section .hero-title .text-orange {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px !important;
+}
+.hero-section .hero-title { line-height: 1.1; }
+
+/* ===== Mobile hero: banner photo as a TOP BAND (Blacklane), not a full-bleed
+   background behind the card. Photo up top → headline over it → card on dark base. */
+@media (max-width: 767px) {
+  /* Solid dark base so everything below the photo band is clean, not washed photo */
+  .hero-section { background: #0D1B2A !important; }
+
+  /* Constrain the banner photo to a defined band at the very top.
+     Uses #home.hero-section chains to out-specify the theme's ID-based
+     `#home .img-slider { min-height: 100vh !important }` override. */
+  #home.hero-section .img-slider,
+  #home.hero-section .img-slider .img-div {
+    height: 300px !important;
+    min-height: 300px !important;
+    bottom: auto !important;
+  }
+  #home.hero-section .img-slider .img-div picture,
+  #home.hero-section .img-slider .img-div img,
+  #home.hero-section .img-slider .img-div img.hero-bg-image {
+    height: 300px !important;
+    min-height: 300px !important;
+    object-fit: cover !important;
+    object-position: center 35% !important;
+  }
+
+  /* Fade the bottom of the band into the dark base (scrim only over the band) */
+  #home.hero-section::before { background: transparent !important; }
+  #home.hero-section::after {
+    height: 300px !important;
+    bottom: auto !important;
+    top: 0 !important;
+    background: linear-gradient(180deg,
+        rgba(13, 27, 42, 0.05) 0%,
+        rgba(13, 27, 42, 0.18) 45%,
+        rgba(13, 27, 42, 0.78) 85%,
+        #0D1B2A 100%) !important;
+  }
+
+  /* Headline sits over the lower part of the band */
+  .hero-section { padding-top: 120px !important; }
+  .hero-section .hero-text-col { margin-bottom: 22px !important; }
+
+  /* Card now sits on the dark base — make it a solid dark card (not photo-glass) */
+  .hero-section .form {
+    background: linear-gradient(160deg, rgba(28, 40, 58, 0.94), rgba(18, 26, 40, 0.94)) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .hero-section .subscription__tabs.form-tabs {
+    background-image:
+      linear-gradient(rgba(20, 30, 46, 0.96), rgba(20, 30, 46, 0.96)),
+      linear-gradient(90deg, #FFB347, #FF7A00 45%, #f2421b) !important;
+  }
+}

@@ -1,0 +1,16 @@
+.banner-container-banner {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.banner-image-banner {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.banner-image-banner:hover {
+  transform: scale(1.05);
+}

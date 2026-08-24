@@ -1,0 +1,65 @@
+.cancel-blocked-body {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.cancel-blocked-icon {
+  margin-bottom: 1rem;
+}
+
+.cancel-blocked-message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.cancel-blocked-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0;
+}
+
+.cancel-blocked-footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.cancel-blocked-btn {
+  min-width: 140px;
+}
+
+/* Inline eligibility notice shown on booking cards */
+.cancel-unavailable-inline {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #856404;
+}
+
+.cancel-unavailable-inline .cancel-unavailable-text {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.cancel-unavailable-inline .cancel-unavailable-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cancel-unavailable-inline .cancel-unavailable-links span {
+  cursor: pointer;
+  color: #6c505e;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.cancel-unavailable-inline .cancel-unavailable-links span:hover {
+  color: #4a3540;
+}

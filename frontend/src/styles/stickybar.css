@@ -1,0 +1,152 @@
+.sticky-media-bar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.social-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.social-container .social-share-side{
+  width: 50px;
+  height: 45px !important;
+}
+.icons {
+  margin: 0.25rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 10%;
+}
+
+.facebook {
+  background-color: #3b5998;
+  width: 50px;
+  height: 50px;
+}
+
+.twitter {
+  background-color: #00aced;
+  width: 50px;
+  height: 50px;
+}
+.share {
+  background-color: #00aced;
+  width: 50px;
+  height: 50px;
+}
+.linkedin {
+  background-color: #007bb6;
+  width: 50px;
+  height: 50px;
+}
+
+.github {
+  background-color: black;
+  width: 50px;
+  height: 50px;
+}
+
+.reddit {
+  background-color: #ff4301;
+  width: 50px;
+  height: 50px;
+}
+
+/* Only apply white color to icons inside sticky bar */
+.sticky-media-bar i,
+.social-share-container i {
+  color: white !important;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.icon-canter {
+  display: flex;
+  justify-content: center;
+}
+.social-share-container .social-share-side {
+  width: 40px;
+    height: 40px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .social-share-container {
+    position: absolute;
+    left: -25px;
+  }
+  .share {
+    background-color: #00aced;
+    width: 45px;
+    height: 35px;
+  }
+}
+
+/* ===== Floating WhatsApp chat button (all pages) — 2026-08 ===== */
+.rf-whatsapp-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9998;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.rf-whatsapp-fab i { font-size: 32px; line-height: 1; }
+.rf-whatsapp-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6), 0 2px 6px rgba(0, 0, 0, 0.2);
+  color: #fff !important;
+}
+/* Gentle attention pulse */
+.rf-whatsapp-fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  z-index: -1;
+  animation: rfWaPulse 2.2s ease-out infinite;
+}
+@keyframes rfWaPulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  70%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+[dir="rtl"] .rf-whatsapp-fab { right: auto; left: 22px; }
+@media (max-width: 575px) {
+  .rf-whatsapp-fab { width: 48px; height: 48px; right: 14px; bottom: 14px; }
+  .rf-whatsapp-fab i { font-size: 24px; }
+  /* calmer on mobile — the pulse made it read as oversized */
+  .rf-whatsapp-fab::after { animation: none; display: none; }
+}
+
+/* Keep the floating WhatsApp clear of hero/card content on phones (2026-08-09) */
+@media (max-width: 767px) {
+  .rf-whatsapp-fab { width: 44px; height: 44px; right: 10px; bottom: 10px; }
+  .rf-whatsapp-fab i { font-size: 21px; }
+}
+
+/* Desktop: give the floating WhatsApp proper breathing room from both edges */
+@media (min-width: 768px) {
+  .rf-whatsapp-fab { right: 28px; bottom: 28px; }
+}

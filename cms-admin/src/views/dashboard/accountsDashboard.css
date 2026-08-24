@@ -1,0 +1,573 @@
+/* ============================================
+   Accounts Dashboard — Modern & Catchy Styles
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.accounts-dashboard {
+  font-family: 'Inter', 'Wix Madefor Text', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ---- Header ---- */
+.acc-dash-header {
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  margin: -1rem -1rem 1.5rem -1rem;
+  padding: 2rem 2.5rem;
+  border-radius: 0;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.acc-dash-header::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.acc-dash-header::after {
+  content: '';
+  position: absolute;
+  bottom: -70%;
+  left: -8%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.acc-header-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.acc-dash-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.25px;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.acc-dash-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.acc-refresh-btn {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  color: #fff !important;
+  border-radius: 50px;
+  padding: 0.4rem 1.25rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.acc-refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* ---- Filter Card ---- */
+.acc-filter-card {
+  border: none !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 2px 12px rgba(30, 58, 95, 0.08);
+}
+
+/* ---- KPI Cards ---- */
+.acc-kpi-card {
+  border: none !important;
+  border-radius: 1rem !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  height: 100%;
+  min-height: 176px;
+  display: flex;
+}
+
+.acc-kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.acc-kpi-card .card-body {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.acc-kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0.08;
+  transform: translate(30px, -30px);
+}
+
+.acc-kpi-bookings {
+  background: linear-gradient(135deg, #0a1628, #1e3a5f);
+  color: #fff;
+}
+.acc-kpi-bookings::after { background: #fff; }
+.acc-kpi-bookings .acc-kpi-icon { background: rgba(255,255,255,0.2); }
+
+.acc-kpi-revenue {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+}
+.acc-kpi-revenue::after { background: #fff; }
+.acc-kpi-revenue .acc-kpi-icon { background: rgba(255,255,255,0.2); }
+
+.acc-kpi-incomplete {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #fff;
+}
+.acc-kpi-incomplete::after { background: #fff; }
+.acc-kpi-incomplete .acc-kpi-icon { background: rgba(255,255,255,0.2); }
+
+.acc-kpi-refunds {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: #fff;
+}
+.acc-kpi-refunds::after { background: #fff; }
+.acc-kpi-refunds .acc-kpi-icon { background: rgba(255,255,255,0.2); }
+
+.acc-kpi-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.acc-kpi-content {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 86px;
+  /* A flex item defaults to min-width:auto, so this column refused to shrink
+     below its content. Combined with `white-space: nowrap` on the value and
+     `overflow: hidden` on the card, a long figure like "MAD 30,700" was simply
+     cut off at the card edge instead of fitting. */
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.acc-kpi-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  line-height: 1.25;
+  min-height: 40px;
+}
+
+.acc-kpi-value {
+  /* Scales with the card instead of a fixed 1.75rem, so a six-figure revenue
+     figure shrinks to fit rather than being clipped. The floor keeps it
+     readable on narrow columns. */
+  font-size: clamp(1.15rem, 1.05rem + 0.9vw, 1.75rem);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  /* Last-resort guard: if a figure is still too wide (an unexpected currency
+     prefix, a very long locale format), show an ellipsis rather than silently
+     truncating mid-digit — a half-shown number is worse than an obvious one. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Mini Stat Cards ---- */
+.acc-mini-card {
+  border: none !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.acc-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.acc-mini-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bg-success-soft { background: rgba(16, 185, 129, 0.1); }
+.bg-warning-soft { background: rgba(245, 158, 11, 0.1); }
+.bg-primary-soft { background: rgba(30, 58, 95, 0.1); }
+.bg-danger-soft { background: rgba(239, 68, 68, 0.1); }
+
+.acc-mini-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #8486a7;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.acc-mini-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #323a46;
+}
+
+/* ---- Chart Cards ---- */
+.acc-chart-card {
+  border: none !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.acc-chart-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.acc-chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323a46;
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 768px) {
+  .acc-dash-header {
+    margin: -0.5rem -0.5rem 1rem -0.5rem;
+    padding: 1.25rem 1rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .acc-dash-title {
+    font-size: 1.25rem;
+  }
+
+  .acc-kpi-value {
+    /* Narrow screens: same shrink-to-fit behaviour, lower ceiling. A flat
+       1.35rem here would reintroduce the clipping the clamp above solves. */
+    font-size: clamp(1.05rem, 0.9rem + 1.4vw, 1.35rem);
+  }
+
+  .acc-kpi-card .card-body {
+    padding: 1rem;
+  }
+
+  .acc-kpi-card {
+    min-height: 148px;
+  }
+
+  .acc-kpi-content {
+    min-height: 74px;
+  }
+
+  .acc-kpi-label {
+    min-height: 34px;
+  }
+}
+
+/* ---- Animation for card entry ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.acc-kpi-card,
+.acc-mini-card,
+.acc-chart-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.acc-kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.acc-kpi-card:nth-child(2) { animation-delay: 0.1s; }
+.acc-kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.acc-kpi-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* =============================================
+   Navy Blue Sidebar for Accounts Role
+   ============================================= */
+.accounts-sidebar.sidebar {
+  --sidebar-bg: #0F172A !important;
+  --sidebar-item-color: rgba(255, 255, 255, 0.7) !important;
+  --sidebar-item-hover-color: #ffffff !important;
+  --sidebar-item-hover-bg: #1E293B !important;
+  --sidebar-item-active-color: #ffffff !important;
+  --sidebar-border-color: rgba(255, 255, 255, 0.06) !important;
+  --cui-sidebar-nav-link-active-color: #ffffff !important;
+  --cui-sidebar-nav-link-active-bg: #2563EB !important;
+  --cui-sidebar-nav-link-active-icon-color: #ffffff !important;
+  --cui-tertiary-bg: #2563EB !important;
+  background: #0F172A !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.accounts-sidebar .sidebar-header {
+  background: #0B1120 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  height: auto !important;
+  min-height: 80px !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+.accounts-sidebar .sidebar-brand,
+.accounts-sidebar .sidebar-brand-full,
+.accounts-sidebar .sidebar-brand-narrow {
+  color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-brand {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+.accounts-sidebar .sidebar-brand img,
+.accounts-sidebar .sidebar-brand-full img {
+  max-height: none !important;
+  height: auto !important;
+  width: 190px !important;
+  display: block !important;
+}
+
+/* --- Nav links inside accounts sidebar --- */
+.accounts-sidebar .sidebar-nav .nav-link {
+  color: #ffffff !important;
+  background: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-link .nav-icon {
+  color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-link:hover {
+  color: #ffffff !important;
+  background: #1E293B !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-link:hover .nav-icon {
+  color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-link.active {
+  color: #ffffff !important;
+  background: #2563EB !important;
+  border-left-color: #2563EB !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-link.active .nav-icon {
+  color: #ffffff !important;
+}
+
+/* --- Nav group toggle --- */
+.accounts-sidebar .sidebar-nav .nav-group-toggle {
+  color: #ffffff !important;
+  background: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-toggle .nav-icon {
+  color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-toggle:hover {
+  color: #ffffff !important;
+  background: #1E293B !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-toggle:hover .nav-icon {
+  color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-toggle::after {
+  filter: brightness(10) !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group.show > .nav-group-toggle {
+  color: #ffffff !important;
+  background: #1E293B !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group.show > .nav-group-toggle .nav-icon {
+  color: #60a5fa !important;
+}
+
+/* --- Submenu items --- */
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: transparent !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link::before {
+  background-color: #ffffff !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link:hover {
+  color: #ffffff !important;
+  background: #1E293B !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link:hover::before {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link.active {
+  color: #ffffff !important;
+  background: rgba(37, 99, 235, 0.15) !important;
+}
+
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link.active::before {
+  background-color: #2563eb !important;
+  opacity: 1 !important;
+}
+
+/* --- Footer / Toggler --- */
+.accounts-sidebar .sidebar-footer {
+  background: #0B1120 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.accounts-sidebar .sidebar-toggler {
+  background: #0B1120 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.accounts-sidebar .sidebar-toggler:hover {
+  color: #ffffff !important;
+  background: #1E293B !important;
+}
+
+/* =============================================
+   Navy Header Bar for Accounts Role
+   ============================================= */
+/* Header reverted to default light theme for all roles */
+
+/* ============================================================
+   RouteFacile dashboard theme (navy + orange) — 2026-07 enhancement
+   Layered over the base rules above; brand colors + extra polish.
+   ============================================================ */
+.accounts-dashboard {
+  background:
+    radial-gradient(1200px 400px at 80% -10%, #eef2f7 0%, transparent 60%),
+    linear-gradient(135deg, #f4f7fb 0%, #e9eef5 100%);
+}
+
+/* ---- Header: navy gradient + orange accent ---- */
+.acc-dash-header {
+  background: linear-gradient(120deg, #0D1B2A 0%, #14273e 55%, #1c3c5e 100%);
+  border-bottom: 3px solid #da2826;
+  box-shadow: 0 10px 30px rgba(13, 27, 42, 0.25);
+}
+.acc-dash-header::before { background: radial-gradient(circle, rgba(255, 138, 0, 0.28) 0%, transparent 68%); }
+.acc-dash-header::after  { background: radial-gradient(circle, rgba(37, 99, 235, 0.16) 0%, transparent 70%); }
+.acc-header-icon-wrap {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 138, 0, 0.92), rgba(255, 138, 0, 0.55));
+  box-shadow: 0 8px 20px rgba(255, 138, 0, 0.35);
+  backdrop-filter: none;
+}
+.acc-dash-title { font-size: 1.6rem; font-weight: 800; }
+.acc-refresh-btn:hover { background: #da2826 !important; border-color: #da2826 !important; }
+
+/* ---- KPI cards: gloss + brand palette + colored glow ---- */
+.acc-kpi-card { border-radius: 18px !important; }
+.acc-kpi-card::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 46%);
+}
+.acc-kpi-card::after {
+  width: 150px; height: 150px; opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.10) !important; transform: translate(30px, -30px);
+}
+.acc-kpi-bookings   { background: linear-gradient(135deg, #0D1B2A, #1e3a5f); box-shadow: 0 14px 30px rgba(13, 27, 42, 0.32); }
+.acc-kpi-revenue    { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 14px 30px rgba(5, 150, 105, 0.30); }
+.acc-kpi-incomplete { background: linear-gradient(135deg, #f59e0b, #da2826); box-shadow: 0 14px 30px rgba(255, 138, 0, 0.32); }
+.acc-kpi-refunds    { background: linear-gradient(135deg, #dc2626, #ef4444); box-shadow: 0 14px 30px rgba(220, 38, 38, 0.30); }
+.acc-kpi-card:hover { transform: translateY(-5px); }
+.acc-kpi-card:hover.acc-kpi-bookings   { box-shadow: 0 22px 46px rgba(13, 27, 42, 0.42); }
+.acc-kpi-card:hover.acc-kpi-revenue    { box-shadow: 0 22px 46px rgba(5, 150, 105, 0.40); }
+.acc-kpi-card:hover.acc-kpi-incomplete { box-shadow: 0 22px 46px rgba(255, 138, 0, 0.42); }
+.acc-kpi-card:hover.acc-kpi-refunds    { box-shadow: 0 22px 46px rgba(220, 38, 38, 0.40); }
+.acc-kpi-icon { width: 58px; height: 58px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25); }
+.acc-kpi-value { font-size: 2rem; }
+
+/* ---- Mini cards: brand left-accent (via icon soft class) ---- */
+.acc-mini-card { border-radius: 16px !important; position: relative; overflow: hidden; }
+.acc-mini-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #cbd5e1; }
+.acc-mini-card:has(.bg-success-soft)::before { background: #10b981; }
+.acc-mini-card:has(.bg-warning-soft)::before { background: #da2826; }
+.acc-mini-card:has(.bg-primary-soft)::before { background: #0D1B2A; }
+.acc-mini-card:has(.bg-danger-soft)::before  { background: #ef4444; }
+.acc-mini-card .bg-warning-soft { background: rgba(255, 138, 0, 0.12); color: #da2826; }
+.acc-mini-card .bg-primary-soft { background: rgba(13, 27, 42, 0.10); color: #0D1B2A; }
+.acc-mini-value { font-weight: 800; color: #1f2d3d; }
+
+/* ---- Chart title: orange accent bar ---- */
+.acc-chart-title { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; }
+.acc-chart-title::before { content: ''; width: 5px; height: 20px; border-radius: 3px; background: #da2826; display: inline-block; }
+
+/* ---- Sidebar active state -> brand orange ---- */
+.accounts-sidebar.sidebar {
+  --cui-sidebar-nav-link-active-bg: #da2826 !important;
+  --cui-tertiary-bg: #da2826 !important;
+}
+.accounts-sidebar .sidebar-nav .nav-link.active { background: #da2826 !important; border-left-color: #da2826 !important; }
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link.active { background: rgba(255, 138, 0, 0.16) !important; }
+.accounts-sidebar .sidebar-nav .nav-group-items .nav-link.active::before { background-color: #da2826 !important; }
+.accounts-sidebar .sidebar-nav .nav-group.show > .nav-group-toggle .nav-icon { color: #da2826 !important; }

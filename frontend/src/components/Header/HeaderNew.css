@@ -1,0 +1,1399 @@
+/* Header styles matching carbook demo-1 */
+header {
+    position: absolute;
+    z-index: 999999 !important;
+    width: 100%;
+    max-width: 100vw;
+    top: 0;
+    transition: all 0.3s ease;
+    overflow: visible !important;
+}
+
+
+header.sticky {
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease;
+    z-index: 999999 !important;
+    overflow: visible !important;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.main-top-bar {
+    background-color: rgb(27, 54, 93);
+    padding-top: 4px;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+    clear: both;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 40px;
+}
+
+.top-bar p {
+    color: #fff;
+    font-family: var(--common-found);
+    margin: 0;
+}
+
+.help-number {
+    display: flex;
+    gap: 50px;
+}
+
+.help-number h6 {
+    color: #fff;
+    font-family: var(--common-found);
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+}
+
+.help-number a {
+    color: #fff;
+    font-family: var(--common-found);
+    text-decoration: none;
+}
+
+.help-number i {
+    padding-right: 6px;
+    padding-left: 0;
+    font-size: 20px;
+    transform: translateY(4px);
+    display: inline-block;
+}
+
+/* RTL support for help-number icon spacing */
+html[dir="rtl"] .help-number i {
+    padding-right: 0;
+    padding-left: 6px;
+}
+
+.header-top-bar {
+    background-color: #fff !important;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 999999;
+    overflow: visible !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+header.sticky .header-top-bar {
+    background-color: #fff;
+    overflow: visible !important;
+}
+
+.header-top-bar .container,
+.header-top-bar .container-fluid {
+    overflow: visible !important;
+}
+
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+    z-index: 999999;
+    overflow: visible !important;
+}
+
+.bottom-bar .container,
+.bottom-bar .container-fluid {
+    overflow: visible !important;
+}
+
+.logo img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+nav {
+    margin-left: 120px;
+}
+
+html[dir="rtl"] nav {
+    margin-left: 0;
+    margin-right: 120px;
+}
+
+nav ul {
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 0 15px;
+}
+
+nav ul li a {
+    color: #1B365D !important;
+    font-family: var(--common-found);
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+header.sticky nav ul li a {
+    color: #1B365D;
+}
+
+nav ul li a:hover,
+nav ul li a.nav__active {
+    color: #f2421b !important;
+}
+
+.bottom-bar nav ul li a:hover,
+.bottom-bar nav ul li a.nav__active {
+    color: #f2421b !important;
+}
+
+header.sticky nav ul li a:hover,
+header.sticky nav ul li a.nav__active {
+    color: #f2421b !important;
+}
+
+header.sticky .bottom-bar nav ul li a:hover,
+header.sticky .bottom-bar nav ul li a.nav__active {
+    color: #f2421b !important;
+}
+
+/* Keep nav links on single line */
+nav ul li a {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* New badge for nav items */
+.nav-badge-new {
+    display: inline-block;
+    background: linear-gradient(135deg, #f2421b, #da2826);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 8px;
+    margin-left: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+html[dir="rtl"] .nav-badge-new {
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+/* Partners dropdown menu */
+.nav-dropdown-parent {
+    position: relative;
+}
+
+.nav-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #1B365D !important;
+}
+
+.nav-dropdown-trigger i {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown-trigger i.rotated {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 160px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 99999999999 !important;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-dropdown.show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.nav-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    color: #333 !important;
+    text-decoration: none;
+    font-family: var(--common-found);
+    font-size: 14px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nav-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: #f2421b !important;
+}
+
+.nav-dropdown a.nav__active {
+    color: #f2421b !important;
+    background-color: #fff5f0;
+}
+
+.nav-dropdown .nav-badge-new {
+    margin-left: 8px;
+}
+
+html[dir="rtl"] .nav-dropdown {
+    left: auto;
+    right: 50%;
+    transform: translateX(50%);
+    top: calc(100% + 10px);
+    bottom: auto;
+}
+
+html[dir="rtl"] .nav-dropdown .nav-badge-new {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+/* Google Rating Styles */
+.google-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #333 !important;
+    transition: all 0.3s ease;
+}
+
+.google-rating span {
+    color: #333 !important;
+}
+
+header.sticky .google-rating {
+    background-color: #f5f5f5;
+    color: #333 !important;
+}
+
+header.sticky .google-rating span {
+    color: #333 !important;
+}
+
+.google-rating:hover {
+    background-color: #e8e8e8;
+}
+
+header.sticky .google-rating:hover {
+    background-color: #e8e8e8;
+}
+
+.google-rating svg {
+    flex-shrink: 0;
+}
+
+.google-rating a {
+    color: #4285F4;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.google-rating a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .google-rating {
+        display: none;
+    }
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 999999;
+}
+
+.login > a,
+.login .language-selector > a {
+    color: #1B365D !important;
+    text-decoration: none;
+}
+
+header.sticky .login > a,
+header.sticky .login .language-selector > a {
+    color: #1B365D !important;
+}
+
+.login i {
+    padding-right: 12px;
+    padding-left: 0;
+    font-size: 22px;
+    transform: translateY(4px);
+    display: inline-block;
+}
+
+/* RTL support for login icon spacing */
+html[dir="rtl"] .login i {
+    padding-right: 0;
+    padding-left: 12px;
+}
+
+.login a.register {
+    background-color: #f0f2f5;
+    padding: 12px 14px;
+    display: flex;
+    color: #1B365D;
+    border-radius: 62px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #dde1e8;
+}
+
+.login a.register i {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 22px;
+    transform: translateY(0);
+    color: #1B365D;
+    transition: color 0.3s ease;
+}
+
+header.sticky .login a.register {
+    background-color: var(--theme-color);
+    color: #fff;
+}
+
+.login a.register:hover {
+    background-color: transparent;
+    color: #f2421b !important;
+}
+
+.login a.register:hover i {
+    color: #f2421b !important;
+}
+
+.login a.register:hover span {
+    color: #f2421b !important;
+}
+
+.login a.register:hover span i {
+    color: #f2421b !important;
+}
+
+header.sticky .login a.register:hover {
+    background-color: transparent;
+    color: #f2421b !important;
+}
+
+header.sticky .login a.register:hover i {
+    color: #f2421b !important;
+}
+
+.login a.register span {
+    display: flex;
+    align-items: center;
+}
+
+/* Language dropdown */
+.language-selector {
+    position: relative;
+    z-index: 999999;
+}
+
+.language-selector > a {
+    position: relative;
+    z-index: 999999;
+}
+
+.language-dropdown {
+    position: absolute !important;
+    top: calc(100% + 5px) !important;
+    bottom: auto !important;
+    left: 0 !important;
+    background-color: #fff !important;
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 120px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: none !important;
+    z-index: 99999999999 !important;
+    margin-top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.language-selector:hover .language-dropdown,
+.language-selector:focus-within .language-dropdown,
+.language-selector.active .language-dropdown,
+.language-dropdown.show {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+}
+
+html[dir="rtl"] .language-dropdown {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.language-dropdown a {
+    display: block;
+    padding: 8px 20px;
+    color: #000;
+    text-decoration: none;
+    font-family: var(--theme-found);
+    transition: all 0.3s ease;
+}
+
+.language-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: var(--theme-color);
+}
+
+/* User menu dropdown */
+.user-menu {
+    position: relative;
+    z-index: 999999;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    bottom: auto;
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 180px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 99999999999 !important;
+    margin-top: 0;
+}
+
+.user-menu:hover .user-dropdown,
+.user-menu:focus-within .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: #000;
+    text-decoration: none;
+    font-family: var(--theme-found);
+    transition: all 0.3s ease;
+}
+
+.user-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: var(--theme-color);
+}
+
+.user-dropdown i {
+    margin-right: 12px;
+    font-size: 16px;
+    width: 18px;
+    text-align: center;
+    color: #1B365D !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+    transform: none !important;
+}
+
+.user-dropdown a i {
+    color: #1B365D !important;
+}
+
+.user-dropdown a:hover i {
+    color: #1B365D !important;
+}
+
+/* User name spacing in header */
+.user-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-name-wrapper i {
+    font-size: 18px;
+}
+
+.user-name-text {
+    white-space: nowrap;
+}
+
+/* Mobile menu toggle button (hamburger) */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    order: 3;
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: #0D1B2A;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+header:not(.sticky) .mobile-menu-toggle span {
+    background-color: #0D1B2A;
+}
+
+header.sticky .mobile-menu-toggle span {
+    background-color: #0D1B2A;
+}
+
+/* Hamburger animation when active */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+    header {
+        overflow: visible !important;
+        max-width: 100vw;
+    }
+    
+    .header-top-bar {
+        overflow: visible !important;
+    }
+    
+    .header-top-bar .container {
+        overflow: visible !important;
+        position: relative;
+    }
+    
+    .bottom-bar {
+        flex-wrap: wrap;
+        position: static;
+        overflow: visible !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    nav {
+        display: none !important;
+        position: fixed !important;
+        top: 80px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: #fff !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        padding: 20px !important;
+        z-index: 999998 !important;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        margin-left: 0 !important;
+    }
+    
+    nav.mobile-nav-open {
+        display: block !important;
+    }
+    
+    nav ul {
+        flex-direction: column !important;
+        gap: 0 !important;
+        display: flex !important;
+    }
+    
+    nav ul li {
+        border-bottom: 1px solid #eee;
+        width: 100%;
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav ul li a,
+    nav ul li .nav-dropdown-trigger {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 15px 10px !important;
+        color: #333 !important;
+        font-size: 16px !important;
+        font-family: "Source Sans Pro", sans-serif !important;
+        font-weight: 400 !important;
+    }
+    
+    nav ul li .nav-dropdown-trigger i {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+    
+    nav ul li .nav-dropdown-trigger i.rotated {
+        transform: rotate(180deg);
+    }
+    
+    .nav-dropdown {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        box-shadow: none !important;
+        background: #f8f9fa !important;
+        padding: 0 15px !important;
+        width: 100% !important;
+        transform: none !important;
+        visibility: hidden;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .nav-dropdown.show {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        max-height: 500px !important;
+        overflow: visible !important;
+    }
+    
+    .nav-dropdown a {
+        display: block !important;
+        padding: 12px 15px !important;
+        border-bottom: 1px solid #eee;
+        font-family: "Source Sans Pro", sans-serif !important;
+        font-weight: 400 !important;
+        color: #333 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .nav-dropdown a:last-child {
+        border-bottom: none;
+    }
+    
+    .logo {
+        order: 1;
+        flex: 1;
+    }
+    
+    .login {
+        order: 2;
+        gap: 10px;
+    }
+    
+    .mobile-menu-toggle {
+        order: 3;
+        margin-left: 15px !important;
+    }
+}
+
+/* Sticky header mobile nav adjustment */
+@media (max-width: 991px) {
+    header.sticky nav {
+        top: 70px !important;
+    }
+}
+
+/* Mobile Language Selector - Hidden on desktop */
+.mobile-language-selector {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    /* Hide original language selector on mobile */
+    .login .language-selector {
+        display: none !important;
+    }
+    
+    /* Show and style mobile language selector inside menu */
+    .mobile-language-selector {
+        display: block !important;
+        padding: 20px 15px !important;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+    }
+    
+    .mobile-language-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-family: "Source Sans Pro", sans-serif;
+    }
+
+    .mobile-language-title i {
+        font-size: 18px;
+        color: #f2421b;
+    }
+
+    .mobile-language-options {
+        display: flex;
+        gap: 10px;
+    }
+
+    .mobile-language-options button {
+        flex: 1;
+        padding: 12px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        background: transparent;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Source Sans Pro", sans-serif;
+    }
+
+    .mobile-language-options button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .mobile-language-options button.active {
+        background: #f2421b;
+        border-color: #f2421b;
+        color: #fff;
+    }
+}
+
+/* =====================================================================
+   RouteFacile header redesign (2026-07) — overrides legacy header rules
+   ===================================================================== */
+:root {
+  --rf-orange: #f2421b;
+  /* Same brand hue, darkened just enough to clear WCAG AA (4.5:1) against a
+   * white background — the brand orange only reaches 3.77:1, which fails for
+   * text below 24px. Use this for small text on light backgrounds; keep
+   * --rf-orange for fills, large display text, and text on the navy bar, where
+   * darkening would REDUCE contrast (4.61:1 -> 3.83:1 on --rf-navy). */
+  --rf-orange-ink: #da3b18;
+  --rf-navy: #0D1B2A;
+  --rf-light: #F2F4F7;
+  --rf-muted: #6B7280;
+  --rf-border: #E5E7EB;
+}
+
+.rf-header {
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(13, 27, 42, 0.06), 0 6px 24px rgba(13, 27, 42, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+.rf-header .header-top-bar { background: #fff; padding: 0; }
+.rf-header .bottom-bar.rf-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 88px !important;
+  padding: 12px 0 !important;
+}
+
+.rf-logo img {
+  width: 200px !important;
+  height: auto !important;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* --- Logo --- */
+.rf-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; outline: none; }
+.rf-logo:hover { text-decoration: none; }
+.rf-logo:focus-visible { outline: 2px solid #f2421b; outline-offset: 4px; border-radius: 6px; }
+.rf-monogram { height: 40px; width: auto; display: block; }
+.rf-logo-text { display: flex; flex-direction: column; line-height: 1; }
+.rf-logo-title {
+  color: var(--rf-navy);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+.rf-logo-sub {
+  color: var(--rf-muted);
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  margin-top: 3px;
+}
+
+/* --- Primary nav --- */
+.rf-header .rf-nav {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.rf-header .rf-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rf-header .rf-nav li { margin: 0; }
+.rf-header .rf-nav a {
+  position: relative;
+  color: var(--rf-navy);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 0;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+.rf-header .rf-nav a:hover { color: var(--rf-orange); }
+.rf-header .rf-nav a.nav__active { color: var(--rf-orange); }
+.rf-header .rf-nav a.nav__active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--rf-orange);
+}
+
+/* --- Right actions --- */
+.rf-actions { display: flex; align-items: center; gap: 10px; }
+
+/* On mid-range screens (992–1280) hide button labels to save space */
+@media (min-width: 992px) and (max-width: 1280px) {
+  .rf-call-btn span,
+  .rf-whatsapp-btn span { display: none; }
+  .rf-call-btn,
+  .rf-whatsapp-btn { padding: 10px 13px; }
+  .rf-header .rf-nav ul { gap: 14px; }
+  .rf-lang-trigger { padding: 9px 10px; }
+}
+
+/* Language pill */
+.rf-lang { position: relative; }
+.rf-lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--rf-border);
+  border-radius: 10px;
+  padding: 9px 14px;
+  color: var(--rf-navy);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.rf-lang-trigger:hover { border-color: #d1d5db; box-shadow: 0 2px 8px rgba(13,27,42,0.06); }
+.rf-lang-trigger .fa-globe { color: var(--rf-navy); }
+.rf-caret { font-size: 11px; color: var(--rf-muted); transition: transform 0.15s ease; }
+.rf-caret.open { transform: rotate(180deg); }
+.rf-lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid var(--rf-border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(13,27,42,0.12);
+  padding: 6px;
+  display: none;
+  z-index: 1100;
+}
+.rf-lang-menu.show { display: block; }
+.rf-lang-menu a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 7px;
+  color: var(--rf-navy);
+  font-size: 14px;
+  text-decoration: none;
+}
+.rf-lang-menu a:hover { background: var(--rf-light); color: var(--rf-orange); }
+
+/* Account icon (only when logged in) */
+.rf-account { position: relative; }
+.rf-account-trigger {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px;
+  border: 1px solid var(--rf-border);
+  border-radius: 10px;
+  color: var(--rf-navy);
+  text-decoration: none;
+}
+.rf-account-trigger:hover { border-color: var(--rf-orange); color: var(--rf-orange); }
+
+/* Call Us button */
+.rf-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1.6px solid var(--rf-orange);
+  /* 14px label on the white header bar — needs the AA-safe orange. */
+  color: var(--rf-orange-ink);
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.rf-call-btn:hover { background: var(--rf-orange); color: #fff; }
+
+/* WhatsApp button */
+.rf-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1.6px solid #25D366;
+  color: #25D366;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.rf-whatsapp-btn i { font-size: 18px; }
+.rf-whatsapp-btn:hover { background: #25D366; color: #fff; }
+
+/* Hide hamburger on desktop */
+.rf-header .mobile-menu-toggle { display: none; }
+
+/* --- Responsive --- */
+@media (max-width: 991px) {
+  .rf-header .mobile-menu-toggle {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 42px; height: 42px; background: none; border: 0; cursor: pointer; padding: 8px;
+    order: 3;
+  }
+  .rf-header .mobile-menu-toggle span {
+    display: block; height: 2px; width: 100%; background: var(--rf-navy); border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .rf-header .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .rf-header .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .rf-header .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .rf-header .rf-nav {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: #fff;
+    box-shadow: 0 12px 24px rgba(13,27,42,0.10);
+    max-height: 0; overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .rf-header .rf-nav.mobile-nav-open { max-height: 80vh; overflow: auto; }
+  .rf-header .rf-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 16px; }
+  .rf-header .rf-nav li { border-bottom: 1px solid var(--rf-light); }
+  .rf-header .rf-nav a { display: block; padding: 14px 0; }
+  .rf-header .rf-nav a.nav__active::after { display: none; }
+  .rf-call-btn span { display: none; }
+  .rf-call-btn { padding: 10px 13px; }
+  .rf-whatsapp-btn span { display: none; }
+  .rf-whatsapp-btn { padding: 10px 13px; }
+}
+@media (min-width: 992px) {
+  .rf-header .mobile-language-selector { display: none; }
+}
+
+/* ── Mobile: shrink logo, hide desktop lang pill, tighten actions ──── */
+@media (max-width: 991px) {
+  .rf-logo img { width: 140px !important; }
+  .rf-header .bottom-bar.rf-bar { gap: 10px; }
+  /* language selector is already inside mobile menu — hide the pill */
+  .rf-header .rf-lang { display: none; }
+  .rf-actions { gap: 8px; }
+}
+@media (max-width: 575px) {
+  .rf-logo img { width: 120px !important; }
+}
+
+/* ── Mobile header polish: show phone + WhatsApp as square icon buttons,
+   grouped on the right next to the hamburger — 2026-07 ── */
+@media (max-width: 991px) {
+  /* Push the logo left so the actions + hamburger group tightly on the right */
+  .rf-header .bottom-bar.rf-bar { justify-content: flex-start; gap: 8px; }
+  .rf-header .rf-logo { margin-right: auto; }
+  /* Drop the hamburger's left margin so it sits tight with the phone/WhatsApp group */
+  .rf-header .mobile-menu-toggle { margin-left: 0 !important; }
+
+  /* Uniform 42×42 icon buttons (match the hamburger) */
+  .rf-call-btn,
+  .rf-whatsapp-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0 !important;
+    justify-content: center;
+    border-radius: 10px;
+    flex: 0 0 auto;
+  }
+  .rf-call-btn span,
+  .rf-whatsapp-btn span { display: none; }
+  .rf-call-btn i,
+  .rf-whatsapp-btn i { font-size: 18px; }
+
+  .rf-actions { gap: 8px; }
+}
+
+/* ============================================================================
+   RouteFacile DARK header (2026-08) — dark-navy bar, white logo, orange accents,
+   Booking-on-WhatsApp block, Call Us, Login/Register. Matches the Marrakech
+   hero mockup. Appended last so it overrides the earlier light-theme rules.
+   ============================================================================ */
+.rf-header .header-top-bar {
+  background: var(--rf-navy) !important;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.25);
+}
+.rf-header.sticky .header-top-bar { background: var(--rf-navy) !important; }
+
+/* Nav links → white, active = orange with underline */
+.rf-header .rf-nav a {
+  color: #E8ECF1 !important;
+  font-weight: 600;
+}
+.rf-header .rf-nav a:hover { color: var(--rf-orange) !important; }
+.rf-header .rf-nav a.nav__active { color: var(--rf-orange) !important; }
+.rf-header .rf-nav a.nav__active::after { background: var(--rf-orange) !important; }
+
+/* ── Booking on WhatsApp block (desktop) ── */
+.rf-book-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; padding: 4px 6px;
+}
+.rf-book-wa-ico {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 20px; flex: 0 0 auto;
+}
+.rf-book-wa-text { display: flex; flex-direction: column; line-height: 1.15; }
+.rf-book-wa-text small { color: #C6CEDA; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.rf-book-wa-text strong { color: var(--rf-orange-ink); font-size: 16px; font-weight: 800; letter-spacing: .2px; white-space: nowrap; }
+
+/* ── Compact language switcher on dark ── */
+.rf-header .rf-lang-trigger {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  color: #E8ECF1 !important;
+}
+.rf-header .rf-lang-trigger span,
+.rf-header .rf-lang-trigger .fa-globe,
+.rf-header .rf-lang-trigger .rf-caret { color: #E8ECF1 !important; }
+.rf-header .rf-lang-trigger:hover { border-color: var(--rf-orange) !important; }
+
+/* ── Call Us → orange text link ── */
+.rf-header .rf-call-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--rf-orange) !important;
+  font-weight: 700;
+  padding: 8px 8px !important;
+  gap: 8px;
+}
+.rf-header .rf-call-btn i { color: var(--rf-orange) !important; }
+.rf-header .rf-call-btn:hover { color: #fff !important; }
+.rf-header .rf-call-btn:hover i { color: #fff !important; }
+
+/* ── Login / Register outlined button ── */
+.rf-login-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff !important; text-decoration: none;
+  padding: 9px 16px; border-radius: 10px;
+  font-weight: 700; font-family: var(--common-found, inherit);
+  transition: all .2s ease; white-space: nowrap;
+}
+.rf-login-btn:hover { background: var(--rf-orange); border-color: var(--rf-orange); color: #fff !important; }
+.rf-login-btn i { font-size: 15px; }
+
+/* Hide the mobile-only WhatsApp icon button + pill on desktop */
+.rf-header .rf-whatsapp-btn { display: none; }
+.rf-wa-pill-bar { display: none; }
+
+/* Account trigger on dark */
+.rf-header .rf-account-trigger { color: #fff !important; }
+
+/* Hamburger bars white */
+.rf-header .mobile-menu-toggle span { background: #fff !important; }
+
+/* ============================ MOBILE (≤991px) ============================ */
+@media (max-width: 991px) {
+  /* Order: hamburger (left) · logo · [phone][wa][user] (right) */
+  .rf-header .bottom-bar.rf-bar { gap: 6px; }
+  .rf-header .mobile-menu-toggle { order: -1; margin: 0 6px 0 0 !important; }
+  .rf-header .rf-logo { margin-right: auto; order: 0; }
+
+  /* Booking-WA block + language hidden on mobile top row */
+  .rf-book-wa { display: none !important; }
+  .rf-header .rf-lang { display: none !important; }
+
+  /* Show phone + whatsapp + user as 40px icon buttons */
+  .rf-header .rf-whatsapp-btn {
+    display: inline-flex !important; align-items: center; justify-content: center;
+    width: 40px; height: 40px; padding: 0 !important; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.28); color: #fff !important; background: transparent;
+    flex: 0 0 auto;
+  }
+  .rf-header .rf-whatsapp-btn i { color: #25D366 !important; font-size: 18px; }
+  .rf-header .rf-call-btn {
+    width: 40px; height: 40px; padding: 0 !important; justify-content: center;
+    border-radius: 10px; border: 1px solid rgba(255,255,255,0.28) !important; flex: 0 0 auto;
+  }
+  .rf-login-btn {
+    width: 40px; height: 40px; padding: 0 !important; justify-content: center; border-radius: 10px;
+  }
+  .rf-login-btn span { display: none; }
+
+  /* Mobile nav dropdown panel → dark */
+  .rf-header .rf-nav { background: var(--rf-navy) !important; }
+  .rf-header .rf-nav li { border-bottom: 1px solid rgba(255,255,255,0.08) !important; }
+  .rf-header .rf-nav a { color: #E8ECF1 !important; }
+
+  /* Booking-on-WhatsApp pill below the header */
+  .rf-wa-pill-bar {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--rf-navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 11px 16px; text-decoration: none;
+    color: #E8ECF1; font-size: 15px; font-weight: 600;
+  }
+  .rf-wa-pill-bar i { color: #25D366; font-size: 18px; }
+  .rf-wa-pill-bar strong { color: var(--rf-orange); font-weight: 800; }
+}
+
+/* Desktop spacing so the full actions row (incl. Login/Register) fits ≤1500px */
+@media (min-width: 992px) {
+  .rf-header .rf-nav ul { gap: 20px; }
+  .rf-header .rf-nav a { font-size: 15px; }
+  .rf-actions { gap: 12px; }
+  .rf-book-wa { padding: 4px 2px; gap: 8px; }
+  .rf-book-wa-ico { width: 36px; height: 36px; font-size: 18px; }
+  .rf-book-wa-text small { font-size: 11px; }
+  .rf-book-wa-text strong { font-size: 15px; }
+  .rf-login-btn { padding: 8px 14px; }
+}
+@media (min-width: 992px) and (max-width: 1520px) {
+  .rf-header .rf-nav ul { gap: 15px; }
+  .rf-header .rf-nav a { font-size: 14px; }
+  .rf-book-wa-text small { display: none; }   /* keep just the number when tight */
+  .rf-header .rf-logo img { width: 172px !important; }
+  .rf-actions { gap: 10px; }
+}
+@media (min-width: 992px) and (max-width: 1180px) {
+  .rf-book-wa { display: none; }   /* drop the number block entirely when very tight */
+}
+
+/* ============================================================================
+   MOBILE-ONLY white compact header (2026-08, matches reference). Only the top
+   logo row turns white + colored logo + dark icons; the WhatsApp bar stays dark.
+   Appended last so it overrides the dark-header block above (≤991px only).
+   ============================================================================ */
+@media (max-width: 991px) {
+  .rf-header .header-top-bar,
+  .rf-header.sticky .header-top-bar {
+    background: #fff !important;
+    box-shadow: 0 2px 12px rgba(13, 27, 42, 0.08);
+  }
+
+  /* logo is smaller on mobile; which mark is shown is now decided by the
+     <picture> element in HeaderNew.jsx, not by toggling display here */
+  .rf-header .rf-logo img { width: 150px !important; }
+
+  /* tighter top row */
+  .rf-header .bottom-bar.rf-bar { padding-top: 8px !important; padding-bottom: 8px !important; gap: 6px; }
+
+  /* hamburger bars dark on white */
+  .rf-header .mobile-menu-toggle span { background: #0D1B2A !important; }
+
+  /* action buttons: light theme (dark/colored icons + light borders on white) */
+  .rf-header .rf-whatsapp-btn,
+  .rf-header .rf-call-btn,
+  .rf-login-btn {
+    width: 38px !important; height: 38px !important;
+    border: 1px solid #e3e7ee !important;
+    background: #fff !important;
+  }
+  .rf-header .rf-call-btn i { color: #f2421b !important; }
+  .rf-header .rf-whatsapp-btn i { color: #25D366 !important; }
+  .rf-login-btn, .rf-login-btn i { color: #0D1B2A !important; }
+
+  /* remove the promo ticker row on mobile (not in the reference) */
+  .promo-ticker-bar { display: none !important; }
+
+  /* slimmer WhatsApp booking bar */
+  .rf-wa-pill-bar { padding: 8px 16px !important; font-size: 14px !important; }
+}
+
+/* Tighter mobile header row (2026-08-09) — logo/header band was too tall */
+@media (max-width: 991px) {
+  .rf-header .bottom-bar.rf-bar { padding-top: 5px !important; padding-bottom: 5px !important; }
+  .rf-header .rf-logo img { width: 128px !important; }
+  .rf-header .rf-whatsapp-btn,
+  .rf-header .rf-call-btn,
+  .rf-login-btn { width: 34px !important; height: 34px !important; }
+  .rf-header .rf-whatsapp-btn i,
+  .rf-header .rf-call-btn i,
+  .rf-login-btn i { font-size: 15px !important; }
+  .rf-wa-pill-bar { padding: 6px 16px !important; font-size: 13px !important; }
+}
+
+/* the header band carried a hard min-height:88px — release it on phones */
+@media (max-width: 991px) {
+  .rf-header .bottom-bar.rf-bar { min-height: 0 !important; height: auto !important; }
+  .rf-header .mobile-menu-toggle { height: 34px !important; }
+}
+
+/* Booking-on-WhatsApp bar: force high contrast so the label can never be
+   washed out by another rule (reported as "text not shown"). */
+.rf-wa-pill-bar,
+.rf-wa-pill-bar span,
+.rf-wa-pill-bar > * { color: #ffffff !important; }
+.rf-wa-pill-bar strong { color: var(--rf-orange) !important; font-weight: 800 !important; }
+.rf-wa-pill-bar i.fa-whatsapp { color: #25D366 !important; }
+
+/* Desktop header (2026-08-09): shorter band, larger logo relative to it,
+   and a slightly calmer actions/nav cluster. */
+@media (min-width: 992px) {
+  .rf-header .bottom-bar.rf-bar { min-height: 72px !important; padding-top: 6px; padding-bottom: 6px; }
+  .rf-header .rf-logo img { width: 190px !important; }
+  .rf-header .rf-nav ul { gap: 13px !important; }
+  .rf-header .rf-nav a { font-size: 13.5px !important; letter-spacing: 0.1px; }
+  .rf-actions { gap: 9px !important; }
+  .rf-book-wa-ico { width: 32px !important; height: 32px !important; font-size: 16px !important; }
+  .rf-book-wa-text strong { font-size: 14px !important; }
+  .rf-header .rf-call-btn { padding: 6px !important; font-size: 13.5px; }
+  .rf-login-btn { padding: 7px 12px !important; font-size: 13.5px; }
+  .rf-header .rf-lang-trigger { padding: 5px 9px !important; font-size: 13px !important; }
+}
+
+/* ── Currency switcher ──
+   Shares .rf-lang's shell (and therefore its dark-header and mobile-hidden
+   rules); only the trigger's leading glyph and the wider menu differ. */
+.rf-cur .rf-lang-trigger { gap: 6px; padding-left: 12px; padding-right: 12px; }
+.rf-cur-sign {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+}
+.rf-header .rf-cur .rf-cur-sign { color: var(--rf-orange-ink) !important; }
+.rf-cur .rf-lang-menu { min-width: 210px; white-space: nowrap; }
+
+/* The action row had only ~15px of slack at 1440 before this switcher existed,
+   so below a roomy viewport the currency control drops its leading DH/€ glyph
+   and both triggers tighten up — otherwise Login/Register runs off the edge. */
+@media (max-width: 1599px) {
+  .rf-header .rf-actions { gap: 6px; }
+  .rf-header .rf-lang-trigger { padding: 8px 10px; font-size: 13px; gap: 5px; }
+  .rf-cur-sign { display: none; }
+}
+
+/* Below this the action row genuinely runs out of room. The "Booking on
+   WhatsApp" block is the one thing here that is duplicated elsewhere — the
+   ticker directly underneath carries the same number — so it goes first. */
+@media (min-width: 992px) and (max-width: 1330px) {
+  .rf-header .rf-book-wa { display: none !important; }
+}
+
+/* ── Sticky header: keep it in the document flow ──────────────────────────────
+   The legacy `header.sticky { position: fixed }` rule (top of this file) beat
+   `.rf-header { position: sticky }` on specificity, so scrolling past 100px
+   pulled the header out of the flow and every element below jumped up by its
+   full height — then jumped back down on scrolling to the top.
+
+   Lighthouse scrolls the page during a run, so this toggled several times and
+   accumulated a Cumulative Layout Shift of up to 0.905, which alone dropped the
+   mobile performance score to 56 on affected runs. It was intermittent, which
+   is why it only showed up in some runs.
+
+   position: sticky pins the header on scroll exactly like fixed does visually,
+   but keeps its box in the flow, so nothing below ever moves. The slide-down
+   animation is dropped with it: it only made sense for a header that had
+   genuinely left the page. */
+.rf-header.sticky {
+  position: sticky;
+  animation: none;
+}

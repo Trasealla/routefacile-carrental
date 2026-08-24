@@ -1,0 +1,379 @@
+/* ============================================================
+   Route Facile — Admin design system (navy + orange)
+   Shared across list & form pages. Imported once globally.
+
+   Usage:
+     List page:  <Container className="rf-list-page">
+                   <div className="rf-page-header"> …title + rf-add-btn… </div>
+                   <div className="rf-table-wrap"><Table className="rf-table">…
+     Form page:  <Container className="rf-form-page">
+                   <div className="rf-page-header"> …title + rf-outline-btn… </div>
+                   <Form className="rf-form-card"> … <Button className="rf-submit-btn">
+   ============================================================ */
+
+:root {
+  --rf-orange: #da2826;
+  --rf-orange-dark: #b81f1d;
+  --rf-navy: #0d1b2a;
+  --rf-border: #e5e9f0;
+}
+
+.rf-list-page,
+.rf-form-page {
+  padding-top: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+/* ---------- Page header ---------- */
+.rf-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.rf-page-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--rf-navy);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+.rf-title-bar {
+  width: 6px;
+  height: 26px;
+  border-radius: 4px;
+  background: var(--rf-orange);
+  display: inline-block;
+}
+.rf-page-sub {
+  margin: 0.4rem 0 0 1.2rem;
+  color: #8492a6;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ---------- Buttons ---------- */
+.rf-add-btn,
+.rf-submit-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--rf-orange), var(--rf-orange-dark)) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 1.4rem !important;
+  box-shadow: 0 6px 18px rgba(255, 138, 0, 0.35) !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.rf-submit-btn { min-width: 150px; }
+.rf-add-btn:hover,
+.rf-add-btn:focus,
+.rf-submit-btn:hover:not(:disabled),
+.rf-submit-btn:focus:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(255, 138, 0, 0.45) !important;
+  background: linear-gradient(135deg, #da2826, #b81f1d) !important;
+}
+.rf-add-plus { font-size: 1.2rem; line-height: 1; font-weight: 700; }
+
+.rf-outline-btn {
+  display: inline-flex !important;
+  align-items: center;
+  background: #fff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: var(--rf-navy) !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  padding: 0.55rem 1.25rem !important;
+  transition: all 0.18s ease;
+}
+.rf-outline-btn:hover,
+.rf-outline-btn:focus {
+  border-color: var(--rf-orange) !important;
+  color: var(--rf-orange) !important;
+  background: #fff !important;
+}
+
+/* ---------- Table card ---------- */
+.rf-table-wrap {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(13, 27, 42, 0.07);
+  /* Wide tables must scroll, not get clipped (Date/Details columns were cut off).
+     overflow-x:auto still respects the rounded corners. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+/* Slim, on-brand horizontal scrollbar */
+.rf-table-wrap::-webkit-scrollbar { height: 8px; }
+.rf-table-wrap::-webkit-scrollbar-track { background: #f4f6f9; border-radius: 0 0 18px 18px; }
+.rf-table-wrap::-webkit-scrollbar-thumb { background: #cfd8e3; border-radius: 50px; }
+.rf-table-wrap::-webkit-scrollbar-thumb:hover { background: var(--rf-orange); }
+
+.rf-table { margin: 0 !important; white-space: nowrap; }
+.rf-table thead tr {
+  background: linear-gradient(135deg, var(--rf-navy) 0%, #1c3c5e 100%);
+}
+.rf-table thead th {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border: none !important;
+  padding: 1rem 1.25rem !important;
+  vertical-align: middle;
+}
+.rf-table tbody td {
+  border: none !important;
+  border-bottom: 1px solid #eef1f5 !important;
+  padding: 0.85rem 1.25rem !important;
+  vertical-align: middle;
+  color: #334155;
+  font-weight: 500;
+  background: transparent !important;
+}
+.rf-table tbody tr { transition: background 0.15s ease; }
+.rf-table tbody tr:hover td { background: #fff8f0 !important; }
+.rf-table tbody tr:last-child td { border-bottom: none !important; }
+.rf-table tbody td svg { transition: transform 0.15s ease; }
+.rf-table tbody td svg:hover { transform: scale(1.2); }
+
+/* Image/logo frame inside list tables */
+.rf-list-page .car-listing-img-div-px {
+  width: 66px;
+  height: 66px;
+  border-radius: 14px;
+  background: #f7f9fc;
+  border: 1px solid #eef1f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  margin: 0 auto;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.rf-table tbody tr:hover .car-listing-img-div-px {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(13, 27, 42, 0.1);
+}
+.rf-list-page .car-listing-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Status pills ---------- */
+.rf-list-page .active_box,
+.rf-list-page .inactive_box {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 50px !important;
+  font-weight: 700;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.95rem !important;
+  width: fit-content;
+  margin: 0 auto;
+}
+.rf-list-page .active_box {
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #0f9d63 !important;
+}
+.rf-list-page .active_box::before {
+  content: "";
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+.rf-list-page .inactive_box {
+  background: rgba(148, 163, 184, 0.16) !important;
+  color: #64748b !important;
+}
+.rf-list-page .inactive_box::before {
+  content: "";
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #94a3b8;
+}
+
+/* ---------- Form card ---------- */
+.rf-form-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(13, 27, 42, 0.07);
+  padding: 1.75rem 1.75rem 1.25rem;
+}
+.rf-form-card .form-label {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: #334155;
+  margin-bottom: 0.4rem;
+}
+.rf-form-card .form-control,
+.rf-form-card .form-select {
+  border: 1.5px solid var(--rf-border);
+  border-radius: 11px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  color: #1f2d3d;
+  background: #f8fafc;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.rf-form-card .form-control:focus,
+.rf-form-card .form-select:focus {
+  border-color: var(--rf-orange);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.12);
+}
+.rf-form-card .form-control::placeholder { color: #b6c0cd; }
+
+.rf-form-card input[type="file"]::file-selector-button {
+  border: none;
+  background: var(--rf-navy);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  margin-right: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.rf-form-card input[type="file"]::file-selector-button:hover {
+  background: var(--rf-orange);
+}
+.rf-form-card img[alt="Preview"] {
+  border-radius: 12px;
+  border: 1px solid #eef1f5;
+  padding: 8px;
+  background: #f7f9fc;
+  object-fit: contain;
+}
+.rf-form-card .custom_error {
+  display: block;
+  color: #ef4444;
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+.rf-form-actions { margin-top: 1.25rem; display: flex; }
+
+/* Category/tag checkbox picker (blog form) — scrolls instead of pushing the
+   rest of the form down when the list is long. */
+.rf-checkbox-group {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1.5px solid var(--rf-border);
+  border-radius: 11px;
+  padding: 0.65rem 0.9rem;
+  background: #f8fafc;
+}
+.rf-checkbox-group .form-check {
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Filter bar (list pages with search) ---------- */
+.rf-filter-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 14px rgba(13, 27, 42, 0.06);
+  padding: 1rem 1rem 0.25rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.rf-filter-card .form-label {
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+.rf-filter-card .form-control,
+.rf-filter-card .form-select {
+  border: 1.5px solid var(--rf-border);
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.88rem;
+  background: #f8fafc;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.rf-filter-card .form-control:focus,
+.rf-filter-card .form-select:focus {
+  border-color: var(--rf-orange);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.12);
+}
+
+/* ---------- CreateCar page (has its own custom layout) — brand accents ---------- */
+.create-car-container .page-header h1 {
+  color: var(--rf-navy);
+  font-weight: 800;
+}
+.create-car-container .btn-back {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  color: var(--rf-navy);
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.55rem 1.25rem;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+.create-car-container .btn-back:hover {
+  border-color: var(--rf-orange);
+  color: var(--rf-orange);
+}
+.create-car-container .form-control:focus,
+.create-car-container .form-select:focus {
+  border-color: var(--rf-orange);
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.12);
+}
+
+/* ---------- Pagination + page-size (list pages) ---------- */
+.rf-list-page .pagination {
+  margin: 0;
+  gap: 6px;
+}
+.rf-list-page .page-link {
+  border: 1.5px solid var(--rf-border);
+  border-radius: 10px;
+  color: var(--rf-navy);
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  background: #fff;
+  transition: all 0.15s ease;
+}
+.rf-list-page .page-link:hover {
+  border-color: var(--rf-orange);
+  color: var(--rf-orange);
+  background: #fff;
+}
+.rf-list-page .page-item.active .page-link {
+  background: linear-gradient(135deg, var(--rf-orange), var(--rf-orange-dark));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 138, 0, 0.35);
+}
+.rf-list-page .page-item.disabled .page-link {
+  color: #b6c0cd;
+  background: #f8fafc;
+  border-color: #eef1f5;
+}
+.rf-list-page .form-select {
+  border: 1.5px solid var(--rf-border);
+  border-radius: 10px;
+}
+.rf-list-page .form-select:focus {
+  border-color: var(--rf-orange);
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.12);
+}

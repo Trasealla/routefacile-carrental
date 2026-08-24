@@ -1,0 +1,33 @@
+#root > div > div:nth-child(3) > section:nth-child(2) > div > div > div.MuiBox-root.css-1v2sggx > div > div:nth-child(2) > div{
+    border-color: #F2421B;
+    border-width: 20px;
+}
+
+.MuiStepConnector-line {
+    border-color: #F2421B;
+    border-width: 5px;
+  }
+
+/* MUI Step icon — completed/active = orange, default = light grey */
+.MuiStepIcon-root {
+  color: #e5e7eb !important;
+}
+.MuiStepIcon-root.Mui-active {
+  color: #F2421B !important;
+}
+.MuiStepIcon-root.Mui-completed {
+  color: #F2421B !important;
+}
+.MuiStepLabel-label {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  color: #6b7280 !important;
+}
+.MuiStepLabel-label.Mui-active {
+  color: #0D1B2A !important;
+  font-weight: 700 !important;
+}
+.MuiStepLabel-label.Mui-completed {
+  color: #F2421B !important;
+  font-weight: 600 !important;
+}

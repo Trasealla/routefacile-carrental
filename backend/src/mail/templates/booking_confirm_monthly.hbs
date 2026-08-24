@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta charset="utf-8">
+    <title>Monthly Booking Confirmation | Route Facile</title>
+    <meta name="x-apple-disable-message-reformatting">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700"
+        rel="stylesheet" media="screen">
+    <style>
+        .hover-underline:hover {
+            text-decoration: underline !important;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ping {
+
+            75%,
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .brand-chip {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fff4f1;
+            color: #F2421B;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            .sm-leading-32 {
+                line-height: 32px !important;
+            }
+
+            .sm-px-24 {
+                padding-left: 24px !important;
+                padding-right: 24px !important;
+            }
+
+            .sm-py-32 {
+                padding-top: 32px !important;
+                padding-bottom: 32px !important;
+            }
+
+            .sm-w-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; width: 100%; font-size: 14px; line-height: 1.65; word-break: break-word; -webkit-font-smoothing: antialiased; background-color: #f4f7fb; color: #172033;">
+    <div role="article" aria-roledescription="email" aria-label="" lang="en">
+        <table style="width: 100%;" width="100%"
+            cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td align="center"
+                    style="--bg-opacity: 1; background-color: #f4f7fb; "
+                    bgcolor="#f4f7fb">
+                    <table class="sm-w-full" style="width: 680px; max-width: 680px;" width="680"
+                        cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                            <td align="center" class="sm-px-24" style=""
+                                bgcolor="#ffffff" style="background:#ffffff;border-radius:24px;overflow:hidden;box-shadow:0 18px 50px rgba(36,64,102,0.14);">
+                                <table style=" width: 100%;" width="100%" cellpadding="0"
+                                    cellspacing="0" role="presentation">
+                                    <tr>
+                                        <td class="sm-py-32 sm-px-24"
+                                            style="padding: 34px 38px 30px 38px; text-align: center; background: linear-gradient(135deg,#244066 0%,#1b3150 62%,#F2421B 100%);"
+                                            align="center">
+                                            <div style="font-family: Montserrat, Arial, sans-serif; color:#ffffff;">
+                                                <div style="font-size:22px;font-weight:800;letter-spacing:0.4px;line-height:1.2;">Route Facile</div>
+                                                <div style="margin-top:8px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#ffd8cf;">Car Rental Confirmation</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 30px;background:#ffffff;">
+                                            <div style="margin-top:-18px;background:#ffffff;border-radius:18px;border:1px solid #e7edf5;padding:18px 22px;text-align:center;box-shadow:0 8px 22px rgba(36,64,102,0.08);font-family:Montserrat,Arial,sans-serif;">
+                                                <span class="brand-chip">Monthly Booking Confirmed</span>
+                                                <div style="margin-top:10px;font-size:18px;font-weight:800;color:#244066;">Booking #{{booking.booking_number}}</div>
+                                                <div style="font-size:13px;color:#5f6f86;margin-top:4px;">Thank you for choosing Route Facile. Your monthly rental details are below.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" class="sm-px-24"
+                                            style="padding: 24px 34px 10px 34px;">
+                                            <table style=" width: 100%;" width="100%"
+                                                cellpadding="0" cellspacing="0" role="presentation">
+                                                <tr>
+                                                    <td class="sm-px-24"
+                                                        style="text-align:left;color:#172033;font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.7;"
+                                                        bgcolor="#ffffff" align="left">
+                                                        <p style="font-weight: 600;  margin-bottom: 0;">
+                                                            Dear {{booking.user_first_name}} {{booking.user_last_name}},
+                                                        </p>
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            Thank you for choosing Route Facile Morocco. We appreciate your trust in our services and are pleased to confirm your car rental booking.
+                                                        </p>
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            To ensure a smooth and hassle-free pickup process, please bring this booking confirmation along with the required documents, including your physical driving license, National ID, passport copy, home country driving license, international driving license (if applicable), and a credit card.
+                                                            For assistance, you can reach us at us on +212 655 585 859 or by email at info.com.
+                                                        </p>
+
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            Your booking details are available below:
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="sm-px-24"
+                                                        style="">
+                                                        <table
+                                                            style=" width: 100%;border:1px solid #e1e8f0;border-color:#e1e8f0;border-radius:16px;overflow:hidden;"
+                                                            width="100%" cellpadding="0" cellspacing="0"
+                                                            role="presentation">
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Booking Number
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.booking_number}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Payment Type
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.pay_now}}
+                                                                        Pay Now
+                                                                    {{else}}
+                                                                        Pay Later
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if conditions.pay_now}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Payment ID Number
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                    {{booking.payfort_id}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Date and Time of Booking
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.booking_date}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Customer Name
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.user_first_name}}
+                                                                    {{booking.user_last_name}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Contact Number
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    +{{booking.user_phone_code}}
+                                                                    {{booking.user_phone_number}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Car Type
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.car.name_en}} or similar
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                {{#if conditions.self_pickup}}
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Pick Up Location
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        {{booking.pickup_location.name_en}} 
+                                                                    </td>
+
+                                                                {{else}}
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Delivery Location
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        {{booking.pickup_city.name_en}}
+                                                                        <br>
+                                                                        <a href="https://maps.google.com/maps?q={{booking.pickup_coordinates.[0]}},{{booking.pickup_coordinates.[1]}}">
+                                                                            {{booking.pickup_address}}
+                                                                        </a>
+                                                                    </td>
+                                                                {{/if}}
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Date and Time
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.pickup_date_time}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Location Contact
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.self_pickup}}
+                                                                        {{booking.pickup_location.contact_number}}
+                                                                    {{else}}
+                                                                        {{booking.pickup_city.contact_number}}
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                {{#if conditions.self_dropoff}}
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Drop Off Location
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        {{booking.dropoff_location.name_en}} <br>
+                                                                    </td>
+                                                                {{else}}
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Collection Location
+                                                                    </td>
+
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        {{booking.dropoff_city.name_en}}
+                                                                        <br>
+                                                                        <a href="https://maps.google.com/maps?q={{booking.dropoff_coordinates.[0]}},{{booking.dropoff_coordinates.[1]}}">
+                                                                            {{booking.dropoff_address}}
+                                                                        </a>
+                                                                    </td>
+                                                                {{/if}}
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Date and Time
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.dropoff_date_time}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Location Contact
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.self_dropoff}}
+                                                                        {{booking.dropoff_location.contact_number}}
+                                                                    {{else}}
+                                                                        {{booking.dropoff_city.contact_number}}
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Booking Type
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Monthly
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Rental Month/s
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.booking_months}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Extra Day/s
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.flexi_days}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Monthly Rental Amount
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    MAD {{booking.per_month_rate}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if conditions.pay_now}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Online Payment Discount
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.pay_now_discount_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Promo Code 
+                                                                    {{#if conditions.coupon_check}}
+                                                                        ({{booking.coupon_code}}) 
+                                                                    {{/if}} 
+                                                                    Discount
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    MAD {{booking.coupon_discount_amount}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if conditions.coupon_note_check}}
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    <strong>Promo Code Note:</strong>: 
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                   {{conditions.coupon_note}}
+                                                                </td>
+                                                            </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    Monthly Mileage
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{booking.monthly_mileage}} KMs
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                            {{#each booking.car_extras}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        <span style="text-transform: uppercase;" >{{type}}</span> Charge
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{per_month_rate}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/each}}
+                                                            {{#if booking.delivery_charges}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Delivery Charges
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.delivery_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.collection_charges}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Collection Charges
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.collection_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.inter_cities_charges}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Inter City Charges
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.inter_cities_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.pickup_parking_charges}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Pickup Parking Charges
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.pickup_parking_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.dropoff_parking_charges}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Dropoff Parking Charges
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.dropoff_parking_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            
+                                                            <tr>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    VMD Charges
+                                                                </td>
+                                                                <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.vmd}}
+                                                                        MAD 50
+                                                                    {{else}}
+                                                                        MAD 0    
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            {{#each booking.monthly_installments}}
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Installment # 
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        {{installment_no}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        Sub Total
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{sub_amount}}
+                                                                    </td>
+                                                                </tr>
+                
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        VAT
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{vat_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        <strong style="color:#244066;">Total</strong>
+                                                                        {{#if ../conditions.pay_now}}
+                                                                            {{#ifEquals installment_no 1}}
+                                                                                <span>(Paid Online)</span>
+                                                                            {{/ifEquals}}
+                                                                        {{/if}}
+                                                                    </td>
+                                                                    <td style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;"
+                                                                        width="50%">
+                                                                        MAD {{total_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/each}}
+    
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sm-px-24"
+                                                        style="padding:24px 0 10px 0;text-align:left;color:#172033;font-family:Montserrat,Arial,sans-serif;font-size:13px;line-height:1.72;"
+                                                        bgcolor="#ffffff" align="left">
+                                                        <p>
+                                                            Kindly share below documents by replying to this email to make the check out faster or you can bring them to our rental counter: 
+                                                        </p>
+                                                        <p>
+                                                            <strong>
+                                                                Documents Required 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            The hirer is required to provide the following original, valid documents when renting a vehicle from Route Facile. All documents have to be under the hirer's name: 
+                                                        </p>
+                                                        <p>
+                                                            <strong>
+                                                                Residents of Morocco:
+                                                            </strong>
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                Valid physical Moroccan driving licence if less than one year, you can support it with your home country driver's license.  
+                                                            </li>
+                                                            <li>
+                                                                Valid physical passport copy (with visa page) or National ID. 
+                                                            </li>
+                                                            <li>
+                                                                Valid physical credit card must be presented at the time of pick-up for security deposit. 
+                                                            </li>
+                                                        </ul>
+
+                                                        <p>
+                                                            <strong>
+                                                                Tourists: 
+                                                            </strong>
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                Valid home country driver license.   
+                                                            </li>
+                                                            <li>
+                                                                Valid passport. 
+                                                            </li>
+                                                            <li>
+                                                                Valid physical credit card for security deposit. 
+                                                            </li>
+                                                        </ul>
+
+                                                        <p>
+                                                            <strong>
+                                                                Non-Residents of Morocco: 
+                                                            </strong>
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                Valid international/home country driving license. (Refer to driving license exemptions list below) 
+                                                            </li>
+                                                            <li>
+                                                                Valid physical passport/visit visa copy. 
+                                                            </li>
+                                                            <li>
+                                                                Valid physical credit card for security deposit.   
+                                                            </li>
+                                                        </ul>
+
+                                                        <p>
+                                                            Note: A customer can also use a credit card belonging to a friend or family member as a guarantee; however, that person must accompany the customer at the time of rental. 
+                                                        </p>
+                                                        
+                                                        <p>All rentals are subject to standard terms and conditions of the Route Facile Agreement in effect at the time and place of rental.  </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Rental Length:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            The minimum rental duration is one day (24 hours). Rentals, less than 24 hours will be charged as a full-day rental. Likewise, additional day charges will apply if the vehicle is kept longer than the specified time. Additional day rental will begin after a 1-hour grace period and will be billed at the applicable public rate. 
+                                                        </p>
+                                                        <p>
+                                                            The hirer is not allowed to rent more than 1 vehicle at the same time. If the hirer has an existing active booking/rental that coincides with a new booking’s scheduled pick-up, Route Facile have the right to refuse the new booking 
+                                                        </p>
+                                                        <p>
+                                                            <strong>
+                                                                Types of Short-Term Rentals and Mileage: 
+                                                            </strong>
+                                                        </p>
+                                                        <table width="100%" style=" width: 100%;border:1px solid #e1e8f0;border-color:#e1e8f0;border-radius:16px;overflow:hidden;">
+                                                            <tr >
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;padding:11px 14px;background:#f8fafc;color:#244066;"><strong>Duration</strong></td>
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;padding:11px 14px;background:#f8fafc;color:#244066;"><strong>Type</strong></td>
+                                                                <td width="33%" style="padding:11px 14px;background:#f8fafc;color:#244066;"><strong>Mileage</strong></td>
+                                                            </tr>
+                                                            <tr class="hed-table-title-p">
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">1-6 Days </td>
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Daily</td>
+                                                                <td width="33%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Unlimited</td>
+                                                            </tr>
+                                                            <tr class="hed-table-title-p">
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">7-29 Days</td>
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Weekly </td>
+                                                                <td width="33%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Unlimited</td>
+                                                            </tr>
+                                                            <tr class="hed-table-title-p">
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">30 or More Days </td>
+                                                                <td width="33%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Monthly</td>
+                                                                <td width="33%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">
+                                                                    3000 - 6000 KM (Based on selected plan)
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                        <p>
+                                                            *Unlimited mileage is applicable for daily and weekly rentals.
+                                                        </p>
+
+                                                        <p>
+                                                            Customers with a Monthly Rental Agreement (MRA) or Long-Term Agreement can drive 3,000 – 6000 KM per month, depending on the selected monthly plan and vehicle. Any additional mileage beyond the agreed limit will be charged at MAD 0.50 to MAD 1.00, depending on the vehicle. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Car Category:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Specific make or model preferences are subject to availability at the time of rental; only a car category can be confirmed. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Security Deposit/Pre-authorization:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            A Security Deposit/Pre-authorization of between MAD 1000 - 2500 will be blocked at the time of rental. This will be used against non-rental dues i.e. Traffic Fines/Salik Charges, any damages etc. The pre-authorized amount will be released after 30 days from the date of closing the contract. Cash deposits are not accepted
+                                                        </p>
+                                                        <p>
+                                                            Route Facile reserves the right to charge the credit card without prior notification for the amount due, including traffic fines, insurance excess, road toll charges (Salik/Darb), refuelling charges and any damages incurred by the customer during the rental period.Shape 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Driving License Requirements 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            <strong>
+                                                                Residents of Morocco:
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Only a valid Moroccan driving licence is accepted, which must be at least 1 year old from the date of issue. If Morocco license is less than 1 year old, residents can provide their home country license as a supporting document to rent a car (subject to approval by the insurance company). 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Tourists/Visitors: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Visitors may drive in Morocco on a valid licence issued by their home country for the duration of their stay. If your licence is not in Arabic, French or English, please bring an International Driving Permit alongside your original domestic licence. 
+                                                        </p>
+                                                        <table width="100%" style=" width: 100%;border:1px solid #e1e8f0;border-color:#e1e8f0;border-radius:16px;overflow:hidden;">
+                                                            <tr>
+                                                                <td width="25%" style="border-right: 1px solid #ccc;padding: 5px 10px;">Albania </td>
+                                                                <td width="25%" style="border-right: 1px solid #ccc;padding: 5px 10px;">Australia </td>
+                                                                <td width="25%" style="border-right: 1px solid #ccc;padding: 5px 10px;">Austria </td>
+                                                                <td width="25%" style="padding: 5px 10px;">Azerbaijan </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Bahrain </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Belarus </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Belgium </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Britain </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Bulgaria </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Canada </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Croatia</td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Cyprus </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Denmark </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Estonia </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Finland </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">France </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Germany </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Greece </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Hong Kong</td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Hungary</td>
+                                                    
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Iceland </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Ireland</td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Israel</td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Italy</td>
+                                                    
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Japan</td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Lithuania</td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Luxembourg</td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Malta </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Kuwait </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Latvia </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Lithuania </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Luxembourg </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Malta </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Netherlands </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">New Zealand </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Northern American </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Norway </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Oman </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">People's Republic of China </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Poland </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Portugal </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Qatar </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Serbia </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Singapore </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Slovakia </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Slovenia </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">South Africa </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">South Korea </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Spain </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Sweden </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Switzerland </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">The Republic of Montenegro </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Turkey </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">Ukraine </td>
+                                                                <td width="25%" style="border-right:1px solid #e1e8f0;border-top:1px solid #e1e8f0;padding:11px 14px;">United States of America </td>
+                                                                <td width="25%" style="border-top:1px solid #e1e8f0;padding:11px 14px;">Uzbekistan </td>
+                                                            </tr>
+                                                        </table>
+                                                        <p>
+                                                            *If your licence is not written in Arabic, French or English, bring an International Driving Permit or a certified translation together with the original licence. 
+                                                        </p>
+
+                                                        <p>
+                                                            Please note that in case the renter’s Visit or Tourist visa in Morocco is changed to a Residence visa, he will need to get a Morocco driving license which has to be submitted to Route Facile Immediately along with residence visa page. It is illegal to drive on international license if your visa is changed to a residence visa. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Payment Method 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Bookings are reserved without payment and settled when you collect the car.  
+                                                        </p>
+                                                        <p>
+                                                            “All credit/debit card details and personally identifiable information will NOT be stored, sold, shared, rented, or leased to any third parties”.  
+                                                        </p>
+                                                        <p>
+                                                            Payment can also be made in cash for rentals and extras (GPS, Baby Seat, Additional Driver) at the rental counter if these were not included in the booking made on the website. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Booking Modification:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            The hirer may modify their bookings at least 12 hours prior to pick-up date and time. The total payable amount will be recalculated if the rates have changed between the dates the original and amended bookings are made. In which case, the latter prices will apply.   
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Booking Cancellation: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            <ul>
+                                                                <li>The hirer may cancel their prepaid booking at least 24 hours prior to pick up date and time and will receive a full refund.</li>
+                                                                <li>A cancellation fee of one-day rental will be applicable for cancellations made less than 24 hours. Refunds, where applicable, will be made to the credit card used on the original prepaid booking within 30 calendar days.</li>
+                                                                <li>Failure to provide the required documentation, as outlined in the booking terms and conditions, will result in a cancellation fee of one-day rental.</li>
+                                                            </ul>
+                                                            <p>
+                                                                <strong> Note</strong> A 6% processing fee will be deducted from all approved refunds.
+                                                            </p>
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                No Show: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            If the customer fails to collect the vehicle on the rental start date and time and does not notify Route Facile in advance, a one-day rental fee will be charged to the customer.
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Late Arrival: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            If the customer fails to collect the car within 4 hours of the scheduled pickup time, Route Facile reserves the right not to honor the booking. However, the vehicle may still be provided, subject to availability. The pick-up and drop-off timings stated on the voucher will remain unchanged. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Premature Termination: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            For Daily/Weekly Rentals: There will be no refund for unused car rental days once a Daily or Weekly rental has started. 
+                                                        </p>
+                                                        <p>
+                                                            For monthly rentals, there is no refund for early return during 1st month. If the vehicle is returned early in the following months, the monthly plan will be automatically cancelled, and a pro-rata rate will be applied accordingly. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Fuel Policy:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            The vehicle should be returned at the same fuel level as it had at the time of vehicle check out. Failing to do so, refuelling charges at 20% of the fuel cost will be applied. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Age limit:   
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Renters must be 21 years old for vehicles in car groups B to E. For car groups G to G3, renters must be at least 25 years old. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Delivery & Collection to Customer Address:
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            We can collect and deliver cars to the customer’s selected address within city limits during normal office hours in Marrakech, Casablanca, Rabat, Agadir, Tangier, Fes, Tetouan and Ouarzazate. Additional charges may apply based on the rental duration. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Delivery & Collection (Virtual Locations): 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            We can collect and deliver cars to designated locations across Morocco. These are not physical locations but are used as delivery and collection points. Our team will coordinate with the customers once the booking is confirmed. There are no delivery or collection charges for these locations. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Inter Cities Charges (Pickup-Return): 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Inter-city fees are charged (per trip) if the City where the vehicle is to be picked up is different from the City where it will be returned to. Please call your respective branch to check the specific rates depending on the Cities you booked. 
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                Rates range from MAD 50 – 200 per trip and will be charged depending on which Cities is booked. 
+                                                            </li>
+                                                            <li>
+                                                                Below are the Cities where we have branches: 
+                                                                Marrakech, Casablanca, Rabat, Agadir, Tangier, Fes, Tetouan and Ouarzazate 
+                                                            </li>
+                                                        </ul>
+
+                                                        <p>
+                                                            <strong>
+                                                                Insurance:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            A valid police report is mandatory. Please check with the agent at the rental branch for more information. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Super Collision Damage Waiver (SCDW) 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Purchase of SCDW reduces the customer’s liability to ZERO. Renters will not be paying anything to Route Facile for damage or repairs. NOTE: A valid police report is mandatory. The insurance will not be valid if the police report is not provided.
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                MAD 30 + VAT per day - MAD 200 + VAT per day depending on vehicle group
+                                                            </li>
+                                                        </ul>
+                                                        <p>
+                                                            SCDW DOES NOT COVER damage if the vehicle was driven by unauthorized driver or by authorized driver under the influence of alcohol or drugs, damage to the interior of the vehicle, windscreen, tire and wheel damage, wheel cover and rims, damage to the underside of the vehicle, broken or lost key, lost or damage car documents, smoking, excessively dirty, minor scratches not covered by police report, contamination of fuel, either in the event of deliberate intention or negligence. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Insurance Excess: 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            If SCDW is NOT purchased, the customer will be responsible for the settlement or payment of the insurance excess or deductible amount which is listed on the vehicle hire agreement, in the event of any damage or loss [including fire and theft] caused to the vehicle, provided it is used, operated or driven in conformity with the vehicle agreement. NOTE: A valid police report is mandatory. 
+                                                        </p>
+                                                        <p>
+                                                            The following excess amounts are applicable if SCDW is not availed:
+                                                        </p>
+                                                        <p>
+                                                            The maximum excess amount ranges from MAD 2000 + VAT up to MAD 5000 + VAT depending on the vehicle group. 
+                                                        </p>
+                                                        <p>
+                                                            <span>Note:</span> A valid police report is mandatory. Please check with the agent at the rental branch for more information. 
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                <strong>Theft Waiver</strong> - reduces the client’s financial responsibility for loss or theft to the vehicle to the sum of the deductible. 
+                                                            </li>
+                                                            <li>
+                                                                <strong>Third-Party Liability Insurance (TPL)</strong>  is included in your rental amount. 
+                                                            </li>
+                                                        </ul>
+
+                                                        <p>
+                                                            <strong>
+                                                                Oman No Objection Certificate:  
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            The Hirer is not permitted to cross any border without the prior consent of Route Facile. Notification must be provided to Route Facile at the commencement of rental or at least 2 working days prior to the country exit and sign a declaration form at the rental counter. Cross-border travel is allowed only into Oman upon written approval from the rental company with a charge of MAD 550 + VAT per week. The customer has to buy Oman insurance from the border.  
+                                                        </p>
+                                                        <p>
+                                                            *Note: Oman border is regulated by the Government so rules are subject to change. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Toll Charges (SALIK/DARB)
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Motorway tolls and parking fees incurred during the rental are payable by the hirer. 
+                                                        </p>
+                                                        <p>
+                                                             
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Airport Parking Fee:
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            In case of collecting or dropping off the car at any Airport location based on Airport location, customers have to pay airport parking charges which ranges from MAD 30 – 50 plus VAT. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                Vehicle Monitoring Fee (VMS):
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                             
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                No Smoking Policy:
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            Route Facile is committed to providing a safe and clean fleet to our customers. To uphold this commitment, all our vehicles are non-smoking. Cleaning fees will be charged for vehicles returned with evidence of smoking. 
+                                                        </p>
+
+                                                        <p>
+                                                            <strong>
+                                                                **ALL TERMS, CONDITIONS AND PRICES ARE SUBJECT TO CHANGE WITHOUT PRIOR NOTICE. 
+                                                            </strong>
+                                                        </p>
+                                                        <p>
+                                                            We look forward to serving you and wish you a pleasant experience with us.
+                                                        </p>
+                                                        <p>
+                                                            Best Regards, 
+                                                            <br>
+                                                            Route Facile 
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr style="background:#f8fafc;">
+                                        <td style="padding:18px 20px 8px 20px;border-top:1px solid #e7edf5;">
+                                            <div
+                                                style="font-weight:600;margin-bottom:0;text-align:center;font-family:Montserrat,Arial,sans-serif;font-size:12px;">
+                                                <a style="text-decoration:none;color:#244066;margin:0;font-weight:700;"
+                                                    href="{{links.terms_and_conditions}}"> Terms and Conditions </a>
+                                                |
+                                                <a style="text-decoration:none;color:#244066;margin:0;font-weight:700;"
+                                                    href="{{links.find_a_branch}}">Find a Branch</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="background:#f8fafc;text-align:center;">
+                                        <td
+                                            style="padding:8px 20px 22px 20px;color:#5f6f86;font-family:Montserrat,Arial,sans-serif;font-size:12px;">
+                                            <a href="https://www.facebook.com/routefacilecarrental" target="_blank"
+                                                style="--text-opacity: 1; color:#244066;text-decoration:none;font-weight:700;margin:0 8px;">Facebook</a>
+                                            <a href="https://www.instagram.com/routefacilecarrental/" target="_blank"
+                                                style="--text-opacity: 1; color:#244066;text-decoration:none;font-weight:700;margin:0 8px;">Instagram</a>
+                                            <a href="https://twitter.com/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color:#244066;text-decoration:none;font-weight:700;margin:0 8px;">Twitter</a>
+                                            <a href="https://www.linkedin.com/company/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color:#244066;text-decoration:none;font-weight:700;margin:0 8px;">Linkedin</a>
+                                            <a href="https://www.youtube.com/@routefacile" target="_blank"
+                                                style="--text-opacity: 1; color:#244066;text-decoration:none;font-weight:700;margin:0 8px;">Youtube</a>
+                                            <p
+                                                style="text-decoration: none;color:#999;margin:0;text-align: center;margin-bottom:8px;margin-top: 8px;">
+                                                © Route Facile. All rights reserved.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

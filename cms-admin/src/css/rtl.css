@@ -1,0 +1,348 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Route Facile Admin — RTL Overrides
+   Applied automatically when <html dir="rtl"> (Arabic language)
+   Selector pattern: [dir="rtl"] .existing-class
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Arabic font ────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap");
+
+[dir="rtl"],
+[dir="rtl"] body,
+[dir="rtl"] .login-page-wrapper,
+[dir="rtl"] .sidebar,
+[dir="rtl"] .header {
+  font-family: "Tajawal", "Segoe UI", "Arial", sans-serif !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  LOGIN PAGE                                                             */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Flip left/right panels */
+[dir="rtl"] .login-row {
+  flex-direction: row-reverse;
+}
+
+/* Left panel: center text was already ok — fix badge anchor */
+[dir="rtl"] .lp-badge {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* Feature cards: flip text alignment */
+[dir="rtl"] .lp-features {
+  text-align: right;
+}
+
+[dir="rtl"] .lp-feature {
+  flex-direction: row-reverse;
+}
+
+/* Input icons: swap from left to right */
+[dir="rtl"] .lf-input-wrap .lf-input-icon {
+  left: auto;
+  right: 14px;
+}
+
+[dir="rtl"] .lf-input-wrap .form-control {
+  padding-left: 16px;
+  padding-right: 44px;
+  text-align: right;
+}
+
+/* Password toggle: swap from right to left */
+[dir="rtl"] .lf-input-wrap .password-toggle-btn {
+  right: auto;
+  left: 14px;
+}
+
+[dir="rtl"] .lf-input-wrap .form-control.password-input {
+  padding-right: 44px;
+  padding-left: 46px;
+}
+
+/* Remember me */
+[dir="rtl"] .lf-remember {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* Login button icon — reverse slide direction */
+[dir="rtl"] .btn-login:hover:not(:disabled) svg,
+[dir="rtl"] .btn-login:hover:not(:disabled) .fa {
+  transform: translateX(-3px);
+}
+
+/* Form labels */
+[dir="rtl"] .lf-input-group label {
+  text-align: right;
+}
+
+/* Login header */
+[dir="rtl"] .login-header h4,
+[dir="rtl"] .login-header p {
+  direction: rtl;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  SIDEBAR                                                                */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Position sidebar on the right */
+@media (min-width: 992px) {
+  [dir="rtl"] .sidebar.sidebar-fixed:not(.sidebar-end) {
+    left: auto !important;
+    right: 5px !important;
+  }
+
+  /* Push main content from right side instead of left */
+  [dir="rtl"] .wrapper {
+    padding-left: 0 !important;
+    padding-right: 256px !important;
+  }
+
+  [dir="rtl"] .sidebar-narrow ~ .wrapper,
+  [dir="rtl"] .sidebar-narrow-unfoldable:not(:hover) ~ .wrapper {
+    padding-right: 75px !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* Active border: left → right */
+[dir="rtl"] .sidebar-nav .nav-link,
+[dir="rtl"] .sidebar-nav .nav-group-toggle {
+  border-left: none !important;
+  border-right: 3px solid transparent;
+}
+
+[dir="rtl"] .sidebar-nav .nav-link.active {
+  border-right-color: #1c84ee !important;
+  border-left: none !important;
+}
+
+[dir="rtl"] .accounts-sidebar.sidebar .sidebar-nav .nav-link.active {
+  border-right-color: #2563EB !important;
+  border-left: none !important;
+}
+
+/* Arrow alignment */
+[dir="rtl"] .sidebar-nav .nav-group-toggle::after {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Submenu indentation: left → right */
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-link {
+  padding-left: 16px !important;
+  padding-right: 52px !important;
+}
+
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-link::before {
+  left: auto;
+  right: 32px;
+}
+
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-link:hover {
+  padding-left: 16px !important;
+  padding-right: 57px !important;
+}
+
+/* Nested submenu */
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-group-items .nav-link {
+  padding-left: 16px !important;
+  padding-right: 72px !important;
+}
+
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-group-items .nav-link::before {
+  left: auto;
+  right: 52px;
+}
+
+[dir="rtl"] .sidebar-nav .nav-group-items .nav-group-items .nav-link:hover {
+  padding-right: 77px !important;
+  padding-left: 16px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  HEADER                                                                 */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Header navbar: anchor to right side when sidebar is on right */
+[dir="rtl"] .header-navbar {
+  flex-direction: row-reverse;
+}
+
+/* Header toggler and items */
+[dir="rtl"] .header {
+  flex-direction: row-reverse;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  GENERAL LAYOUT — rf-admin.css classes                                  */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Page header title bar accent */
+[dir="rtl"] .rf-page-title {
+  flex-direction: row-reverse;
+}
+
+/* Table header text */
+[dir="rtl"] .rf-table thead th {
+  text-align: right;
+}
+
+[dir="rtl"] .rf-table tbody td {
+  text-align: right;
+}
+
+/* Search icon margin flip */
+[dir="rtl"] .search-icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  BOOTSTRAP / COREUI OVERRIDES                                           */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Form controls default text direction */
+[dir="rtl"] .form-control,
+[dir="rtl"] .form-select,
+[dir="rtl"] .form-label,
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Dropdown menus */
+[dir="rtl"] .dropdown-menu {
+  text-align: right;
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* Dropdown items */
+[dir="rtl"] .dropdown-item {
+  text-align: right;
+}
+
+/* Modal */
+[dir="rtl"] .modal-header,
+[dir="rtl"] .modal-footer {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .modal-header .btn-close {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Card */
+[dir="rtl"] .card-header,
+[dir="rtl"] .card-body,
+[dir="rtl"] .card-footer {
+  text-align: right;
+}
+
+/* Breadcrumb */
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  content: "\\";
+  padding-left: 0;
+  padding-right: .5rem;
+}
+
+/* Alerts */
+[dir="rtl"] .alert {
+  text-align: right;
+}
+
+/* Badges */
+[dir="rtl"] .badge {
+  direction: rtl;
+}
+
+/* Toast */
+[dir="rtl"] .toast-header {
+  flex-direction: row-reverse;
+}
+
+/* Input groups */
+[dir="rtl"] .input-group > .form-control:not(:last-child) {
+  border-radius: 0 8px 8px 0 !important;
+}
+[dir="rtl"] .input-group > .form-control:not(:first-child) {
+  border-radius: 8px 0 0 8px !important;
+}
+[dir="rtl"] .input-group-text:first-child {
+  border-radius: 0 8px 8px 0;
+  border-right: none;
+  border-left: 1px solid #e2e8f0;
+}
+[dir="rtl"] .input-group-text:last-child {
+  border-radius: 8px 0 0 8px;
+  border-left: none;
+  border-right: 1px solid #e2e8f0;
+}
+
+/* Pagination */
+[dir="rtl"] .pagination {
+  flex-direction: row-reverse;
+}
+
+/* List groups */
+[dir="rtl"] .list-group-item {
+  text-align: right;
+}
+
+/* Nav tabs */
+[dir="rtl"] .nav {
+  flex-direction: row-reverse;
+}
+
+/* Tables */
+[dir="rtl"] table,
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  MANTINE COMPONENTS                                                     */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+[dir="rtl"] .mantine-TextInput-label,
+[dir="rtl"] .mantine-Select-label,
+[dir="rtl"] .mantine-DateInput-label,
+[dir="rtl"] .mantine-Textarea-label,
+[dir="rtl"] .mantine-NumberInput-label {
+  text-align: right;
+}
+
+[dir="rtl"] .mantine-TextInput-input,
+[dir="rtl"] .mantine-Select-input,
+[dir="rtl"] .mantine-Textarea-input,
+[dir="rtl"] .mantine-NumberInput-input {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .mantine-Modal-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .mantine-Modal-body {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .mantine-Notification-body {
+  text-align: right;
+}

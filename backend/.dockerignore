@@ -1,0 +1,13 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+mysql-data
+dist
+uploads
+.git
+*.md
+sql-scripts
+.env
+.env.*
+*.log

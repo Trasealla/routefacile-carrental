@@ -1,0 +1,1230 @@
+/* EDC Exclusive Page Styles */
+
+.edc-exclusive-page {
+  min-height: auto;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 50%, #0d1a2d 100%);
+  position: relative;
+  overflow: hidden;
+  margin-top: -130px !important;
+  padding-top: 130px !important;
+}
+
+/* Override global section:nth-child backgrounds so the navy gradient shows through */
+.edc-exclusive-page section,
+.edc-exclusive-page section:nth-child(odd),
+.edc-exclusive-page section:nth-child(even) {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Floating "Book Now" button - always visible without scrolling.
+   Rendered via React portal to <body> so it escapes any ancestor stacking
+   context / overflow / transform that could clip or hide it. */
+.edc-floating-book-now {
+  position: fixed !important;
+  bottom: 28px;
+  right: 28px;
+  /* Sit above chat widget (~999) and most overlays, but below modals (1055+). */
+  z-index: 1040;
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  color: #ffffff;
+  border: none;
+  padding: 0.95rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(239, 103, 33, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+/* Offset to the LEFT of the chat bubble (which usually sits bottom-right) so they don't overlap. */
+@media (min-width: 576px) {
+  .edc-floating-book-now {
+    right: 90px;
+  }
+}
+
+.edc-floating-book-now:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(239, 103, 33, 0.55), 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.edc-floating-book-now:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.edc-floating-book-now i {
+  font-size: 1.1rem;
+}
+
+/* On very small screens, sit just above the chat bubble */
+@media (max-width: 575px) {
+  .edc-floating-book-now {
+    bottom: 80px;
+    right: 16px;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.95rem;
+  }
+}
+
+.edc-exclusive-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(239, 103, 33, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(218, 40, 38, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  .edc-exclusive-page {
+    margin-top: -100px !important;
+    padding-top: 100px !important;
+  }
+}
+
+/* Partnership Header Section */
+.edc-partnership-header {
+  padding: 2rem 0 1.5rem 0;
+  position: relative;
+  z-index: 2;
+  margin-top: 60px;
+}
+
+.partnership-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.partnership-separator {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+}
+
+.logo-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-container.edc-logo-container {
+  background: linear-gradient(135deg, #1a2d4a 0%, #0d1a2d 100%);
+}
+
+.logo-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.edc-logo {
+  height: 60px;
+  width: auto;
+}
+
+.brand-logo {
+  height: 50px;
+  width: auto;
+}
+
+.partnership-headline {
+  text-align: center;
+  color: white;
+}
+
+.partnership-headline h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ffffff, #f8b500, #f2421b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+
+.partnership-headline .subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Coming Soon Section */
+.edc-coming-soon-section {
+  padding: 4rem 0 6rem;
+  position: relative;
+  z-index: 2;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coming-soon-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-icon {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.coming-soon-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f2421b;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.coming-soon-message {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Responsive Design for Coming Soon */
+@media (max-width: 768px) {
+  .coming-soon-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .coming-soon-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .coming-soon-title {
+    font-size: 2rem;
+  }
+
+  .coming-soon-message {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coming-soon-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .coming-soon-icon {
+    font-size: 3rem;
+  }
+
+  .coming-soon-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Hero Banner */
+.edc-hero-banner {
+  position: relative;
+  padding: 2rem 0;
+  z-index: 2;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-text h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hero-text h2 span {
+  color: #f2421b;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.promo-code-box {
+  background: linear-gradient(135deg, rgba(239, 103, 33, 0.2), rgba(218, 40, 38, 0.2));
+  border: 2px dashed #f2421b;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-code-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(239, 103, 33, 0.1) 0%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.promo-code-box p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-code {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f8b500;
+  letter-spacing: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-image {
+  position: relative;
+  display: none; /* Hide the right side button */
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.hero-car-visual {
+  background: linear-gradient(135deg, rgba(239, 103, 33, 0.15), rgba(218, 40, 38, 0.15));
+  border: 2px solid rgba(239, 103, 33, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-car-visual::before {
+  content: '🚗';
+  font-size: 8rem;
+  position: absolute;
+  opacity: 0.15;
+  transform: rotate(-15deg);
+}
+
+.car-offer-badge {
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 40px rgba(239, 103, 33, 0.4);
+}
+
+.badge-discount {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.badge-text {
+  display: block;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Benefits Section */
+.edc-benefits-section {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.section-title p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+.benefits-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.benefits-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.benefits-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.benefits-grid::-webkit-scrollbar-thumb {
+  background: rgba(239, 103, 33, 0.5);
+  border-radius: 3px;
+}
+
+.benefit-card {
+  flex: 0 0 calc(20% - 1.2rem);
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #f2421b, #da2826);
+}
+
+.benefit-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.benefit-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.4rem;
+  color: white;
+  box-shadow: 0 4px 14px rgba(239, 103, 33, 0.35);
+}
+
+.benefit-icon i {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.benefit-card h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.benefit-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Eligibility Section */
+.edc-eligibility-section {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.eligibility-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.eligibility-box h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.eligibility-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.eligibility-list li {
+  background: linear-gradient(135deg, rgba(239, 103, 33, 0.2), rgba(218, 40, 38, 0.2));
+  border: 1px solid rgba(239, 103, 33, 0.3);
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eligibility-list li i {
+  color: #f8b500;
+}
+
+.eligibility-disclaimers {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.eligibility-disclaimer-chip {
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 0.6rem 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .eligibility-disclaimer-chip {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* CTA Section */
+.edc-cta-section {
+  padding: 2rem 0 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+}
+
+.cta-box h2 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #ffffff;
+  color: #da2826;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: #f2421b;
+}
+
+/* Terms Section */
+.edc-terms-section {
+  padding: 2rem 0 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.terms-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+}
+
+.terms-box p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.terms-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Cars Grid */
+.edc-cars-section {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.car-card-edc {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.car-card-edc:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.car-card-edc img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  padding: 1rem;
+  background: #f8f9fa;
+}
+
+.car-card-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.car-card-content h3 {
+  color: #1a2d4a;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.car-card-content .price {
+  color: #f2421b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.enquire-btn-edc {
+  width: 100%;
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.enquire-btn-edc:hover {
+  background: linear-gradient(135deg, #da2826, #f2421b);
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .partnership-headline h1 {
+    font-size: 2rem;
+  }
+
+  .cta-box {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .partnership-logos {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .partnership-separator {
+    transform: rotate(90deg);
+    font-size: 2rem;
+  }
+
+  .partnership-headline h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .benefit-card {
+    min-width: 180px;
+  }
+
+  .eligibility-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-box h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .edc-logo {
+    height: 45px;
+  }
+
+  .brand-logo {
+    height: 35px;
+  }
+
+  .promo-code {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* Loading Spinner */
+.edc-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 50%, #0d1a2d 100%);
+}
+
+/* Push header behind modals when any modal is open */
+body.modal-open header,
+body.modal-open header.sticky {
+  z-index: 99 !important;
+}
+
+/* EDC Verification Modal Styles */
+.edc-verification-modal {
+  z-index: 1060 !important;
+}
+
+.edc-verification-modal .modal-content {
+  border-radius: 16px;
+  border: none;
+  overflow: hidden;
+}
+
+.edc-verification-modal .modal-header {
+  background: linear-gradient(135deg, #1a2d4a 0%, #0d1a2d 100%);
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.edc-verification-modal .modal-title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.edc-verification-modal .btn-close {
+  filter: invert(1);
+}
+
+.verification-modal-title {
+  display: flex;
+  align-items: center;
+}
+
+.edc-verification-modal .modal-body {
+  padding: 2rem;
+}
+
+.edc-verification-modal .form-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.edc-verification-modal .form-label .text-danger {
+  display: inline;
+}
+
+.verification-info-box {
+  background: linear-gradient(135deg, rgba(239, 103, 33, 0.1), rgba(218, 40, 38, 0.1));
+  border: 1px dashed #f2421b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.verification-info-box p {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.discount-preview {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.discount-preview strong {
+  color: #f2421b;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.verification-terms {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.verification-terms .form-check-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.verification-terms-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.terms-confirmed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #198754;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.verification-submit-btn,
+.verification-submit-btn.btn,
+.verification-submit-btn.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #f2421b, #da2826) !important;
+  background-color: #f2421b !important;
+  border: none !important;
+  border-color: transparent !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  outline: none !important;
+}
+
+.verification-submit-btn:hover,
+.verification-submit-btn:focus,
+.verification-submit-btn:active,
+.verification-submit-btn:focus-visible,
+.verification-submit-btn.btn:hover,
+.verification-submit-btn.btn:focus,
+.verification-submit-btn.btn:active,
+.verification-submit-btn.btn-primary:hover,
+.verification-submit-btn.btn-primary:focus,
+.verification-submit-btn.btn-primary:active,
+.btn.verification-submit-btn:hover,
+.btn.verification-submit-btn:focus,
+.btn.verification-submit-btn:active {
+  background: linear-gradient(135deg, #f2421b, #da2826) !important;
+  background-color: #f2421b !important;
+  color: #fff !important;
+  transform: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+.verification-submit-btn:disabled {
+  opacity: 0.7;
+  color: #fff !important;
+  background: linear-gradient(135deg, #f2421b, #da2826) !important;
+}
+
+/* ============================================
+   TERMS & CONDITIONS LINK
+   ============================================ */
+.edc-terms-link {
+  color: #f2421b;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.edc-terms-link:hover {
+  color: #da2826;
+}
+
+/* ============================================
+   TERMS & CONDITIONS MODAL
+   ============================================ */
+.edc-terms-modal {
+  z-index: 1070 !important;
+}
+
+.edc-terms-modal .modal-content {
+  border-radius: 16px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+.edc-terms-modal-header {
+  background: linear-gradient(135deg, #1a2d4a 0%, #0d1a2d 100%);
+  border-bottom: none;
+  padding: 1.25rem 1.5rem;
+}
+
+.edc-terms-modal-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.edc-terms-modal-header .btn-close {
+  filter: invert(1);
+}
+
+.edc-terms-modal-body {
+  padding: 0 !important;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.edc-terms-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.edc-terms-modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.edc-terms-modal-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.edc-terms-content {
+  padding: 1.5rem;
+}
+
+.edc-terms-intro {
+  background: linear-gradient(135deg, rgba(239, 103, 33, 0.06), rgba(218, 40, 38, 0.06));
+  border-left: 4px solid #f2421b;
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.edc-terms-intro h5 {
+  color: #1a2d4a;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.edc-terms-subtitle {
+  color: #f2421b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem !important;
+}
+
+.edc-terms-intro p:last-child {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Section Blocks */
+.edc-terms-section-block {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.edc-terms-section-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.edc-terms-section-number {
+  flex: 0 0 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #f2421b, #da2826);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.edc-terms-section-content {
+  flex: 1;
+}
+
+.edc-terms-section-content h6 {
+  color: #1a2d4a;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.edc-terms-section-content ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.edc-terms-section-content li {
+  color: #444;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 0.4rem;
+}
+
+.edc-terms-section-content li strong {
+  color: #1a2d4a;
+}
+
+.edc-terms-section-content ul ul {
+  margin-top: 0.3rem;
+}
+
+.edc-terms-section-content p {
+  color: #444;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+.edc-terms-note {
+  background: #fdf6f0;
+  border: 1px solid #fde0c8;
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.82rem !important;
+  color: #9a5b2f !important;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Deposit Cards */
+.edc-terms-deposit-grid {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.edc-terms-deposit-card {
+  flex: 1;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.edc-terms-deposit-label {
+  font-size: 0.78rem;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.edc-terms-deposit-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f2421b;
+}
+
+/* Footer */
+.edc-terms-modal-footer {
+  border-top: 1px solid #f0f0f0;
+  padding: 1rem 1.5rem;
+  justify-content: center;
+}
+
+.edc-terms-accept-btn,
+.edc-terms-accept-btn.btn,
+.edc-terms-accept-btn.btn-primary {
+  background: linear-gradient(135deg, #1a2d4a 0%, #0d1a2d 100%) !important;
+  border: none !important;
+  padding: 0.7rem 3rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.edc-terms-accept-btn:hover,
+.edc-terms-accept-btn.btn:hover,
+.edc-terms-accept-btn.btn-primary:hover {
+  background: linear-gradient(135deg, #243f5f 0%, #152438 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 45, 74, 0.3) !important;
+}
+
+@media (max-width: 576px) {
+  .edc-terms-content {
+    padding: 1rem;
+  }
+
+  .edc-terms-section-block {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .edc-terms-section-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .edc-terms-deposit-grid {
+    flex-direction: column;
+  }
+}

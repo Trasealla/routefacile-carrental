@@ -1,0 +1,843 @@
+/* ============================================
+   ENHANCED CAR CARD STYLES
+   ============================================ */
+
+/* Card Grid - Flexbox layout that centers last row items */
+.cardetails__cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 10px 0;
+}
+
+/* Card Wrapper */
+.cardetails__card-wrapper {
+  flex: 0 0 calc(25% - 24px);
+  max-width: calc(25% - 24px);
+  min-width: 250px;
+}
+
+/* ============================================
+   MAIN CARD CONTAINER
+   ============================================ */
+.cardetails__item-enhanced {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardetails__item-enhanced:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(27, 61, 107, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #0D1B2A;
+}
+
+.cardetails__item-enhanced.selected {
+  border-color: #0D1B2A;
+  box-shadow: 0 8px 30px rgba(27, 61, 107, 0.25), 0 0 0 3px rgba(27, 61, 107, 0.1);
+}
+
+/* ============================================
+   CATEGORY BADGE
+   ============================================ */
+.cardetails__category-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+.cardetails__category-badge span {
+  background: linear-gradient(135deg, #0D1B2A 0%, #2a5a9e 100%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   CAR IMAGE SECTION
+   ============================================ */
+.cardetails__image-wrapper {
+  background: #ffffff;
+  padding: 16px 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardetails__image-wrapper::after {
+  content: none;
+}
+
+.cardetails__car-img {
+  max-height: 130px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cardetails__item-enhanced:hover .cardetails__car-img {
+  transform: scale(1.08);
+}
+
+/* ============================================
+   CAR INFO SECTION
+   ============================================ */
+.cardetails__info-section {
+  padding: 16px 16px 12px;
+  flex-grow: 1;
+}
+
+.cardetails__car-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 2px;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.cardetails__similar-text {
+  font-size: 0.78rem;
+  color: #7c8db0;
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+
+/* ============================================
+   SPECS GRID - Modern Chip Layout
+   ============================================ */
+.cardetails__specs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cardetails__spec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f4f8;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  color: #4a5568;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.cardetails__spec-chip:hover {
+  background: #e2e8f0;
+}
+
+.cardetails__spec-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.75;
+}
+
+/* ============================================
+   PRICING SECTION
+   ============================================ */
+.cardetails__pricing-section {
+  padding: 0 16px 16px;
+  margin-top: auto;
+}
+
+.cardetails__pricing-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.cardetails__price-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 1.5px solid #d1dbe8;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  min-height: 56px;
+}
+
+.cardetails__price-btn:hover {
+  border-color: #0D1B2A;
+  background: #f0f5ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 61, 107, 0.12);
+}
+
+.cardetails__price-btn--active {
+  background: linear-gradient(135deg, #0D1B2A 0%, #2a5a9e 100%) !important;
+  border-color: #0D1B2A !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(27, 61, 107, 0.3);
+  transform: translateY(-1px);
+}
+
+.cardetails__price-btn--active .cardetails__price-amount,
+.cardetails__price-btn--active .cardetails__price-label {
+  color: #fff !important;
+}
+
+.cardetails__price-amount {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.cardetails__price-label {
+  font-size: 0.68rem;
+  color: #7c8db0;
+  font-weight: 500;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+/* ============================================
+   CTA BUTTON
+   ============================================ */
+.cardetails__cta-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0D1B2A 0%, #2a5a9e 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardetails__cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.cardetails__cta-btn:hover::before {
+  left: 100%;
+}
+
+.cardetails__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 61, 107, 0.35);
+}
+
+.cardetails__cta-btn a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* The card is one big button, so it has to look like one. */
+.cardetails__card-wrapper--clickable {
+  cursor: pointer;
+}
+
+.cardetails__card-wrapper--clickable label {
+  cursor: pointer;
+}
+
+.cardetails__card-wrapper--clickable:focus-visible {
+  outline: 3px solid #e02f12;
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+.cardetails__choice-hint {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c0281a;
+  text-align: center;
+}
+
+/* ============================================
+   ARROW (for selected cards)
+   ============================================ */
+.card__arrow {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  fill: var(--gradient-bg);
+}
+
+.card-input-element:checked + .cardetails__item-enhanced .card__arrow {
+  display: block;
+  fill: var(--gradient-bg);
+}
+
+/* ============================================
+   SAVED CAR HIGHLIGHT
+   ============================================ */
+.saved_car_highlighter {
+  border: 4px solid #402cbd;
+  border-radius: 20px;
+}
+
+.hide-car-features {
+  filter: blur(5px);
+}
+
+/* ============================================
+   LEGACY SUPPORT - Keep old class working
+   ============================================ */
+.cardetails__section .nav-link {
+  color: #245b8e;
+}
+.cardetails__section .nav-pills .nav-link.active {
+  background-color: #0D1B2A;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+}
+
+.cardetails__item {
+  border: 0px;
+  border-radius: 16px;
+  width: 100%;
+  position: relative;
+}
+
+.cardetails__item .section__title {
+  color: #201f1d;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cardetails__item-info span {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.cardetails__item-btn {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background: var(--gradient-bg);
+  padding: 8px 0px;
+}
+
+.cardetails__item-btn a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.cardetails__btn-rent {
+  border-radius: 6px;
+}
+
+label {
+  position: relative;
+}
+.card-input-element {
+  display: none;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.selected-pay-button {
+  border: 0.3px solid #4078AC;
+  padding: 6px 2px;
+  border-radius: 5px;
+  background: var(--gradient-bg);
+  color: #fff;
+  font-weight: 400;
+  transition: all 0.3s;
+}
+
+.unselected-pay-button {
+  border: 0.3px solid #4078AC;
+  padding: 6px 2px;
+  border-radius: 5px;
+  font-weight: 400;
+  transition: all 0.3s;
+}
+
+.unselected-pay-button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  background: var(--gradient-bg);
+  color: #fff;
+}
+
+.pay-button-parent {
+  gap: 1rem;
+}
+.pay-button-child {
+  flex: 1;
+}
+
+/* ============================================
+   PAGINATION STYLES
+   ============================================ */
+.pagination {
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-padding-y: 0.375rem;
+  --bs-pagination-font-size: 1rem;
+  --bs-pagination-color: #020a4de9;
+  --bs-pagination-bg: var(--bs-body-bg);
+  --bs-pagination-border-width: var(--bs-border-width);
+  --bs-pagination-border-color: #1F5486;
+  --bs-pagination-border-radius: var(--bs-border-radius);
+  --bs-pagination-hover-color: var(--bs-link-hover-color);
+  --bs-pagination-hover-bg: var(--bs-tertiary-bg);
+  --bs-pagination-hover-border-color: var(--bs-border-color);
+  --bs-pagination-focus-color: var(--bs-link-hover-color);
+  --bs-pagination-focus-bg: var(--bs-secondary-bg);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --bs-pagination-active-color: #fff;
+  --bs-pagination-active-bg: #020a4de9;
+  --bs-pagination-active-border-color: #0d6efd;
+  --bs-pagination-disabled-color: var(--bs-secondary-color);
+  --bs-pagination-disabled-bg: var(--bs-secondary-bg);
+  --bs-pagination-disabled-border-color: var(--bs-border-color);
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.btn-close {
+  background-color: currentColor;
+  color: #fff;
+}
+.btn-close:hover {
+  background-color: currentColor;
+  color: #fff;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+@media screen and (max-width: 1400px) {
+  .cardetails__card-wrapper {
+    flex: 0 0 calc(25% - 24px);
+    max-width: calc(25% - 24px);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .cardetails__card-wrapper {
+    flex: 0 0 calc(33.33% - 24px);
+    max-width: calc(33.33% - 24px);
+    min-width: 230px;
+  }
+  
+  .cardetails__price-amount {
+    font-size: 0.8rem;
+  }
+  
+  .cardetails__spec-chip {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .cardetails__card-wrapper {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    min-width: 220px;
+  }
+  
+  .cardetails__cards-grid {
+    gap: 20px;
+  }
+  
+  .cardetails__car-name {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardetails__card-wrapper {
+    flex: 0 0 calc(50% - 16px);
+    max-width: calc(50% - 16px);
+    min-width: 200px;
+  }
+  
+  .cardetails__cards-grid {
+    gap: 16px;
+  }
+  
+  .cardetails__image-wrapper {
+    min-height: 130px;
+    padding: 20px 12px 12px;
+  }
+  
+  .cardetails__car-img {
+    max-height: 100px;
+  }
+  
+  .cardetails__info-section {
+    padding: 12px 12px 8px;
+  }
+  
+  .cardetails__pricing-section {
+    padding: 0 12px 12px;
+  }
+  
+  .cardetails__car-name {
+    font-size: 0.9rem;
+  }
+  
+  .cardetails__spec-chip {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+  
+  .cardetails__price-amount {
+    font-size: 0.75rem;
+  }
+  
+  .cardetails__price-label {
+    font-size: 0.62rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cardetails__card-wrapper {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+  
+  .cardetails__cards-grid {
+    gap: 14px;
+  }
+  
+  .cardetails__item-enhanced {
+    flex-direction: column;
+  }
+  
+  .cardetails__image-wrapper {
+    width: 100%;
+    min-height: 170px;
+    padding: 20px 16px 16px;
+  }
+  
+  .cardetails__car-img {
+    max-height: 140px;
+    max-width: 80%;
+  }
+  
+  .cardetails__info-section {
+    padding: 14px 16px 10px;
+  }
+  
+  .cardetails__car-name {
+    font-size: 1.05rem;
+  }
+  
+  .cardetails__similar-text {
+    font-size: 0.8rem;
+  }
+  
+  .cardetails__specs-grid {
+    gap: 8px;
+  }
+  
+  .cardetails__spec-chip {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+  
+  .cardetails__pricing-section {
+    padding: 0 16px 16px;
+  }
+  
+  .cardetails__price-btn {
+    min-height: 52px;
+    padding: 10px 8px;
+  }
+  
+  .cardetails__price-amount {
+    font-size: 0.88rem;
+  }
+  
+  .cardetails__price-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* ============================================================================
+   SIXT-STYLE FLEET CARD (2026-08-09)
+   Dark "studio" card: title + specs on top, the car lit by a soft spotlight in
+   the middle, pricing at the bottom. Appended last so it overrides the earlier
+   light-card rules; the existing responsive blocks still apply on top of it.
+
+   NOTE on the car photos: they are opaque PNGs with a WHITE background (no
+   alpha), so on a dark card they would render as white rectangles. We blend
+   them with `mix-blend-mode: multiply` over the light part of the gradient —
+   the white drops out and the car keeps its real tones.
+   ============================================================================ */
+.cardetails__item-enhanced {
+  background:
+    radial-gradient(78% 40% at 50% 50%, rgba(255,255,255,.96) 0%, rgba(207,212,218,.72) 46%, rgba(120,128,138,0) 74%),
+    linear-gradient(180deg, #343a41 0%, #2b3037 26%, #22262b 60%, #15181c 100%);
+  border: 2px solid transparent;
+  border-radius: 18px;
+  box-shadow: 0 6px 26px rgba(9, 13, 18, .22);
+}
+.cardetails__item-enhanced:hover {
+  border-color: rgba(255,255,255,.28);
+  box-shadow: 0 16px 44px rgba(9, 13, 18, .34);
+}
+.cardetails__item-enhanced.selected {
+  border-color: #e02f12;
+  box-shadow: 0 10px 34px rgba(255, 53, 20, .3);
+}
+
+/* SIXT order: info (title + specs) → car image → pricing */
+.cardetails__info-section    { order: 1; padding: 18px 20px 10px; flex-grow: 0; }
+.cardetails__image-wrapper   { order: 2; background: transparent; padding: 2px 14px 6px; min-height: 170px; }
+.cardetails__pricing-section { order: 3; margin-top: auto; }
+
+/* The category is already shown in the "or Similar | X" line (as SIXT does) */
+.cardetails__category-badge { display: none; }
+
+.cardetails__car-name {
+  color: #ffffff;
+  font-size: 1.28rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.cardetails__similar-text {
+  color: #c3c9d2;
+  font-size: .86rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.cardetails__spec-chip {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.16);
+  color: #ffffff;
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+.cardetails__spec-chip:hover { background: rgba(255,255,255,.22); }
+.cardetails__spec-chip span { color: #ffffff; }
+/* the spec icons are dark artwork — invert them for the dark card */
+.cardetails__spec-icon { filter: brightness(0) invert(1); opacity: .92; }
+
+.cardetails__car-img { mix-blend-mode: multiply; max-height: 150px; }
+
+.cardetails__price-btn {
+  background: rgba(8, 11, 15, .42);
+  border: 1.5px solid rgba(255,255,255,.22);
+  border-radius: 12px;
+}
+.cardetails__price-btn:hover {
+  background: rgba(8, 11, 15, .6);
+  border-color: rgba(255,255,255,.45);
+}
+.cardetails__price-btn--active {
+  background: #e02f12;
+  border-color: #e02f12;
+  box-shadow: 0 6px 18px rgba(255, 53, 20, .4);
+}
+.cardetails__price-amount { color: #ffffff; font-weight: 800; }
+.cardetails__price-label  { color: #c3c9d2; }
+.cardetails__price-btn--active .cardetails__price-amount,
+.cardetails__price-btn--active .cardetails__price-label { color: #ffffff; }
+
+.cardetails__cta-btn { background: #e02f12; border: none; color: #fff; }
+.cardetails__cta-btn:hover { background: #ed2e0e; }
+
+/* ============================================================================
+   Card background — matched to the SIXT reference (2026-08-10).
+   A broad, soft studio sweep: darker at the corners, light behind the car, no
+   visible hotspot. Replaces the earlier near-black card + white spotlight.
+   Text/pills are re-tuned for the lighter surface.
+   ============================================================================ */
+.cardetails__item-enhanced {
+  background:
+    radial-gradient(120% 85% at 56% 54%, #dfe2e5 0%, #cbcfd3 26%, #aeb3b8 50%, rgba(140,146,152,0) 78%),
+    linear-gradient(155deg, #565c62 0%, #6e747a 22%, #888e94 45%, #7b8187 70%, #5a6066 100%);
+}
+
+/* readable over the lighter sweep */
+.cardetails__car-name    { text-shadow: 0 1px 6px rgba(0,0,0,.35); }
+.cardetails__similar-text{ color: #eceef1; text-shadow: 0 1px 5px rgba(0,0,0,.35); }
+
+.cardetails__spec-chip {
+  background: rgba(18,22,28,.55);
+  border: 1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.cardetails__spec-chip:hover { background: rgba(18,22,28,.72); }
+
+.cardetails__price-btn {
+  background: rgba(12,16,21,.62);
+  border: 1.5px solid rgba(255,255,255,.22);
+}
+.cardetails__price-btn:hover { background: rgba(12,16,21,.78); }
+.cardetails__price-label { color: #d7dbdf; }
+
+/* ============================================================================
+   CAR CARD — client-supplied SIXT background (2026-08-10). Final.
+   Light source top-right, dark vignette left, fading to #111719 behind the
+   pricing. Supersedes the earlier gradient attempts above.
+
+   The car images are now TRANSPARENT PNGs (rf-*-t.png), so `mix-blend-mode`
+   is switched back off — the multiply hack was only needed while they carried
+   a white background, and it would crush the bodywork over the dark lower half.
+   The vehicle is absolutely positioned per the spec, so the card carries the
+   height instead of the image wrapper.
+   ============================================================================ */
+.cardetails__item-enhanced {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 430px;
+  background: radial-gradient(
+    ellipse 90% 72% at 91% 31%,
+    #d2dde1 0%,
+    #aab9be 25%,
+    #69787d 46%,
+    #344044 63%,
+    #151b1d 84%,
+    #111719 100%
+  );
+}
+
+/* dark vignette around the edges */
+.cardetails__item-enhanced::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 8, 9, 0.42) 0%,
+    transparent 38%,
+    transparent 85%,
+    rgba(5, 8, 9, 0.08) 100%
+  );
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+}
+
+/* fade into the dark pricing area */
+.cardetails__item-enhanced::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 58% 0 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(17, 23, 25, 0.12) 22%,
+    rgba(17, 23, 25, 0.82) 58%,
+    #111719 78%,
+    #111719 100%
+  );
+}
+
+/* the vehicle sits above the background effects */
+.cardetails__image-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 38%;
+  left: 4%;
+  width: 92%;
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  background: transparent;
+  display: block;
+  order: 0;
+}
+.cardetails__car-img {
+  mix-blend-mode: normal;
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 7px rgba(0, 0, 0, 0.55));
+}
+.cardetails__item-enhanced:hover .cardetails__car-img { transform: none; }
+
+/* text and pricing stay above everything */
+.cardetails__info-section,
+.cardetails__pricing-section { position: relative; z-index: 2; }
+.cardetails__info-section    { order: 1; }
+.cardetails__pricing-section { order: 3; margin-top: auto; }
+
+.cardetails__car-name     { color: #ffffff; text-shadow: none; }
+.cardetails__similar-text { color: #c9ced3; text-shadow: none; }
+.cardetails__spec-chip {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.cardetails__price-btn {
+  background: rgba(255, 255, 255, 0.10);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+}
+.cardetails__price-btn:hover { background: rgba(255, 255, 255, 0.18); }
+.cardetails__price-label { color: #aeb5bb; }
+
+/* Euro equivalent shown beside the MAD price. Charging is always in MAD —
+   this is a courtesy conversion at the admin-set `eur_rate`. */
+.cardetails__price-eur {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #aeb5bb;
+  margin-top: 1px;
+  letter-spacing: 0.2px;
+}
+.cardetails__price-btn--active .cardetails__price-eur { color: rgba(255,255,255,.85); }

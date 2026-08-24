@@ -1,0 +1,719 @@
+/* ============================================================================
+   Route Facile — shared auth UI (login + signup)
+   ----------------------------------------------------------------------------
+   Loaded after login.css / register.css, so it restyles the existing markup
+   without any JSX changes beyond adding the .rf-auth class to the page root.
+   Both pages already use the same .login-* class names, so one sheet drives
+   both and they can no longer drift apart.
+
+   Two things the previous design got wrong that this fixes:
+   • Direction. Everything was pinned with left/right, so in Arabic the field
+     icons sat on top of the right-aligned text. This uses logical properties
+     throughout, so it mirrors correctly.
+   • Noise. Animated orbs, floating particles, a moving grid and "road lines"
+     sat behind a sign-in form. They cost paint time and pulled attention away
+     from the two fields that matter. They are switched off here.
+   ========================================================================== */
+
+/* ---- calm the background ------------------------------------------------ */
+.rf-auth .login-bg-orb,
+.rf-auth .login-particles,
+.rf-auth .login-grid-pattern,
+.rf-auth .login-road-lines,
+.rf-auth .login-decoration {
+  display: none !important;
+}
+
+.rf-auth .login-page-container {
+  background:
+    radial-gradient(1100px 620px at 78% -12%, rgba(242, 66, 27, 0.16), transparent 62%),
+    linear-gradient(160deg, #0b1a2e 0%, #12294a 52%, #0d1f38 100%);
+  padding-top: 84px;
+  padding-bottom: 64px;
+  align-items: center;
+}
+
+/* ---- the card ----------------------------------------------------------- */
+.rf-auth .login-card {
+  max-width: 460px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 30px 60px -20px rgba(3, 12, 26, 0.55),
+    0 8px 24px rgba(3, 12, 26, 0.25);
+  animation: rfAuthIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The signup form carries far more fields, so it earns more width. */
+.rf-auth .login-card.register-card {
+  max-width: 720px;
+}
+
+@keyframes rfAuthIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rf-auth .login-card::before {
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #f2421b, #ff8a5c);
+}
+
+.rf-auth .login-card-header {
+  padding: 34px 36px 20px;
+}
+
+.rf-auth .login-card-header::after {
+  inset-inline: 36px;
+}
+
+.rf-auth .login-logo-section {
+  margin-bottom: 18px;
+}
+
+.rf-auth .login-logo-section img {
+  width: 178px;
+}
+
+.rf-auth .login-welcome h2 {
+  font-size: 25px;
+  line-height: 1.28;
+  letter-spacing: -0.3px;
+}
+
+.rf-auth .login-form-body {
+  padding: 26px 36px 34px;
+}
+
+/* ---- fields ------------------------------------------------------------- */
+.rf-auth .login-input-group {
+  margin-bottom: 18px;
+}
+
+.rf-auth .login-input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 7px;
+  display: block;
+  text-align: start;
+}
+
+.rf-auth .login-input-wrapper .form-control,
+.rf-auth .login-input-wrapper .react-datepicker__input-container input,
+.rf-auth .login-input-wrapper select {
+  height: 50px;
+  background: #f8fafc;
+  border: 1.5px solid #e6edf5;
+  border-radius: 11px;
+  font-size: 15px;
+  /* Trailing side leaves room for the icon, so it mirrors in Arabic. */
+  padding-inline-start: 16px;
+  padding-inline-end: 46px;
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.rf-auth .login-input-wrapper .form-control:focus {
+  background: #fff;
+  border-color: #f2421b;
+  box-shadow: 0 0 0 3px rgba(242, 66, 27, 0.13);
+  outline: none;
+}
+
+.rf-auth .login-input-icon {
+  inset-inline-end: 15px;
+  inset-inline-start: auto;
+  color: #94a3b8;
+}
+
+/* The password reveal button is interactive, so unlike the field icons it must
+   stay clickable. */
+.rf-auth .login-password-toggle {
+  inset-inline-end: 12px;
+  inset-inline-start: auto;
+  pointer-events: auto;
+}
+
+.rf-auth .login-forgot {
+  text-align: end;
+  margin-top: -6px;
+  margin-bottom: 22px;
+}
+
+/* ---- submit ------------------------------------------------------------- */
+.rf-auth .login-btn {
+  height: 50px;
+  border-radius: 11px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: linear-gradient(135deg, #f2421b 0%, #d83310 100%);
+  box-shadow: 0 8px 20px rgba(242, 66, 27, 0.26);
+}
+
+.rf-auth .login-btn:hover {
+  background: linear-gradient(135deg, #ff5330 0%, #e63b13 100%);
+  box-shadow: 0 12px 26px rgba(242, 66, 27, 0.34);
+  transform: translateY(-1px);
+}
+
+.rf-auth .login-btn:disabled {
+  opacity: 0.65;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---- divider + footer --------------------------------------------------- */
+.rf-auth .login-divider {
+  margin: 22px 0 16px;
+}
+
+.rf-auth .login-divider-text {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.rf-auth .login-signup-link,
+.rf-auth .login-footer {
+  font-size: 14.5px;
+  color: #64748b;
+  text-align: center;
+}
+
+.rf-auth .login-signup-link a,
+.rf-auth .login-footer a {
+  color: #f2421b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rf-auth .login-signup-link a:hover,
+.rf-auth .login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---- signup: two-column field grid -------------------------------------- */
+.rf-auth .register-card .login-form .row > [class*="col-"] {
+  margin-bottom: 2px;
+}
+
+/* ---- arabic ------------------------------------------------------------- */
+/* Arabic sits noticeably smaller than Latin at the same px size, so the
+   headline gets a nudge and the tighter Latin letter-spacing is dropped. */
+[dir="rtl"] .rf-auth .login-welcome h2 {
+  font-size: 27px;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+
+[dir="rtl"] .rf-auth .login-input-group label {
+  letter-spacing: 0;
+}
+
+/* Phone numbers and emails stay left-to-right even in an RTL page. */
+[dir="rtl"] .rf-auth input[type="email"],
+[dir="rtl"] .rf-auth input[type="tel"] {
+  direction: ltr;
+  text-align: right;
+}
+
+/* ---- small screens ------------------------------------------------------ */
+@media (max-width: 575.98px) {
+  .rf-auth .login-page-container {
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+
+  .rf-auth .login-card {
+    border-radius: 16px;
+  }
+
+  .rf-auth .login-card-header {
+    padding: 26px 22px 16px;
+  }
+
+  .rf-auth .login-form-body {
+    padding: 20px 22px 28px;
+  }
+
+  .rf-auth .login-welcome h2 {
+    font-size: 22px;
+  }
+
+  .rf-auth .login-logo-section img {
+    width: 150px;
+  }
+}
+
+/* Respect a reduced-motion preference — the card entrance is decorative. */
+@media (prefers-reduced-motion: reduce) {
+  .rf-auth .login-card {
+    animation: none;
+  }
+  .rf-auth .login-btn:hover {
+    transform: none;
+  }
+}
+
+/* The prompt and its link are separate JSX nodes with only a newline between
+   them, which JSX collapses to nothing — so they rendered flush together
+   ("ليس لديك حساب؟إنشاء حساب"). A flex row with a gap spaces them in both
+   directions without touching the markup. */
+.rf-auth .login-register-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 14.5px;
+  color: #64748b;
+  text-align: center;
+}
+
+.rf-auth .login-register-link a {
+  color: #f2421b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rf-auth .login-register-link a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================================
+   Signup — fit the whole form on one screen
+   ----------------------------------------------------------------------------
+   The form has 11 fields plus a gender row and submit. Stacked in 2 columns at
+   the previous sizing it ran well past the fold, so a new customer had to
+   scroll before they could see what was being asked of them. Widening the card
+   to three columns and tightening the vertical rhythm brings it into a single
+   viewport on a laptop, without shrinking the touch targets on mobile.
+   ========================================================================== */
+@media (min-width: 992px) {
+  .rf-auth .login-card.register-card {
+    max-width: 1000px;
+  }
+
+  .rf-auth .register-card .login-card-header {
+    padding: 26px 40px 14px;
+  }
+
+  .rf-auth .register-card .login-logo-section {
+    margin-bottom: 10px;
+  }
+
+  .rf-auth .register-card .login-logo-section img {
+    width: 150px;
+  }
+
+  .rf-auth .register-card .login-welcome h2 {
+    font-size: 21px;
+    line-height: 1.3;
+  }
+
+  .rf-auth .register-card .login-form-body {
+    padding: 18px 40px 26px;
+  }
+
+  /* Three across instead of two — 11 fields land in four tidy rows. */
+  .rf-auth .register-card .register-row {
+    flex-wrap: wrap;
+    gap: 0 20px;
+  }
+
+  .rf-auth .register-card .register-col {
+    flex: 0 0 calc(33.333% - 14px);
+    max-width: calc(33.333% - 14px);
+  }
+
+  .rf-auth .register-card .register-col .login-input-group,
+  .rf-auth .register-card .login-input-group {
+    margin-bottom: 12px;
+  }
+
+  .rf-auth .register-card .login-input-group label {
+    font-size: 12.5px;
+    margin-bottom: 5px;
+  }
+
+  .rf-auth .register-card .login-input-wrapper .form-control,
+  .rf-auth .register-card .login-input-wrapper select,
+  .rf-auth .register-card .react-datepicker__input-container input {
+    height: 44px;
+    font-size: 14.5px;
+    border-radius: 10px;
+  }
+
+  .rf-auth .register-card .register-gender-row {
+    margin-bottom: 10px;
+  }
+
+  .rf-auth .register-card .login-btn {
+    height: 46px;
+    margin-top: 4px;
+  }
+
+  .rf-auth .register-card .login-divider {
+    margin: 14px 0 10px;
+  }
+}
+
+/* Below 992px the three-column grid would squeeze the fields, so it falls back
+   to two, then to a single column on phones. */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .rf-auth .register-card .register-row {
+    flex-wrap: wrap;
+    gap: 0 16px;
+  }
+  .rf-auth .register-card .register-col {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .rf-auth .register-card .register-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .rf-auth .register-card .register-col {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* Final trim so the submit button clears a 900px-tall laptop viewport with the
+   site header (~88px) still on screen. Measured, not guessed: before this the
+   button sat at 938px on a 900px viewport. Touch targets stay >= 42px. */
+@media (min-width: 992px) {
+  .rf-auth .register-card ~ *,
+  .rf-auth .login-page-container:has(.register-card) {
+    padding-top: 26px;
+  }
+
+  .rf-auth .register-card .login-card-header {
+    padding: 18px 40px 10px;
+  }
+
+  .rf-auth .register-card .login-logo-section {
+    margin-bottom: 6px;
+  }
+
+  .rf-auth .register-card .login-logo-section img {
+    width: 124px;
+  }
+
+  .rf-auth .register-card .login-welcome h2 {
+    font-size: 18px;
+    line-height: 1.28;
+  }
+
+  .rf-auth .register-card .login-card-header::after {
+    display: none;
+  }
+
+  .rf-auth .register-card .login-form-body {
+    padding: 12px 40px 18px;
+  }
+
+  .rf-auth .register-card .login-input-group {
+    margin-bottom: 9px;
+  }
+
+  .rf-auth .register-card .login-input-wrapper .form-control,
+  .rf-auth .register-card .login-input-wrapper select,
+  .rf-auth .register-card .react-datepicker__input-container input {
+    height: 42px;
+  }
+
+  .rf-auth .register-card .login-btn {
+    height: 44px;
+  }
+}
+
+/* ============================================================================
+   Signup — split screen + step wizard
+   ----------------------------------------------------------------------------
+   Brand panel on one side, form on the other. The form is a 3-step wizard, so
+   each screen asks for a few related things instead of presenting 11 fields at
+   once. Everything below uses logical properties, so the whole layout mirrors
+   in Arabic without a second set of rules.
+   ========================================================================== */
+@media (min-width: 992px) {
+  .rf-auth .login-page-container:has(.register-card) {
+    display: grid;
+    grid-template-columns: minmax(300px, 460px) minmax(0, 1fr);
+    align-items: center;
+    gap: 56px;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .rf-auth .login-page-container:has(.register-card) .login-bg-elements {
+    display: none;
+  }
+
+  .rf-auth .login-card.register-card {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* ---- brand panel -------------------------------------------------------- */
+.rf-auth-brand {
+  display: none;
+  color: #fff;
+  /* A hairline down the leading edge, echoing the hero's accent rule. */
+  border-inline-start: 3px solid #f2421b;
+  padding-inline-start: 28px;
+}
+
+@media (min-width: 992px) {
+  .rf-auth-brand { display: block; }
+}
+
+.rf-auth-brand-logo {
+  width: 210px;
+  height: auto;
+  display: block;
+  margin-bottom: 52px;
+  /* The panel is dark, so the light-background wordmark is inverted rather than
+     shipping a second asset. */
+  filter: brightness(0) invert(1);
+}
+
+.rf-auth-brand-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.18;
+  margin: 0 0 14px;
+  letter-spacing: -0.6px;
+}
+
+.rf-auth-brand-sub {
+  font-size: 16.5px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 22px;
+  max-width: 34ch;
+}
+
+.rf-auth-brand-rule {
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: #f2421b;
+  border-radius: 2px;
+  margin-bottom: 56px;
+}
+
+.rf-auth-usp {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rf-auth-usp h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Inline SVG rather than a Font Awesome glyph — the self-hosted subset does not
+   embed shield-halved, lock or check, so they rendered as tofu boxes. */
+.rf-auth-usp h3 svg {
+  width: 17px;
+  height: 17px;
+  color: #f2421b;
+  flex-shrink: 0;
+}
+
+.rf-auth-secure-icon {
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+}
+
+.rf-auth-usp ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rf-auth-usp li {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.86);
+  padding-inline: 8px;
+}
+
+.rf-auth-usp li + li {
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.rf-auth-usp li i {
+  display: block;
+  font-size: 19px;
+  color: #f2421b;
+  margin-bottom: 9px;
+}
+
+/* ---- card header -------------------------------------------------------- */
+.rf-auth .register-card .login-card-header {
+  text-align: center;
+}
+
+.rf-auth-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f2421b;
+  margin-bottom: 6px;
+}
+
+.rf-auth .register-card .login-welcome h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #12294a;
+  margin: 0 0 8px;
+}
+
+.rf-auth-lede {
+  font-size: 14.5px;
+  color: #64748b;
+  margin: 0 0 8px;
+}
+
+.rf-auth-secure {
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin: 0 0 20px;
+}
+
+.rf-auth-secure i { color: #94a3b8; }
+
+/* ---- step indicator ----------------------------------------------------- */
+.rf-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+  position: relative;
+}
+
+.rf-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Connector between dots. Uses inset-inline so it runs the correct way in
+   Arabic without a mirrored rule. */
+.rf-step + .rf-step::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  inset-inline-end: 50%;
+  width: 100%;
+  height: 2px;
+  background: #e6edf5;
+}
+
+.rf-step.is-active + .rf-step::before,
+.rf-step.is-done::before,
+.rf-step.is-done + .rf-step::before {
+  background: #f2421b;
+}
+
+.rf-step-dot {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #e6edf5;
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 7px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.rf-step.is-active .rf-step-dot,
+.rf-step.is-done .rf-step-dot {
+  background: #f2421b;
+  border-color: #f2421b;
+  color: #fff;
+}
+
+.rf-step.is-active .rf-step-label {
+  color: #f2421b;
+  font-weight: 700;
+}
+
+.rf-step-label {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ---- step navigation ---------------------------------------------------- */
+.rf-step-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rf-step-nav .login-btn {
+  flex: 1;
+  margin: 0;
+}
+
+.rf-step-back {
+  height: 46px;
+  padding-inline: 22px;
+  border-radius: 11px;
+  border: 1.5px solid #e6edf5;
+  background: #fff;
+  color: #475569;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.rf-step-back:hover {
+  border-color: #cbd5e1;
+  color: #12294a;
+}
+
+.rf-step-error {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ---- mobile ------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .rf-auth .register-card .login-welcome h2 { font-size: 24px; }
+  .rf-step-label { font-size: 11px; }
+  .rf-auth .register-card .login-card-header { text-align: center; }
+}

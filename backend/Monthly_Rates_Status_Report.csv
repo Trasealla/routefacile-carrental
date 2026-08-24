@@ -1,0 +1,59 @@
+Category,Feature/Item,Status,Description,Location/Notes
+===== DATABASE TABLES =====,,,,
+Database,rates_monthly (V1 - Legacy),DONE,Legacy monthly rates table with basic fields,"Fields: year, rate, cdw, scdw, pai, gps, baby_seat, driver"
+Database,rates_monthly_v2 (V2 - Current),DONE,"Current table with model_year, months, mileage support","Additional: extra_1000_km_rate, extra_2000_km_rate, extra_3000_km_rate"
+Database,rates_monthly_files,DONE,Tracks uploaded Excel files for rate imports,Includes audit fields: created_by/updated_by/deleted_by
+Database,booking_monthly_installments,DONE,Stores installment breakdowns for monthly bookings,"Fields: installment_no, due_date, amounts, refund_amount, details (JSON)"
+Database,monthly_km_plans,DONE,"Defines KM plans (1000, 2000, 3000) per car group",Used for mileage upgrade options
+===== ADMIN API ENDPOINTS =====,,,,
+Admin API,POST /admin/rate/monthly (V1),DONE,Import monthly rates from Excel (legacy),Soft deletes existing rates before import
+Admin API,GET /admin/rate/monthly (V1),DONE,List monthly rates with filters and pagination,"Filters: car_id, year, group_id, emirate_id, month"
+Admin API,POST /admin/rate/monthly/v2,DONE,"Import monthly rates V2 with model_year, duration, mileage","Excel format includes: Duration, Mileage, Extra KM rates, Model Year"
+Admin API,GET /admin/rate/monthly/v2,DONE,List V2 rates with model_year filter,Includes created_by_admin relation
+===== BOOKING API ENDPOINTS =====,,,,
+Booking API,POST /booking/monthly/installment,DONE,Calculate installment breakdown for monthly bookings,"Returns: booking_months, booking_days, flexi_days, installments[]"
+Booking API,GET /booking/monthly/upgrade/extra/km/:rate_id,DONE,Get extra KM plans for a specific rate,"Returns: extra_1000_km_rate, extra_2000_km_rate, extra_3000_km_rate"
+Booking API,GET /booking/monthly/upgrade/mileage/plans/:car_id/:emirate_id/:months,DONE,Get available mileage options for duration,Returns mileage plans for given months
+Booking API,GET /booking/monthly/upgrade/monthly/plans/:car_id/:emirate_id/:mileage,DONE,Get available duration options for mileage,Returns duration plans for given mileage
+===== RATE CALCULATION LOGIC =====,,,,
+Calculation,Rate Selection Logic,DONE,Finds rate with months <= booking_months (uses MAX),"Matches mileage, model_year, emirate_id, year"
+Calculation,Flexi Days Calculation,DONE,Handles partial months (days < 30),Formula: (rate/30) * flexi_days
+Calculation,Car Rate Total,DONE,Calculates total car rate,"Formula: (rate * months) + (rate/30 * flexi_days)"
+Calculation,Monthly Discount Coupons,DONE,Supports value and percentage discounts,Applied to monthly bookings
+Calculation,Pay-Now Discount,DONE (NEEDS CONFIG),Temporary promotional discount,Hardcoded date: 2026-12-31 - needs configuration
+Calculation,VMD Charges (Dubai),DONE,50 AED/month + pro-rated for flexi days,Dubai-only vehicle registration charges
+Calculation,Inter-Emirates Charges,DONE,Applied for cross-emirate bookings,Added to last installment
+Calculation,Parking Charges,DONE,Pickup and dropoff parking,Added to first and last installments
+===== INSTALLMENT FEATURES =====,,,,
+Installments,Single Month Calculation,DONE,One installment with all charges,Includes delivery/parking/extras
+Installments,Multi-Month Breakdown,DONE,First + monthly + last installments,Each installment detailed separately
+Installments,First Installment,DONE,"Includes delivery, pickup parking, extras, VMD",Pay-now discount applied if applicable
+Installments,Monthly Installments,DONE,"Car rate, extras, VMD, extra KM",Original rate (no discount)
+Installments,Last Installment,DONE,"Flexi days, inter-emirates, collection, dropoff parking",Handles remaining days
+Installments,VAT Calculation,DONE,5% VAT on all installments,Applied to each installment
+Installments,Upgrade Handling,DONE,Recalculates for booking changes,Computes refund or additional payment
+===== EXTRAS CALCULATION =====,,,,
+Extras,SCDW Rate,DONE,Super Collision Damage Waiver,Per-month and flexi-days rates
+Extras,PAI Rate,DONE (BUG),Personal Accident Insurance,BUG: Line 23 uses 'scdw' instead of 'pai' - NEEDS FIX
+Extras,GPS Rate,DONE,GPS device rental,Pro-rated for flexi days
+Extras,Baby Seat Rate,DONE,Baby seat rental,Pro-rated for flexi days
+Extras,Additional Driver Rate,DONE,Extra driver coverage,Pro-rated for flexi days
+===== INCOMPLETE / REQUIRED =====,,,,
+REQUIRED,Flexi Days Discount,NOT DONE,Discount for flexi days disabled (returns 0),"Location: monthly.rates.query.v2.ts:191-198 - commented code exists"
+REQUIRED,Pay-Now Discount Configuration,NEEDS CONFIG,Hardcoded promo date needs to be configurable,"Current: '2026-12-31' - Comment says 'Ramzan offer till 31 Aug'"
+REQUIRED,V1 Cleanup/Deprecation,PENDING,Legacy V1 tables and code still exist,Consider removing or archiving V1 code
+REQUIRED,Delivery/Collection Charges V2,NOT DONE,"Set to 0 in V2 query, V1 has them","Location: monthly.rates.query.v2.ts:90-91 - Hardcoded to 0"
+BUG,PAI Extras Query Bug,BUG FIX NEEDED,Line 23 uses 'scdw' instead of 'pai',monthly.extras.query.v2.ts:23 - Wrong column reference
+===== MODEL YEAR SUPPORT =====,,,,
+Model Year,Rate by Model Year,DONE,V2 supports model-year-specific rates,NULL model_year matches all years
+Model Year,Import with Model Year,DONE,Excel import accepts optional Model Year column,Column name: Model Year (optional)
+===== FILE MANAGEMENT =====,,,,
+Files,Excel Rate Import,DONE,Upload Excel files to import rates,Format validated during import
+Files,Rate File Tracking,DONE,Stores file metadata and audit trail,rates_monthly_files table
+Files,Special Rate Images,DONE,Supports special rate images per emirate,Used in rate display
+===== INTEGRATION =====,,,,
+Integration,Car Search Monthly,DONE,Uses monthlyRateQueryV2 for monthly bookings,Returns available monthly rates
+Integration,Booking Confirmation,DONE,Calls getMonthlyCarRate for monthly bookings,Confirms rate at booking time
+Integration,Booking Editing,DONE,Recalculates installments for upgrades,Handles rate changes
+Integration,Payment Processing,DONE,Uses installment amounts for payments,Payment scheduling based on installments
+Integration,Email Templates,DONE,booking_confirm_monthly.hbs template,Monthly booking confirmation emails

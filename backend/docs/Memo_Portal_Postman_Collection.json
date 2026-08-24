@@ -1,0 +1,546 @@
+{
+  "info": {
+    "name": "Memo Portal — ARC Backend",
+    "_postman_id": "memo-portal-arc-2026-05",
+    "description": "Postman collection for the Centralized Memo / Document Portal.\n\nIncludes:\n- Admin Memo APIs (admins.type='admin' JWT)\n- Public Memo Portal APIs (email + PIN JWT)\n\nSet the collection variables:\n- base_url            (e.g. http://localhost:3000)\n- admin_token         (paste after admin login)\n- portal_token        (auto-set after Verify PIN)\n- portal_email        (your @autostrad.com email)\n- portal_pin          (received in email)\n- document_id, version_id, access_id, category_id  (for path params)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000" },
+    { "key": "api_key", "value": "J%P9&g4aIbZn7D3" },
+    { "key": "admin_token", "value": "" },
+    { "key": "portal_token", "value": "" },
+    { "key": "portal_email", "value": "you@autostrad.com" },
+    { "key": "portal_pin", "value": "000000" },
+    { "key": "category_id", "value": "1" },
+    { "key": "document_id", "value": "1" },
+    { "key": "version_id", "value": "1" },
+    { "key": "access_id", "value": "1" }
+  ],
+  "auth": { "type": "noauth" },
+  "item": [
+    {
+      "name": "Admin — Auth (existing)",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "x-api-key", "value": "{{api_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@autostrad.com\",\n  \"password\": \"YourPassword\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.access_token) { pm.collectionVariables.set('admin_token', json.access_token); }"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Categories",
+      "item": [
+        {
+          "name": "List categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/categories?page=1&page_size=20"
+          }
+        },
+        {
+          "name": "List active categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/categories/active"
+          }
+        },
+        {
+          "name": "Get category by id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/categories/{{category_id}}"
+          }
+        },
+        {
+          "name": "Create category",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/categories",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"HR Memos\",\n  \"slug\": \"hr-memos\",\n  \"description\": \"All HR-related memos\",\n  \"status\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Update category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/categories/{{category_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"HR Memos (Updated)\",\n  \"status\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete category",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/categories/{{category_id}}"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Documents",
+      "item": [
+        {
+          "name": "List documents",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/admin/memo/documents?page=1&page_size=10&q=&category_id=&status=&from=&to=&uploaded_by=",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "admin", "memo", "documents"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "page_size", "value": "10" },
+                { "key": "q", "value": "" },
+                { "key": "category_id", "value": "" },
+                { "key": "status", "value": "" },
+                { "key": "from", "value": "" },
+                { "key": "to", "value": "" },
+                { "key": "uploaded_by", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get document by id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}"
+          }
+        },
+        {
+          "name": "Create document (metadata)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Q2 Operations Memo\",\n  \"description\": \"Quarterly operations summary\",\n  \"category_id\": {{category_id}},\n  \"tags\": \"q2,ops,2026\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.id) { pm.collectionVariables.set('document_id', json.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update document metadata",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Q2 Operations Memo (revised)\",\n  \"description\": \"Updated description\",\n  \"category_id\": {{category_id}},\n  \"tags\": \"q2,ops,2026,revised\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Upload new version (multipart)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/upload",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": "" },
+                { "key": "change_notes", "value": "Initial upload", "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Publish document",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/publish"
+          }
+        },
+        {
+          "name": "Archive document",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/archive"
+          }
+        },
+        {
+          "name": "Soft-delete document",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Versions",
+      "item": [
+        {
+          "name": "List versions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/versions"
+          }
+        },
+        {
+          "name": "Set current version (rollback)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/versions/{{version_id}}/set-current"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Access Control",
+      "item": [
+        {
+          "name": "List access entries",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access"
+          }
+        },
+        {
+          "name": "Assign access — Everyone (ALL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    { \"target_type\": \"ALL\" }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Assign access — By user type",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    { \"target_type\": \"USER_TYPE\", \"target_value\": \"hr_manager\" },\n    { \"target_type\": \"USER_TYPE\", \"target_value\": \"counter\" }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Assign access — Specific admin user",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    { \"target_type\": \"USER\", \"target_value\": \"42\" }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Assign access — Specific portal user (email)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entries\": [\n    { \"target_type\": \"USER\", \"target_value\": \"john.doe@autostrad.com\" }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Revoke access entry",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/access/{{access_id}}"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Views & Audit",
+      "item": [
+        {
+          "name": "Document views log",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/documents/{{document_id}}/views?page=1&page_size=20"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — User Lookup",
+      "item": [
+        {
+          "name": "Lookup admin users",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/users/lookup?q=&type=&page=1&page_size=20"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — Dashboard",
+      "item": [
+        {
+          "name": "Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/dashboard/stats"
+          }
+        },
+        {
+          "name": "Top documents",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/dashboard/top-documents?limit=10"
+          }
+        },
+        {
+          "name": "Recent activity",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/admin/memo/dashboard/recent-activity?limit=20"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Admin — End-user view (admin token)",
+      "item": [
+        {
+          "name": "List visible memos",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/memo/documents?page=1&page_size=10&q=&category_id="
+          }
+        },
+        {
+          "name": "Memo categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/memo/categories"
+          }
+        },
+        {
+          "name": "Memo detail",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/memo/documents/{{document_id}}"
+          }
+        },
+        {
+          "name": "Memo view (inline stream)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{admin_token}}" }],
+            "url": "{{base_url}}/api/v1/memo/documents/{{document_id}}/view"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Memo Portal — Auth (Email + PIN)",
+      "item": [
+        {
+          "name": "Request PIN",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/api/v1/memo-portal/auth/request-pin",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{portal_email}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Verify PIN (sets portal_token)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/api/v1/memo-portal/auth/verify-pin",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{portal_email}}\",\n  \"pin\": \"{{portal_pin}}\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.access_token) { pm.collectionVariables.set('portal_token', json.access_token); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": "{{base_url}}/api/v1/memo-portal/auth/logout"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": "{{base_url}}/api/v1/memo-portal/auth/me"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Memo Portal — Browse",
+      "item": [
+        {
+          "name": "Categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": "{{base_url}}/api/v1/memo-portal/categories"
+          }
+        },
+        {
+          "name": "List visible memos",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/memo-portal/documents?page=1&page_size=10&q=&category_id=",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "memo-portal", "documents"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "page_size", "value": "10" },
+                { "key": "q", "value": "" },
+                { "key": "category_id", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Memo detail",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": "{{base_url}}/api/v1/memo-portal/documents/{{document_id}}"
+          }
+        },
+        {
+          "name": "Memo view (inline stream)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{portal_token}}" }],
+            "url": "{{base_url}}/api/v1/memo-portal/documents/{{document_id}}/view"
+          }
+        }
+      ]
+    }
+  ]
+}

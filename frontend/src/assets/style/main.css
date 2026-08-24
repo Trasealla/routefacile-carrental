@@ -1,0 +1,218 @@
+.alert {
+  position: relative;
+  padding: 4px 9px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 13px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+h1 {
+  letter-spacing: 1px;
+}
+.invalid-feedback-custom {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: var(--bs-form-invalid-color);
+}
+
+@media (max-width: 82em) {
+  h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 44em) {
+  .promo-coupon-msg {
+    margin-top: 0;
+  }
+  .monthly-text-mobile{
+    font-size: 12px;
+  }
+
+  .display-none-in-small-screen {
+    /* display: none; */
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  .carousel-item {
+    /* height: 9rem !important; */
+    object-fit: cover;
+  }
+}
+
+.promo-coupon-msg {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  /* margin-bottom:1rem; */
+  text-align: center;
+  color: #555;
+}
+@media (max-width: 89em) {
+  .promo-coupon-msg {
+    font-size: 11px;
+  }
+}
+.coupon-code-mobile{
+    margin-top: 8px;
+}
+@media (max-width:44em) {
+    /* .promo-coupon-msg{
+@media (max-width: 82em) {
+  .promo-coupon-msg {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 82em) {
+  .promo-coupon-msg {
+    font-size: 9px;
+  }
+}
+@media (max-width: 1000px) {
+  .promo-coupon-msg {
+    font-size: 12px;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 44em) {
+  /* .promo-coupon-msg{
+        margin-top: 0;
+    } */
+  .coupon-code-mobile {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1550px) {
+  .promo-coupon-msg {
+    font-size: 14px;
+  }
+}
+
+:root {
+  --gradient-bg: linear-gradient(
+    135deg,
+    #0D1B2A 0%,
+    #1e3a52 100%
+  );
+  --default-text-color: #0D1B2A;
+  --rf-orange: #F2421B;
+  /* AA-safe brand orange for small text on light backgrounds (4.55:1 on white,
+   * vs 3.77:1 for --rf-orange). Defined here as well as in the header chunk so
+   * it resolves no matter which stylesheet a page loads. */
+  --rf-orange-ink: #DA3B18;
+  --rf-navy: #0D1B2A;
+}
+
+.installment-tooltip {
+  position: fixed;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 9999999;
+  white-space: nowrap;
+  transform: translateY(-100%) translateY(-10px);
+}
+.tooltip-info {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+}
+
+td {
+  position: relative; /* Ensure the tooltip positions relative to the table cell */
+}
+
+.category_img {
+  height: 3rem;
+  width: 3rem;
+}
+ul.suggestions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: fit-content;
+}
+
+ul.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  transition: round 0.2s ease-in-out;
+}
+
+ul.suggestions li:last-child {
+  border-bottom: none;
+}
+
+ul.suggestions li:hover,
+ul.suggestions li.active {
+  background: #f0f0f0;
+}
+
+.category_img-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width : 600px) {
+    ul.suggestions li {
+        font-size: 14px;
+      }
+      .category_img{
+        height: 40px;
+        width: 40px;
+        
+    }
+    .mobile-address-grid{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 8px;
+        font-size: 12px;
+        font-weight: 400;
+    
+    }
+    .mobile-grid-child-duration{
+        grid-row: 2;
+        grid-column: 1 / -1;
+    }
+}
+
+.booking-form-field-wrapper .label-name{
+    margin-bottom: 1px;
+}
+
+.award-description {
+    white-space: nowrap;
+    width: 20em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* NOTE: an attempt to fix the "picking a date scrolls the page to the footer"
+ * bug lived here, forcing `overflow-y: auto` on .MuiMultiSectionDigitalClockSection-root.
+ * It was wrong and made the symptom worse (the pick-up field started jumping too),
+ * so it has been removed. The reasoning behind it was faulty: `overflow: hidden`
+ * already makes an element a scroll container, so MUI's time columns were never
+ * letting the focus scroll escape to <html> in the first place. Don't retry this. */

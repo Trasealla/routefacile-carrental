@@ -1,0 +1,1209 @@
+/* Add padding-top to account for absolute positioned header */
+.booking__detailsTwo__section {
+  padding-top: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .booking__detailsTwo__section {
+    padding-top: 0 !important;
+  }
+}
+
+/* ============================================
+   BOOKING ADDRESS SECTION - MODERN DESIGN
+   ============================================ */
+
+.booking__tital-dream {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding-top: 24px !important;
+  padding-bottom: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  /* Was an inline-block centred with left:50% + translateX(-50%). That hack
+     assumes LTR: in RTL the box already starts at the right edge, so left:50%
+     shoved it clean off the page and the section's overflow:hidden ate it —
+     the Arabic booking page showed a blank band where the title should be.
+     A full-width block with centred text needs no offset and works both ways. */
+  display: block;
+  width: 100%;
+}
+
+.booking__tital-dream::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #F2421B, #ff6b47);
+  border-radius: 2px;
+  margin: 8px auto 0;
+}
+
+.bas-hero {
+  background: linear-gradient(135deg, #0D1B2A 0%, #1e3a52 100%);
+  padding: 20px 0 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+
+.bas-card {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: none;
+  border-radius: 16px;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bas-card__block {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 28px;
+}
+
+.bas-card__block--pickup {
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bas-card__block--dropoff {
+  border-left: none;
+}
+
+.bas-card__icon-wrap {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.bas-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.bas-card__icon--pickup {
+  background: linear-gradient(135deg, #F2421B, #d63a17);
+  box-shadow: 0 4px 14px rgba(242, 66, 27, 0.35);
+}
+
+.bas-card__icon--dropoff {
+  background: linear-gradient(135deg, #1e3a52, #0D1B2A);
+  box-shadow: 0 4px 14px rgba(13, 27, 42, 0.35);
+}
+
+.bas-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bas-card__label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 6px;
+}
+
+.bas-card__address {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bas-card__datetime {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+.bas-card__datetime svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* Center Duration Section */
+.bas-card__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+.bas-card__duration-line {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.bas-card__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bas-card__dot--start {
+  background: #F2421B;
+  box-shadow: 0 0 8px rgba(242, 66, 27, 0.5);
+}
+
+.bas-card__dot--end {
+  background: #0D1B2A;
+  box-shadow: 0 0 8px rgba(13, 27, 42, 0.4);
+}
+
+.bas-card__line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(242,66,27,0.4), rgba(255,200,190,0.6), rgba(13,27,42,0.3));
+}
+
+.bas-card__duration-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 6px 18px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.bas-card__duration-badge span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .bas-card {
+    flex-direction: column;
+  }
+
+  .bas-card__block--pickup {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bas-card__block--dropoff {
+    border-left: none;
+    border-top: none;
+  }
+
+  .bas-card__center {
+    min-width: unset;
+    padding: 12px 28px;
+  }
+
+  .bas-card__duration-line {
+    width: 100%;
+  }
+
+  .bas-card__block {
+    padding: 20px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bas-hero {
+    padding: 16px 0;
+  }
+
+  .bas-card__block {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .bas-card__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .bas-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .bas-card__address {
+    font-size: 14px;
+  }
+
+  .bas-card__datetime {
+    font-size: 12px;
+  }
+
+  .bas-card__center {
+    padding: 10px 18px;
+  }
+
+  .bas-card__duration-badge {
+    padding: 5px 12px;
+  }
+
+  .bas-card__duration-badge span {
+    font-size: 12px;
+  }
+}
+
+/* Legacy classes kept for compatibility */
+.star-text {
+  display: inline-block;
+  transform: translateY(-30%);
+}
+.km-allowance-text {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+.book-button-container {
+  /* Container for booking buttons */
+}
+.location__details .location__header {
+  background: #6155af;
+  font-size: 19px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  padding: 7px 0px;
+}
+.location__details .address__section {
+  background: #fff;
+  height: 140px;
+}
+.your-plan-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.location__details .pickup__address {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+.location__details .pickup__datetime {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+.location__details .to__badge {
+  background-color: #342978 !important;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  width: 47px;
+  height: 47px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 23px;
+  text-align: center;
+}
+.car__details__section .to__badge {
+  background-color: #342978 !important;
+  color: #fff;
+  border-radius: 50%;
+  padding: 4px;
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 23px;
+  text-align: center;
+}
+
+.car__details__section .car__details__header {
+  background:var(--gradient-bg);
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  line-height: 25px !important;
+  color: #fff !important;
+}
+
+.car__details__section .car__details__body p {
+  font-size: 16px;
+  /* font-weight: 700; */
+  line-height: 18px;
+  /* margin-top: 20%;
+  margin-left: 16%; */
+}
+.car__details__section .car__details__body-2 p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 12px;
+  margin-top: 7px;
+  margin-bottom: 0;
+ 
+  /* margin-left: 16%; */
+}
+.car__details__section .car__details__body .car__details__title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 20px;
+}
+.car__details__section .car__details__body .car__details__compare {
+  font-size: 14px;
+  /* font-weight: 600; */
+  line-height: 35px;
+}
+.car__details__section .car__details__body .car__details__feature,
+.car__details__section .car__details__body .form-check-label {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+}
+.car__details__section .car__details__body .car__details__features {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.car__details__section .car__details__body .booking__btn {
+  background:var(--gradient-bg);
+  width: 40%;
+  font-size: 16px !important;
+  font-weight: 600;
+}
+
+
+.car__details__section .spec__img {
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px;
+}
+.car__details__section .spec__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+}
+
+.booking__detailsTwo__section .img-div {
+  /* Override carbook-override.css global .img-div styles that set position: absolute */
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: auto !important;
+  flex-shrink: 0;
+  min-width: 50px;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.booking__detailsTwo__section .img-div img {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+  object-fit: contain;
+  display: block !important;
+}
+.booking__detailsTwo__section .km_allowance_tabs .nav-link,
+.booking__detailsTwo__section .rent_tabs .nav-link {
+  /* width: 90px;
+  height: 90px; */
+  padding: 12px 12px;
+  border: 1px solid #4a6eed;
+  border-radius: 15px;
+  /* margin: 10px 10px; */
+  margin-inline: auto ;
+  cursor: pointer;
+}
+.car__details__section .car__details__body-2 p:first-child {
+  margin-top: 0;
+}
+.booking__detailsTwo__section .nav-tabs .nav-link:focus {
+  background-color: #e9e8e8 !important;
+  border: 1px solid #4a6eed;
+}
+.booking__detailsTwo__section .nav-tabs .nav-link:hover {
+  /* background-color: #e9e8e8 !important; */
+  border: 1px solid #4a6eed;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.booking__detailsTwo__section .km_allowance_tabs a {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #000000;
+}
+.booking__detailsTwo__section .rent_tabs a {
+  display: flex;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #000000;
+  background-color: #f5faff;
+}
+.booking__detailsTwo__section .rent_tabs .rent_rate {
+  /* margin-top: 30%; */
+  color: #007dff;
+  /* color: var(--default-text-color); */
+}
+.mileage-monthly-plan-flex-box{
+  display: flex;
+  gap: 12px;
+}
+.booking__detailsTwo__section .rent_tabs .rent_per_duration {
+  margin-top: 7px;
+  color: #7c808e;
+  color: #555;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.booking__detailsTwo__section .rent_tabs .white-color {
+color: #fff;
+}
+
+.visibility-hidden{
+  visibility: hidden;
+}
+
+.booking__detailsTwo__section .booking__btn {
+  /* width: 30%; */
+  width: auto;
+  padding: 1rem 4rem;
+  background:var(--gradient-bg);
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+}
+.mileage-content-flex-box{
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 15%; */
+}
+
+/* Upgrade Options section containment */
+.booking__detailsTwo__section .card {
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Allow installment table tooltip to overflow */
+.booking__detailsTwo__section .installment-card-wrapper,
+.booking__detailsTwo__section .card:has(.installment_table) {
+  overflow: visible !important;
+}
+.booking__detailsTwo__section .installment-card-wrapper .card-body,
+.booking__detailsTwo__section .card:has(.installment_table) .card-body {
+  overflow: visible !important;
+}
+.booking__detailsTwo__section .installment-card-wrapper .card-body .container,
+.booking__detailsTwo__section .card:has(.installment_table) .card-body .container {
+  overflow: visible !important;
+}
+.booking__detailsTwo__section .installment-card-wrapper .card-body .row,
+.booking__detailsTwo__section .card:has(.installment_table) .card-body .row {
+  overflow: visible !important;
+}
+
+.booking__detailsTwo__section .card .card-body {
+  overflow: hidden !important;
+}
+
+.booking__detailsTwo__section .card .card-body .container {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.booking__detailsTwo__section .card .card-body .row {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+/* Center car cards when there are fewer items in the last row */
+.booking__detailsTwo__section .row.justify-content-center {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 20px;
+}
+
+.booking__detailsTwo__section .row.justify-content-center > [class*="col-"] {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: 280px;
+  min-width: 240px;
+}
+
+@media screen and (max-width: 991px) {
+  .booking__detailsTwo__section .row.justify-content-center > [class*="col-"] {
+    max-width: 260px;
+    min-width: 220px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .booking__detailsTwo__section .row.justify-content-center {
+    gap: 15px;
+  }
+  
+  .booking__detailsTwo__section .row.justify-content-center > [class*="col-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* Slider containment for upgrade options */
+.booking__detailsTwo__section .service_slider,
+.booking__detailsTwo__section .slick-slider {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.booking__detailsTwo__section .slick-list {
+  overflow: hidden !important;
+}
+
+.booking__detailsTwo__section .slick-track {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.booking__detailsTwo__section .slick-slide {
+  height: auto !important;
+}
+
+.book-card-wrap {
+  width: auto;
+  max-width: 220px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  color: var(--color-text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin: 8px;
+  padding: 12px;
+  position: relative !important;
+  z-index: 1 !important;
+}
+.card-img-comparing{
+  height: 100px;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.edit-booking-text{
+  text-align: center;
+  color: rgb(248 249 250);
+  margin-top: 1rem;
+  letter-spacing: 0.75px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+
+}
+@media screen and (max-width: 1200px) {
+  .card-img-comparing {
+    height: 90px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .card-img-comparing {
+    height: 80px !important;
+  }
+}
+@media screen and (max-width: 913px){
+  .card-img-comparing {
+    height: 75px !important;
+  }
+}
+@media screen and (max-width:805px) {
+  .card-img-comparing{
+    height: 80px !important;
+  }
+}
+@media screen and (max-width :479px){
+  .card-img-comparing{
+    height: 90px !important;
+  }
+}
+
+@media screen and (max-width: 344px) {
+  .card-img-comparing {
+    height: 70px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-img-lessthanthree {
+    width: 140px;
+    height: auto;
+  }
+  .book-card-wrap{
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+  }
+  .location__details .pickup__address, .location__details .pickup__datetime, .location__details .to__badge{
+    font-size: 12px;
+    font-weight: 400;
+    
+  }
+  .pickup__address {
+    margin-top: 1px;
+    margin-bottom: 0;
+  }
+  
+  .pickup__address p, .pickup__address h6 {
+    margin-bottom: 0;
+  }
+  .pickup__datetime{
+    margin-bottom: 0;
+  }
+  .location__details .location__header{
+    font-size: 12px;
+    font-weight: 400;
+    background: none;
+  }
+  .location__details .address__section{
+    height: max-content;
+    align-items: center;
+  }
+  .mobile-grid-child-duration{
+    margin-top: 8px;
+  }
+  .mobile-grid-child-duration .location__header{
+    display: none;
+  }
+  .your-plan-flex{
+align-items: center;
+padding: 8px 0;
+
+  }
+  
+  .your-plan-flex h6{
+    margin-bottom: 0;
+  }
+.location__details .address__section{
+  border-radius: 5px;
+}
+  /* taleeb */
+}
+@media screen and (max-width : 560px){
+  .book-card-wrap{
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+  }
+}
+
+@media screen and (max-width: 430px) {
+
+  .card-body{
+    padding: 0;
+  }
+  .card-img-lessthanthree {
+    width: 120px;
+    height: auto;
+  }
+  .book-card-wrap{
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+    padding: 12px !important;
+  }
+  .padding-on-mileage-cards{
+    padding: 1rem;
+  }
+}
+
+/* Mobile responsive upgrade cards */
+@media screen and (max-width: 768px) {
+  .book-card-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  
+  .book-card-wrap .title-upgrade {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
+  
+  .book-card-wrap .upgrade-text-fs,
+  .book-card-wrap .title-upgrade.upgrade-text-fs {
+    white-space: normal !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .book-card-wrap .upgrade-text-fs-price {
+    font-size: 13px !important;
+  }
+  
+  .book-card-wrap .text-nowrap {
+    white-space: normal !important;
+  }
+  
+  .book-card-wrap .btn-upgrade {
+    font-size: 11px !important;
+    padding: 6px 12px !important;
+  }
+  
+  .book-card-wrap .card-body {
+    padding: 8px 4px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .book-card-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: unset !important;
+    padding: 10px !important;
+    margin: 8px 0 !important;
+  }
+  
+  .book-card-wrap .title-upgrade {
+    font-size: 12px !important;
+  }
+  
+  .book-card-wrap .upgrade-text-fs {
+    font-size: 10px !important;
+  }
+  
+  .book-card-wrap .upgrade-text-fs-price {
+    font-size: 12px !important;
+  }
+  
+  .book-card-wrap .btn-upgrade {
+    font-size: 10px !important;
+    padding: 5px 8px !important;
+  }
+  
+  .card-img-comparing {
+    height: 70px !important;
+  }
+}
+@media screen and (max-width: 370px) {
+  .container{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card-img-lessthanthree {
+    width: 100px;
+    height: auto;
+  }
+  .book-card-wrap{
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+    padding: 10px !important;
+  }
+}
+
+
+
+.book-card-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(27, 61, 107, 0.15);
+  border-color: #0D1B2A;
+}
+
+.book-card-wrap .btn-upgrade {
+  border-radius: 8px !important;
+  width: 100%;
+  background: linear-gradient(135deg, #0D1B2A 0%, #0f172a 100%);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.book-card-wrap .btn-upgrade:hover {
+  background: linear-gradient(135deg, #234e7a 0%, #0D1B2A 100%);
+  transform: translateY(-1px);
+}
+
+.book-card-wrap .title-upgrade {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0D1B2A;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.book-card-wrap .title-price {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-bottom: 10px;
+}
+
+.book-card-wrap .upgrade-text-fs {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.book-card-wrap .upgrade-text-fs-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #059669;
+}
+.title-price {
+  font-size: 14px;
+ 
+  /* font-family: "Source Sans Pro", sans-serif; */
+  /* width: 50%; */
+}
+.Protectin-add-on {
+  font-size: 14px;
+  /* font-weight: 600; */
+}
+.text-start {
+  font-size: 14px;
+  /* font-weight: 600; */
+  /* font-family: "Source Sans Pro", sans-serif; */
+}
+.car__details__feature {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Source Sans Pro", sans-serif;
+  color: var( --default-text-color);
+}
+.rent_duration {
+  align-items: center;
+}
+
+
+.booking__detailsTwo__section .rent_tabs.selected .nav-link{
+  background-color: var( --default-text-color);
+  color: #fff;
+}
+
+.booking__detailsTwo__section .rent_tabs.selected .rent_rate{
+color: #fff;
+}
+
+/* Fix mileage plan selected state - all text should be white */
+.booking__detailsTwo__section .rent_tabs.selected .km-allowance-text,
+.booking__detailsTwo__section .rent_tabs.selected .rent_per_duration,
+.booking__detailsTwo__section .rent_tabs.selected span,
+.booking__detailsTwo__section .rent_tabs.selected p,
+.booking__detailsTwo__section .rent_tabs.selected div {
+  color: #fff !important;
+}
+.default-mileage-plan{
+/* position: relative; */
+overflow: hidden;
+}
+/* .default-mileage-plan::after{
+  content: "Default";
+  position: absolute;
+  top: 14%;
+  right: -22%;
+  background-color: #FFFFFF;
+  color: var( --default-text-color);
+  padding: 5px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  font-size: 10px;
+  letter-spacing: 0.75px;
+} */
+.installment_table{
+  font-size: 14px;
+}
+@media (max-width: 1500px) {
+ .installment_table{
+font-size: 0.75rem;
+ }
+}
+@media (min-width: 63em) {
+  .flex-md-1{
+flex: 1;
+ }
+ .min-height-mileage-box{
+  min-height: 210px;
+}
+.no-wrap{
+  text-wrap: nowrap;
+}
+
+}
+
+.custom-grid{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.grid-item-add-protection{
+  grid-area: 1/1/2/2;
+}
+.grid-item-add-rental{
+  grid-area: 2/1/3/2;
+}
+.grid-item-car-card{
+  grid-area: 1/2/3/3;
+  border: 4px solod red;
+}
+
+.protection__details__div{
+  display: flex;
+  
+  flex: 1;
+  align-items: center;
+  justify-content: start;
+  gap : 1rem;
+
+}
+
+/* Override spacing for protection items */
+.booking__detailsTwo__section .car__details__section .card-body .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.booking__detailsTwo__section .protection-items-container {
+  gap: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.booking__detailsTwo__section .protection-item {
+  margin-bottom: 0 !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.booking__detailsTwo__section .protection-item:last-child {
+  margin-bottom: 0 !important;
+  border-bottom: none;
+}
+@media (max-width : 600px) {
+  .display-none-mobile{
+    display: none;
+  }
+  .protection__details__div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  justify-content: start;
+  }
+  .Protectin-add-on {
+    font-size: 12px;
+    /* font-weight: 600; */
+  }
+  .text-start {
+    font-size: 12px;
+   }
+   .booking__detailsTwo__section .img-div {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    min-height: auto !important;
+   }
+   
+   .booking__detailsTwo__section .img-div img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+  }
+  .title-price {
+    font-size: 11px;
+   }
+   .km-allowance-text{
+    font-size: 12px;
+   }
+   .car__details__section .car__details__body-2 p {
+    font-size: 12px;
+   }  
+   /* .booking__detailsTwo__section .rent_tabs .nav-link {
+    width: 110px;
+    height: 110px;
+   }   */
+   .section-mobile{
+    padding-top: 0;
+   }
+   .mileage-monthly-plan-flex-box{
+    flex-direction: column;
+   }
+   
+   /* Fix protection item layout on mobile */
+   .booking__detailsTwo__section .protection-item > div {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+   }
+   
+   .booking__detailsTwo__section .protection-item .img-div {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+    margin-bottom: 8px !important;
+   }
+   
+   .booking__detailsTwo__section .protection-item .title-price {
+    flex: 0 0 auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+   }
+   
+   .booking__detailsTwo__section .protection-item .d-flex.justify-content-end {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+   }
+   
+   /* Fix Add-ons items layout */
+   .booking__detailsTwo__section .protection-item .d-flex.align-items-center {
+    flex-wrap: wrap !important;
+   }
+   
+   /* Baby seat and driver counter layout fix */
+   .booking__detailsTwo__section .protection-item .d-flex.gap-2 {
+    flex-wrap: wrap !important;
+   }
+   
+   /* Card header text fix */
+   .booking__detailsTwo__section .car__details__header {
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+    text-align: left !important;
+    position: relative !important;
+    z-index: 10 !important;
+    overflow: hidden !important;
+   }
+   
+   /* Card body padding */
+   .booking__detailsTwo__section .card-body {
+    padding: 12px 8px !important;
+    position: relative !important;
+    overflow: visible !important;
+   }
+   
+   /* Container padding fix */
+   .booking__detailsTwo__section .card-body .container {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+   }
+   
+   /* Fix Card structure to contain images properly */
+   .booking__detailsTwo__section .card {
+    overflow: hidden !important;
+    position: relative !important;
+   }
+   
+   /* Ensure protection items stay in their container */
+   .booking__detailsTwo__section .protection-items-container {
+    position: relative !important;
+    z-index: 1 !important;
+   }
+   
+   /* Make sure img-div images are properly contained */
+   .booking__detailsTwo__section .img-div {
+    position: relative !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+   }
+   
+   .booking__detailsTwo__section .img-div img {
+    position: relative !important;
+    z-index: 1 !important;
+    flex-shrink: 0 !important;
+   }
+   
+   /* Protection item row layout fix */
+   .booking__detailsTwo__section .protection-item {
+    position: relative !important;
+    overflow: visible !important;
+   }
+   
+   .booking__detailsTwo__section .protection-item > div.d-flex {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+   }
+   
+   /* Image and label container - take up available space */
+   .booking__detailsTwo__section .protection-item .img-div.d-flex.gap-2 {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+    order: 1 !important;
+   }
+   
+   /* Price takes left side */
+   .booking__detailsTwo__section .protection-item .title-price {
+    order: 2 !important;
+    flex: 0 0 auto !important;
+   }
+   
+   /* Switch takes right side */
+   .booking__detailsTwo__section .protection-item > div > div.d-flex.justify-content-end {
+    order: 3 !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+   }
+}
+

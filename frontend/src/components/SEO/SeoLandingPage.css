@@ -1,0 +1,144 @@
+/* ── SEO Hero ──────────────────────────────────────────── */
+.seo-hero {
+  background: linear-gradient(135deg, #0d1e3d 0%, #1a3a6e 100%);
+  padding: 60px 0 50px;
+  color: #fff;
+}
+
+.seo-breadcrumb {
+  margin-bottom: 16px;
+}
+
+.seo-breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  font-size: 0.82rem;
+  color: #a8b8d0;
+}
+
+.seo-breadcrumb ol li a {
+  color: #7faee8;
+  text-decoration: none;
+}
+
+.seo-breadcrumb ol li a:hover {
+  color: #fff;
+}
+
+.seo-breadcrumb ol li span[aria-current="page"] {
+  color: #c8d6f0;
+}
+
+.seo-hero__h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.seo-hero__intro {
+  font-size: 1.05rem;
+  color: #c8d6f0;
+  max-width: 680px;
+  margin-bottom: 28px;
+  line-height: 1.65;
+}
+
+.seo-hero__cta {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+}
+
+/* ── Content Sections ─────────────────────────────────── */
+.seo-content-section {
+  padding: 56px 0 40px;
+  background: #fff;
+}
+
+.seo-content-section__h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0d1e3d;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #0d6efd;
+  display: inline-block;
+}
+
+.seo-content-section__body {
+  font-size: 0.97rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* ── FAQ ──────────────────────────────────────────────── */
+.seo-faq-section {
+  background: #f8f9fb;
+  padding: 52px 0;
+}
+
+.seo-faq-section__heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0d1e3d;
+  margin-bottom: 28px;
+}
+
+.seo-faq-section .accordion-button {
+  font-weight: 600;
+  font-size: 0.97rem;
+  color: #0d1e3d;
+}
+
+.seo-faq-section .accordion-button:not(.collapsed) {
+  color: #0d6efd;
+  background-color: #eef4ff;
+}
+
+.seo-faq-section .accordion-body {
+  font-size: 0.93rem;
+  color: #555;
+  line-height: 1.65;
+}
+
+/* ── Explore More ─────────────────────────────────────── */
+.seo-explore-section {
+  padding-top: 40px;
+}
+
+.seo-explore-section__heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0d1e3d;
+  margin-bottom: 4px;
+  padding: 0 0 16px;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .seo-hero__h1 {
+    font-size: 1.6rem;
+  }
+
+  .seo-hero__intro {
+    font-size: 0.95rem;
+  }
+
+  .seo-content-section__h2 {
+    font-size: 1.15rem;
+  }
+}
+
+/* RTL */
+[dir="rtl"] .seo-content-section__h2 {
+  border-bottom: none;
+  border-right: 4px solid #0d6efd;
+  padding-right: 12px;
+}

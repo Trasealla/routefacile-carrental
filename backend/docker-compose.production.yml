@@ -1,0 +1,116 @@
+version: '3.7'
+
+services:
+  nestjs:
+    build: .
+    ports:
+      - "3001:3000"
+    environment:
+      - TZ=Asia/Dubai
+      - NODE_ENV=production
+      - NODE_PORT=3000
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MOBILE_API_KEY=Le3dyU.zI&`y+N^^
+      - API_KEY=${API_KEY}
+      - JWT_SECRET=NYIUrMkFFsphrOlv
+      - JWT_EXPIRY=1d
+      - HEADER_KEY_API_KEY=x-api-key
+      - FILE_SERVER=${FILE_SERVER:-https://files.autostrad.com/}
+      - ADMIN_PORTAL_URL=${ADMIN_PORTAL_URL:-https://admin.autostrad.com}
+      # Default SMTP (SiteGround) — used by all non-HR emails
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_FROM=${MAIL_FROM}
+      - MAIL_FROM_NAME=${MAIL_FROM_NAME}
+      # Dedicated HR SMTP (M365) — used for HR welcome / password emails
+      - HR_MAIL_HOST=smtp.office365.com
+      - HR_MAIL_PORT=587
+      - HR_MAIL_USERNAME=notification@autostrad.com
+      - HR_MAIL_PASSWORD=${HR_MAIL_PASSWORD}
+      - HR_MAIL_FROM=notification@autostrad.com
+      - "HR_MAIL_FROM_NAME=Autostrad Rent a Car"
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./uploads:/usr/src/app/uploads
+      - ./src/mail/templates:/usr/src/app/dist/src/mail/templates
+      - ./.env:/usr/src/app/.env
+    depends_on:
+      - mysql
+      - redis
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3310:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ=Asia/Dubai
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/my.cnf
+    restart: always
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    restart: always
+
+
+  react-app:
+    build:
+      context: ../frontend
+      args:
+        REACT_APP_NODE_HOST: https://apis.autostrad.com/api/v1/
+        REACT_APP_FILE_SERVER: https://files.autostrad.com/
+        REACT_APP_API_KEY: ${REACT_APP_API_KEY}
+        REACT_APP_LOCAL_ENCRYPTION_KEY: ${REACT_APP_LOCAL_ENCRYPTION_KEY}
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../frontend:/usr/src/app
+      - ../frontend-logs:/usr/src/app/logs
+    depends_on:
+      - nestjs
+
+  admin-app:
+    build:
+      context: ../admin
+      args:
+        REACT_APP_NODE_HOST: https://apis.autostrad.com/api/v1/
+        REACT_APP_FILE_SERVER: https://files.autostrad.com/
+        REACT_APP_API_KEY: ${REACT_APP_API_KEY}
+        REACT_APP_LOCAL_ENCRYPTION_KEY: ${REACT_APP_LOCAL_ENCRYPTION_KEY}
+    ports:
+      - "3002:3031"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../admin:/usr/src/app
+      - ../admin-logs:/usr/src/app/logs
+    depends_on:
+      - nestjs

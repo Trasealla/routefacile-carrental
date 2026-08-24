@@ -1,0 +1,890 @@
+{
+	"info": {
+		"_postman_id": "daily-specials-feature-2026",
+		"name": "Daily Specials Feature - Car Emirate Visibility",
+		"description": "Postman collection for testing the Daily Specials feature.\n\nThis feature allows:\n- Setting emirate visibility for each car (All / Abu Dhabi / Dubai, etc.)\n- Uploading a Daily Specials logo for cars with specific emirate visibility\n- Filtering cars by emirate on the website\n\n**Before Testing:**\n1. Run the SQL migration script: `sql-scripts/add_daily_specials_fields_to_cars.sql`\n2. Set the environment variables below",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "car_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Authentication",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.access_token) {",
+									"    pm.collectionVariables.set('admin_token', jsonData.access_token);",
+									"    console.log('Admin token saved!');",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@autostrad.com\",\n    \"password\": \"your_password_here\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "login"]
+						},
+						"description": "Login as admin to get JWT token for subsequent requests.\n\nThe token will be automatically saved to the collection variable `admin_token`."
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints"
+		},
+		{
+			"name": "2. Get Emirates List",
+			"item": [
+				{
+					"name": "Get All Emirates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/emirate",
+							"host": ["{{base_url}}"],
+							"path": ["emirate"]
+						},
+						"description": "Get list of all emirates to use their IDs for the emirate_visibility_id field.\n\n**Common Emirates:**\n- Abu Dhabi: Usually ID 1\n- Dubai: Usually ID 2\n- Sharjah: Usually ID 3\n\nNote the IDs from the response for use in other requests."
+					},
+					"response": []
+				}
+			],
+			"description": "Get emirates list to know the IDs for emirate visibility"
+		},
+		{
+			"name": "3. Admin - Car Management",
+			"item": [
+				{
+					"name": "Get All Cars (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/car?page=1&page_size=20",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get list of all cars from admin panel.\n\nNote: The response now includes `emirate_visibility_id` and `daily_specials_logo` fields."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Detail (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"console.log('Car Details:');",
+									"console.log('- emirate_visibility_id:', jsonData.emirate_visibility_id);",
+									"console.log('- daily_specials_logo:', jsonData.daily_specials_logo);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/car/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car", "{{car_id}}"]
+						},
+						"description": "Get details of a specific car.\n\n**New Fields in Response:**\n- `emirate_visibility_id`: null = All emirates, or specific emirate ID\n- `daily_specials_logo`: filename of the Daily Specials logo image"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car - Set Abu Dhabi Only (with Logo)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "emirate_visibility_id",
+									"value": "1",
+									"description": "1 = Abu Dhabi (check your emirates table for correct ID)",
+									"type": "text"
+								},
+								{
+									"key": "daily_specials_logo",
+									"description": "Upload the Daily Specials badge image (PNG/JPG, max 2MB)",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/car/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car", "{{car_id}}"]
+						},
+						"description": "**Update car to show ONLY in Abu Dhabi with Daily Specials logo**\n\nThis sets:\n- `emirate_visibility_id` = 1 (Abu Dhabi)\n- `daily_specials_logo` = uploaded image\n\nAfter this update:\n- Car will ONLY appear when Abu Dhabi is selected as pickup location\n- Car will show with the Daily Specials badge\n\n**Steps:**\n1. Set `car_id` variable to the car you want to update\n2. Set `emirate_visibility_id` to the correct emirate ID\n3. Select a PNG/JPG file for `daily_specials_logo`\n4. Send the request"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car - Set Dubai Only (with Logo)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "emirate_visibility_id",
+									"value": "2",
+									"description": "2 = Dubai (check your emirates table for correct ID)",
+									"type": "text"
+								},
+								{
+									"key": "daily_specials_logo",
+									"description": "Upload the Daily Specials badge image (PNG/JPG, max 2MB)",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/car/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car", "{{car_id}}"]
+						},
+						"description": "Update car to show ONLY in Dubai with Daily Specials logo"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car - Set All Emirates (Remove Restriction)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "emirate_visibility_id",
+									"value": "",
+									"description": "Empty/null = All Emirates (visible everywhere)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/car/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car", "{{car_id}}"]
+						},
+						"description": "**Reset car to show in ALL emirates**\n\nThis removes the emirate restriction - car will be visible everywhere.\n\nNote: The daily_specials_logo will remain in the database but won't be shown on the website when emirate_visibility_id is null."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Car (with Daily Specials)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_en",
+									"value": "Test Car Daily Special",
+									"type": "text"
+								},
+								{
+									"key": "name_ae",
+									"value": "سيارة اختبار",
+									"type": "text"
+								},
+								{
+									"key": "description_en",
+									"value": "Test car for Daily Specials feature",
+									"type": "text"
+								},
+								{
+									"key": "description_ae",
+									"value": "سيارة اختبار لميزة العروض اليومية",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "doors_en",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "doors_ae",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "passengers_en",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "passengers_ae",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "suit_cases_en",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "suit_cases_ae",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "air_bags",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "parking_sensors",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "rear_camera",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "infotainment_system",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "bluetooth",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sunroof",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "cruise_control",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "electric",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "1",
+									"description": "Car group ID (get from /admin/car-group)",
+									"type": "text"
+								},
+								{
+									"key": "fuel_type_id",
+									"value": "1",
+									"description": "Fuel type ID",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "Category ID",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "1",
+									"description": "Brand ID",
+									"type": "text"
+								},
+								{
+									"key": "transmission_id",
+									"value": "1",
+									"description": "Transmission ID",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"description": "Main car image (required)",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "banner_image",
+									"description": "Banner image (required)",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "images",
+									"description": "Gallery images (at least 1 required)",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "emirate_visibility_id",
+									"value": "1",
+									"description": "1 = Abu Dhabi only, empty = All Emirates",
+									"type": "text"
+								},
+								{
+									"key": "daily_specials_logo",
+									"description": "Daily Specials badge image (optional, but recommended when emirate is selected)",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/car",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "car"]
+						},
+						"description": "Create a new car with Daily Specials configuration.\n\n**New Fields:**\n- `emirate_visibility_id`: Set to specific emirate ID or leave empty for All\n- `daily_specials_logo`: Upload badge image"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for managing cars with Daily Specials feature"
+		},
+		{
+			"name": "4. Website - Car Listing (Frontend)",
+			"item": [
+				{
+					"name": "Get Cars - All Emirates (No Filter)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"console.log('Total cars:', jsonData.total_records);",
+									"",
+									"// Check for Daily Specials fields",
+									"jsonData.data.forEach(function(car, index) {",
+									"    console.log('Car ' + car.id + ' (' + car.name + '):');",
+									"    console.log('  - emirate_visibility_id:', car.emirate_visibility_id);",
+									"    console.log('  - daily_specials_logo:', car.daily_specials_logo);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?page=1&page_size=20",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get all cars without emirate filter.\n\n**Returns:** All active cars regardless of emirate visibility.\n\n**Note:** Cars with specific emirate_visibility_id will still appear here, but this is the default behavior when no location is selected."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars - Abu Dhabi Only (emirate_id=1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"console.log('Total cars visible in Abu Dhabi:', jsonData.total_records);",
+									"",
+									"// Check which cars have Daily Specials logo",
+									"var dailySpecialsCars = jsonData.data.filter(function(car) {",
+									"    return car.daily_specials_logo !== null;",
+									"});",
+									"",
+									"console.log('Cars with Daily Specials logo:', dailySpecialsCars.length);",
+									"",
+									"dailySpecialsCars.forEach(function(car) {",
+									"    console.log('  - ' + car.name + ': ' + car.daily_specials_logo);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=1&page=1&page_size=20",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "1",
+									"description": "Abu Dhabi emirate ID"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "**Get cars visible in Abu Dhabi**\n\n**Returns cars where:**\n- `emirate_visibility_id` = 1 (Abu Dhabi specific), OR\n- `emirate_visibility_id` IS NULL (visible in all emirates)\n\n**Daily Specials Logic:**\n- Cars with `emirate_visibility_id = 1` will have `daily_specials_logo` URL\n- Display this logo as a badge on the car card\n\n**Expected Behavior:**\n- Cars marked as \"Abu Dhabi only\" will appear with their Daily Specials logo\n- Cars marked as \"All Emirates\" will also appear (without special logo)\n- Cars marked as \"Dubai only\" will NOT appear"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars - Dubai Only (emirate_id=2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"console.log('Total cars visible in Dubai:', jsonData.total_records);",
+									"",
+									"// Cars with Abu Dhabi-only visibility should NOT appear here",
+									"var abuDhabiOnlyCars = jsonData.data.filter(function(car) {",
+									"    return car.emirate_visibility_id === 1;",
+									"});",
+									"",
+									"if (abuDhabiOnlyCars.length > 0) {",
+									"    console.error('ERROR: Abu Dhabi-only cars are appearing in Dubai filter!');",
+									"} else {",
+									"    console.log('SUCCESS: No Abu Dhabi-only cars in Dubai results');",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=2&page=1&page_size=20",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "2",
+									"description": "Dubai emirate ID"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "**Get cars visible in Dubai**\n\n**Returns cars where:**\n- `emirate_visibility_id` = 2 (Dubai specific), OR\n- `emirate_visibility_id` IS NULL (visible in all emirates)\n\n**Expected Behavior:**\n- Cars marked as \"Dubai only\" will appear with their Daily Specials logo\n- Cars marked as \"All Emirates\" will also appear\n- Cars marked as \"Abu Dhabi only\" will NOT appear"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars - Sharjah Only (emirate_id=3)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=3&page=1&page_size=20",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "3",
+									"description": "Sharjah emirate ID"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get cars visible in Sharjah"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["car", "{{car_id}}"]
+						},
+						"description": "Get single car details"
+					},
+					"response": []
+				}
+			],
+			"description": "Website/Frontend endpoints for listing cars with emirate filtering"
+		},
+		{
+			"name": "5. Test Scenarios",
+			"item": [
+				{
+					"name": "Scenario 1: Verify Abu Dhabi Filter Works",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Response is successful', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response has data array', function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('All cars are visible in Abu Dhabi', function() {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.data.forEach(function(car) {",
+									"        // Each car should either have emirate_visibility_id = 1 (Abu Dhabi) or null (All)",
+									"        var isValid = car.emirate_visibility_id === null || ",
+									"                      car.emirate_visibility_id === 1;",
+									"        pm.expect(isValid, 'Car ' + car.id + ' should be visible in Abu Dhabi').to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test('No Dubai-only cars appear', function() {",
+									"    var jsonData = pm.response.json();",
+									"    var dubaiOnlyCars = jsonData.data.filter(function(car) {",
+									"        return car.emirate_visibility_id === 2;",
+									"    });",
+									"    pm.expect(dubaiOnlyCars.length).to.equal(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=1",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Test that when filtering by Abu Dhabi:\n1. Cars with emirate_visibility_id = 1 appear\n2. Cars with emirate_visibility_id = null appear\n3. Cars with other emirate_visibility_id do NOT appear"
+					},
+					"response": []
+				},
+				{
+					"name": "Scenario 2: Verify Daily Specials Logo URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Response is successful', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Daily Specials logo has full URL', function() {",
+									"    var jsonData = pm.response.json();",
+									"    ",
+									"    jsonData.data.forEach(function(car) {",
+									"        if (car.daily_specials_logo) {",
+									"            // Logo URL should be a full URL with http/https",
+									"            pm.expect(car.daily_specials_logo).to.match(/^https?:\\/\\//);",
+									"            console.log('Car ' + car.id + ' logo: ' + car.daily_specials_logo);",
+									"        }",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=1",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Verify that daily_specials_logo contains a full URL (not just filename)"
+					},
+					"response": []
+				},
+				{
+					"name": "Scenario 3: Compare Abu Dhabi vs Dubai Results",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// First get Abu Dhabi cars",
+									"pm.sendRequest({",
+									"    url: pm.collectionVariables.get('base_url') + '/car?emirate_id=1',",
+									"    method: 'GET',",
+									"    header: {",
+									"        'x-api-key': pm.collectionVariables.get('api_key')",
+									"    }",
+									"}, function(err, response) {",
+									"    if (!err) {",
+									"        var abuDhabiCars = response.json();",
+									"        pm.collectionVariables.set('abu_dhabi_car_ids', ",
+									"            JSON.stringify(abuDhabiCars.data.map(function(c) { return c.id; })));",
+									"        console.log('Abu Dhabi cars:', abuDhabiCars.total_records);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Response is successful', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var dubaiData = pm.response.json();",
+									"var dubaiCarIds = dubaiData.data.map(function(c) { return c.id; });",
+									"",
+									"var abuDhabiCarIds = JSON.parse(pm.collectionVariables.get('abu_dhabi_car_ids') || '[]');",
+									"",
+									"console.log('Abu Dhabi car IDs:', abuDhabiCarIds);",
+									"console.log('Dubai car IDs:', dubaiCarIds);",
+									"",
+									"// Find cars unique to each emirate",
+									"var abuDhabiOnly = abuDhabiCarIds.filter(function(id) {",
+									"    return dubaiCarIds.indexOf(id) === -1;",
+									"});",
+									"",
+									"var dubaiOnly = dubaiCarIds.filter(function(id) {",
+									"    return abuDhabiCarIds.indexOf(id) === -1;",
+									"});",
+									"",
+									"console.log('Cars only in Abu Dhabi:', abuDhabiOnly);",
+									"console.log('Cars only in Dubai:', dubaiOnly);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/car?emirate_id=2",
+							"host": ["{{base_url}}"],
+							"path": ["car"],
+							"query": [
+								{
+									"key": "emirate_id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Compare results between Abu Dhabi and Dubai to verify filtering works correctly.\n\nThis test:\n1. Fetches Abu Dhabi cars in pre-request\n2. Fetches Dubai cars in main request\n3. Compares the results to find emirate-specific cars"
+					},
+					"response": []
+				}
+			],
+			"description": "Automated test scenarios to verify the Daily Specials feature"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
+

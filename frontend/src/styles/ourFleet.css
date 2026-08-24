@@ -1,0 +1,169 @@
+.offer__section .nav-link {
+  color: #245b8e;
+}
+.offer__section .nav-pills .nav-link.active {
+  background: var(--gradient-bg);
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+}
+
+.offer__item {
+  border: 1px solid #7c8a9736;
+  padding: 20px;
+  border-radius: 12px;
+  width: auto;
+}
+.offer__item:hover {
+  border: 2px solid #7c8a9736;
+  background: linear-gradient(
+    90deg,
+    #0D1B2A 1.17%,
+    #245b8e 51.38%,
+    #4078ac 90.66%
+  );
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: auto;
+}
+
+.offer__item .section__title {
+  color: #201f1d;
+  font-size: 18px;
+  font-weight: 700;
+}
+.offer__item:hover .section__title {
+  color: #fff;
+}
+
+.offer__item-info span {
+  font-size: 0.8rem;
+  /* font-size: 0.76vw */
+
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  /* Your styles go here */
+  .offer__item-info span {
+    font-size: 0.76rem;
+    /* font-size: 0.77vw */
+  
+  }
+}
+
+.offer__item-info .offer__plans {
+  color: #b09d9d;
+}
+
+.offer__item-btn {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    #0D1B2A 1.17%,
+    #245b8e 51.38%,
+    #4078ac 90.66%
+  );
+  padding: 8px 0px;
+}
+
+.offer__item-btn a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.offer__item-btn a:hover {
+  color: #fff;
+}
+.offer__btn-details {
+  background: #f9a826;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.offer__btn-rent {
+  border-radius: 6px;
+}
+.offer__item-btn offer__btn-rent:hover {
+  border-radius: 6px;
+  background-color: red;
+}
+.offer__item-content h4 {
+  font-size: 1.8rem;
+}
+
+.offer__item-content h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 992px) {
+  .offer__item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .offer__item h6 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .offer__item-info {
+    flex-wrap: wrap;
+  }
+
+  .offer__item-info span {
+    font-size: 0.8rem;
+    justify-content: space-between;
+  }
+
+  .offer__item-btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .offer__item h4 {
+    font-size: 1rem;
+  }
+
+  .offer__item h6 {
+    font-size: 0.9rem;
+  }
+
+  .offer__item-info span {
+    font-size: 0.7rem;
+  }
+
+  .offer__item-info span i {
+    font-size: 0.9rem;
+  }
+
+  .offer__item-btn {
+    font-size: 0.8rem;
+  }
+}
+
+.img_parent{
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.img_child{
+  max-height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 400px) {
+  .img_child{
+    max-height: 100%;
+    width: 13rem;
+    object-fit: cover;
+  }
+}

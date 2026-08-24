@@ -1,0 +1,816 @@
+/* Google Fonts loaded non-blocking via index.html (Source Sans Pro, display=optional) */
+
+/* Override existing styles with unified font */
+:root {
+    --common-found: "Source Sans Pro", sans-serif !important;
+    --theme-found: "Source Sans Pro", sans-serif !important;
+    --theme-color: rgb(27, 54, 93) !important;
+    --primary-color: rgb(27, 54, 93) !important;
+}
+
+/* Apply fonts globally - Unified to Source Sans Pro */
+/* Note: Exclude icon fonts (fa, fas, far, fab, flaticon, bi-, icon) */
+*:not([class*="fa"]):not([class*="flaticon"]):not([class*="bi-"]):not([class*="icon"]):not(i),
+*:not([class*="fa"]):not([class*="flaticon"]):not([class*="bi-"]):not([class*="icon"]):not(i)::before,
+*:not([class*="fa"]):not([class*="flaticon"]):not([class*="bi-"]):not([class*="icon"]):not(i)::after {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Ensure Font Awesome icons use their proper font */
+.fa,
+.fas,
+.far,
+.fab,
+.fa-solid,
+.fa-regular,
+.fa-brands,
+[class*="fa-"]:before,
+[class*="fa-"]:after {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome" !important;
+}
+.fa-solid,
+.fas {
+    font-weight: 900 !important;
+}
+.fa-regular,
+.far {
+    font-weight: 400 !important;
+}
+.fa-brands,
+.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
+html, body {
+    font-family: "Source Sans Pro", sans-serif !important;
+    /* clip, not hidden: `hidden` creates a scroll container which disables
+       position: sticky on the header. See the note in index.css. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100%;
+    min-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", sans-serif !important;
+    color: #000;
+    margin: 0;
+}
+
+p, li, a, button, input, select, textarea, label {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* For span and div, exclude icon elements */
+span:not([class*="fa"]):not(.flaticon):not([class*="icon"]),
+div:not([class*="fa"]):not(.flaticon):not([class*="icon"]) {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Override Bootstrap primary color */
+.btn-primary,
+.bg-primary {
+    background-color: var(--theme-color) !important;
+    border-color: var(--theme-color) !important;
+}
+
+.text-primary {
+    color: var(--theme-color) !important;
+}
+
+/* Override existing button styles with carbook theme */
+.btn {
+    background-color: var(--theme-color);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-family: "Source Sans Pro", sans-serif !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1B365D !important;
+    color: #fff !important;
+}
+
+/* Ensure all custom buttons maintain proper hover states */
+.defButton:hover,
+.defButtonbilling:hover,
+.defButtonAddnew:hover,
+.btn-primary:hover,
+button[type="submit"]:hover {
+    background: #1B365D !important;
+    color: #fff !important;
+    border-color: #1B365D !important;
+}
+
+/* Fix any conflicts with existing styles */
+.container {
+    max-width: 1320px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Allow full-width sections */
+.main-content-wrapper {
+    overflow-x: hidden;
+}
+
+/* Ensure carbook styles take precedence */
+a {
+    text-decoration: none !important;
+}
+
+/* Fix for WOW.js animations - ensure elements are visible */
+.wow {
+    visibility: visible !important;
+}
+
+input, select, textarea {
+    outline: none !important;
+}
+
+
+/* ===== Hero Section Overrides ===== */
+/* Override carbook style.css hero-section-text absolute positioning */
+.hero-section .hero-section-text {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    z-index: 100 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.hero-section .container {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+.hero-section .hero-text,
+.hero-section .hero-form-col,
+.hero-section .hero-text-col,
+.hero-section .p-1--,
+.hero-section .form,
+.hero-section .subscription__tabs {
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 50 !important;
+}
+
+/* Ensure all hero section children are visible */
+.hero-section .container *,
+.hero-section .hero-section-text * {
+    visibility: visible !important;
+}
+
+/* Background slider should be behind content - CRITICAL: Override responsive.css display:none */
+.hero-section .img-slider,
+#home .img-slider,
+.img-slider {
+    display: block !important;
+    visibility: visible !important;
+    z-index: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+}
+
+.hero-section .img-slider::after {
+    z-index: 1 !important;
+}
+
+.hero-section .img-div,
+#home .img-div,
+.img-div {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+}
+
+.hero-section .img-div .hero-bg-image,
+#home .img-div .hero-bg-image,
+.img-div .hero-bg-image {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+}
+
+/* ===== Header Dropdown Fixes ===== */
+header,
+header *,
+header .header-top-bar,
+header .bottom-bar,
+header .login,
+header .language-selector {
+    overflow: visible !important;
+}
+
+header {
+    overflow: visible !important;
+}
+
+header .language-dropdown,
+header .user-dropdown {
+    z-index: 999999999 !important;
+    position: absolute !important;
+}
+
+.language-selector:hover .language-dropdown,
+.language-selector:focus-within .language-dropdown,
+.language-selector.active .language-dropdown {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.user-menu:hover .user-dropdown,
+.user-menu:focus-within .user-dropdown {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure header is above all content */
+header,
+header.sticky {
+    z-index: 999999 !important;
+}
+
+/* Prevent main content from covering header dropdowns */
+.main-content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure hero section doesn't cover header */
+.hero-section {
+    position: relative;
+    z-index: 1 !important;
+}
+
+/* Ensure image covers from very top - no gap */
+.hero-section .img-slider,
+.hero-section .img-div,
+.hero-section .img-div .hero-bg-image {
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Ensure Container components don't clip dropdowns */
+header .container,
+header .container-fluid {
+    overflow: visible !important;
+}
+
+/* Ensure all header children allow overflow */
+header > *,
+header .header-top-bar > *,
+header .bottom-bar > * {
+    overflow: visible !important;
+}
+
+/* ===== Unified Font - Source Sans Pro ===== */
+/* Apply Source Sans Pro to text elements (excluding icon fonts) */
+html,
+body,
+#root,
+div:not([class*="fa"]):not([class*="icon"]),
+span:not([class*="fa"]):not([class*="icon"]),
+p,
+a,
+h1, h2, h3, h4, h5, h6,
+button,
+input,
+select,
+textarea,
+label,
+li,
+ul,
+ol,
+table,
+td,
+th,
+tr,
+form,
+nav,
+header,
+footer,
+section,
+article,
+aside,
+main,
+blockquote,
+code,
+pre,
+strong,
+em,
+b,
+small,
+sub,
+sup,
+mark,
+del,
+ins,
+abbr,
+dfn,
+kbd,
+samp,
+var,
+time,
+address,
+cite,
+q,
+s,
+u,
+bdi,
+bdo,
+ruby,
+rt,
+rp,
+wbr,
+figure,
+figcaption,
+details,
+summary,
+menu,
+menuitem,
+dialog,
+[class*="btn"],
+[class*="button"],
+[class*="form"],
+[class*="input"],
+[class*="select"],
+[class*="text"],
+[class*="nav"]:not([class*="fa"]),
+[class*="menu"],
+[class*="header"],
+[class*="footer"],
+[class*="card"],
+[class*="modal"],
+[class*="dropdown"],
+[class*="tooltip"],
+[class*="popover"] {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* IMPORTANT: Never override Font Awesome font-family */
+i[class*="fa-"],
+i.fa,
+i.fas,
+i.far,
+i.fab,
+i.fa-solid,
+i.fa-regular,
+i.fa-brands,
+span[class*="fa-"],
+span.fa {
+    font-family: inherit;
+}
+
+/* ===== Button Hover Fix - Prevent white background ===== */
+/* Override Bootstrap's default hover behavior for all states */
+.btn,
+.btn:link,
+.btn:visited {
+    background-color: var(--theme-color) !important;
+    color: #fff !important;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn:focus-visible {
+    background-color: #1B365D !important;
+    color: #fff !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(0, 13, 107, 0.2) !important;
+    border-color: #1B365D !important;
+}
+
+.btn-primary,
+.btn-primary:link,
+.btn-primary:visited {
+    background-color: #0D1B2A !important;
+    border-color: #0D1B2A !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #1B365D !important;
+    border-color: #1B365D !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+    background-color: #0D1B2A !important;
+    color: #fff !important;
+    border-color: #0D1B2A !important;
+}
+
+/* Account page specific button fixes - Maximum specificity */
+.myAccountMainBox .defButton,
+.myAccountMainBox .defButtonbilling,
+.myAccountMainBox .defButtonAddnew,
+.myAccountMainBox button.defButton,
+.myAccountMainBox button.defButtonbilling,
+.myAccountMainBox button.defButtonAddnew,
+.defButton.btn,
+.defButton.btn-primary,
+.defButtonbilling.btn,
+.defButtonbilling.btn-primary,
+button.defButton.btn-primary,
+button.defButtonbilling.btn-primary {
+    background: #0D1B2A !important;
+    background-color: #0D1B2A !important;
+    color: #fff !important;
+    border-color: #0D1B2A !important;
+}
+
+.myAccountMainBox .defButton:hover,
+.myAccountMainBox .defButtonbilling:hover,
+.myAccountMainBox .defButtonAddnew:hover,
+.myAccountMainBox button.defButton:hover,
+.myAccountMainBox button.defButtonbilling:hover,
+.myAccountMainBox button.defButtonAddnew:hover,
+.myAccountMainBox .btn:hover,
+.defButton.btn:hover,
+.defButton.btn-primary:hover,
+.defButtonbilling.btn:hover,
+.defButtonbilling.btn-primary:hover,
+button.defButton.btn-primary:hover,
+button.defButtonbilling.btn-primary:hover,
+.btn.defButton:hover,
+.btn-primary.defButton:hover {
+    background: #1B365D !important;
+    background-color: #1B365D !important;
+    color: #fff !important;
+    border-color: #1B365D !important;
+}
+
+/* Newsletter button fix */
+.newsletter-section-new button,
+.newsletter-form-new button {
+    background: linear-gradient(135deg, #0D1B2A 0%, #1B365D 100%) !important;
+    color: #fff !important;
+}
+
+.newsletter-section-new button:hover,
+.newsletter-form-new button:hover {
+    background: linear-gradient(135deg, #1B365D 0%, #002080 100%) !important;
+    color: #fff !important;
+}
+
+/* Fix for Bootstrap button reboot styles */
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+}
+
+/* CRITICAL FIX: Remove white ::before overlay on buttons */
+.btn:before,
+.btn::before,
+.btn-primary:before,
+.btn-primary::before,
+.defButton:before,
+.defButton::before,
+.defButtonbilling:before,
+.defButtonbilling::before,
+button.btn:before,
+button.btn::before {
+    display: none !important;
+    content: none !important;
+    background-color: transparent !important;
+    height: 0 !important;
+    opacity: 0 !important;
+}
+
+.btn:hover:before,
+.btn:hover::before,
+.btn-primary:hover:before,
+.btn-primary:hover::before,
+.defButton:hover:before,
+.defButton:hover::before {
+    display: none !important;
+    content: none !important;
+    height: 0 !important;
+    opacity: 0 !important;
+}
+
+/* ULTRA SPECIFIC: Fix for .defButton with .btn and .btn-primary classes */
+/* This targets the exact combination: defButton + btn + btn-primary */
+.defButton.btn.btn-primary,
+.defButtonbilling.btn.btn-primary,
+.defButtonAddnew.btn.btn-primary,
+button.defButton.btn.btn-primary,
+button.defButtonbilling.btn.btn-primary {
+    background: #0D1B2A !important;
+    background-color: #0D1B2A !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-color: #0D1B2A !important;
+}
+
+.defButton.btn.btn-primary:hover,
+.defButton.btn.btn-primary:focus,
+.defButton.btn.btn-primary:active,
+.defButtonbilling.btn.btn-primary:hover,
+.defButtonbilling.btn.btn-primary:focus,
+.defButtonbilling.btn.btn-primary:active,
+.defButtonAddnew.btn.btn-primary:hover,
+.defButtonAddnew.btn.btn-primary:focus,
+.defButtonAddnew.btn.btn-primary:active,
+button.defButton.btn.btn-primary:hover,
+button.defButton.btn.btn-primary:focus,
+button.defButton.btn.btn-primary:active {
+    background: #2a4a7a !important;
+    background-color: #2a4a7a !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-color: #2a4a7a !important;
+    box-shadow: 0 4px 12px rgba(27, 61, 107, 0.3) !important;
+}
+
+/* ===== Modal Z-Index Fix - modals must sit ABOVE the sticky header =====
+   (header is z-index:999999 above, so modals need to be higher, not 99999) */
+.modal {
+    z-index: 1000060 !important;
+}
+
+.modal-backdrop {
+    z-index: 1000050 !important;
+}
+
+.modal-dialog {
+    z-index: 1000060 !important;
+}
+
+.modal-content {
+    z-index: 1000060 !important;
+    position: relative;
+}
+
+/* React Bootstrap Modal fixes */
+.fade.modal.show {
+    z-index: 1000060 !important;
+}
+
+.modal.show .modal-dialog {
+    z-index: 1000060 !important;
+}
+
+/* Ensure toast notifications appear above all elements including modals */
+.Toastify__toast-container,
+.Toastify__toast-container--top-center,
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--top-left,
+.Toastify__toast-container--bottom-center,
+.Toastify__toast-container--bottom-right,
+.Toastify__toast-container--bottom-left {
+    z-index: 999999999 !important;
+}
+
+.Toastify__toast {
+    z-index: 999999999 !important;
+    position: relative !important;
+}
+
+/* Add space between heading span and decorative underline */
+.heading h2 span {
+    position: relative !important;
+    display: inline-block !important;
+    padding-bottom: 20px !important;
+    line-height: 1.2 !important;
+}
+
+.heading h2 span::before {
+    bottom: -8px !important;
+    top: auto !important;
+    height: 20px !important;
+}
+
+/* ===== Mobile Location Carousel Image Fix ===== */
+/* Force mobile carousel to show */
+.locations-carousel-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    /* Hide desktop grid */
+    .locations.locations-desktop,
+    .locations-desktop {
+        display: none !important;
+    }
+    
+    /* Show mobile carousel */
+    .locations-carousel-mobile {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 450px !important;
+    }
+    
+    .locations-carousel-mobile .swiper,
+    .locations-carousel-mobile .swiper-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 420px !important;
+        overflow: visible !important;
+    }
+    
+    .locations-carousel-mobile .swiper-wrapper {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        min-height: 400px !important;
+    }
+    
+    .locations-carousel-mobile .swiper-slide {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 400px !important;
+    }
+    
+    .locations-carousel-mobile .locations-address,
+    .locations-carousel-mobile .swiper-slide .locations-address {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        min-height: 400px !important;
+        position: relative !important;
+    }
+    
+    .locations-carousel-mobile .locations-address figure,
+    .locations-carousel-mobile .swiper-slide figure,
+    .locations-carousel-mobile figure.location-image-wrapper,
+    .locations-carousel-mobile figure.location-svg {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: 400px !important;
+        min-height: 400px !important;
+        max-height: 400px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        border-radius: 20px !important;
+        margin: 0 !important;
+        background-color: #e5e5e5 !important;
+    }
+    
+    .locations-carousel-mobile .locations-address figure img,
+    .locations-carousel-mobile .swiper-slide figure img,
+    .locations-carousel-mobile figure.location-image-wrapper img,
+    .locations-carousel-mobile figure.location-svg img,
+    .locations-carousel-mobile img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 400px !important;
+        max-height: 400px !important;
+        object-fit: cover !important;
+        border-radius: 20px !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
+    }
+    
+    /* Ensure link button is visible */
+    .locations-carousel-mobile .locations-address > a {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 10 !important;
+    }
+}
+
+/* ===== Global Mobile Responsive Fixes for Dynamic Content ===== */
+/* These styles ensure all pages with API content are responsive */
+
+@media (max-width: 991px) {
+    /* Prevent horizontal overflow on all pages */
+    html, body, #root {
+        /* clip keeps the sticky header working on mobile; hidden would make
+           these scroll containers and break it. */
+        overflow-x: hidden !important;
+        overflow-x: clip !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Fix container widths */
+    .container, .container-fluid {
+        max-width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Make all images responsive globally */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Fix tables */
+    table {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+    
+    /* Ensure proper text rendering */
+    p, span, div, li, a {
+        font-family: "Source Sans Pro", sans-serif;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* More aggressive fixes for smaller screens */
+    .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    
+    /* Fix any absolutely positioned elements that might overflow */
+    [style*="position: absolute"],
+    [style*="position:absolute"] {
+        max-width: 100% !important;
+    }
+    
+    /* Ensure sections don't overflow */
+    section {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    /* Stack grid items on mobile */
+    .row > [class*="col-"] {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+

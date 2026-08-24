@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700"
+        rel="stylesheet" media="screen">
+    <style>
+        .hover-underline:hover {
+            text-decoration: underline !important;
+        }
+
+        .tbl-class {
+            border: 1px solid #ccc;
+            border-collapse: collapse; /* Prevents double borders */
+            width: 100%; /* Optional: ensures consistent sizing */
+        }
+
+        .tbl-class td {
+            border: 1px solid hsl(0, 0%, 80%);
+            padding: 5px 10px;
+        }
+
+        /* Ensure the last column and last row don't have unnecessary borders */
+        .tbl-class td:last-child {
+            border-right: none;
+        }
+
+        .tbl-class tr:last-child td {
+            border-bottom: none;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ping {
+
+            75%,
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sm-leading-32 {
+                line-height: 32px !important;
+            }
+
+            .sm-px-24 {
+                padding-left: 24px !important;
+                padding-right: 24px !important;
+            }
+
+            .sm-py-32 {
+                padding-top: 32px !important;
+                padding-bottom: 32px !important;
+            }
+
+            .sm-w-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    style="margin: 0; padding: 0; width: 100%; font-size: 12px; word-break: break-word; -webkit-font-smoothing: antialiased; --bg-opacity: 1; background-color: #eceff1; background-color: rgba(236, 239, 241, 1);">
+    <div role="article" aria-roledescription="email" aria-label="" lang="en">
+        <table style="width: 100%;" width="100%"
+            cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td align="center"
+                    style="--bg-opacity: 1; background-color: #eceff1; background-color: rgba(236, 239, 241, 1); "
+                    bgcolor="rgba(236, 239, 241, 1)">
+                    <table class="sm-w-full" style=" width: 600px;" width="600"
+                        cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                            <td align="center" class="sm-px-24" style=""
+                                bgcolor="#ffffff">
+                                <table style=" width: 100%;" width="100%" cellpadding="0"
+                                    cellspacing="0" role="presentation">
+                                    <tr>
+                                        <td class="sm-py-32 sm-px-24"
+                                            style=" padding: 48px; text-align: center;padding: 30px 48px;"
+                                            align="center">
+                                            <a href="" target="_blank">
+                                                {{!-- <img src="{{links.file_server}}/mail/header.png" width="250" alt="" 
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle;"> --}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" class="sm-px-24"
+                                            style="padding: 0px 30px;">
+                                            <table style=" width: 100%;" width="100%"
+                                                cellpadding="0" cellspacing="0" role="presentation">
+                                                <tr>
+                                                    <td class="sm-px-24"
+                                                        style="--bg-opacity: 1;  text-align: left; --text-opacity: 1; color: #000000;"
+                                                        bgcolor="#ffffff" align="left">
+                                                        {{#if conditions.staging}}
+                                                            {{recipients}}
+                                                        {{/if}}
+                                                        <p style="font-weight: 600;  margin-bottom: 0;">
+                                                            Dear {{booking.user_first_name}} {{booking.user_last_name}},
+                                                        </p>
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            Your booking has been successfully modified.</p>
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            Please make sure to carry a copy of your booking confirmation, along with your physical driving license, National ID, Passport copy, home country driving license, international driving license (if applicable) and a credit card. For assistance you may call our Toll Free +212 655 585 859 or send an email to info.com
+                                                        </p>
+
+                                                        <p style="margin: 15px 0;text-align: left;">
+                                                            Your updated booking details are available below:
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="sm-px-24"
+                                                        style="">
+                                                        <table
+                                                            style=" width: 100%;border: 1px solid #ccc;border-color: #ccc;"
+                                                            width="100%" cellpadding="0" cellspacing="0"
+                                                            role="presentation">
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Booking Number
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{booking.booking_number}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Payment Type
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.pay_now}}
+                                                                        Pay Now
+                                                                    {{else}}
+                                                                        Pay Later
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if conditions.pay_now}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Payment ID Number
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                    {{booking.payfort_id}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Date and Time of Booking
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.booking_date}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Customer Name
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{booking.user_first_name}}
+                                                                    {{booking.user_last_name}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Contact Number
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    +{{booking.user_phone_code}}
+                                                                    {{booking.user_phone_number}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Car Type
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{booking.car.name_en}} or similar
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                {{#if conditions.self_pickup}}
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Pick Up Location
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        {{booking.pickup_location.name_en}} 
+                                                                    </td>
+
+                                                                {{else}}
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Delivery Location
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        {{booking.pickup_city.name_en}}
+                                                                        <br>
+                                                                        <a href="http://maps.google.com/maps?q={{booking.pickup_coordinates.[0]}},{{booking.pickup_coordinates.[1]}}">
+                                                                            {{booking.pickup_address}}
+                                                                        </a>
+                                                                    </td>
+                                                                {{/if}}
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Date and Time
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.pickup_date_time}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Location Contact
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.self_pickup}}
+                                                                        {{booking.pickup_location.contact_number}}
+                                                                    {{else}}
+                                                                        {{booking.pickup_city.contact_number}}
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                {{#if conditions.self_dropoff}}
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Drop Off Location
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        {{booking.dropoff_location.name_en}} <br>
+                                                                    </td>
+                                                                {{else}}
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Collection Location
+                                                                    </td>
+
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        {{booking.dropoff_city.name_en}}
+                                                                        <br>
+                                                                        <a href="http://maps.google.com/maps?q={{booking.dropoff_coordinates.[0]}},{{booking.dropoff_coordinates.[1]}}">
+                                                                            {{booking.dropoff_address}}
+                                                                        </a>
+                                                                    </td>
+                                                                {{/if}}
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Date and Time
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{formatDate booking.dropoff_date_time}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Location Contact
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{#if conditions.self_dropoff}}
+                                                                        {{booking.dropoff_location.contact_number}}
+                                                                    {{else}}
+                                                                        {{booking.dropoff_city.contact_number}}
+                                                                    {{/if}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style="border-right: 1px solid hsl(0, 0%, 80%);border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Booking Type
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{conditions.daily_or_weekly}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Rental Day/s
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    {{booking.booking_days}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Allowed Mileage
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Unlimited
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Rental Amount
+                                                                </td>
+                                                                <td style="text-transform: capitalize; border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    MAD {{booking.car_rate_total}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if conditions.pay_now}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Online Payment Discount
+                                                                    </td>
+
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.pay_now_discount_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    Promo Code Discount
+                                                                </td>
+                                                                <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                    width="50%">
+                                                                    MAD {{booking.coupon_discount_amount}}
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            {{#each booking.car_extras}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        <span style="text-transform: uppercase;" >{{type}}</span> Charge
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{rate}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/each}}
+                                                            {{#if booking.delivery_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Delivery Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.delivery_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.collection_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Collection Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.collection_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.inter_cities_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Inter City Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.inter_cities_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.pickup_parking_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Pickup Parking Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.pickup_parking_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.dropoff_parking_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Dropoff Parking Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.dropoff_parking_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+                                                            {{#if booking.vmd_charges}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        VMD Charges
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.vmd_charges}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}
+
+                                                            {{#if conditions.pay_now}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Sub Total
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.sub_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                            {{booking.vat_percentage}}% VAT
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.vat_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Actual Total
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.actual_total_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Previously Paid
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.previous_total_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        New Total
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.total_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                {{#if conditions.same_amount_check }}
+                                                                    <tr>
+                                                                        <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                            width="50%">
+                                                                            Remarks
+                                                                        </td>
+                                                                        <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                            width="50%">
+                                                                            Same amount already paid
+                                                                        </td>
+                                                                    </tr>
+                                                                {{/if}}
+                                                                {{#if booking.refund_amount}}
+                                                                    <tr>
+                                                                        <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                            width="50%">
+                                                                            Refund Amount
+                                                                        </td>
+                                                                        <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                            width="50%">
+                                                                            MAD {{booking.refund_amount}}
+                                                                        </td>
+                                                                    </tr>
+                                                                {{/if}}
+                                                            {{else}}
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Sub Total
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.sub_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                            {{booking.vat_percentage}}% VAT
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.vat_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        Total
+                                                                    </td>
+                                                                    <td style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;padding: 5px 10px;"
+                                                                        width="50%">
+                                                                        MAD {{booking.total_amount}}
+                                                                    </td>
+                                                                </tr>
+                                                            {{/if}}    
+                                                            
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sm-px-24"
+                                                        style="--bg-opacity: 1;padding: 0;   text-align: left; --text-opacity: 1; color: #000000;"
+                                                        bgcolor="#ffffff" align="left">
+                                                        <p>
+                                                            We wish you a safe and pleasant journey. 
+                                                        </p>
+                                                        <p>
+                                                            Thank you for choosing Route Facile. 
+                                                        </p>
+                                                        <p>
+                                                            Best Regards, <br>
+                                                            Route Facile 
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{!-- <img src="{{links.file_server}}/mail/footer.jpg" width="100%" height="100%"> --}}
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #e5e5e5;">
+                                        <td style="padding-top: 15px;">
+                                            <div
+                                                style="font-weight: 600; margin-bottom: 0;text-align: center;">
+                                                <a style="text-decoration: none;color:#999;margin:0;"
+                                                    href="{{links.terms_and_conditions}}"> Terms and Conditions </a>
+                                                |
+                                                <a style="text-decoration: none;color:#999;margin:0;"
+                                                    href="{{links.find_a_branch}}">Find a Branch</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #e5e5e5; text-align: center;">
+                                        <td
+                                            style="  --text-opacity: 1; color: #eceff1; color: rgba(236, 239, 241, 1);">
+                                            <a href="https://www.facebook.com/routefacilecarrental" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;">Facebook</a>
+                                            <a href="https://www.instagram.com/routefacilecarrental/" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;">Instagram</a>
+                                            <a href="https://twitter.com/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;">Twitter</a>
+                                            <a href="https://www.linkedin.com/company/routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;">Linkedin</a>
+                                            <a href="https://www.youtube.com/@routefacile" target="_blank"
+                                                style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, 1); text-decoration: none;">Youtube</a>
+                                            <p
+                                                style="text-decoration: none;color:#999;margin:0;text-align: center;margin-bottom:8px;margin-top: 8px;">
+                                                Copy rights
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

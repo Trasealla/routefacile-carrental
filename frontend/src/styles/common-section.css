@@ -1,0 +1,50 @@
+.common__section {
+  background: linear-gradient(rgb(0, 13, 107, 0.6), rgb(0, 13, 107, 0.6)),
+    url("../assets/all-images/drive.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 80px 0px;
+}
+
+.common__section.common__section--custom-banner {
+  padding: 120px 0px;
+  width: 100%;
+  background-color: #0a1e5c;
+}
+
+.common__section h1 {
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-weight: 600;
+}
+
+/* Mobile responsive styles for common section */
+@media (max-width: 768px) {
+  .common__section {
+    padding: 60px 15px;
+  }
+
+  .common__section.common__section--custom-banner {
+    padding: 80px 15px;
+  }
+  
+  .common__section h1 {
+    font-size: 24px !important;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 576px) {
+  .common__section {
+    padding: 50px 10px;
+  }
+
+  .common__section.common__section--custom-banner {
+    padding: 60px 10px;
+  }
+  
+  .common__section h1 {
+    font-size: 20px !important;
+  }
+}
+

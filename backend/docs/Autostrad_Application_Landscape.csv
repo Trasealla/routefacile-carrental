@@ -1,0 +1,31 @@
+Entity,Application,Modules,Category,Current AS-IS confirmation needed,Vendor,Users (#),Hosting,Licence Type,Annual Cost (AED),Contract End,Support Status,To be (Replace / Retain / Integrate / Retire)
+Autostrad,Customer Experience,Eloqua,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Customer Experience,Sales Enterprise,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Customer Experience,Contact Center,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Customer Experience,Field Services,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Customer Experience,Digital Assistant,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Integrate
+Autostrad,Customer Experience,Incentive Compensation,Core Platform,Not Implemented,Oracle,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Core Vertical Solutions,Rentals & Leasing Management,Industry Platform,Implemented,In-House (NestJS/TypeORM),Admin + Public Users,AWS EC2 (Docker),Proprietary,TBD,N/A,Active - Production,Retain
+Autostrad,Core Vertical Solutions,Customer Web Portal (e-Commerce),Industry Platform,Implemented,In-House (React),Public Users,AWS EC2 (Docker),Proprietary,TBD,N/A,Active - Production,Retain
+Autostrad,Core Vertical Solutions,Admin Portal,Industry Platform,Implemented,In-House (React),Admin Staff,AWS EC2 (Docker) - Port 3031,Proprietary,TBD,N/A,Active - Production,Retain
+Autostrad,Core Vertical Solutions,Customer Mobile App (Android & iOS),Industry Platform,Implemented,In-House + Adjust (Analytics),Mobile Users,AWS EC2 (API) + App Stores,Proprietary + SaaS,TBD,TBD,Active - Production,Retain
+Autostrad,Core Vertical Solutions,Backend API,Industry Platform,Implemented,In-House (NestJS/TypeORM),All Portals & Integrations,AWS EC2 (Docker) - Port 3000,Proprietary,TBD,N/A,Active - Production,Retain
+Autostrad,Core Vertical Solutions,Loyalty Management,Industry Platform,Not Implemented (Coupon/Discount system exists),TBD,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,ERP & Finance,ERP / Finance System,Core Platform,TBD - Confirmation Needed,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+Autostrad,HR & Payroll,HR / Payroll System,Core Platform,TBD - Confirmation Needed,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+Autostrad,Reporting & Analytics,BI / Reporting Tools,Core Platform,TBD - Confirmation Needed,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD
+Autostrad,Integration,Parkin DXB,Integrations,Not Implemented,Parkin,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,DARB AUH,Integrations,Not Implemented,ITC/DoT Abu Dhabi,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,RTA DXB,Integrations,Not Implemented,RTA Dubai,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,Payment Gateway (Network International),Integrations,Under Integration,Network International,All Booking Users,Cloud (Network Intl),SaaS / Per-Transaction,TBD,TBD,Under Integration,Integrate
+Autostrad,Integration,WhatsApp,Integrations,Not Implemented,Meta (WhatsApp Business),0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,SMS Gateway,Integrations,Implemented,MShastra,All Booking Users,Cloud (mshastra.com),SaaS / Per-SMS,TBD,TBD,Active - Production,Retain
+Autostrad,Integration,IVR,Integrations,Not Implemented,TBD,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,Payfort,Integrations,Implemented (Primary Gateway),Amazon Payment Services (Payfort),All Booking Users,Cloud (Payfort),SaaS / Per-Transaction,TBD,TBD,Active - Production,Retain / Replace (with Network Intl)
+Autostrad,Integration,International Brokers (Auto Europe / TSD),Integrations,Implemented (OTA XML API),Auto Europe,B2B Partners,AWS EC2 (API),Per-Booking Commission,TBD,TBD,Active - Production,Retain
+Autostrad,Integration,Vehicle Inspection & Damage Report (VDR),Integrations,Not Implemented,TBD,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,WTC Mall AUH,Integrations,Not Implemented,WTC Abu Dhabi,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,Abu Dhabi Airport,Integrations,Not Implemented,Abu Dhabi Airports,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,Dubai Airport,Integrations,Not Implemented,Dubai Airports,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,Integration,Dubai TARC,Integrations,Not Implemented,TARC Dubai,0,N/A,N/A,0,N/A,Not Active,Integrate
+Autostrad,SCM,Maintenance,Core Platform,Not Implemented,TBD,0,N/A,N/A,0,N/A,Not Active,Integrate

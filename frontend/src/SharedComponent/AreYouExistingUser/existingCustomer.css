@@ -1,0 +1,39 @@
+.existing-customer-radio-form {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f1447;
+  letter-spacing: 0.75px;
+ 
+}
+
+.exisiting-cutomer-container{
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+}
+
+/* 592px */
+@media (max-width : 37em) {
+  .existing-customer-radio-form label{
+    flex : 2 1 auto;
+  }
+  .existing-customer-radio-form{
+    font-size: 1rem;
+  }
+  .exisiting-cutomer-container{
+  
+    gap: 0rem;
+  }
+}
+/* 496px */
+@media (max-width : 31em) {
+  
+  .existing-customer-radio-form{
+    /* font-size: 0.8rem; */
+    
+  }
+  .exisiting-cutomer-container{
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

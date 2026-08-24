@@ -1,0 +1,171 @@
+.car_category__section .nav-tabs {
+  border: 0px;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+}
+.car_category__section .nav-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+.car_category__section .nav-tabs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.car_category__section .nav-tabs::-webkit-scrollbar-thumb {
+  background: #0D1B2A;
+  border-radius: 3px;
+}
+.car_category__section .nav-tabs .nav-item {
+  flex: 0 0 auto;
+}
+.car_category__section .nav-tabs .nav-link {
+  background: var(--gradient-bg);
+  width: 110px !important;
+  height: 100px !important;
+  color: #fff !important;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.car_category__section .nav-tabs .nav-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.car_category__section .nav-tabs .nav-link.active {
+  background: #fff !important;
+  color: #0D1B2A !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(242, 66, 27, 0.2);
+  border: 2px solid #F2421B;
+}
+.car_category__section .nav-tabs .nav-link.active .category_img {
+  filter: invert(88%) sepia(21%) saturate(935%) hue-rotate(123deg)
+    brightness(85%) contrast(97%) !important;
+}
+
+.category_img-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+.custom-stepper .step .step-label {
+  font-weight: 600 !important;
+}
+
+
+.car_category__section {
+  .slick-slider {
+    div {
+      span {
+        background: var(--gradient-bg);
+        width: 102px !important;
+        height: 96px !important;
+        color: #fff !important;
+        border-radius: 5px;
+        font-size: 0.6rem;
+        /* font-weight: 400; */
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        padding: 15px 22px;
+        transition: all 0.3s ease;
+      }
+      .back-white {
+        background-color: #fff !important;
+      }
+    }
+   
+  }
+}
+
+/* Active state for slick slider category items */
+.car_category__section .slick-slider .category-item.active span {
+  background: #f1f1f1 !important;
+  color: #000 !important;
+  border: 2px solid #0D1B2A;
+}
+
+.category-item{
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #fff;
+  font-weight: 400;
+}
+
+.category-item.active{
+  background: #fff !important;
+  color: #0D1B2A !important;
+  font-weight: 600;
+  border: 2px solid #F2421B;
+}
+.category-item.active .category_img-car-suv{
+  filter: invert(88%) sepia(21%) saturate(935%) hue-rotate(123deg)
+  brightness(85%) contrast(97%) !important;
+}
+
+@media (max-width : 600px) {
+  .css-1hv8oq8-MuiStepLabel-label{
+    font-size: 12px !important;
+    font-weight: 400 !important;
+  }
+  
+  /* Stepper label fixes for mobile */
+  .custom-stepper .MuiStepLabel-label,
+  .custom-stepper .step-label {
+    font-size: 10px !important;
+    white-space: nowrap !important;
+  }
+  
+  .custom-stepper .MuiStep-root {
+    padding: 0 4px !important;
+  }
+  
+  .custom-stepper .MuiStepConnector-line {
+    min-width: 20px !important;
+  }
+  
+  /* Category cards size reduction for mobile */
+  .car_category__section .nav-tabs .nav-link {
+    width: 90px !important;
+    height: 85px !important;
+    font-size: 0.55rem !important;
+    padding: 8px !important;
+  }
+  
+  .car_category__section .slick-slider div span {
+    width: 85px !important;
+    height: 80px !important;
+    font-size: 0.5rem !important;
+    padding: 10px 15px !important;
+  }
+}
+
+@media (max-width : 480px) {
+  .custom-stepper .MuiStepLabel-label,
+  .custom-stepper .step-label {
+    font-size: 9px !important;
+  }
+  
+  .car_category__section .nav-tabs .nav-link {
+    width: 80px !important;
+    height: 75px !important;
+    font-size: 0.5rem !important;
+  }
+}

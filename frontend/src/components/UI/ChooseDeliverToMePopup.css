@@ -1,0 +1,150 @@
+.chooseDeliverToMePopup {
+   
+    background: #fff;
+    height: fit-content;
+    /* width:  80rem; */
+    width: min(70vw, 1100px);
+    max-width: calc(100vw - 24px);
+    /* max-width: 90rem; */
+    margin: 0 auto;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #c9c9c9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    margin-bottom: 1.31vw;
+    padding: 16px 20px;
+    border-radius: 14px;
+    /* top: 22vw; */
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+}
+
+/* When Google Maps can't load, collapse the popup to a single column */
+.chooseDeliverToMePopup.no-map {
+    width: min(480px, calc(100vw - 24px));
+}
+
+.chooseDeliverToMePopup.no-map .map-column {
+    display: none !important;
+}
+
+.chooseDeliverToMePopup.no-map .form-column {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+.delivery-note{
+    color: #333;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+@media screen and (max-width: 768px) {
+    .chooseDeliverToMePopup {
+        width: calc(100vw - 16px);
+        padding: 14px 14px;
+        border-radius: 10px;
+    }
+}
+@media (max-width: 1200px) {
+    .my-chooseDeliverToMePopup {
+      width: 70vw; /* Adjust to screen width for smaller screens */
+    }
+  }
+
+/* .webSection {}
+
+.topWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon {
+    margin-right: 0.5rem;
+}
+
+.breadcrumbC {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.formWrapper {}
+
+.city {
+    margin-bottom: 1rem;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.actionIcon {
+    display: flex;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cityDropdown {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #c9c9c9;
+    border-radius: 0.94vw;
+    width: 100%;
+    z-index: 10;
+}
+
+.address {
+    margin-bottom: 1rem;
+}
+
+.primaryButton {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.mobileSection {}
+
+.chooseCityPopup {}
+
+.headerSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.breadCrumbSection {
+    margin-left: 1rem;
+}
+
+.listSection {}
+
+.footerBtnSection {
+    margin-top: 1rem;
+} */

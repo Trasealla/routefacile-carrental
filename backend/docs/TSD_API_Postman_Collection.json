@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "tsd-xml-api-collection",
+		"name": "TSD XML API - Autostrad",
+		"description": "TSD XML API endpoints for Autostrad Rent a Car integration. Uses OTA (OpenTravel Alliance) XML standard.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1/tsd",
+			"type": "string"
+		},
+		{
+			"key": "apiKey",
+			"value": "TSD_AUTOEUROPE_2026_xK9mP2nL7qR4sT8v",
+			"type": "string"
+		},
+		{
+			"key": "legacyApiKey",
+			"value": "J%P9&g4aIbZn7D3",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "0 - Health Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/health",
+					"host": ["{{baseUrl}}"],
+					"path": ["health"]
+				},
+				"description": "Check if the TSD XML API is operational"
+			},
+			"response": []
+		},
+		{
+			"name": "1 - Get All Locations (XML)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/locations",
+					"host": ["{{baseUrl}}"],
+					"path": ["locations"]
+				},
+				"description": "Get all available pickup/dropoff locations in OTA XML format"
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Location Search (OTA_VehLocSearchRQ)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OTA_VehLocSearchRQ xmlns=\"http://www.opentravel.org/OTA/2003/05\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    EchoToken=\"LOC001\"\n    TimeStamp=\"2026-01-09T10:00:00\"\n    Target=\"Production\"\n    Version=\"1.0\">\n    <POS>\n        <Source>\n            <RequestorID Type=\"5\" ID=\"AUTOEUROPE\"/>\n        </Source>\n    </POS>\n    <VehLocSearchCriterion>\n        <Address>\n            <CityName>Dubai</CityName>\n            <CountryName Code=\"AE\"/>\n        </Address>\n    </VehLocSearchCriterion>\n</OTA_VehLocSearchRQ>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/OTA_VehLocSearchRQ",
+					"host": ["{{baseUrl}}"],
+					"path": ["OTA_VehLocSearchRQ"]
+				},
+				"description": "Search for available pickup and dropoff locations by city, name, or coordinates"
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Vehicle Availability (OTA_VehAvailRateRQ)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OTA_VehAvailRateRQ xmlns=\"http://www.opentravel.org/OTA/2003/05\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    EchoToken=\"AVAIL001\"\n    TimeStamp=\"2026-01-09T10:00:00\"\n    Target=\"Production\"\n    Version=\"1.0\">\n    <POS>\n        <Source>\n            <RequestorID Type=\"5\" ID=\"AUTOEUROPE\" ID_Context=\"AUTOEUROPE\"/>\n        </Source>\n    </POS>\n    <VehAvailRQCore Status=\"Available\">\n        <VehRentalCore PickUpDateTime=\"2026-01-20T10:00:00\" ReturnDateTime=\"2026-01-25T10:00:00\">\n            <PickUpLocation LocationCode=\"1\" CodeContext=\"AUTOSTRAD\"/>\n            <ReturnLocation LocationCode=\"1\" CodeContext=\"AUTOSTRAD\"/>\n        </VehRentalCore>\n    </VehAvailRQCore>\n</OTA_VehAvailRateRQ>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/OTA_VehAvailRateRQ",
+					"host": ["{{baseUrl}}"],
+					"path": ["OTA_VehAvailRateRQ"]
+				},
+				"description": "Search for available vehicles with rates for specified pickup/return locations and dates"
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Create Reservation (OTA_VehResRQ)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OTA_VehResRQ xmlns=\"http://www.opentravel.org/OTA/2003/05\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    EchoToken=\"RES001\"\n    TimeStamp=\"2026-01-09T10:00:00\"\n    Target=\"Production\"\n    Version=\"1.0\">\n    <POS>\n        <Source>\n            <RequestorID Type=\"5\" ID=\"AUTOEUROPE\"/>\n        </Source>\n    </POS>\n    <VehResRQCore Status=\"Available\">\n        <VehRentalCore PickUpDateTime=\"2026-01-20T10:00:00\" ReturnDateTime=\"2026-01-25T10:00:00\">\n            <PickUpLocation LocationCode=\"1\"/>\n            <ReturnLocation LocationCode=\"1\"/>\n        </VehRentalCore>\n        <Customer>\n            <Primary>\n                <PersonName>\n                    <GivenName>John</GivenName>\n                    <Surname>Smith</Surname>\n                </PersonName>\n                <Telephone PhoneNumber=\"+971501234567\"/>\n                <Email>\n                    <EmailAddress>john.smith@example.com</EmailAddress>\n                </Email>\n                <Address>\n                    <AddressLine>123 Main Street</AddressLine>\n                    <CityName>London</CityName>\n                    <PostalCode>SW1A 1AA</PostalCode>\n                    <CountryName Code=\"GB\"/>\n                </Address>\n            </Primary>\n        </Customer>\n        <VehPref>\n            <VehMakeModel Code=\"1\"/>\n        </VehPref>\n    </VehResRQCore>\n    <VehResRQInfo>\n        <RentalPaymentPref>\n            <PaymentType>PayLater</PaymentType>\n        </RentalPaymentPref>\n        <Comments>\n            <Comment>Test booking via TSD API</Comment>\n        </Comments>\n    </VehResRQInfo>\n</OTA_VehResRQ>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/OTA_VehResRQ",
+					"host": ["{{baseUrl}}"],
+					"path": ["OTA_VehResRQ"]
+				},
+				"description": "Create a new vehicle reservation with customer and rental details"
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Cancel Reservation (OTA_VehCancelRQ)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OTA_VehCancelRQ xmlns=\"http://www.opentravel.org/OTA/2003/05\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    EchoToken=\"CANCEL001\"\n    TimeStamp=\"2026-01-09T10:00:00\"\n    Target=\"Production\"\n    Version=\"1.0\">\n    <POS>\n        <Source>\n            <RequestorID Type=\"5\" ID=\"AUTOEUROPE\"/>\n        </Source>\n    </POS>\n    <VehCancelRQCore CancelType=\"Cancel\">\n        <UniqueID Type=\"Booking\" ID=\"TSD1736416805000\"/>\n        <PersonName>\n            <GivenName>John</GivenName>\n            <Surname>Smith</Surname>\n        </PersonName>\n    </VehCancelRQCore>\n    <VehCancelRQInfo>\n        <CancelReason>Customer requested cancellation</CancelReason>\n    </VehCancelRQInfo>\n</OTA_VehCancelRQ>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/OTA_VehCancelRQ",
+					"host": ["{{baseUrl}}"],
+					"path": ["OTA_VehCancelRQ"]
+				},
+				"description": "Cancel an existing vehicle reservation by confirmation ID"
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Modify Reservation (OTA_VehModifyRQ)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OTA_VehModifyRQ xmlns=\"http://www.opentravel.org/OTA/2003/05\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    EchoToken=\"MODIFY001\"\n    TimeStamp=\"2026-01-09T10:00:00\"\n    Target=\"Production\"\n    Version=\"1.0\">\n    <POS>\n        <Source>\n            <RequestorID Type=\"5\" ID=\"AUTOEUROPE\"/>\n        </Source>\n    </POS>\n    <VehModifyRQCore ModifyType=\"Modify\">\n        <UniqueID Type=\"Booking\" ID=\"TSD1736416805000\"/>\n        <VehRentalCore ReturnDateTime=\"2026-01-27T10:00:00\">\n            <!-- Extend return date by 2 days -->\n        </VehRentalCore>\n    </VehModifyRQCore>\n</OTA_VehModifyRQ>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/OTA_VehModifyRQ",
+					"host": ["{{baseUrl}}"],
+					"path": ["OTA_VehModifyRQ"]
+				},
+				"description": "Modify an existing vehicle reservation dates, vehicle, or locations"
+			},
+			"response": []
+		}
+	]
+}
+

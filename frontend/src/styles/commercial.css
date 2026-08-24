@@ -1,0 +1,165 @@
+#commercial #our-values {
+  /* padding: 80px 0 80px 0; */
+  /* background-image removed with the commercial-vehicles page. */
+  background: linear-gradient(rgb(0, 13, 107, 0.6), rgb(0, 13, 107, 0.6)),
+    url("../assets/all-images/bus.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+}
+#our-values {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #fff;
+}
+#buss-point-div #car-div-222 img {
+  margin: 0 20px 0 0;
+  border: solid 1px #eee;
+  border-radius: 100%;
+  height: 60px;
+}
+#buss-point-div #car-div-222 {
+  display: flex;
+}
+#buss-point-div #car-div-222 {
+  /* float: left; */
+  width: 100%;
+  margin-bottom: 35px;
+  text-align: center;
+  background: none;
+  padding: 0;
+  border-radius: 5px;
+}
+#buss-point-div #car-div-222 p {
+  color: #000;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left !important;
+  margin-bottom: 0;
+}
+
+#content-1 {
+  padding: 40px;
+  text-align: left;
+}
+#main-text-1 {
+  display: inline-block;
+  width: 100%;
+  font-size: 23px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+#flex-display-1 {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  gap: 20px;
+  padding-left: 30px;
+}
+
+#flex-display-1-children-1 {
+  flex: 1.1;
+}
+#flex-display-1-children-2 {
+  flex: 1;
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+#row-2 {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 10px;
+}
+#row-3 {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* gap: 10px; */
+}
+#row- {
+  padding: 0 30px;
+}
+#car-div-2222 {
+  min-height: 278px;
+  margin: 0 auto;
+  max-width: 20rem;
+  border-radius: 5px;
+  float: left;
+  background: #000000a6;
+  display: inline-block;
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  img {
+    min-width: 10rem !important;
+  }
+}
+
+#content {
+  /* float: left; */
+  width: 100%;
+  color: #fff;
+  font-size: 14px;
+  text-align: left;
+  padding-top: 10px;
+}
+
+#end-to-end-heading {
+  color: #fff;
+  font-size: 25px;
+  text-align: center;
+}
+
+#main-text-3 {
+  display: inline-block;
+  margin-top: 50px;
+  margin-bottom: 23px;
+  text-align: left;
+}
+
+#bus-img-display-flex {
+  display: flex;
+}
+
+#bus-img {
+  width: 100%;
+}
+
+#bus-section {
+  padding-top: 0;
+  margin: auto;
+}
+
+@media screen and (max-width: 900px) {
+  #flex-display-1 {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  #row-2 {
+    flex-wrap: wrap;
+  }
+  #flex-display-1-children-2 {
+    display: none;
+  }
+}
+
+#our-values > div > div > div > div > h4 {
+  padding-left: 40px;
+}
+
+#flex-display-1-children-2 > div > img {
+  width: 100%;
+}
+#flex-display-1-children-2 > div > img {
+  width: 100%;
+}
+.image-title-commercial-veh h4 {
+  font-size: 35px;
+  color: #fff;
+  font-weight: 800;
+}

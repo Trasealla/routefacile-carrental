@@ -1,0 +1,31 @@
+# Route Facile — robots.txt
+# https://routefacilecarrental.com
+
+User-agent: *
+Allow: /
+
+# Transactional / user-account pages: NOT blocked here!
+# These pages use <meta name="robots" content="noindex, nofollow"> instead.
+# Blocking via robots.txt prevents Google from seeing the noindex tag,
+# causing "Indexed, though blocked by robots.txt" errors.
+
+# Disallow internal search / filter query strings
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /search
+# Note: Do NOT block ?ref= or ?value= — pages have canonical tags that
+# handle de-duplication. Blocking prevents Google from seeing the canonical.
+
+# Internal / counter pages
+Disallow: /*/counter/
+
+# /static/ MUST stay crawlable. This is a client-rendered React app: the entire
+# page content is produced by the JavaScript under /static/. Blocking it stopped
+# Googlebot from rendering the site at all, so it saw an empty shell. Google has
+# explicitly required CSS/JS to be crawlable since 2015.
+
+User-agent: facebookexternalhit
+Allow: /
+
+# XML Sitemap
+Sitemap: https://routefacilecarrental.com/sitemap.xml

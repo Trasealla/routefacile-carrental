@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Application Received</title>
+</head>
+
+<body
+    style="margin: 0; padding: 0; width: 100%; word-break: break-word; -webkit-font-smoothing: antialiased; background-color: #eceff1;">
+    <div role="article" aria-roledescription="email" aria-label="Application Received" lang="en">
+        <table style="font-family: Arial, -apple-system, 'Segoe UI', sans-serif; width: 100%;" width="100%"
+            cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td align="center"
+                    style="background-color: #eceff1; font-family: Arial, -apple-system, 'Segoe UI', sans-serif;">
+                    <table class="sm-w-full" style="font-family: Arial,sans-serif; width: 600px;" width="600"
+                        cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                            <td align="center" style="font-family: Arial,sans-serif;" bgcolor="#ffffff">
+                                <table style="font-family: Arial,sans-serif; width: 100%;" width="100%"
+                                    cellpadding="0" cellspacing="0" role="presentation">
+                                    <tr>
+                                        <td
+                                            style="font-family: Arial, -apple-system, 'Segoe UI', sans-serif; padding: 30px 48px; text-align: center;"
+                                            align="center">
+                                            <a href="#" target="_blank"><img src="{{file_server}}/mail/header.png"
+                                                    width="250" alt="Route Facile"
+                                                    style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle;"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center"
+                                            style="font-family: Arial,sans-serif; padding: 0px 30px;">
+                                            <table style="font-family: Arial,sans-serif; width: 100%;" width="100%"
+                                                cellpadding="0" cellspacing="0" role="presentation">
+                                                <tr>
+                                                    <td
+                                                        style="padding-bottom: 23px; font-family: Arial, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; line-height: 22px; text-align: left; color: #626262;"
+                                                        bgcolor="#ffffff" align="left">
+                                                        <p style="font-weight: 600; font-size: 16px; margin-bottom: 0;">
+                                                            Dear {{application.first_name}} {{application.last_name}},
+                                                        </p>
+
+                                                        <p style="margin: 15px 0; text-align: left;">
+                                                            Thank you for applying to
+                                                            <strong>Route Facile Car Rental - Morocco</strong>. We have successfully
+                                                            received your application{{#if application.career_job.title_en}}
+                                                            for the position of
+                                                            <strong>{{application.career_job.title_en}}</strong>{{/if}}.
+                                                        </p>
+
+                                                        <p style="margin: 15px 0; text-align: left;">
+                                                            Our recruitment team will carefully review your profile.
+                                                            If your qualifications match our requirements, we will
+                                                            contact you for the next steps. Otherwise, we will keep
+                                                            your CV on file for future opportunities.
+                                                        </p>
+
+                                                        <table
+                                                            style="font-family: Arial,sans-serif; width: 100%; border: 1px solid #ccc; margin-top: 10px;"
+                                                            width="100%" cellpadding="0" cellspacing="0"
+                                                            role="presentation">
+                                                            <tr>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="40%">
+                                                                    <strong>Application Reference</strong>
+                                                                </td>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="60%">
+                                                                    #{{application.id}}
+                                                                </td>
+                                                            </tr>
+                                                            {{#if application.career_job.title_en}}
+                                                            <tr>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="40%">
+                                                                    <strong>Position</strong>
+                                                                </td>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="60%">
+                                                                    {{application.career_job.title_en}}
+                                                                </td>
+                                                            </tr>
+                                                            {{/if}}
+                                                            <tr>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="40%">
+                                                                    <strong>Applicant</strong>
+                                                                </td>
+                                                                <td
+                                                                    style="border-right: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; font-size: 14px;"
+                                                                    width="60%">
+                                                                    {{application.first_name}}
+                                                                    {{application.last_name}}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                        <p style="margin: 20px 0 0 0; text-align: left;">
+                                                            Please do not reply to this email. For any queries, contact
+                                                            us via our website.
+                                                        </p>
+                                                        <p style="margin: 15px 0 0 0; text-align: left;">
+                                                            Best regards,<br>
+                                                            <strong>Route Facile Car Rental - Morocco &mdash; Human Resources</strong>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="{{file_server}}/mail/footer.jpg" style="max-width: 100%;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

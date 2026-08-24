@@ -1,0 +1,16 @@
+.km_allowance_tabs .nav-link:hover {
+  cursor: pointer;
+}
+.km_allowance_tabs .nav-link.active {
+  background-color: #402cbd;
+  color: #fff;
+}
+.upgrade-text-fs{
+  font-size: 1rem !important ;
+  font-weight: 500 !important;
+
+}
+
+.upgrade-text-fs-price{
+  font-weight: 700 !important;
+}

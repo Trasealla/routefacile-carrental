@@ -1,0 +1,168 @@
+.why-ride_section {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  font-family: "verdanaregular";
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  padding: 110px 0;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.ride_section_inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-lg-7,
+.col-md-7,
+.col-sm-12,
+.col-lg-5,
+.col-md-5 {
+  padding: 0px 15px 15px 15px;
+  box-sizing: border-box;
+}
+
+.image_left_section {
+  text-align: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.image_caption_main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.image_caption_main::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  background: none;
+  height: 665px;
+  width: 190px;
+}
+.image_caption_right {
+  margin-bottom: 1rem;
+}
+
+.caption_box {
+  padding: 10px;
+  background-color: var(--light);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon_caption h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.icon_caption p {
+  margin-bottom: 0;
+}
+
+.display-mobile {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .display-desktop {
+    display: none;
+  }
+  .display-mobile {
+    display: block;
+  }
+}
+
+.owl-carousel .owl-stage {
+  display: flex;
+}
+
+.owl-carousel .owl-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-icon-caption {
+  text-align: center;
+}
+
+.owl-prev img,
+.owl-next img {
+  width: 30px;
+  height: 30px;
+}
+
+.owl-dot {
+  display: inline-block;
+  margin: 5px;
+}
+
+.owl-dot span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.owl-dot.active span {
+  background-color: var(--secondary);
+}

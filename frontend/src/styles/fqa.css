@@ -1,0 +1,118 @@
+.accordion-button{
+  font-size: 22px;
+}
+/* ============================================================================
+   FAQ — readable layout
+   ----------------------------------------------------------------------------
+   The page previously ran edge to edge with no container, the category tabs sat
+   at very low contrast (they read as disabled), and every answer was styled as a
+   flat pale-blue bar. Logical properties throughout so it mirrors in Arabic.
+   ========================================================================== */
+.myAccountMainBox .tabsSection {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 40px 20px 64px;
+}
+
+/* ---- category tabs ------------------------------------------------------ */
+.myAccountMainBox .tabsSection .nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  border: 0;
+  margin-bottom: 28px;
+}
+
+.myAccountMainBox .tabsSection .nav-pills .nav-link {
+  background: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 9px 22px;
+  font-size: 14.5px;
+  font-weight: 600;
+  /* A global `.nav-pills .nav-link` rule (sidebar nav) hardcodes width: 248px,
+   * which made these pills wrap onto two rows with an orphan. Let them hug
+   * their label instead. */
+  width: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+  text-align: center;
+  /* Was near-invisible against the page — it read as a disabled control. */
+  color: #334155;
+  opacity: 1;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.myAccountMainBox .tabsSection .nav-pills .nav-link:hover {
+  background: #e2e8f0;
+  color: #12294a;
+}
+
+.myAccountMainBox .tabsSection .nav-pills .nav-link.active {
+  background: #f2421b;
+  border-color: #f2421b;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(242, 66, 27, 0.25);
+}
+
+/* ---- question cards ----------------------------------------------------- */
+.rf-faq-list .accordion { display: grid; gap: 12px; }
+
+.rf-faq-item {
+  border: 1px solid #e6edf5 !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.rf-faq-item .accordion-header { margin: 0; }
+
+.rf-faq-item .accordion-button {
+  background: #fff;
+  color: #12294a;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 18px 20px;
+  box-shadow: none;
+  text-align: start;
+}
+
+.rf-faq-item .accordion-button:not(.collapsed) {
+  background: #fff;
+  color: #f2421b;
+  box-shadow: none;
+}
+
+.rf-faq-item .accordion-button:focus-visible {
+  outline: 2px solid #f2421b;
+  outline-offset: -2px;
+}
+
+/* Bootstrap's chevron is a background-image pinned right; in Arabic it belongs
+   on the leading edge, and it should not flip the text alignment with it. */
+.rf-faq-item .accordion-button::after {
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] .rf-faq-item .accordion-button::after {
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+}
+
+.rf-faq-item .accordion-body {
+  padding: 0 20px 18px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.rf-faq-item .accordion-body p { margin: 0; }
+
+@media (max-width: 575.98px) {
+  .myAccountMainBox .tabsSection { padding: 24px 14px 44px; }
+  .rf-faq-item .accordion-button { font-size: 15px; padding: 15px 16px; }
+  .rf-faq-item .accordion-body { padding: 0 16px 15px; font-size: 14.5px; }
+}

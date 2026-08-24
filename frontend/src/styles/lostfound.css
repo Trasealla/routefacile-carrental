@@ -1,0 +1,203 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Route Facile — Lost & Found Page
+   Visual Identity v1.0 · Orange #F2421B · Navy #0D1B2A · Poppins
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Tokens ─────────────────────────────────────────────────────────────────── */
+.lf-page {
+  --lf-orange:  #F2421B;
+  --lf-navy:    #0D1B2A;
+  --lf-grey:    #F2F4F7;
+  --lf-border:  #E5E7EB;
+  --lf-muted:   #6B7280;
+  --lf-r-card:  20px;
+  --lf-r-input: 14px;
+  --lf-r-btn:   14px;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────────── */
+.lf-hero {
+  background: var(--lf-navy);
+  padding: 72px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.lf-hero::before {
+  content: "";
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(242,66,27,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lf-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px; height: 80px;
+  background: rgba(242,66,27,.12);
+  border: 1px solid rgba(242,66,27,.30);
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.lf-hero-icon i { font-size: 36px; color: var(--lf-orange); }
+.lf-hero h1 {
+  color: #fff;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 14px;
+}
+.lf-hero h1 span { color: var(--lf-orange); }
+.lf-hero p {
+  color: rgba(255,255,255,.60);
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ── Section wrapper ─────────────────────────────────────────────────────────── */
+.lf-section {
+  background: var(--lf-grey);
+  padding: 64px 0 80px;
+}
+
+/* ── Notice banner ───────────────────────────────────────────────────────────── */
+.lf-notice {
+  background: #fff;
+  border-left: 4px solid var(--lf-orange);
+  border-radius: var(--lf-r-card);
+  padding: 22px 28px;
+  margin-bottom: 40px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 2px 14px rgba(13,27,42,.06);
+}
+.lf-notice i { color: var(--lf-orange); font-size: 22px; flex-shrink: 0; margin-top: 3px; }
+.lf-notice p { margin: 0; color: #374151; font-size: 15px; line-height: 1.75; }
+
+/* ── Form card ───────────────────────────────────────────────────────────────── */
+.lf-card {
+  background: #fff;
+  border-radius: var(--lf-r-card);
+  box-shadow: 0 8px 40px rgba(13,27,42,.08);
+  padding: 40px;
+}
+.lf-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lf-navy);
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--lf-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lf-card-title i { color: var(--lf-orange); }
+
+/* ── Labels ──────────────────────────────────────────────────────────────────── */
+.lf-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lf-navy);
+  margin-bottom: 8px;
+}
+.lf-req { color: var(--lf-orange); margin-left: 3px; }
+
+/* ── Inputs / selects / textarea ─────────────────────────────────────────────── */
+.lf-input,
+.lf-select,
+.lf-textarea {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid var(--lf-border);
+  border-radius: var(--lf-r-input);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: var(--lf-navy);
+  display: block;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.lf-input,
+.lf-select { height: 54px; padding: 0 16px; }
+.lf-textarea { padding: 14px 16px; resize: vertical; min-height: 110px; }
+.lf-input:focus,
+.lf-select:focus,
+.lf-textarea:focus {
+  outline: none;
+  border-color: var(--lf-orange);
+  box-shadow: 0 0 0 4px rgba(242,66,27,.08);
+}
+.lf-input::placeholder,
+.lf-textarea::placeholder { color: #9CA3AF; }
+.lf-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+/* Bootstrap validation overrides */
+.lf-input.is-invalid,
+.lf-select.is-invalid,
+.lf-textarea.is-invalid { border-color: #EF4444 !important; }
+.lf-input.is-valid,
+.lf-select.is-valid,
+.lf-textarea.is-valid { border-color: #22C55E !important; }
+.invalid-feedback { font-size: 12px; color: #EF4444; margin-top: 6px; }
+
+/* ── Field group ─────────────────────────────────────────────────────────────── */
+.lf-field { margin-bottom: 24px; }
+
+/* ── Section sub-label ───────────────────────────────────────────────────────── */
+.lf-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--lf-muted);
+  margin: 4px 0 20px;
+}
+
+/* ── Submit button ───────────────────────────────────────────────────────────── */
+.lf-submit-btn {
+  width: 100%;
+  height: 52px;
+  background: var(--lf-orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--lf-r-btn);
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(242,66,27,.25);
+  transition: background .15s ease, box-shadow .15s ease, transform .1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.lf-submit-btn:hover:not(:disabled) {
+  background: #D93A16;
+  box-shadow: 0 16px 36px rgba(242,66,27,.35);
+  transform: translateY(-1px);
+}
+.lf-submit-btn:disabled { opacity: .70; cursor: not-allowed; transform: none; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .lf-hero { padding: 48px 0 56px; }
+  .lf-hero h1 { font-size: 28px; }
+  .lf-card { padding: 24px 18px; }
+  .lf-section { padding: 40px 0 56px; }
+  .lf-notice { padding: 18px 20px; }
+}

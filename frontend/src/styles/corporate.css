@@ -1,0 +1,241 @@
+.about .our-values {
+  /* background: linear-gradient(rgb(0, 13, 107, 0.6), rgb(0, 13, 107, 0.6)),
+    url("../assets/all-images/backCar.jpg"); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0px 0px;
+}
+.image-title h4 {
+  font-size: 35px;
+  color: #333;
+  font-weight: 800;
+}
+.image-title p {
+  color: #000;
+}
+.list-with-dots li {
+  position: relative;
+  padding-left: 30px; /* Adjust the padding as needed */
+  margin-top: 20px;
+
+  font-weight: 600;
+}
+
+.list-with-dots li::before {
+  content: "*"; /* Unicode character for bullet point */
+  position: absolute;
+  left: 0;
+  color: #007bff; /* Adjust the color as needed */
+  font-size: 16px; /* Adjust the size as needed */
+}
+.table02 {
+  border-collapse: collapse;
+}
+.hed-table {
+  background: #1f366c;
+  color: #fff;
+}
+.table02 td {
+  padding: 10px;
+  font-size: 15px;
+  border: solid 1px #ddd;
+}
+.hed-table-title {
+  font-size: 18px !important;
+ 
+}
+
+.hed-table-title-p td {
+  font-size: 15px !important;
+ 
+}
+
+.my-row {
+  display: flex;
+}
+
+.my-col-1 {
+  flex: 2;
+  box-sizing: border-box;
+}
+.my-col-2 {
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* .our-heritage {
+  background-color: yellow !important;
+} */
+
+
+table {
+  /* margin-bottom: 30px; */
+}
+
+#my-row-3 {
+  /* background-color: yellow !important; */
+  display: flex;
+
+  flex-wrap: wrap;
+}
+#my-col-3-1 {
+  flex: 1;
+  box-sizing: border-box;
+
+  /* border: 5px solid red; */
+}
+#my-col-3-2 {
+  flex: 1;
+  box-sizing: border-box;
+  /* border: 5px solid green; */
+  /* max-width: 400px; */
+}
+
+#main-sec-2-row {
+  display: flex;
+}
+
+#main-sec-2-col-1 {
+  flex: 1;
+  box-sizing: border-box;
+}
+#main-sec-2-col-2 {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+#main-sec-2-col-2-img1-div {
+  display: none;
+}
+#main-sec-2 {
+  /* margin: 50px 0; */
+}
+#my-container-3 {
+  /* margin-top: 50px; */
+}
+
+
+
+#my-container-3{
+  #my-col-3-2-img-1 > img{
+    width: 45rem;
+  }
+}  #main-sec-2-col-2-img2-div > img{
+  width: 45rem;
+}
+.hed-table-title-p td {
+  font-size: 1rem!important;
+  border: 1px solid black;
+  padding: 15px;
+ 
+}
+.hed-table-title{
+  font-size: 1.3rem!important;
+  padding: 9px 5px;
+  border: 1px solid rgba(0, 17, 71, 0.969)
+}
+
+@media screen and (max-width: 900px) {
+  #my-row-3 {
+    /* background-color: yellow !important; */
+    display: flex;
+    flex-direction: column;
+  }
+  #main-sec-2-row {
+    display: flex;
+    flex-direction: column;
+  }
+  #my-col-3-2-img-1 > img {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  #main-sec-2-row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #my-container-3{
+    #my-col-3-2-img-1 > img{
+      width: 35rem;
+    }
+  }
+  #main-sec-2-col-2-img2-div > img{
+    width: 35rem;
+  }
+  .px-2 {
+    padding: 0px 0px;
+    #main-section {
+      padding: 0px 0px;
+    }
+  }
+  .hed-table-title-p td {
+    font-size: 0.7rem!important;
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 569px) {
+  #my-container-3{
+    #my-col-3-2-img-1 > img {
+      width: 30rem;
+    }
+  }
+  #main-sec-2-col-2-img2-div > img{
+    width: 30rem;
+  }
+  .hed-table-title{
+    font-size: 1rem!important;
+    padding: 9px 5px;
+    border: 1px solid rgba(0, 17, 71, 0.969);
+  }
+}
+@media screen and (max-width: 486px) {
+  #my-container-3{
+    #my-col-3-2-img-1 > img{
+      width: 25rem;
+    }
+  }
+  #main-sec-2-col-2-img2-div > img{
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 411px) {
+  #my-container-3{
+    #my-col-3-2-img-1 > img{
+      width: 20rem;
+    }
+  }
+  #main-sec-2-col-2-img2-div > img{
+    width: 20rem;
+  }
+}
+.enquire-now-button-in-corporate-div{
+  text-align: center;
+  margin-bottom: 12px;
+}
+.enquire-now-button-in-corporate{
+  background: var(--gradient-bg);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease-in;
+}
+.enquire-now-button-in-corporate:hover{
+transform: scale(1.1);
+}
+ul {
+  padding-left: 1rem;
+}
+
+.section-gap-24px {
+  margin-bottom: 24px;
+}

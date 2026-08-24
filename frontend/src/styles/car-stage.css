@@ -1,0 +1,113 @@
+/* ============================================================
+   Car photo "studio stage"
+   ============================================================
+
+   The search-results cards put each vehicle on a lit studio backdrop — a
+   radial highlight behind the car falling away to near-black at the edges.
+   Everywhere else the same photos sat on flat white, so the fleet page and the
+   car pages looked like a different product to the page customers book from.
+
+   The gradient lived inside .cardetails__item-enhanced, tangled up with that
+   card's absolute positioning and its fade into the pricing block. Only the
+   backdrop is reusable, so it lives here on its own and any container can opt
+   in with `rf-car-stage`, whatever shape it is.
+
+   The photos are PNGs with transparent backgrounds, which is what makes this
+   work: the car sits on the gradient rather than on a white rectangle.
+   ============================================================ */
+
+.rf-car-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /* Highlight sits up and to the right, so the car is lit from that side and
+     the shadow under it reads as falling the other way. */
+  background: radial-gradient(
+    ellipse 90% 72% at 91% 31%,
+    #d2dde1 0%,
+    #aab9be 25%,
+    #69787d 46%,
+    #344044 63%,
+    #151b1d 84%,
+    #111719 100%
+  );
+}
+
+/* Vignette: darkens the left edge and the corners so the highlight reads as a
+   light source rather than a flat colour wash. */
+.rf-car-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 8, 9, 0.42) 0%,
+    transparent 38%,
+    transparent 85%,
+    rgba(5, 8, 9, 0.08) 100%
+  );
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+}
+
+/* The vehicle rides above the backdrop, with a contact shadow so it sits on the
+   surface instead of floating over it. */
+.rf-car-stage img {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 14px 7px rgba(0, 0, 0, 0.55));
+}
+
+/* Softer shadow where the photo is small — a full-strength drop shadow on a
+   60px thumbnail turns into a grey smudge. */
+.rf-car-stage--sm img {
+  filter: drop-shadow(0 6px 4px rgba(0, 0, 0, 0.45));
+}
+
+/* Rounded by default; a container that already clips its own corners can
+   override. Kept here so callers do not each re-declare it. */
+.rf-car-stage {
+  border-radius: 14px;
+}
+
+.rf-car-stage--sm {
+  border-radius: 10px;
+}
+
+/* ── Per-surface sizing ───────────────────────────────────────────
+   The backdrop above is shape-agnostic; these only give each host the
+   padding it needs so the car is not cropped against the edge. */
+
+/* Booking extras: "Car Details" panel */
+.bdt-car-photo {
+  padding: 14px 18px;
+}
+.bdt-car-photo figure,
+.bdt-car-photo .figure {
+  margin: 0;
+}
+
+/* Booking extras: upgrade carousel cards.
+   Applied to the <img> itself — the surrounding div also holds the card's
+   title, price and button, and staging that turned dark text onto a dark
+   backdrop. A transparent PNG takes the gradient directly. */
+.bdt-upgrade-photo {
+  padding: 12px 10px;
+  display: block;
+  width: 100%;
+}
+
+/* Login / guest-checkout modal thumbnail */
+.lm-booking-thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  flex: 0 0 auto;
+}
+
+/* Confirmation screen */
+.ps-car-image-wrap {
+  padding: 18px;
+}
